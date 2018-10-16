@@ -1,0 +1,7 @@
+<?php 
+
+class M_keluar extends CI_Model
+{
+	
+}
+?>
