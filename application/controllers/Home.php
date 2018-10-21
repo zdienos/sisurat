@@ -13,6 +13,9 @@ class Home extends CI_Controller {
 		//$this->load->view('home');
 		if ($this->session->userdata('log_in')) {
 			$user = $this->model->getuser();
+			if (!empty($user)) {
+				echo "dany";
+			}
   			$data['username'] = $user['username'];
   			$data['jabatan'] = $user['jabatan'];
   			$data['id'] = $user['id'];
