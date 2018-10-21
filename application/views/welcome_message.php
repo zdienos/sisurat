@@ -62,7 +62,7 @@ desired effect
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>A</b>LT</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Admin</b>LTE</span>
+      <span class="logo-lg"><b>Herryawan</b>LTE</span>
     </a>
 
     <!-- Header Navbar -->
@@ -280,7 +280,7 @@ desired effect
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Berubah 2
+        Page Header
         <small>Optional description</small>
       </h1>
       <ol class="breadcrumb">
@@ -341,7 +341,7 @@ desired effect
         </ul>
         <!-- /.control-sidebar-menu -->
 
-        <h3 class="control-sidebar-heading">Tasks Progress</h3>
+        <h3 class="control-sidebar-heading">asldkaslkdjasldjaslkjd</h3>
         <ul class="control-sidebar-menu">
           <li>
             <a href="javascript:;">
