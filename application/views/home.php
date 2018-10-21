@@ -41,7 +41,7 @@
       </div>     
     </section>
     <!-- /.content -->
-<!--     <section class="content">
+<section class="content">
       <div class="row">
         <div class="col-md-3">
           <div class="box box-solid">
@@ -50,7 +50,7 @@
             </div>
             <div class="box-body">
               <!-- the events -->
-             <!--  <div id="external-events">
+              <div id="external-events">
                 <div class="external-event bg-green">Lunch</div>
                 <div class="external-event bg-yellow">Go home</div>
                 <div class="external-event bg-aqua">Do homework</div>
@@ -65,9 +65,9 @@
               </div>
             </div>
             <!-- /.box-body -->
-          <!-- </div>
+           </div>
           <!-- /. box --> 
-         <!--  <div class="box box-solid">
+          <div class="box box-solid">
             <div class="box-header with-border">
               <h3 class="box-title">Create Event</h3>
             </div>
@@ -89,25 +89,31 @@
                   <li><a class="text-muted" href="#"><i class="fa fa-square"></i></a></li>
                   <li><a class="text-navy" href="#"><i class="fa fa-square"></i></a></li>
                 </ul> 
-              </div> -->
+              </div>
               <!-- /btn-group -->
-             <!--  <div class="input-group">
+             <div class="input-group">
                 <input id="new-event" type="text" class="form-control" placeholder="Event Title">
 
                 <div class="input-group-btn">
                   <button id="add-new-event" type="button" class="btn btn-primary btn-flat">Add</button>
                 </div>
                 <!-- /btn-group -->
-           <!--    </div>
+            </div>
               <!-- /input-group -->
-         <!--    </div>
+            </div>
           </div>
-        </div> -->
+        </div> 
         <!-- /.col -->
-       <!--  <div class="col-md-9">
+         <div class="col-md-9">
           <div class="box box-primary">
-            <div class="box-body no-padding"> -->
+            <div class="box-body no-padding">
               <!-- THE CALENDAR -->
-            <!--   <div id="calendar"></div>
-            </div> -->
+              <div id="calendar"></div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /. box -->
+        </div>
+      </div>
+    </section>
             <!-- /.box-body -->
