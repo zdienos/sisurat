@@ -223,7 +223,7 @@ class M_keluar extends CI_Model
 
  	function deleteDatasuratkeluar($jenis_surat,$where,$prihal=Null)
  	{
- 		if ($prihal == 'ACC%20Pencairan%20PT%20Kolektif'){
+ 		if ($prihal == 'Surat%20ACC%20Pencairan%20PT%20Kolektif'){
 			$prihal = 1;
 		}
 

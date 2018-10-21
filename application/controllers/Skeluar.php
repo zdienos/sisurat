@@ -121,7 +121,7 @@ class Skeluar extends CI_Controller {
 			);
 
 				
-		if ($jenissurat == 'Pencairan' and $prihal != 'ACC Pencairan PT Kolektif/Bimker') {
+		if ($jenissurat == 'Pencairan' and $prihal != 'Surat ACC Pencairan PT Kolektif/Bimker') {
 			$namasiswa = $this->input->post('nama_siswa');
 			$kelas = $this->input->post('kelas');
 			$jumlahbayar = $this->input->post('jumlahbayar_pt');
@@ -237,7 +237,7 @@ class Skeluar extends CI_Controller {
 				redirect(base_url('Skeluar/index'));
 			}
 	
-		} elseif ($jenissurat == 'Pencairan' and $prihal == 'ACC Pencairan PT Kolektif/Bimker') {
+		} elseif ($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Pencairan PT Kolektif/Bimker') {
 			//Pencairan fee
 			$lampiran = $this->input->post('lampiran');
 			$tgl_marketing = $this->input->post('tgl_marketing');

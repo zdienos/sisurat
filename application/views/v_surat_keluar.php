@@ -60,20 +60,20 @@
                   <label>Perihal</label>
                   <select name="prihal" id="prihal_fee" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
                     <option hidden="true" selected>Pilih Perihal</option>
-                      <option value="ACC Pencairan PT Kolektif/Bimker">Surat ACC Pencairan PT Kolektif/Bimker</option>
-                      <option value="ACC Pengembalian Tidak Kuota">Surat ACC Pengembalian Tidak Kuota</option>
-                      <option value="ACC Pengembalian Diskon Guru">Surat ACC Pengembalian Diskon Guru</option>
-                      <option value="ACC Pengembalian Pindah Program">Surat ACC Pengembalian Pindah Program</option>
-                      <option value="ACC Pengembalian Pengalihan Biaya">Surat ACC Pengembalian Pengalihan Biaya</option>
-                      <option value="ACC Pengembalian Diskon Karyawan">Surat ACC Pengembalian Diskon Karyawan</option>
-                      <option value="ACC Pengembalian Diskon Pengajar">Surat ACC Pengembalian Diskon Pengajar</option>
-                      <option value="ACC Pencairan PT Kolektif/Bimker">Surat Tidak ACC Pencairan PT Kolektif/Bimker</option>
-                      <option value="Tidak ACC Pengembalian Tidak Kuota">Surat Tidak ACC Pengembalian Tidak Kuota</option>
-                      <option value="Tidak ACC Pengembalian Diskon Guru">Surat Tidak ACC Pengembalian Diskon Guru</option>
-                      <option value="Tidak ACC Pengembalian Pindah Program">Surat Tidak ACC Pengembalian Pindah Program</option>
-                      <option value="Tidak ACC Pengembalian Pengalihan Biaya">Surat Tidak ACC Pengembalian Pengalihan Biaya</option>
-                      <option value="Tidak ACC Pengembalian Diskon Karyawan">Surat Tidak ACC Pengembalian Diskon Karyawan</option>
-                      <option value="Tidak ACC Pengembalian Diskon Pengajar">Surat Tidak ACC Pengembalian Diskon Pengajar</option>
+                      <option value="Surat ACC Pencairan PT Kolektif/Bimker">Surat ACC Pencairan PT Kolektif/Bimker</option>
+                      <option value="Surat ACC Pengembalian Tidak Kuota">Surat ACC Pengembalian Tidak Kuota</option>
+                      <option value="Surat ACC Pengembalian Diskon Guru">Surat ACC Pengembalian Diskon Guru</option>
+                      <option value="Surat ACC Pengembalian Pindah Program">Surat ACC Pengembalian Pindah Program</option>
+                      <option value="Surat ACC Pengembalian Pengalihan Biaya">Surat ACC Pengembalian Pengalihan Biaya</option>
+                      <option value="Surat ACC Pengembalian Diskon Karyawan">Surat ACC Pengembalian Diskon Karyawan</option>
+                      <option value="Surat ACC Pengembalian Diskon Pengajar">Surat ACC Pengembalian Diskon Pengajar</option>
+                      <option value="Surat ACC Pencairan PT Kolektif/Bimker">Surat Tidak ACC Pencairan PT Kolektif/Bimker</option>
+                      <option value="Surat Tidak ACC Pengembalian Tidak Kuota">Surat Tidak ACC Pengembalian Tidak Kuota</option>
+                      <option value="Surat Tidak ACC Pengembalian Diskon Guru">Surat Tidak ACC Pengembalian Diskon Guru</option>
+                      <option value="Surat Tidak ACC Pengembalian Pindah Program">Surat Tidak ACC Pengembalian Pindah Program</option>
+                      <option value="Surat Tidak ACC Pengembalian Pengalihan Biaya">Surat Tidak ACC Pengembalian Pengalihan Biaya</option>
+                      <option value="Surat Tidak ACC Pengembalian Diskon Karyawan">Surat Tidak ACC Pengembalian Diskon Karyawan</option>
+                      <option value="Surat Tidak ACC Pengembalian Diskon Pengajar">Surat Tidak ACC Pengembalian Diskon Pengajar</option>
                   </select>
                 </div>
                 </div>

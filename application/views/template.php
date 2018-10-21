@@ -304,7 +304,7 @@ $('#btnDelCheckRow').click(function() {
       });
       $('#prihal').change(function() {
         console.log($('#prihal_fee').val());
-          if ($('#prihal_fee').val() == 'ACC Pencairan PT Kolektif/Bimker'){
+          if ($('#prihal_fee').val() == 'Surat ACC Pencairan PT Kolektif/Bimker'){
              $('#Pencairan').hide();
              $('#Pencairan3').show();  
              $('#Teguran').hide();  
