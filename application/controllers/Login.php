@@ -51,17 +51,23 @@ class Login extends CI_Controller {
 
    public function user()
   {
-    $this->template->load('template','v_user');
+    $user = $this->model->getuser();
+        $data['username'] = $user['username'];
+        $data['jabatan'] = $user['jabatan'];
+        $data['id'] = $user['id'];
+    $this->template->load('template','v_user',$data);
   }
 
   public function masukandatauser()
   {
     $nama = $this->input->post('nama');
+    $nama_lengkap = $this->input->post('nama_lengkap');
     $password = $this->input->post('password');
     $jabatan = $this->input->post('jabatan');
     
     $data = array(
       'username' => $nama,
+      'nama_lengkap' => $nama_lengkap,
       'password' => md5($password),
       'Jabatan' => $jabatan
     );
@@ -78,6 +84,11 @@ class Login extends CI_Controller {
 
   public function data_table()
   {
+    $user = $this->model->getuser();
+        $data['username'] = $user['username'];
+        $data['jabatan'] = $user['jabatan'];
+        $data['id'] = $user['id'];
+        $data['nama_lengkap'] = $user['nama_lengkap'];
     $data['user'] = $this->m_user->viewDatauser();
     $this->template->load('template','v_data_user',$data);
   }
@@ -85,7 +96,7 @@ class Login extends CI_Controller {
   public function hapusDatauser($nama)
   {
     $where = array(
-      'username'=> $nama
+      'id'=> $nama
     );
 
     $result = $this->m_user->deleteDatauser($where);

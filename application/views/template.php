@@ -27,10 +27,10 @@
 <div class="wrapper">
 
   <!-- Main Header -->
-  <header class="main-header">
+  <header class="main-header" >
 
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="<?= base_url('Home/index')?>" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini">SI</span>
       <!-- logo for regular state and mobile devices -->
@@ -52,7 +52,7 @@
               <!-- The user image in the navbar-->
               <img src="<?php echo base_url('assets/dist/img/LogoGO.png')?>" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">Admin</span>
+              <span class="hidden-xs"><?= $username?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
@@ -60,7 +60,7 @@
                 <img src="<?php echo base_url('assets/dist/img/LogoGO.png')?>" class="img-circle" alt="User Image">
 
                 <p>
-                  Admin - SI Surat
+                  <?= $username?> - SI Surat
                   <small></small>
                 </p>
               </li>
@@ -92,7 +92,7 @@
           <img src="<?php echo base_url('assets/dist/img/LogoGO.png')?>" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Admin</p>
+          <p><?= $username?></p>
           <!-- Status -->
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
@@ -194,6 +194,69 @@
 <script src="<?php echo base_url('assets/fullcalendar/fullcalendar.js')?>"></script>
 <script src="<?php echo base_url('assets/calendar.js')?>"></script>
 
+<script type="text/javascript">
+  // Add button Delete in row
+$('tbody tr')
+    .find('td')
+    //.append('<input type="button" value="Delete" class="del"/>')
+    .parent(); //traversing to 'tr' Element
+    //.append('<td><a href="#" class="delrow">Delete Row</a></td>');
+
+// For select all checkbox in table
+$('#checkedAll').click(function (e) {
+  //e.preventDefault();
+    $(this).closest('#tblAddRow').find('td input:checkbox').prop('checked', this.checked);
+});
+
+// Add row the table
+$('#btnAddRow').on('click', function() {
+    var lastRow = $('#tblAddRow tbody tr:last').html();
+    //alert(lastRow);
+    $('#tblAddRow tbody').append('<tr>' + lastRow + '</tr>');
+    $('#tblAddRow tbody tr:last input').val('');
+});
+
+// Delete last row in the table
+$('#btnDelLastRow').on('click', function() {
+    var lenRow = $('#tblAddRow tbody tr').length;
+    //alert(lenRow);
+    if (lenRow == 1 || lenRow <= 1) {
+        alert("Can't remove all row!");
+    } else {
+        $('#tblAddRow tbody tr:last').remove();
+    }
+});
+
+// Delete row on click in the table
+$('#tblAddRow').on('click', 'tr a', function(e) {
+    var lenRow = $('#tblAddRow tbody tr').length;
+    e.preventDefault();
+    if (lenRow == 1 || lenRow <= 1) {
+        alert("Can't remove all row!");
+    } else {
+        $(this).parents('tr').remove();
+    }
+});
+
+// Delete selected checkbox in the table
+$('#btnDelCheckRow').click(function() {
+  var lenRow    = $('#tblAddRow tbody tr').length;
+    var lenChecked  = $("#tblAddRow input[type='checkbox']:checked").length;
+    var row = $("#tblAddRow tbody input[type='checkbox']:checked").parent().parent();
+    //alert(lenRow + ' - ' + lenChecked);
+    if (lenRow == 1 || lenRow <= 1 || lenChecked >= lenRow) {
+        alert("Tidak dapat menghapus semua baris!");
+    } else {
+        row.remove();
+    }
+});
+
+</script>
+
+<script>   
+    $('#notifications').slideDown('slow').delay(3000).slideUp('slow');
+</script>
+
 <script>
   $(function () {
 	$(".select2").select2();
@@ -214,23 +277,46 @@
       $('#Pencairan').hide();
       $('#Peringatan').hide();
       $('#Teguran').hide();
+      $('#prihal').hide();
+      $('#Pencairan3').hide();
+
 
       $('#cjenissurat').change(function() {
         if ($('#cjenissurat').val() == 'Pencairan') {
-          $('#Pencairan').show();
+          $('#Pencairan').hide();
+          $('#prihal').show();
           $('#Peringatan').hide();
-          $('#Teguran').hide();          
-
+          $('#Teguran').hide();
         } else if ($('#cjenissurat').val() == 'Peringatan') {
           $('#Peringatan').show();
           $('#Pencairan').hide();
           $('#Teguran').hide();
+          $('#prihal').hide();
+          $('#Pencairan3').hide();
+          $('#prihal').hide();
         } else if ($('#cjenissurat').val() == 'Teguran') {
           $('#Peringatan').hide();
           $('#Pencairan').hide();
           $('#Teguran').show();
+          $('#prihal').hide();
+          $('#Pencairan3').hide();
         }
       });
+      $('#prihal').change(function() {
+        console.log($('#prihal_fee').val());
+          if ($('#prihal_fee').val() == 'ACC Pencairan PT Kolektif/Bimker'){
+             $('#Pencairan').hide();
+             $('#Pencairan3').show();  
+             $('#Teguran').hide();  
+             $('#Peringatan').hide();    
+           } else {
+             $('#Pencairan').show();
+             $('#Pencairan3').hide();
+             $('#Peringatan').hide();
+             $('#Teguran').hide();
+           }
+
+        });
     });
 </script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.

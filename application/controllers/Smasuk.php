@@ -12,12 +12,58 @@ class Smasuk extends CI_Controller {
 	public function data_table()
 	{
 		$user = $this->model->getuser();
-  			$data['username'] = $user['username'];
-  			$data['jabatan'] = $user['jabatan'];
-  			$data['id'] = $user['id'];
+  	    $data['username'] = $user['username'];
+        $data['jabatan'] = $user['jabatan'];
+  		$data['id'] = $user['id'];
   			
-		$data['smasuk'] = $this->m_surat->viewDatasuratmasuk();
-		$this->template->load('template','v_data_smasuk',$data);
+  		$page = $this->input->get('per_page');	
+  		$batas = 5;
+  		if (!$page) {
+  			$offset = 0;
+  		} else {
+  			$offset = $page;
+  		}
+
+  		$config['page_query_string'] = TRUE;
+  		$config['base_url'] = base_url().'Smasuk/data_table/?';
+  		$config['total_rows'] = $this->m_surat->jumlah_data();
+  		$config['per_page'] = $batas;
+
+  		$config['uri_segment'] = $page;
+
+  		$config['full_tag_open'] = '<ul class="pagination">';
+  		$config['full_tag_close'] = '</ul>';
+
+  		$config['first_link'] = '&laquo; First';
+  		$config['first_tag_open'] = '<li class="prev page">';
+  		$config['first_tag_close'] = '</li>';
+
+  		$config['last_link'] = 'Last &raquo;';
+  		$config['last_tag_open'] = '<li class="next page">';
+  		$config['last_tag_close'] = '</li>';
+
+  		$config['next_link'] = 'Next <span class="fa fa-angle-right"></span>';
+  		$config['next_tag_open'] = '<li class="next page">';
+  		$config['next_tag_close'] = '</li>';
+
+  		$config['prev_link'] = '<span class="fa fa-angle-left"></span> Prev';
+  		$config['prev_tag_open'] = '<li class="prev page">';
+  		$config['prev_tag_close'] = '</li>';
+
+  		$config['cur_tag_open'] = '<li class="active"><a href="">';
+  		$config['cur_tag_close'] = '</a></li>';
+
+  		$config['num_tag_open'] = '<li class="page">';
+  		$config['num_tag_close'] = '</li>';
+
+  		$this->pagination->initialize($config);
+  		$data['paging']=$this->pagination->create_links();
+  		$data['jlhpage']=$page;
+
+  		$data['link'] = $this->m_surat->data($batas, $offset);
+      // Akhir Pagination Pemohon
+      // Awal load view Pemohon
+      $this->template->load('template','v_data_smasuk',$data);
 	}
 
 	public function index()
@@ -53,11 +99,23 @@ class Smasuk extends CI_Controller {
 
 		$result = $this->m_surat->saveDatasuratmasuk($data);
 
-		if ($result) {
-			redirect(base_url('Smasuk/data_table'));
-		} else {
-			redirect(base_url('Smasuk/index'));
-		}
+		// if ($result) {
+		// 	redirect(base_url('Smasuk/data_table'));
+		// } else {
+		// 	redirect(base_url('Smasuk/index'));
+		// }
+
+		if($result == 1)
+          {
+              // echo '<script>alert("Data Tersimpan");</script>';
+              $this->session->set_flashdata('success','Data berhasil disimpan!');
+              redirect('Smasuk/data_table', 'refresh');
+          }
+          else{
+              $this->session->set_flashdata("message","Gagal Tersimpan");
+              redirect('Smasuk/index', 'refresh');
+          }
+  
 	}
 
 	public function hapusDatasuratmasuk($id)
@@ -68,15 +126,19 @@ class Smasuk extends CI_Controller {
 
 		$result = $this->m_surat->deleteDatasuratmasuk($where);
 		
-		if ($result) {
-			redirect(base_url('smasuk/data_table'));
-		} else {
-			redirect(base_url('smasuk/index'));
-		}
+		if ($result >= 1) {
+	      $this->session->set_flashdata('success','Data berhasil dihapus!');
+	      $this->session->set_flashdata('message','Periksa kembali data Pemohon.');
+	      redirect(base_url('smasuk/data_table'), 'refresh');
+	    }
 	}
 
 	public function lihatsuratmasuk($id)
 	{
+		$user = $this->model->getuser();
+  			$data['username'] = $user['username'];
+  			$data['jabatan'] = $user['jabatan'];
+  			$data['id'] = $user['id'];
 		$where = [
 			'id' => $id
 		];
@@ -134,5 +196,72 @@ class Smasuk extends CI_Controller {
 		} else {
 			redirect(base_url('smasuk/ubahDatasmasuk'));
 		}
+	}
+
+	public function search()
+	{
+		$user = $this->model->getuser();
+		$data['username'] = $user['username'];
+		$data['jabatan'] = $user['jabatan'];
+		$data['id'] = $user['id'];
+
+		$keyword = $this->input->get('keyword');
+
+		$search = array(
+			'id'=> $keyword,
+			'no_surat'=> $keyword,
+			'hal' => $keyword,
+			'kepada' =>$keyword,
+			'dari'=>$keyword,
+			'keterangan'=>$keyword,
+			'tanggal'=>$keyword,
+		);
+
+		$page = $this->input->get('per_page');
+		$batas = 5;
+		if (!$page) {
+			$offset = 0;
+		} else {
+			$offset = $page;
+		}
+
+		$config['page_query_string'] = TRUE;
+		$config['base_url'] = base_url().'Smasuk/data_table/?';
+		$config['total_rows'] = $this->m_surat->count_smasuk_search($search);
+		$config['per_page'] = $batas;
+
+		$config['uri_segment'] = $page;
+
+		$config['full_tag_open'] = '<ul class="pagination">';
+		$config['full_tag_close'] = '</ul>';
+		$config['first_link'] = '&laquo; First';
+		$config['first_tag_open'] = '<li class="prev page">';
+		$config['first_tag_close'] = '</li>';
+
+		$config['last_link'] = 'Last &raquo;';
+		$config['last_tag_open'] = '<li class="next page">';
+		$config['last_tag_close'] = '</li>';
+
+		$config['next_link'] = 'Next <span class="fa fa-angle-right"></span>';
+		$config['next_tag_open'] = '<li class="next page">';
+		$config['next_tag_close'] = '</li>';
+
+		$config['prev_link'] = '<span class="fa fa-angle-left"></span> Prev';
+		$config['prev_tag_open'] = '<li class="prev page">';
+		$config['prev_tag_close'] = '</li>';
+
+		$config['cur_tag_open'] = '<li class="active"><a href="">';
+		$config['cur_tag_close'] = '</a></li>';
+
+		$config['num_tag_open'] = '<li class="page">';
+		$config['num_tag_close'] = '</li>';
+
+		$this->pagination->initialize($config);
+		$data['paging']=$this->pagination->create_links();
+		$data['jlhpage']=$page;
+
+		$data['link'] = $this->m_surat->data($batas, $offset, $search);
+
+		 $this->template->load('template','v_data_smasuk',$data);
 	}
 }

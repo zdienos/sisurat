@@ -9,8 +9,13 @@ class Home extends CI_Controller {
 	  }
 	public function index()
 	{
+
 		//$this->load->view('home');
 		if ($this->session->userdata('log_in')) {
+			$user = $this->model->getuser();
+  			$data['username'] = $user['username'];
+  			$data['jabatan'] = $user['jabatan'];
+  			$data['id'] = $user['id'];
 			$data['datasmasuk'] = $this->m_home->count_smasuk();
 			$data['dataskeluar'] = $this->m_home->count_skeluar();
 			$this->template->load('template','home',$data);

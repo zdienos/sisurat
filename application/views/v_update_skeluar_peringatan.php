@@ -43,35 +43,26 @@
                 <div class="form-group">
                   <label>Jenis Surat</label>
                    <input class="form-control" value="<?= $usk['jenis_surat'] ?>" placeholder="Enter ..." type="text" name="cjenissurat_update" id="cjenissurat_update" readonly="">
-
-                <!--   <select name="cjenissurat" id="cjenissurat" class="form-control">
-                    <option hidden="true" selected>Pilih Jenis Surat</option>
-                    <option value="Pengembalian Tidak Kuota" <?php if ($usk['jenis_surat'] == 'Pengembalian Tidak Kuota') {echo "selected";} ?>>Surat ACC Pengembalian Tidak Kuota</option>
-                    <option value="Pengembalian Diskon Guru" <?php if ($usk['jenis_surat'] == 'Pengembalian Diskon Guru') {echo "selected";} ?>>Surat ACC Pengembalian Diskon Guru</option>
-                    <option value="Pengembalian Pindah Program"<?php if ($usk['jenis_surat'] == 'Pengembalian Pindah Program') {echo "selected";} ?>>Surat ACC Pengembalian Pindah Program</option>
-                    <option value="Pengembalian Pengalihan Biaya"<?php if ($usk['jenis_surat'] == 'Pengembalian Pengalihan Biaya') {echo "selected";} ?>>Surat ACC Pengembalian Pengalihan Biaya</option>
-                    <option value="Pengembalian Diskon Karyawan"<?php if ($usk['jenis_surat'] == 'Pengembalian Diskon Karyawan') {echo "selected";} ?>>Surat ACC Pengembalian Diskon Karyawan</option>
-                    <option value="Pengembalian Diskon Pengajar"<?php if ($usk['jenis_surat'] == 'Pengembalian Diskon Pengajar') {echo "selected";} ?>>Surat ACC Pengembalian Diskon Pengajar</option>
-                  </select> -->
                 </div>
 
             <!-- pengelommpokkan jenis surat -->
                 <div id="TidakKuota">
                   <div class="form-group">
-                  <label>Nama</label>
-                  <input class="form-control" placeholder="Enter ..." type="text" name="namasp"required="" value="<?= $usk['namasp'] ?>" >
+                  <label>Lokasi Tujuan</label>
+                  <input class="form-control" placeholder="Enter ..." type="text" name="loktujuan"required="" value="<?= $usk['loktujuan'] ?>" >
                 </div>
                     <div class="form-group">
                       <label>NIP</label>
-                      <input class="form-control"value="<?= $usk['nip'] ?>"  placeholder="Enter ..." type="text" required="" name="nip">
-                    </div>
-                    <div class="form-group">
-                      <label>Jabatan</label>
-                      <input class="form-control" value="<?= $usk['jabatansp'] ?>" placeholder="Enter ..." type="text" required="" name="jabatan">
+                      <input class="form-control" value="<?= $usk['nip'] ?>"  placeholder="Enter ..." type="text" required="" name="nip">
                     </div>
                     <div class="form-group">
                       <label>SP Ke</label>
-                      <input class="form-control" value="<?= $usk['spke'] ?>" placeholder="Enter ..." type="text" required="" name="spke">
+                      <select class="form-control" name="spke">
+                        <option value="1" <?php if ($usk['spke'] == 1) echo "selected";?> >1</option>
+                        <option value="2" <?php if ($usk['spke'] == 2) echo "selected";?>>2</option>
+                        <option value="3" <?php if ($usk['spke'] == 3) echo "selected";?>>3</option>
+
+                      </select>
                     </div>
                     <div class="form-group">
                       <label>Kesalahan</label>
@@ -80,14 +71,6 @@
                     <div class="form-group">
                       <label>Tembusan</label>
                       <input class="form-control" value="<?= $usk['tembusan'] ?>" placeholder="Enter ..." type="text" required="" name="tembusan">
-                    </div>
-                    <div class="form-group">
-                      <label>Tanggal Tembusan</label>
-                      <input class="form-control" value="<?= $usk['tgl_tembusan'] ?>" placeholder="Enter ..." type="date" required="" name="tgltembusan">
-                    </div>
-                    <div class="form-group">
-                      <label>Jam Tembusan</label>
-                      <input class="form-control" value="<?= $usk['jam_tembusan'] ?>" placeholder="Enter ..." type="text" required="" name="jamtembusan">
                     </div>
                     <?php } } ?>
                 </div>

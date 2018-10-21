@@ -1,31 +1,25 @@
 <!DOCTYPE html>
 <html>
 <style type="text/css">
-@page {margin: 20px 50px 0px 50px; }
+@page {margin: 15px 50px 0px 50px; }
 body {
-  font-size: 12pt;
+  font-size: 11pt;
 }
       #logo {
       margin-top: 0px;
-      top: 0px;
       left: 0px;
-      width: 50px;
-      position: relative; }
-      #footer{
-      position: fixed;
-      left: 0px;
-      bottom: 69px;
+      top: 10px;
       right: 0px;
-      height: 50px;
-      text-align: center;	
-      }
+      height: 135px;
+      text-align: center; }
       #ttd {
+        margin-right: 60px;
         float: right;
         right: 0; }
       #tbs{
       	clear: left;
-        display: inline-block;
-        top: 250px;}
+       
+        top: 100px;}
 
 </style>
   <title>SI Surat</title>
@@ -33,11 +27,8 @@ body {
 <body>
 <div id="header">
 	<div id="logo">
-  	<img src="assets/img/logo-copy.png" width="200px">
+  	<img src="assets/img/header.png" width="770px">
 	</div>
-</div>
-<div id="footer">
-<img src="assets/img/footer.png" width="800px">
 </div>
 <?php
 $date =date('d-m-Y');
@@ -77,22 +68,33 @@ foreach($cetak as $l) { ?>
 <br><br>
   <table>
     <tr><td>No</td><td>:</td><td><?php echo $l['no'] .'/'. $l['no_surat'];?></td></tr>
-    <tr><td>Hal</td><td>:</td><td><?php echo $l['perihal'];?></td></tr>
+    <tr><td>Perihal</td><td>:</td><td><?php echo $l['perihal'];?></td></tr>
   </table>
   <p>Kepada Yth,<br>
-  <b><?php echo $l['tujuan'];?></b><br>
   <b><?php echo $l['nama_tujuan'];?></b><br>
-  di Tempat</p>
+  <b><?php echo $l['tujuan'];?></b><br>
+  <b><?php echo $l['loktujuan'];?></b><br>
+  di Tempat</p><br>
   
   <p>Dengan Hormat,</p>
   
-  <p align="justify">Harap memberikan Surat Peringatan <?php echo $l['spke'];?> Kepada :</p>
-  <p><dd>Nama : <?php echo $l['namasp'];?></dd></p>
-  <p><dd>Jabatan : <?php echo $l['jabatansp'];?></dd></p>
-  <p>Atas Kesalahan :</p>
-  <p><dd>- <?php echo $l['kesalahan'];?></dd></p>
-  <p>Tembusan Surat peringatan harus sudah dikirim tanggal <?php echo $l['tgl_tembusan'];?> sebelum pukul <?php echo $l['jam_tembusan'];?> WIB Kepada :</p>
-  <div id="tbs">
+  <p align="justify" style="word-wrap: break-word;min-width: 700px;max-width: 700px"><?php echo $l['kesalahan'];?>, Maka kami berikan <b><?php echo $l['perihal'];?> <?php echo $l['spke'];?></b>.</p>
+  <p>Kami minta Saudara tidak mengulangi perbuatan tersebut dan dapat bekerja dengan lebih bertanggung jawab.</p><br>
+  <p>Demikian disampaikan, atas kerjasama yang baik kami ucapkan terimakasih.</p>
+  <br>
+  <div id="ttd">
+     <table>
+       <tr><td style="text-align: left;">Terimakasih,</td></tr>
+       <tr><td>Bandung,<?php echo $bulan[0].' '.$infobulan.' '.$bulan[2] ;?></td></tr>
+       <tr><td><br></td></tr>
+       <tr><td><br></td></tr>
+       <tr><td><b><u>Dra. Erna Veronika</u></b></td></tr>
+       <tr><td><b>Manajer Keuangan</b></td></tr>
+     </table>
+   </div>
+   <br><br><br><br><br><br><br><br>
+   <div id="tbs">
+    <p>Tembusan :</p>
     <p><ol>
     <?php $tbs = explode(",",$l['tembusan']);
     foreach ($tbs as $t) { ?>
@@ -104,18 +106,6 @@ foreach($cetak as $l) { ?>
     </ol>
     </p>
   </div>
-  <p>Demikian hal ini disampaikan</p>
-  <br><br>
-   <div id="ttd">
-     <table>
-       <tr><td style="text-align: left;">Terimakasih,</td></tr>
-       <tr><td>Bandung,<?php echo $bulan[0].' '.$infobulan.' '.$bulan[2] ;?></td></tr>
-       <tr><td><br></td></tr>
-       <tr><td><br></td></tr>
-       <tr><td><b><u>Dra. Erna Veronika</u></b></td></tr>
-       <tr><td><b>Manajer Keuangan</b></td></tr>
-     </table>
-   </div>
  
   
   

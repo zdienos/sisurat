@@ -28,8 +28,7 @@ body {
         top: 250px;}
       #teguran{
         clear: left;
-        display: inline-block;
-        top: 250px;}  
+        display: inline-block;}  
 
 </style>
   <title>SI Surat</title>
@@ -84,8 +83,8 @@ foreach($cetak as $l) { ?>
     <tr><td>Hal</td><td>:</td><td><?php echo $l['perihal'];?></td></tr>
   </table>
   <p>Kepada Yth,<br>
-  <b><?php echo $l['tujuan'];?></b><br>
   <b><?php echo $l['nama_tujuan'];?></b><br>
+  <b><?php echo $l['tujuan'];?></b><br>
   di Tempat</p>
   
   <p>Dengan Hormat,</p>
@@ -98,13 +97,11 @@ foreach($cetak as $l) { ?>
       <li><?php echo "-  ".$t; ?></li>
     <?php }
     ?>
-      
-
     </ul>
     </p>
+    <p>Dengan ini Bapak/Ibu kami berikan Surat Teguran <?php echo $l['penutup'];?></p>
   </div>
   
-  <p>Dengan ini Bapak/Ibu kami berikan Surat Teguran <?php echo $l['penutup'];?></p>
   <br>
    <div id="ttd">
      <table>

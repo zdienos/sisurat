@@ -1,6 +1,6 @@
     <section class="content-header">
       <h1>
-        Data Surat Keluar
+        Data Surat Pencairan
         <small>advanced tables</small>
       </h1>
     </section>
@@ -38,7 +38,7 @@
                         }
                     } ?>
                 </tbody>
-              </table>
+              </table><br>
               <a href="<?= base_url('Skeluar/data_table/') ?>" class="btn btn-primary">Kembali</a>
             </div>
             <!-- /.box-body -->

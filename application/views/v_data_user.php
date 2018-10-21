@@ -31,7 +31,7 @@
                           <td><?= $srt->password; ?></td>
                           <td><?= $srt->jabatan; ?></td>
                           <td>
-                          <a href="<?= base_url('Login/hapusDatauser/') . $srt->username ?>" class="btn btn-danger">Delete</a>
+                          <a href="<?= base_url('Login/hapusDatauser/') . $srt->id ?>" class="btn btn-danger">Delete</a>
                           </td>
                         </tr>
 
@@ -46,7 +46,7 @@
                     <?php
                     } ?>
                 </tbody>
-              </table>
+              </table> <br>
               <a href="<?= base_url('Login/user/') ?>" class="btn btn-primary">Kembali</a>
             </div>
             <!-- /.box-body -->

@@ -11,8 +11,8 @@
 	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
 }
 .background {
-	background-image: url('../background.jpg');
-	position: absolute;
+	background-image: url('img/background.jpg');
+	position: relative;
     top: 0;
     left: -200px;
     right: 0;

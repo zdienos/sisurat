@@ -11,16 +11,24 @@
             <form action="<?= base_url('Login/masukandatauser')?>" role="form" method="post">
                 <!-- text input -->
                 <div class="form-group">
-                  <label>Nama</label>
-                  <input class="form-control" placeholder="Enter ..." type="text" name="nama" id="nosurat" required="">
+                  <label>Nama Lengkap</label>
+                  <input class="form-control" placeholder="Enter ..." type="text" name="nama_lengkap" required="">
+                </div>
+                <div class="form-group">
+                  <label>Username</label>
+                  <input class="form-control" placeholder="Enter ..." type="text" name="nama" required="">
                 </div>
                 <div class="form-group">
                   <label>Password</label>
-                  <input class="form-control" placeholder="Enter ..." type="text" name="password" id="hal" required="">
+                  <input class="form-control" placeholder="Enter ..." type="text" name="password" required="">
                 </div>
-                <div class="form-group">
+                 <div class="form-group">
                   <label>Jabatan</label>
-                  <input class="form-control" placeholder="Enter ..." type="text" name="jabatan" id="kepada" required="">
+                  <select name="jabatan" class="form-control"> 
+                    <option hidden="true" selected>Pilih Jabatan</option>
+                    <option value="Kasie Keuangan">Kasie Keuangan</option>
+                    <option value="Staff Keuangan">Staff Keuangan</option>
+                  </select>
                 </div>
                 <button type="submit" name="savesm" class="pull-right btn btn-default" id="savesm">save 
                 <i class="fa fa-arrow-circle-right"></i></button>
@@ -30,4 +38,3 @@
       </div>         
     </section>
     <!-- /.content -->
-  </div>

@@ -9,7 +9,7 @@ body {
       margin-top: 0px;
       top: 0px;
       left: 0px;
-      width: 50px;
+      width: 80px;
       position: absolute; }
       #memo {
       left: 0px;
@@ -100,13 +100,13 @@ $bulan = explode("-", $date);
 
 
 foreach($cetak as $l) { ?>
-  <table>
+  <table style="margin-top: 30px;">
     <tr><td>No</td><td>:</td><td><?php echo $l['no'] .'/'. $l['no_surat'];?></td></tr>
     <tr><td>Hal</td><td>:</td><td><?php echo $l['perihal'];?></td></tr>
   </table>
   <p>Kepada Yth,<br>
-  <b><?php echo $l['tujuan'];?></b><br>
   <b><?php echo $l['nama_tujuan'];?></b><br>
+  <b><?php echo $l['tujuan'];?></b><br>
   di Tempat</p>
   
   <p>Dengan Hormat,</p>

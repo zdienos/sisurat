@@ -17,15 +17,43 @@
   <!-- iCheck -->
   <link rel="stylesheet" href="<?php echo base_url('assets/plugins/iCheck/square/blue.css')?>">
    <!-- Background -->
-  <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/background.css') ?>">
+  <!-- <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/background.css') ?>"> -->
+ <!-- <link rel="stylesheet" href="<?php echo base_url('assets/background.css') ?>"> -->
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+<style type="text/css">
+  .backdrop {
+  background: #333333;
+  filter: alpha(opacity=90);
+  opacity: .9;
+  position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
+}
+.background {
+  background-image: url('img/background.jpg');
+  position: relative;
+    top: 0;
+    left: -200px;
+    right: 0;
+    bottom: 0;
+  background-size: cover;
+}
+
+</style>
+
 </head>
-<body class="hold-transition login-page">
+<body class="hold-transition login-page"> 
+ <div id="logo">
+    <!-- <img src="assets/img/background.jpg"> -->
+  </div>
 <div class="login-box">
   <div class="login-logo">
     <b>SI</b>Surat

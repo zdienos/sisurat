@@ -1,5 +1,4 @@
-
-    <!-- Content Header (Page header) -->
+   <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
         Home
@@ -112,10 +111,3 @@
             <!--   <div id="calendar"></div>
             </div> -->
             <!-- /.box-body -->
-          </div>
-          <!-- /. box -->
-        </div>
-        <!-- /.col -->
-      </div> 
-      <!-- /.row --> 
-    </section>

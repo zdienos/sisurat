@@ -25,14 +25,11 @@
                   <tr><td>Nama Tujuan</td> <td><?= $srt['nama_tujuan']; ?></td></tr>
                   <tr><td>Tujuan</td>  <td><?= $srt['tujuan'] ?></td></tr>
                   <tr><td>Jenis Surat</td> <td><?= $srt['jenis_surat'] ?></td></tr>
-                  <tr><td>Nama</td><td><?= $srt['namasp']; ?></td></tr>
+                  <tr><td>Lokasi Tujuan</td><td><?= $srt['loktujuan']; ?></td></tr>
                   <tr><td>NIP</td><td><?= $srt['nip']; ?></td></tr>
-                  <tr><td>Jabatan</td><td><?= $srt['jabatansp']; ?></td></tr>
                   <tr><td>SP Ke</td><td><?= $srt['spke']; ?></td></tr>
                   <tr><td>Kesalahan</td><td><?= $srt['kesalahan']; ?></td></tr>
                   <tr><td>Tembusan</td><td><?= $srt['tembusan']; ?></td></tr>
-                  <tr><td>Tanggal Tembusan</td><td><?= $srt['tgl_tembusan']; ?></td></tr>
-                  <tr><td>Jam Tembusan</td><td><?= $srt['jam_tembusan']; ?></td></tr>
                   <tr><td>Tanggal Input</td><td><?= $srt['tgl_SuratKeluar']; ?></td></tr>
                   <tr><td>Yang Membuat</td> <td><?= $srt['userid'];?></td></tr>
                 </tbody>
