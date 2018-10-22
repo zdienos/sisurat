@@ -22,10 +22,9 @@
           </div>
 
            <?php if ($this->session->flashdata('success')) { ?>
-            <div class="alert alert-danger alert-dismissible">
+            <div class="alert alert-success alert-dismissible">
               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
               <h4><span class="icon fa fa-check"></span><?=$this->session->flashdata('success')?></h4>
-             <!--  <?=$this->session->flashdata('message')?> -->
             </div>
           <?php } ?>
 

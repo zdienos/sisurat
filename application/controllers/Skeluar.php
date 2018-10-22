@@ -89,7 +89,6 @@ class Skeluar extends CI_Controller {
     	}
 
         $no = $surat + 1;
-		// $no = $this->input->post('no');
 		$nosurat = $this->input->post('nosurat');
 		$namatujuan = $this->input->post('namatujuan');
 		$jabatan = $this->input->post('tujuan1');
@@ -107,7 +106,6 @@ class Skeluar extends CI_Controller {
 		
 			
 		$concat = $jabatan." ".$tujuan;
-		//echo $namatujuan ; exit();
 		$data= array(
 				'no' => $no,
 				'no_surat' => $nosurat,
@@ -145,7 +143,6 @@ class Skeluar extends CI_Controller {
 			$result2 = $this->m_keluar->saveDatasuratkeluar2($data2);
 
 			if ($result && $result2) {
-				//redirect(base_url('Skeluar/data_table'));
 				$data['cetak'] = $this->m_keluar->lihatsuratkeluar($no,$jenissurat);
 
 				$this->load->library('pdf');
@@ -166,11 +163,6 @@ class Skeluar extends CI_Controller {
 			$kesalahan = $this->input->post('kesalahan');
 			$tembusan = $this->input->post('tembusan');
 
-			// $cek['cek'] = $this->m_keluar->cekperingatan($nip,$spke);
-			// if(empty(var)){   
-			// 	$this->template->load('template','v_data_skeluar',$cek);
-   //      		//$this->load->view('welcome_message');
-			// } else {
 				$data2 = array(
 					'no' => $no,
 					'no_surat' => $nosurat,
@@ -223,7 +215,6 @@ class Skeluar extends CI_Controller {
 			$result2 = $this->m_keluar->saveDatasteguran($data2);
 
 			if ($result && $result2) {
-				//redirect(base_url('Skeluar/data_table'));
 				
 				$data['cetak'] = $this->m_keluar->lihatsuratkeluar($no,$jenissurat);
 
@@ -269,7 +260,6 @@ class Skeluar extends CI_Controller {
 			$result = $this->m_keluar->saveDatasuratkeluar($data);	
 
 			if ($result2) {
-				//redirect(base_url('Skeluar/data_table'));
 				$user = $this->model->getuser();
 				$data['username'] = $user['username'];
 	  			$data['jabatan'] = $user['jabatan'];
@@ -303,32 +293,12 @@ class Skeluar extends CI_Controller {
 
 		if($jenissurat == 'Pencairan' and $prihal != 1){
 			$data = $this->m_keluar->deleteDatasuratkeluar($jenissurat,$where);
-			// if ($data) {
-			// 	redirect(base_url('skeluar/data_table'));
-			// } else {
-			// 	redirect(base_url('skeluar/index'));
-			// }	
 		} elseif ($jenissurat == 'Pencairan'  and $prihal == 1 ) {	
 			$data = $this->m_keluar->deleteDatasuratkeluar($jenissurat,$where,$prihal);
-			// if ($data) {
-			// redirect(base_url('skeluar/data_table'));
-			// } else {
-			// redirect(base_url('skeluar/index'));
-			// }
 		} elseif($jenissurat == 'Peringatan'){
-			$data = $this->m_keluar->deleteDatasuratkeluar($jenissurat,$where);
-			// if ($data) {
-			// 	redirect(base_url('skeluar/data_table'));
-			// } else {
-			// 	redirect(base_url('skeluar/index'));
-			// }			
+			$data = $this->m_keluar->deleteDatasuratkeluar($jenissurat,$where);		
 		} elseif($jenissurat == 'Teguran'){
-			$data = $this->m_keluar->deleteDatasuratkeluar($jenissurat,$where);
-			// if ($data) {
-			// 	redirect(base_url('skeluar/data_table'));
-			// } else {
-			// 	redirect(base_url('skeluar/index'));
-			// }	
+			$data = $this->m_keluar->deleteDatasuratkeluar($jenissurat,$where);	
 		} 
 		
 		if ($data >= 1) {

@@ -11,7 +11,6 @@
               
             <form action="<?= base_url('skeluar/masukandata') ?>" role="form" method="post">
               <?php 
-              //print_r($user);
               $date =date('y-m-d');
               ?>
                <input class="form-control" type="hidden" name="userid" value="<?php echo $username?>">

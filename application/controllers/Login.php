@@ -13,7 +13,6 @@ class Login extends CI_Controller {
 	{
     $data['title'] = "SI Surat";
     $this->form_validation->set_rules('username','Username','trim|required');
-  	//$this->form_validation->set_rules('jabatan','Jabatan','trim|required');
     $this->form_validation->set_rules('password','Password','trim|required|callback_db_cek');
     if ($this->form_validation->run() == false) {
       $this->load->view('v_login', $data);

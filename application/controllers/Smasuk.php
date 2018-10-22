@@ -98,16 +98,8 @@ class Smasuk extends CI_Controller {
 		);
 
 		$result = $this->m_surat->saveDatasuratmasuk($data);
-
-		// if ($result) {
-		// 	redirect(base_url('Smasuk/data_table'));
-		// } else {
-		// 	redirect(base_url('Smasuk/index'));
-		// }
-
 		if($result == 1)
           {
-              // echo '<script>alert("Data Tersimpan");</script>';
               $this->session->set_flashdata('success','Data berhasil disimpan!');
               redirect('Smasuk/data_table', 'refresh');
           }

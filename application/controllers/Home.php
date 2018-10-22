@@ -9,8 +9,6 @@ class Home extends CI_Controller {
 	  }
 	public function index()
 	{
-
-		//$this->load->view('home');
 		if ($this->session->userdata('log_in')) {
 			$user = $this->model->getuser();
   			$data['username'] = $user['username'];
@@ -24,9 +22,4 @@ class Home extends CI_Controller {
     	}
 	}
 
-	public function countsmauk()
-	{
-		// $data['data'] = $this->m_home->count_smasuk();
-		// $this->template->load('template','home',$data);
-	}
 }
