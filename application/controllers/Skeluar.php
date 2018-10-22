@@ -293,7 +293,7 @@ class Skeluar extends CI_Controller {
 
 	public function hapusDatasuratkeluar($no,$jenissurat,$prihal)
 	{
-		if ($prihal == 'ACC%20Pencairan%20PT%20Kolektif'){
+		if ($prihal == 'Surat%20ACC%20Pencairan%20PT%20Kolektif'){
 			$prihal = 1;
 		}
 
@@ -346,7 +346,7 @@ class Skeluar extends CI_Controller {
   			$data['jabatan'] = $user['jabatan'];
   			$data['id'] = $user['id'];
   			
-		if ($prihal == 'ACC%20Pencairan%20PT%20Kolektif'){
+		if ($prihal == 'Surat%20ACC%20Pencairan%20PT%20Kolektif'){
 			$prihal = 1;
 		}
 
@@ -367,7 +367,7 @@ class Skeluar extends CI_Controller {
 	}
 	public function cetaksuratkeluar($no,$jenis_surat,$prihal)
 	{
-		if ($prihal == 'ACC%20Pencairan%20PT%20Kolektif'){
+		if ($prihal == 'Surat%20ACC%20Pencairan%20PT%20Kolektif'){
 			$prihal = 1;
 		}
 
@@ -432,7 +432,7 @@ class Skeluar extends CI_Controller {
 		$data['jabatan'] = $user['jabatan'];
 		$data['id'] = $user['id'];
 
-		if ($prihal == 'ACC%20Pencairan%20PT%20Kolektif'){
+		if ($prihal == 'Surat%20ACC%20Pencairan%20PT%20Kolektif'){
 			$prihal = 1;
 		}
 
