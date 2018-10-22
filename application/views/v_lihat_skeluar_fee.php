@@ -36,9 +36,9 @@
 				          <tr><td>No Surat</td> <td><?php echo $no.'/'. $no_surat;?></td> </tr>
                   <tr><td>Perihal</td> <td><?= $perihal; ?></td> </tr>
                   <tr><td>Lampiran</td> <td><?= $lampiran; ?></td> </tr>
-                  <tr><td>Nama Tujuan</td> <td><?= $nama_tujuan; ?></td></tr>
-                  <tr><td>Tujuan</td>  <td><?= $tujuan ?></td></tr>
-                  <tr><td>Tanggal Marketing</td>  <td><?= $tgl_marketing ?></td></tr>
+                  <tr><td>Nama Penerima</td> <td><?= $nama_tujuan; ?></td></tr>
+                  <tr><td>Tujuan Penerima</td>  <td><?= $tujuan ?></td></tr>
+                  <tr><td>Tanggal ACC Marketing</td>  <td><?= $tgl_marketing ?></td></tr>
                   <tr><td>Jenis Surat</td> <td><?= $jenis_surat ?></td></tr>
                   <tr><td>Tembusan</td> <td><?= $tembusan ?></td></tr>
                   <tr><td>Tanggal</td><td><?= $tgl_SuratKeluar; ?></td></tr>

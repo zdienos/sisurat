@@ -51,12 +51,12 @@
                    <input class="form-control" value="<?= $jenis_surat ?>" placeholder="Enter ..." type="text" name="cjenissurat_update" id="cjenissurat_update" readonly="">
                 </div>
                 <div class="form-group">
-                  <label>Tujuan</label>
-                  <input class="form-control" value="<?= $tujuan ?>" placeholder="Enter ..." type="text" name="tujuan" required="">
+                  <label>Nama Penerima</label>
+                  <input class="form-control" value="<?= $nama_tujuan ?>" placeholder="Enter ..." type="text" name="namatujuan" required="">
                 </div>
                 <div class="form-group">
-                  <label>Nama Tujuan</label>
-                  <input class="form-control" value="<?= $nama_tujuan ?>" placeholder="Enter ..." type="text" name="namatujuan" required="">
+                   <label>Tujuan Penerima</label>
+                   <input class="form-control" value="<?= $tujuan ?>" type="text" name="tujuan">
                 </div>
                 <div class="form-group">
                   <label>Lampiran</label>
