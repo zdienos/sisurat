@@ -32,8 +32,8 @@
                         }
                     } ?>
                 </tbody>
-              </table>
-              <a href="<?= base_url('Smasuk/data_table/') ?>" class="btn btn-primary">Kembali</a>
+              </table><br>
+              <a href="<?= base_url('Smasuk/data_table/') ?>" class="btn btn-primary"><i class="fa fa-mail-reply"></i>Kembali</a>
             </div>
             <!-- /.box-body -->
 </div>

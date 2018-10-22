@@ -37,7 +37,8 @@
                   <label>Tanggal Surat</label>
                   <input class="form-control" placeholder="Enter ..." type="date" name="tanggal" id="tanggal" required="" value="<?= $ubahsurat['tanggal'] ?>">
                 </div>
-                <button type="submit" name="savesm" class="pull-right btn btn-default" id="savesm">save 
+                <a href="<?= base_url('Smasuk/data_table/') ?>" class="btn btn-primary btn btn-sm"><i class="fa fa-mail-reply"></i> Kembali</a>
+                <button type="submit" name="savesm" class="pull-right btn btn-success" id="savesm">save 
                 <i class="fa fa-arrow-circle-right"></i></button>
             </form>
                 

@@ -50,14 +50,14 @@
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
-              <img src="<?php echo base_url('assets/dist/img/LogoGO.png')?>" class="user-image" alt="User Image">
+              <img src="<?php echo base_url('assets/dist/img/GO.png')?>" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
               <span class="hidden-xs"><?= $username?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
-                <img src="<?php echo base_url('assets/dist/img/LogoGO.png')?>" class="img-circle" alt="User Image">
+                <img src="<?php echo base_url('assets/dist/img/GO.png')?>" class="img-circle" alt="User Image">
 
                 <p>
                   <?= $username?> - SI Surat
@@ -74,7 +74,6 @@
               </li>
             </ul>
           </li>
-          <!-- Control Sidebar Toggle Button -->
           
         </ul>
       </div>
@@ -89,7 +88,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="<?php echo base_url('assets/dist/img/LogoGO.png')?>" class="img-circle" alt="User Image">
+          <img src="<?php echo base_url('assets/dist/img/GO.png')?>" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p><?= $username?></p>
@@ -100,31 +99,30 @@
       <br><br><br>
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu">
-
-                        <!-- MENU DINAMIS -->
-                        <?php
-                        $main_menu = $this->db->get_where('tabel_menu',array('is_main_menu'=>0))->result();
-                        foreach ($main_menu as $main) {
-                            //cek ada submenu
-                            $submenu = $this->db->get_where('tabel_menu',array('is_main_menu'=>$main->id));
-                            if ($submenu->num_rows()>0) {
-                                //tampilkan submenu disini
-                                echo "<li>
-                                <a href='#'><i class='".$main->icon."'></i>".$main->judul_menu."</a>
-                                <ul class='treeview-menu'>";
-                                foreach ($submenu->result() as $sub){
-                                    echo "<li>".anchor($sub->link,"<i class='".$sub->icon."'></i>".$sub->judul_menu)."</li>";
-                                }
-                                echo"
-                                </ul>
-                                <!-- /.nav-second-level -->
-                                </li>";
-                            } else {
-                                echo "<li>".anchor($main->link,"<i class='".$main->icon."'></i>".$main->judul_menu)."</li>";
-                            }
-                        }
-                        ?>
-                        <!-- End Menu Dinamis -->
+      <!-- MENU DINAMIS -->
+      <?php
+      $main_menu = $this->db->get_where('tabel_menu',array('is_main_menu'=>0))->result();
+      foreach ($main_menu as $main) {
+          //cek ada submenu
+          $submenu = $this->db->get_where('tabel_menu',array('is_main_menu'=>$main->id));
+          if ($submenu->num_rows()>0) {
+              //tampilkan submenu disini
+              echo "<li>
+              <a href='#'><i class='".$main->icon."'></i>".$main->judul_menu."</a>
+              <ul class='treeview-menu'>";
+              foreach ($submenu->result() as $sub){
+                  echo "<li>".anchor($sub->link,"<i class='".$sub->icon."'></i>".$sub->judul_menu)."</li>";
+              }
+              echo"
+              </ul>
+              <!-- /.nav-second-level -->
+              </li>";
+          } else {
+              echo "<li>".anchor($main->link,"<i class='".$main->icon."'></i>".$main->judul_menu)."</li>";
+          }
+      }
+      ?>
+      <!-- End Menu Dinamis -->
      </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -151,17 +149,6 @@
     <strong>Copyright &copy; 2018 <a href="#">Ganesha Operation</a>.</strong> All rights reserved.
   </footer>
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Create the tabs -->
-    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-      <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-      <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-    </ul>
-    <!-- Tab panes -->
-    
-  </aside>
-  <!-- /.control-sidebar -->
   <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>
@@ -317,9 +304,5 @@ $('#btnDelCheckRow').click(function() {
         });
     });
 </script>
-<!-- Optionally, you can add Slimscroll and FastClick plugins.
-     Both of these plugins are recommended to enhance the
-     user experience. Slimscroll is required when using the
-     fixed layout. -->
 </body>
 </html>

@@ -79,8 +79,8 @@
                   <?php $i++; } }?>
                  <tr class="total"><td colspan="7"><p></p></td><td>Total</td><td>Rp. <?php echo number_format($tot);?></td><td><p></p></td></tr>
                 </table>
- 
-              <a href="<?= base_url('Skeluar/data_table/') ?>" class="btn btn-primary">Kembali</a>
+                <br>
+              <a href="<?= base_url('Skeluar/data_table/') ?>" class="btn btn-primary"><i class="fa fa-mail-reply"></i>Kembali</a>
             </div>
             <!-- /.box-body -->
 </div>
