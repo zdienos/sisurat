@@ -26,7 +26,6 @@
             <div class="alert alert-danger alert-dismissible">
               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
               <h4><span class="icon fa fa-check"></span><?=$this->session->flashdata('success')?></h4>
-             <!--  <?=$this->session->flashdata('message')?> -->
             </div>
           <?php } ?>
 
@@ -51,12 +50,9 @@
                   <th style="width: 20%;"align="center"><span class="fa fa-gears"></span></th>
                 </tr>
                 </thead>
-                <tbody><?php
-                // print_r($cek);
-                //    if (!empty ($cek)){ ?>
+                <tbody>
                     <div id="notifications"><?php echo $this->session->flashdata('msg'); ?></div>
                     <?php 
-                //   } else{
                     if (!empty($skeluar)){
                     foreach($skeluar as $srt){ ?>
 

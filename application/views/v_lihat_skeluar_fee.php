@@ -17,7 +17,6 @@
               <table id="example1" class="table table-bordered table-striped">
                 <tbody>
                 <?php 
-                //print_r($lihat);
                 foreach($lihat as $l) { 
                   $no = $l['no'];
                   $no_surat = $l['no_surat'];

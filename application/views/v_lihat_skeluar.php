@@ -17,7 +17,6 @@
               <table id="example1" class="table table-bordered table-striped">
                 <tbody>
                 <?php 
-                // print_r($lihat);
                  if (!empty($lihat)){
                     foreach($lihat as $srt){ ?>
 				  <tr><td>No Surat</td> <td><?php echo $srt['no'] .'/'. $srt['no_surat'];?></td> </tr>

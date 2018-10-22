@@ -273,16 +273,5 @@ class M_keluar extends CI_Model
 			return $query = '';
 		}
  	}
-
- 	// function deleteDatasuratkeluar2($where2)
- 	// {
- 	// 	$data2 = $this->db->delete('tb_sk_tidak_kuota', $where2);
-
- 	// 	if ($data2) {
-		// 	return true;
-		// } else {
-		// 	return false;
-		// }
- 	// }
 }
 ?>
