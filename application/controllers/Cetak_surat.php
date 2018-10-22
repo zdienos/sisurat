@@ -21,7 +21,7 @@ class Cetak_surat extends CI_Controller {
 		$tanggal = $this->input->post('tanggal');
 
 		$data['print'] = array(
-			'no' => $no_surat,
+			'no' => $no,
 			'no_surat' => $nosurat,
 			'perihal' => $prihal,
 			'nama_tujuan' => $namatujuan,
