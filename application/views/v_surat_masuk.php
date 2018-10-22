@@ -36,8 +36,8 @@
                 </div>
                 <div class="form-group">
                   <label>Tanggal Surat</label>
-                  <input class="form-control" placeholder=YYYY-MM-DD" type="date" name="tanggal" id="tanggal" required="">
-                  <p><i>Jika Format Tanggal Tidak keluar Input dengan manual dengan format <b> ("2018/12/30") </b> <i></p>
+                  <input class="form-control"  placeholder="Masukan Tanggal dengan format ('YYYY/MM/DD')" type="date" name="tanggal" id="tanggal" required="">
+                  <p><i>Jika Format Tanggal Tidak keluar Input dengan manual dengan format <b> ("yyyy/mm/dd") </b> <i></p>
                 </div>
                 <button type="submit" name="savesm" class="pull-right btn btn-app" id="savesm">
                 <i class="fa fa-save"></i>save</button>

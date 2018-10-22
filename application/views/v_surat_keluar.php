@@ -81,7 +81,7 @@
                 <div id="Pencairan">
                     <div class="form-group">
                       <label>Tanggal ACC Surat Marketing</label>
-                      <input class="form-control" type="date" name="tglmarketing">
+                      <input class="form-control" type="date" name="tglmarketing"  placeholder="Masukan Tanggal dengan format ('YYYY/MM/DD')">
                       <p><i>Jika Format Tanggal Tidak keluar, Input dengan manual dengan format <b> ("YYYY/MM/DD") </b> </i></p>
                     </div>
                     <div class="form-group">
@@ -115,7 +115,7 @@
                     </div>
                     <div class="form-group">
                       <label>Tanggal ACC Surat Marketing</label>
-                      <input class="form-control" type="date" name="tgl_marketing">
+                      <input class="form-control" type="date" name="tgl_marketing" placeholder="Masukan Tanggal dengan format ('YYYY/MM/DD')">
                       <p><i>Jika Format Tanggal Tidak keluar, Input dengan manual dengan format <b> ("YYYY/MM/DD") </b> </i></p>
                     </div>
                     <div class="form-group">
