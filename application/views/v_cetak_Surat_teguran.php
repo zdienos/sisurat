@@ -40,7 +40,7 @@ body {
 	</div>
 </div>
 <div id="footer">
-<img src="assets/img/footer.png" width="800px">
+<img src="assets/img/footer.png" width="810px">
 </div>
 <?php
 $date =date('d-m-Y');
