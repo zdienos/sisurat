@@ -82,7 +82,7 @@
                     <div class="form-group">
                       <label>Tanggal ACC Surat Marketing</label>
                       <input class="form-control" type="date" name="tglmarketing">
-                      <p><i>Jika Format Tanggal Tidak keluar Input dengan manual dengan format <b> ("2018/12/30") </b> </i></p>
+                      <p><i>Jika Format Tanggal Tidak keluar, Input dengan manual dengan format <b> ("YYYY/MM/DD") </b> </i></p>
                     </div>
                     <div class="form-group">
                       <label>Nama Siswa </label>
@@ -116,7 +116,7 @@
                     <div class="form-group">
                       <label>Tanggal ACC Surat Marketing</label>
                       <input class="form-control" type="date" name="tgl_marketing">
-                      <p><i>Jika Format Tanggal Tidak keluar Input dengan manual dengan format <b> ("2018/12/30") </b> </i></p>
+                      <p><i>Jika Format Tanggal Tidak keluar, Input dengan manual dengan format <b> ("YYYY/MM/DD") </b> </i></p>
                     </div>
                     <div class="form-group">
                       <label>Tembusan</label>
