@@ -163,6 +163,9 @@ class Skeluar extends CI_Controller {
 			$kesalahan = $this->input->post('kesalahan');
 			$tembusan = $this->input->post('tembusan');
 
+			$cek = $this->m_keluar->cekperingatan($nip,$spke);
+			
+			if ($cek == NULL){
 				$data2 = array(
 					'no' => $no,
 					'no_surat' => $nosurat,
@@ -189,8 +192,18 @@ class Skeluar extends CI_Controller {
 				} else {
 					redirect(base_url('Skeluar/index'));
 				}
-			//}
-	
+
+			} else {
+				foreach ($cek as $key => $value) {
+					$nip = $value->nip;
+					$spke = $value->spke;
+				}
+				
+			  $this->session->set_flashdata('success','NIP '.$nip.' tersebut sudah dapat SP '.$spke.' !');
+		      $this->session->set_flashdata('message','Periksa kembali data Pemohon.');
+		      redirect(base_url('skeluar/data_table'), 'refresh');
+			}
+
 		} elseif ($jenissurat == 'Teguran') {
 			
 			$pemeriksa = $this->input->post('pemeriksa');

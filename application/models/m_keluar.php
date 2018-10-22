@@ -268,7 +268,7 @@ class M_keluar extends CI_Model
 		$query = $this->db->get();
 
 		if ($query->num_rows() > 0) {
-			return $query->row_array();
+			return $query->result();
 		} else {
 			return $query = '';
 		}
