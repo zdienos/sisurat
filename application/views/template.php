@@ -294,7 +294,12 @@ $('#btnDelCheckRow').click(function() {
              $('#Pencairan3').show();  
              $('#Teguran').hide();  
              $('#Peringatan').hide();    
-           } else {
+           } else if ($('#prihal_fee').val() == 'Surat ACC Pengembalian Tidak Kuota' || 'Surat ACC Pengembalian Diskon Guru' || 'Surat ACC Pengembalian Pindah Program' || 'Surat ACC Pengembalian Pengalihan Biaya' || 'Surat ACC Pengembalian Diskon Karyawan' || 'Surat ACC Pengembalian Diskon Pengajar') {}{
+             $('#Pencairan').show();
+             $('#Pencairan3').hide();
+             $('#Peringatan').hide();
+             $('#Teguran').hide();
+           } else if ($('#prihal_fee').val() == 'Surat Tidak ACC Pengembalian Tidak Kuota' || 'Surat Tidak ACC Pengembalian Diskon Guru' || 'Surat Tidak ACC Pengembalian Pindah Program' || 'Surat Tidak ACC Pengembalian Pengalihan Biaya' || 'Surat Tidak ACC Pengembalian Diskon Karyawan' || 'Surat Tidak ACC Pengembalian Diskon Pengajar') {}{
              $('#Pencairan').show();
              $('#Pencairan3').hide();
              $('#Peringatan').hide();
