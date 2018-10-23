@@ -185,7 +185,7 @@
                       <select name="spke" class="form-control">
                         <option value="1">1</option>
                         <option value="2">2</option>
-                        <option value="2">3</option>
+                        <option value="3">3</option>
                       </select>
                       <p><i>Cek terlebih dahulu SP yang telah di berikan <a href="<?php echo base_url('Skeluar/data_table')?>"> disini</a></i></p>
                     </div>
