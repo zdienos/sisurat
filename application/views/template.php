@@ -403,7 +403,7 @@ function gantilabel() {
   var ganti_norek = norek.replace("Norek Siswa", "Keterangan Tidak ACC");   
   var ganti_ket = norek.replace("Keterangan Tidak ACC", "Norek Siswa");
   console.log(x);
-    if((x == "Surat Tidak ACC Pengembalian Tidak Kuota") || (x == "Surat Tidak ACC Pengembalian Diskon Guru") || (x == "Surat Tidak ACC Pengembalian Pindah Program")|| (x == "Surat Tidak ACC Pengembalian Pengalihan Biaya") || (x == "Surat Tidak ACC Pengembalian Diskon Karyawan")|| (x == "Surat Tidak ACC Pengembalian Diskon Pengajar")){
+    if((x == "Surat Tidak ACC Pengembalian Tidak Kuota") || (x == "Surat Tidak ACC Pengembalian Diskon Guru") || (x == "Surat Tidak ACC Pengembalian Pindah Program")|| (x == "Surat Tidak ACC Pengembalian Pengalihan Biaya") || (x == "Surat Tidak ACC Pengembalian Diskon Karyawan")|| (x == "Surat Tidak ACC Pengembalian Diskon Pengajar")|| (x == "Surat Tidak ACC Pengembalian Kelebihan Bayar")|| (x == "Surat Tidak ACC Pengembalian Jaminan PTN")|| (x == "Surat Tidak ACC Pengembalian Jaminan SMA Favorit")|| (x == "Surat Tidak ACC Diskon Susulan")){
     document.getElementById("jml_disetujui").innerHTML = ganti_jml;
     document.getElementById("norek").innerHTML = ganti_norek;
         

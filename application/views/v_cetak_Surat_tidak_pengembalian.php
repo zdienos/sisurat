@@ -3,7 +3,7 @@
 <style type="text/css">
 @page {margin: 20px 50px 0px 50px; }
 body {
-  font-size: 12pt;
+  font-size: 11pt;
 }
       #logo {
       margin-top: 0px;
@@ -96,10 +96,11 @@ $bulan = explode("-", $date);
 			$infobulan = "-";
 		}
 
-
-
-
-foreach($cetak as $l) { ?>
+foreach($cetak as $l) { 
+  $tujuan = $l['tujuan'];
+  $nama_tujuan = $l['nama_tujuan'];
+  $kacab = explode(" ", $tujuan);
+  ?>
   <table style="margin-top: 30px;">
     <tr><td>No</td><td>:</td><td><?php echo $l['no'] .'/'. $l['no_surat'];?></td></tr>
     <tr><td>Hal</td><td>:</td><td><?php echo $l['perihal'];?></td></tr>
@@ -111,41 +112,76 @@ foreach($cetak as $l) { ?>
   
   <p>Dengan Hormat,</p>
   
-  <p align="justify">Bersama ini kami mengajukan pembayaran ekspedisi pengiriman barang (kwitansi bimbel, form cuti dan slip gaji) via Pos Giro, dengan rician sbb :</p>
+  <p align="justify"> Menindaklanjuti memo dari bagian marketing pusat tanggal <?php echo date('d F Y',strtotime($l['tgl_marketing'])) ?> perihal <?php echo $l['perihal'];?> Unit <?php echo $l['unit'];?> ,berdasarkan Pengecekan bagian keuangan terhadap pembayaran biaya bimbel siswa berikut, yaitu:</p>
   <br>
   <div id="conten">
   <table class="data" style="page-break-after: auto" >
     <thead>
       <tr>
-        <th style="width: 30%"><center>Periode Pengiriman</center></th>
-        <th style="width: 30%"><center>Total Tagihan</center></th>
-        <th style="width: 30%"><center>Norek</center></th>
+        <th style="width: 25%"><center>Nama Siswa</center></th>
+        <th style="width: 25%"><center>Kelas</center></th>
+        <th style="width: 25%"><center>ACC Marketing</center></th>
+        <th style="width: 25%"><center>Keterangan</center></th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><center><?php echo $l['periodepengiriman'];?></center></td>
-        <td><center>Rp.<?php echo $l['totaltagihan'];?></center></td>
-        <td><center><?php echo $l['norek'];?></center></td>
+        <td><center><?php echo $l['nama_siswa'];?></center></td>
+        <td><center><?php echo $l['kelas'];?></center></td>
+        <td><center><?php echo $l['jumlahbayar'];?></center></td>
+        <td><center><?php echo $l['pengembaliannorek'];?></center></td>
       </tr>
     </tbody>
   </table>
   </div>
 
-  <p>Demikian hal ini disampaikan. Atas kerjasama yang baik kami ucapkan terima kasih.</p>
-  <br> 
+  <p>Demikian hal ini disampaikan, Atas Kerjasamanya kami ucapkan terimakasih.</p>
+  <?php 
+   if($kacab[1] != "Cabang" ){ ?>
+      <table>
+        <tr><td style="text-align: left;">Mengetahui,</td></tr>
+        <tr><td><br></td></tr>
+        <tr><td><br></td></tr>
+        <tr><td><b><u>Dra. Erna Veronika</u></b></td></tr>
+        <tr><td><b>Manajer Keuangan</b></td></tr>
+      </table>
+  <?php  }  ?>
     <div id="ttd">
       <table>
         <tr><td style="text-align: left;">Terimakasih,</td></tr>
         <tr><td>Bandung,<?php echo $bulan[0].' '.$infobulan.' '.$bulan[2] ;?></td></tr>
         <tr><td><br></td></tr>
         <tr><td><br></td></tr>
+       <?php if($kacab[1] != "Cabang" ){ ?>
         <tr><td><b><u><?php echo $nama_lengkap?></u></b></td></tr>
         <tr><td><b><?php echo $jabatan?></b></td></tr>
+      <?php } else {?>
+        <tr><td><b><u>Dra. Erna Veronika</u></b></td></tr>
+        <tr><td><b>Manajer Keuangan</b></td></tr>
+      <?php }?>
       </table>
     </div>
-  
+ 
+  <br>  <br>  <br>  <br>  <br>  <br>  <br>  
+  <div id="tbs">
+    <table>
+    <tr><td><dd>Tembusan:</dd></td></tr>
+    <tr><td>
+    <ul style="list-style-type: none;">
+    <?php $tbs = explode(",",$l['tembusan']);
+    foreach ($tbs as $t) { ?>
+    	<li><?php echo "-  ".$t; ?></li>
+    <?php }
+    ?>
+    	
+
+    </ul>
+    </td></tr>
+    </table>
+  </div>
 
 <?php }?>
+ <p style="text-align: center;">Dikirim Via Email</p>
   
-</body></html>
+</body>
+</html>

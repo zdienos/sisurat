@@ -12,7 +12,7 @@
              $date =date('y-m-d');
                  if (!empty($ubahskeluar)){
                     foreach($ubahskeluar as $usk){ ?>
-            <form action="<?= base_url('skeluar/gantiDatasperingatan') ?>" role="form" method="post">
+            <form action="<?= base_url('skeluar/gantiDataskeluar') ?>" role="form" method="post">
                <input class="form-control" type="hidden" name="userid"  value="<?php echo $username?>">
                <input class="form-control" type="hidden" name="tanggal" value="<?php echo $date;?>"> 
 
@@ -33,11 +33,11 @@
                 </div>
                 <div class="form-group">
                   <label>Tujuan</label>
-                  <input class="form-control" value="<?= $usk['tujuan'] ?>" placeholder="Enter ..." type="text" name="tujuan" required="" readonly="">
+                  <input class="form-control" value="<?= $usk['tujuan'] ?>" placeholder="Enter ..." type="text" name="tujuan" required="">
                 </div>
                 <div class="form-group">
                   <label>Nama Tujuan</label>
-                  <input class="form-control" value="<?= $usk['nama_tujuan'] ?>" placeholder="Enter ..." type="text" name="namatujuan" required="" readonly="">
+                  <input class="form-control" value="<?= $usk['nama_tujuan'] ?>" placeholder="Enter ..." type="text" name="namatujuan" required="">
                 </div>
 
                 <div class="form-group">
@@ -47,32 +47,35 @@
 
             <!-- pengelommpokkan jenis surat -->
                 <div id="TidakKuota">
-                  <div class="form-group">
-                  <label>Lokasi Tujuan</label>
-                  <input class="form-control" placeholder="Enter ..." type="text" name="loktujuan"required="" value="<?= $usk['loktujuan'] ?>" >
-                  <p><i>Contoh : "Ganesha Operation ... "</i></p>
-                </div>
                     <div class="form-group">
-                      <label>NIP</label>
-                      <input class="form-control" value="<?= $usk['nip'] ?>"  placeholder="Enter ..." type="text" required="" name="nip">
+                      <label>Tanggal ACC Surat Marketing</label>
+                      <input class="form-control" placeholder="Enter ..." type="date" name="tglmarketing"  id="TidakKuota" required="" value="<?= $usk['tgl_marketing'] ?>" >
+                      <p><i>Jika Format Tanggal Tidak keluar, Input dengan manual dengan format <b> ("YYYY/MM/DD") </b> </i></p>
                     </div>
                     <div class="form-group">
-                      <label>SP Ke</label>
-                      <select class="form-control" name="spke">
-                        <option value="1" <?php if ($usk['spke'] == 1) echo "selected";?> >1</option>
-                        <option value="2" <?php if ($usk['spke'] == 2) echo "selected";?>>2</option>
-                        <option value="3" <?php if ($usk['spke'] == 3) echo "selected";?>>3</option>
-
-                      </select>
+                      <label>Unit</label>
+                      <input class="form-control" id="TidakKuota" value="<?= $usk['unit'] ?>"  placeholder="Enter ..." type="text" required="" name="unit">
                     </div>
                     <div class="form-group">
-                      <label>Kesalahan</label>
-                      <input class="form-control" value="<?= $usk['kesalahan'] ?>" placeholder="Enter ..." type="text" required="" name="kesalahan">
+                      <label>Nama Siswa</label>
+                      <input class="form-control" id="TidakKuota" value="<?= $usk['nama_siswa'] ?>"  placeholder="Enter ..." type="text" required="" name="nama_siswa">
+                    </div>
+                    <div class="form-group">
+                      <label>Kelas</label>
+                      <input class="form-control" id="TidakKuota" value="<?= $usk['kelas'] ?>" placeholder="Enter ..." type="text" required="" name="kelas">
+                    </div>
+                    <div class="form-group">
+                      <label>ACC Marketing</label>
+                      <input class="form-control" id="TidakKuota" value="<?= $usk['jumlahbayar'] ?>" placeholder="Enter ..." type="text" required="" name="jumlahbayar_pt">
+                    </div>
+                    <div class="form-group">
+                      <label>Keterangan</label>
+                      <input class="form-control" id="TidakKuota" value="<?= $usk['pengembaliannorek'] ?>" placeholder="Enter ..." type="text" required="" name="norek">
                     </div>
                     <div class="form-group">
                       <label>Tembusan</label>
-                      <input class="form-control" value="<?= $usk['tembusan'] ?>" placeholder="Enter ..." type="text" required="" name="tembusan">
-                       <p><i>Untuk memisahkan Tembusan beri tanda koma <b> (",") </b> tanpa spasi</i></p>
+                      <input class="form-control" id="TidakKuota" value="<?= $usk['tembusan'] ?>" placeholder="Enter ..." type="text" required="" name="tembusan">
+                      <p><i>Untuk memisahkan Tembusan beri tanda koma <b> (",") </b> tanpa spasi</i> </p>
                     </div>
                     <?php } } ?>
                 </div>

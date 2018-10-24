@@ -52,11 +52,11 @@
                 </div>
                 <div class="form-group">
                   <label>Nama Penerima</label>
-                  <input class="form-control" value="<?= $nama_tujuan ?>" placeholder="Enter ..." type="text" name="namatujuan" required="">
+                  <input class="form-control" value="<?= $nama_tujuan ?>" placeholder="Enter ..." type="text" name="namatujuan" required="" readonly="">
                 </div>
                 <div class="form-group">
                    <label>Tujuan Penerima</label>
-                   <input class="form-control" value="<?= $tujuan ?>" type="text" name="tujuan">
+                   <input class="form-control" value="<?= $tujuan ?>" type="text" name="tujuan" readonly="">
                 </div>
                 <div class="form-group">
                   <label>Lampiran</label>
@@ -69,6 +69,7 @@
                 <div class="form-group">
                   <label>Tembusan</label>
                   <input class="form-control" placeholder="Enter ..." type="text" name="tbs_fee" value="<?= $tembusan ?>">
+                  <p><i>Untuk memisahkan Tembusan beri tanda koma <b> (",") </b> tanpa spasi</i> </p>
                 </div>
                 <div  class="form-group">
                   <button id="btnAddRow" type="button">
@@ -107,8 +108,8 @@
                             <td><input name="program[]" value="<?= $l['program'] ?>" size="5" /></td>
                             <td><input name="acc[]" value="<?= $l['acc'] ?>" size="3" /></td>
                             <td><input name="tdk_acc[]" value="<?= $l['tdk_acc'] ?>" size="3" /></td>
-                            <td><input name="fee_siswa[]" value="<?= $l['fee_siswa'] ?>"/></td>
-                            <td><textarea name="ket[]" cols="50" ><?= $l['ket'] ?></textarea><p><i>Jika ingin membuat baris baru(Enter) tambahkan <b>&lt;br&gt;</b> </i></p></td>
+                            <td><input name="fee_siswa[]" value="<?= $l['fee_siswa'] ?>" size="10"/></td>
+                            <td><textarea name="ket[]" cols="40" ><?= $l['ket'] ?></textarea><p><i>Jika ingin membuat baris baru(Enter) tambahkan <b>&lt;br&gt;</b> </i></p></td>
                         </tr>
                     <?php }?>
                     </tbody>

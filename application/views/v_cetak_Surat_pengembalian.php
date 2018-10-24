@@ -112,7 +112,7 @@ foreach($cetak as $l) {
   
   <p>Dengan Hormat,</p>
   
-  <p align="justify"> Menindaklanjuti memo dari bagian marketing pusat tanggal <?php echo date('d F Y',strtotime($l['tgl_marketing'])) ?> perihal <?php echo $l['perihal'];?> ,berdasarkan Pengecekan bagian keuangan terhadap pembayaran biaya bimbel siswa berikut berhak untuk menerima pengembalian, yaitu:</p>
+  <p align="justify"> Menindaklanjuti memo dari bagian marketing pusat tanggal <?php echo date('d F Y',strtotime($l['tgl_marketing'])) ?> perihal <?php echo $l['perihal'];?> Unit <?php echo $l['unit'];?> ,berdasarkan Pengecekan bagian keuangan terhadap pembayaran biaya bimbel siswa berikut berhak untuk menerima pengembalian, yaitu:</p>
   <br>
   <div id="conten">
   <table class="data" style="page-break-after: auto" >
@@ -120,7 +120,7 @@ foreach($cetak as $l) {
       <tr>
         <th style="width: 25%"><center>Nama Siswa</center></th>
         <th style="width: 25%"><center>Kelas</center></th>
-        <th style="width: 25%"><center>Jumlah Bayar yang disetujui</center></th>
+        <th style="width: 25%"><center>Jumlah Pengembalian yang disetujui</center></th>
         <th style="width: 25%"><center>No. Rekening Pengembalian</center></th>
       </tr>
     </thead>
@@ -128,7 +128,7 @@ foreach($cetak as $l) {
       <tr>
         <td><center><?php echo $l['nama_siswa'];?></center></td>
         <td><center><?php echo $l['kelas'];?></center></td>
-        <td><center><?php echo $l['jumlahbayar'];?></center></td>
+        <td><center>Rp.<?php echo $l['jumlahbayar'];?></center></td>
         <td><center><?php echo $l['pengembaliannorek'];?></center></td>
       </tr>
     </tbody>
@@ -164,7 +164,9 @@ foreach($cetak as $l) {
  
   <br>  <br>  <br>  <br>  <br>  <br>  <br>  
   <div id="tbs">
-    <p>Tembusan:<br>
+    <table>
+    <tr><td><dd>Tembusan:</dd></td></tr>
+    <tr><td>
     <ul style="list-style-type: none;">
     <?php $tbs = explode(",",$l['tembusan']);
     foreach ($tbs as $t) { ?>
@@ -174,7 +176,8 @@ foreach($cetak as $l) {
     	
 
     </ul>
-    </p> 
+    </td></tr>
+    </table>
   </div>
 
 <?php }?>

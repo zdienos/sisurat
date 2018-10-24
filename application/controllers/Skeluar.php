@@ -141,18 +141,21 @@ class Skeluar extends CI_Controller {
 			);
 
 				
-		if ($jenissurat == 'Pencairan' and $prihal != 'Surat ACC Pencairan PT Kolektif/Bimker') {
+		if (($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Pengembalian Kelas Tidak Kuota')or($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Pengembalian Diskon Anak Guru')or($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Pengembalian Pindah Program')or($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Pengembalian Pengalihan Biaya')or($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Pengembalian Diskon Karyawan')or($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Pengembalian Diskon Pengajar')or($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Pengembalian Kelebihan Bayar')or($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Pengembalian Jaminan PTN')or($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Pengembalian Jaminan SMA Favorit')or($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Diskon Susulan')) {
+
 			$namasiswa = $this->input->post('nama_siswa');
 			$kelas = $this->input->post('kelas');
 			$jumlahbayar = $this->input->post('jumlahbayar_pt');
 			$pengembaliannorek = $this->input->post('norek');
 			$tglmarketing = $this->input->post('tglmarketing');
 			$tembusan = $this->input->post('tbspencairan');
+			$unit = $this->input->post('unit');
 			
 			$data2 = array(
 				'no' => $no,
 				'no_surat' => $nosurat,
 				'tgl_marketing' => $tglmarketing,
+				'unit' => $unit,
 				'nama_siswa' => $namasiswa,	
 				'kelas' => $kelas,
 				'jumlahbayar' => $jumlahbayar,
@@ -178,6 +181,52 @@ class Skeluar extends CI_Controller {
 			    $this->pdf->setPaper('Letter', 'potrait');
 			    $this->pdf->filename = "laporan-".$jenissurat.".pdf";
 			    $this->pdf->load_view('v_cetak_Surat_pengembalian', $data);
+
+			} else {
+				redirect(base_url('Skeluar/index'));
+			}
+
+		
+		} elseif (($jenissurat == 'Pencairan' and $prihal == 'Surat Tidak ACC Pengembalian Kelas Tidak Kuota')or($jenissurat == 'Pencairan' and $prihal == 'Surat Tidak ACC Pengembalian Diskon Anak Guru')or($jenissurat == 'Pencairan' and $prihal == 'Surat Tidak ACC Pengembalian Pindah Program')or($jenissurat == 'Pencairan' and $prihal == 'Surat Tidak ACC Pengembalian Pengalihan Biaya')or($jenissurat == 'Pencairan' and $prihal == 'Surat Tidak ACC Pengembalian Diskon Karyawan')or($jenissurat == 'Pencairan' and $prihal == 'Surat Tidak ACC Pengembalian Diskon Pengajar')or($jenissurat == 'Pencairan' and $prihal == 'Surat Tidak ACC Pengembalian Kelebihan Bayar')or($jenissurat == 'Pencairan' and $prihal == 'Surat Tidak ACC Pengembalian Jaminan PTN')or($jenissurat == 'Pencairan' and $prihal == 'Surat Tidak ACC Pengembalian Jaminan SMA Favorit')or($jenissurat == 'Pencairan' and $prihal == 'Surat Tidak ACC Diskon Susulan')) {
+
+			$namasiswa = $this->input->post('nama_siswa');
+			$kelas = $this->input->post('kelas');
+			$jumlahbayar = $this->input->post('jumlahbayar_pt');
+			$pengembaliannorek = $this->input->post('norek');
+			$tglmarketing = $this->input->post('tglmarketing');
+			$tembusan = $this->input->post('tbspencairan');
+			$unit = $this->input->post('unit');
+			
+			$data2 = array(
+				'no' => $no,
+				'no_surat' => $nosurat,
+				'tgl_marketing' => $tglmarketing,
+				'unit' => $unit,
+				'nama_siswa' => $namasiswa,	
+				'kelas' => $kelas,
+				'jumlahbayar' => $jumlahbayar,
+				'tembusan' => $tembusan,
+				'pengembaliannorek' => $pengembaliannorek
+				
+			);
+
+			$result = $this->m_keluar->saveDatasuratkeluar($data);
+			$result2 = $this->m_keluar->saveDatasuratkeluar2($data2);
+
+			if ($result && $result2) {
+				$user = $this->model->getuser();
+				$data['username'] = $user['username'];
+				$data['jabatan'] = $user['jabatan'];
+				$data['id'] = $user['id'];
+				$data['nama_lengkap'] = $user['nama_lengkap'];
+
+				$data['cetak'] = $this->m_keluar->lihatsuratkeluar($no,$jenissurat);
+
+				$this->load->library('pdf');
+
+			    $this->pdf->setPaper('Letter', 'potrait');
+			    $this->pdf->filename = "laporan-".$jenissurat.".pdf";
+			    $this->pdf->load_view('v_cetak_Surat_tidak_pengembalian', $data);
 
 			} else {
 				redirect(base_url('Skeluar/index'));
@@ -269,7 +318,7 @@ class Skeluar extends CI_Controller {
 				redirect(base_url('Skeluar/index'));
 			}
 	
-		} elseif ($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Pencairan PT Kolektif/Bimker') {
+		} elseif (($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Pencairan PT Kolektif/Bimker') or ($jenissurat == 'Pencairan' and $prihal == 'Surat Tidak ACC Pencairan PT Kolektif/Bimker')) {
 			//Pencairan fee
 			$lampiran = $this->input->post('lampiran');
 			$tgl_marketing = $this->input->post('tgl_marketing');
@@ -447,7 +496,7 @@ class Skeluar extends CI_Controller {
 
 	public function hapusDatasuratkeluar($no,$jenissurat,$prihal)
 	{
-		if ($prihal == 'Surat%20ACC%20Pencairan%20PT%20Kolektif'){
+		if (($prihal == 'Surat%20ACC%20Pencairan%20PT%20Kolektif')or($prihal == 'Surat%20Tidak%20ACC%20Pencairan%20PT%20Kolektif')){
 			$prihal = 1;
 		}
 
@@ -484,13 +533,20 @@ class Skeluar extends CI_Controller {
   			$data['jabatan'] = $user['jabatan'];
   			$data['id'] = $user['id'];
   			
-		if ($prihal == 'Surat%20ACC%20Pencairan%20PT%20Kolektif'){
+		if (($prihal == 'Surat%20ACC%20Pencairan%20PT%20Kolektif')or($prihal == 'Surat%20Tidak%20ACC%20Pencairan%20PT%20Kolektif')) {
 			$prihal = 1;
+		} elseif(($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Kelas%20Tidak%20Kuota')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Anak%20Guru')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Pindah%20Program')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Pengalihan%20Biaya')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Karyawan')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Pengajar')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Kelebihan%20Bayar')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Jaminan%20PTN')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Jaminan%20SMA%20Favorit')or($prihal == 'Surat%20Tidak%20ACC%20Diskon%20Susulan')) {
+			$prihal = 2;
+		} elseif(($prihal == 'Surat%20ACC%20Pengembalian%20Kelas%20Tidak%20Kuota')or($prihal == 'Surat%20ACC%20Pengembalian%20Diskon%20Anak%20Guru')or($prihal == 'Surat%20ACC%20Pengembalian%20Pindah%20Program')or($prihal == 'Surat%20ACC%20Pengembalian%20Pengalihan%20Biaya')or($prihal == 'Surat%20ACC%20Pengembalian%20Diskon%20Karyawan')or($prihal == 'Surat%20ACC%20Pengembalian%20Diskon%20Pengajar')or($prihal == 'Surat%20ACC%20Pengembalian%20Kelebihan%20Bayar')or($prihal == 'Surat%20ACC%20Pengembalian%20Jaminan%20PTN')or($prihal == 'Surat%20ACC%20Pengembalian%20Jaminan%20SMA%20Favorit')or($prihal == 'Surat%20ACC%20Diskon%20Susulan')) {
+			$prihal = 3;
 		}
 
-		if($jenis_surat == 'Pencairan' and $prihal != 1){
+		if($jenis_surat == 'Pencairan' and $prihal == 3){
 			$data['lihat'] = $this->m_keluar->lihatsuratkeluar($no,$jenis_surat);
 			$this->template->load('template','v_lihat_skeluar',$data);
+		}elseif($jenis_surat == 'Pencairan' and $prihal == 2){
+			$data['lihat'] = $this->m_keluar->lihatsuratkeluar($no,$jenis_surat);
+			$this->template->load('template','v_lihat_skeluar_tdk_acc',$data);
 		}elseif ($jenis_surat == 'Peringatan') {
 			$data['lihat'] = $this->m_keluar->lihatsuratkeluar($no,$jenis_surat);
 			$this->template->load('template','v_lihat_speringatan',$data);
@@ -511,9 +567,14 @@ class Skeluar extends CI_Controller {
 	}
 	public function cetaksuratkeluar($no,$jenis_surat,$prihal)
 	{
-		if ($prihal == 'Surat%20ACC%20Pencairan%20PT%20Kolektif'){
+		if (($prihal == 'Surat%20ACC%20Pencairan%20PT%20Kolektif')or($prihal == 'Surat%20Tidak%20ACC%20Pencairan%20PT%20Kolektif')) {
 			$prihal = 1;
+		} elseif(($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Kelas%20Tidak%20Kuota')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Anak%20Guru')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Pindah%20Program')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Pengalihan%20Biaya')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Karyawan')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Pengajar')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Kelebihan%20Bayar')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Jaminan%20PTN')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Jaminan%20SMA%20Favorit')or($prihal == 'Surat%20Tidak%20ACC%20Diskon%20Susulan')) {
+			$prihal = 2;
+		} elseif(($prihal == 'Surat%20ACC%20Pengembalian%20Kelas%20Tidak%20Kuota')or($prihal == 'Surat%20ACC%20Pengembalian%20Diskon%20Anak%20Guru')or($prihal == 'Surat%20ACC%20Pengembalian%20Pindah%20Program')or($prihal == 'Surat%20ACC%20Pengembalian%20Pengalihan%20Biaya')or($prihal == 'Surat%20ACC%20Pengembalian%20Diskon%20Karyawan')or($prihal == 'Surat%20ACC%20Pengembalian%20Diskon%20Pengajar')or($prihal == 'Surat%20ACC%20Pengembalian%20Kelebihan%20Bayar')or($prihal == 'Surat%20ACC%20Pengembalian%20Jaminan%20PTN')or($prihal == 'Surat%20ACC%20Pengembalian%20Jaminan%20SMA%20Favorit')or($prihal == 'Surat%20ACC%20Diskon%20Susulan')) {
+			$prihal = 3;
 		}
+
 
 		$user = $this->model->getuser();
   			$data['username'] = $user['username'];
@@ -521,12 +582,24 @@ class Skeluar extends CI_Controller {
   			$data['id'] = $user['id'];
   			$data['nama_lengkap'] = $user['nama_lengkap'];
 
-		if(($jenis_surat == 'Pencairan' and $prihal != 1 )){
+		if($jenis_surat == 'Pencairan' and $prihal == 3 ){
 			$data['cetak'] = $this->m_keluar->lihatsuratkeluar($no,$jenis_surat);
 			
 			$this->load->library('pdf');
 
 			$this->load->view('v_cetak_Surat_pengembalian', $data);
+		    $html=$this->output->get_output();
+		    $this->pdf->load_html($html);
+		    $this->pdf->setPaper('A4', 'potrait');
+			$this->pdf->render();
+			$this->pdf->stream("laporan.pdf",array('Attachment'=>0)); 
+		   	
+		}elseif($jenis_surat == 'Pencairan' and $prihal == 2 ){
+			$data['cetak'] = $this->m_keluar->lihatsuratkeluar($no,$jenis_surat);
+			
+			$this->load->library('pdf');
+
+			$this->load->view('v_cetak_Surat_tidak_pengembalian', $data);
 		    $html=$this->output->get_output();
 		    $this->pdf->load_html($html);
 		    $this->pdf->setPaper('A4', 'potrait');
@@ -604,13 +677,20 @@ class Skeluar extends CI_Controller {
 		$data['jabatan'] = $user['jabatan'];
 		$data['id'] = $user['id'];
 
-		if ($prihal == 'Surat%20ACC%20Pencairan%20PT%20Kolektif'){
+		if (($prihal == 'Surat%20ACC%20Pencairan%20PT%20Kolektif')or($prihal == 'Surat%20Tidak%20ACC%20Pencairan%20PT%20Kolektif')){
 			$prihal = 1;
+		} elseif(($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Kelas%20Tidak%20Kuota')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Anak%20Guru')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Pindah%20Program')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Pengalihan%20Biaya')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Karyawan')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Pengajar')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Kelebihan%20Bayar')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Jaminan%20PTN')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Jaminan%20SMA%20Favorit')or($prihal == 'Surat%20Tidak%20ACC%20Diskon%20Susulan')) {
+			$prihal = 2;
+		} elseif(($prihal == 'Surat%20ACC%20Pengembalian%20Kelas%20Tidak%20Kuota')or($prihal == 'Surat%20ACC%20Pengembalian%20Diskon%20Anak%20Guru')or($prihal == 'Surat%20ACC%20Pengembalian%20Pindah%20Program')or($prihal == 'Surat%20ACC%20Pengembalian%20Pengalihan%20Biaya')or($prihal == 'Surat%20ACC%20Pengembalian%20Diskon%20Karyawan')or($prihal == 'Surat%20ACC%20Pengembalian%20Diskon%20Pengajar')or($prihal == 'Surat%20ACC%20Pengembalian%20Kelebihan%20Bayar')or($prihal == 'Surat%20ACC%20Pengembalian%20Jaminan%20PTN')or($prihal == 'Surat%20ACC%20Pengembalian%20Jaminan%20SMA%20Favorit')or($prihal == 'Surat%20ACC%20Diskon%20Susulan')) {
+			$prihal = 3;
 		}
 
-		if(($jenis_surat == 'Pencairan' and $prihal != 1)){
+		if($jenis_surat == 'Pencairan' and $prihal == 3){
 			$data['ubahskeluar'] = $this->m_keluar->ubahsuratkeluar($no,$jenis_surat);
 			$this->template->load('template','v_update_skeluar_pencairan',$data);
+		} elseif($jenis_surat == 'Pencairan' and $prihal == 2){
+			$data['ubahskeluar'] = $this->m_keluar->ubahsuratkeluar($no,$jenis_surat);
+			$this->template->load('template','v_update_skeluar_Tidak_pencairan',$data);
 		} else if(($jenis_surat == 'Pencairan' and $prihal == 1)){
 			$data['ubahskeluar'] = $this->m_keluar->lihatsuratkeluar_fee($no,$jenis_surat);
 			$this->template->load('template','v_update_skeluar_fee',$data);
@@ -645,6 +725,7 @@ class Skeluar extends CI_Controller {
 		$userid = $this->input->post('userid');
 		$tanggal = $this->input->post('tanggal');
 		$tglmarketing = $this->input->post('tglmarketing');
+		$unit = $this->input->post('unit');
 
 		$data = array(
 			'no_surat' => $nosurat,
@@ -660,6 +741,7 @@ class Skeluar extends CI_Controller {
 		$data2 = array(
 			'no_surat' => $nosurat,
 			'tgl_marketing' => $tglmarketing,
+			'unit' => $unit,
 			'nama_siswa' => $namasiswa,
 			'kelas' => $kelas,
 			'jumlahbayar' => $jumlahbayar,
