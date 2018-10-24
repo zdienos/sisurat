@@ -93,25 +93,28 @@ class Skeluar extends CI_Controller {
 		$jenissurat = $this->input->post('cjenissurat');
 		if ($jenissurat != "Teguran" and $jenissurat != "Peringatan" and $jenissurat != "Pencairan") {
 			$namatujuan = "Dra. Erna Veronika";
-			$jabatan = "up.Ibu Wina Wibawa";
-			$tujuan = " ";
+			$concat = "up.Ibu Wina Wibawa";
 		} elseif ($jenissurat == "Teguran") {
 			$namatujuan = $this->input->post('namatujuan');
 			$jabatan = $this->input->post('tujuan1');
 			$tujuan = $this->input->post('tujuan');
+			$concat = $jabatan." ".$tujuan;
 		} elseif ($jenissurat == "Peringatan") {
 			$namatujuan = $this->input->post('namatujuan');
 			$jabatan = $this->input->post('tujuan1');
 			$tujuan = $this->input->post('tujuan');
+			$concat = $jabatan." ".$tujuan;
 		} elseif ($jenissurat == "Pencairan") {
 			$namatujuan = $this->input->post('namatujuan');
 			$jabatan = $this->input->post('tujuan1');
 			$tujuan = $this->input->post('tujuan');
+			$concat = $jabatan." ".$tujuan;
 		}
 		
 		$userid = $this->input->post('userid');
 		$tanggal = $this->input->post('tanggal');
-		if($jenissurat != "Teguran" and $jenissurat != "Peringatan" and $jenissurat != "Pembayaran" ){
+
+		if($jenissurat != "Teguran" and $jenissurat != "Peringatan" and $jenissurat != "Pembayaran" and $jenissurat != "Transfer" ){
 			$prihal = $this->input->post('prihal');
 		} elseif ($jenissurat == "Teguran") {
 			$prihal = "Surat Teguran";
@@ -119,10 +122,12 @@ class Skeluar extends CI_Controller {
 			$prihal = "Surat Peringatan";
 		} elseif ($jenissurat == "Pembayaran") {
 			$prihal = "Surat Pembayaran Ekspedisi Pengiriman Barang POS GIRO";
+		} elseif ($jenissurat == "Transfer") {
+			$prihal = "Surat Transfer Pencairan ";
 		}
 		
 			
-		$concat = $jabatan." ".$tujuan;
+		
 		$data= array(
 				'no' => $no,
 				'no_surat' => $nosurat,
@@ -350,6 +355,92 @@ class Skeluar extends CI_Controller {
 				redirect(base_url('Skeluar/index'));
 			}
 	
+		} elseif ($jenissurat == 'Transfer'){
+			$tgl_pencairan = $this->input->post('tgl_pencairan');
+			$jenis_pencairan = $this->input->post('jenis_pencairan');
+
+			if ($jenis_pencairan == "mgm"){ 
+				$input = $this->input->post();
+
+				$total_post= count($this->input->post('bank_m'));
+
+				foreach ($input['bank_m'] as $key => $val) {
+					$add=array(
+						'no' => $no,
+						'no_surat' => $nosurat,
+						'tgl_pencairan' => $tgl_pencairan,
+						'jenis_pencairan' => $jenis_pencairan,
+						'bank' => $input['bank_m'][$key],
+						'jml_order_mgm' => $input['jmlor_mgm_m'][$key],
+						'jml_siswa_mgm' => $input['jmlsis_mgm_m'][$key],
+						'tot_order' => $input['jmlor_mgm_m'][$key],
+						'tot_siswa' => $input['jmlsis_mgm_m'][$key]
+						);		
+					$result2 = $this->m_keluar->saveDatasuratTransfer($add);
+				}
+
+			} elseif ($jenis_pencairan == "pengembalian biaya"){ 
+				$input = $this->input->post();
+
+				$total_post= count($this->input->post('bank_b'));
+
+				foreach ($input['bank_b'] as $key => $val) {
+					$add=array(
+						'no' => $no,
+						'no_surat' => $nosurat,
+						'tgl_pencairan' => $tgl_pencairan,
+						'jenis_pencairan' => $jenis_pencairan,
+						'bank' => $input['bank_b'][$key],
+						'jml_order_biaya' => $input['jmlor_biaya_b'][$key],
+						'jml_siswa_biaya' => $input['jmlsis_biaya_b'][$key],
+						'tot_order' => $input['jmlor_biaya_b'][$key],
+						'tot_siswa' => $input['jmlsis_biaya_b'][$key]
+						);	
+					$result2 = $this->m_keluar->saveDatasuratTransfer($add);
+				}
+
+			} elseif ($jenis_pencairan == "mgm dan pengembalian biaya"){ 
+				$input = $this->input->post();
+
+				$total_post= count($this->input->post('bank_mb'));
+
+				foreach ($input['bank_mb'] as $key => $val) {
+					$add=array(
+						'no' => $no,
+						'no_surat' => $nosurat,
+						'tgl_pencairan' => $tgl_pencairan,
+						'jenis_pencairan' => $jenis_pencairan,
+						'bank' => $input['bank_mb'][$key],
+						'jml_order_mgm' => $input['jmlor_mgm_mb'][$key],
+						'jml_siswa_mgm' => $input['jmlsis_mgm_mb'][$key],
+						'jml_order_biaya' => $input['jmlor_biaya_mb'][$key],
+						'jml_siswa_biaya' => $input['jmlsis_biaya_mb'][$key],
+						'tot_order' => $input['jmlor_mgm_mb'][$key] + $input['jmlor_biaya_mb'][$key],
+						'tot_siswa' => $input['jmlsis_mgm_mb'][$key] + $input['jmlsis_biaya_mb'][$key]
+						);	
+					$result2 = $this->m_keluar->saveDatasuratTransfer($add);
+				}
+			}
+
+			$result = $this->m_keluar->saveDatasuratkeluar($data);	
+
+			if ($result2) {
+				$user = $this->model->getuser();
+				$data['username'] = $user['username'];
+	  			$data['jabatan'] = $user['jabatan'];
+	  			$data['id'] = $user['id'];
+	  			$data['nama_lengkap'] = $user['nama_lengkap'];
+				$data['cetak'] = $this->m_keluar->lihatsuratkeluar_transfer($no);
+
+				$this->load->library('pdf');
+
+			    $this->pdf->setPaper('Letter', 'potrait');
+			    $this->pdf->filename = "laporan-".$jenissurat.".pdf";
+			    $this->pdf->load_view('v_cetak_Surat_transfer', $data);
+
+			} else {
+				redirect(base_url('Skeluar/index'));
+			}
 		}
 	}
 
@@ -373,6 +464,8 @@ class Skeluar extends CI_Controller {
 		} elseif($jenissurat == 'Teguran'){
 			$data = $this->m_keluar->deleteDatasuratkeluar($jenissurat,$where);	
 		} elseif($jenissurat == 'Pembayaran'){
+			$data = $this->m_keluar->deleteDatasuratkeluar($jenissurat,$where);	
+		} elseif($jenissurat == 'Transfer'){
 			$data = $this->m_keluar->deleteDatasuratkeluar($jenissurat,$where);	
 		}
 		
@@ -410,6 +503,9 @@ class Skeluar extends CI_Controller {
 		}elseif ($jenis_surat == 'Pembayaran') {
 			$data['lihat'] = $this->m_keluar->lihatsuratkeluar($no,$jenis_surat);
 			$this->template->load('template','v_lihat_sposgiro',$data);
+		} elseif ($jenis_surat == 'Transfer') {
+			$data['lihat'] = $this->m_keluar->lihatsuratkeluar_transfer($no,$jenis_surat);
+			$this->template->load('template','v_lihat_skeluar_transfer',$data);
 		}
 	
 	}
@@ -484,6 +580,20 @@ class Skeluar extends CI_Controller {
 		    $this->pdf->setPaper('A4', 'potrait');
 			$this->pdf->render();
 			$this->pdf->stream("laporan.pdf",array('Attachment'=>0)); 
+		}elseif ($jenis_surat == 'Transfer') {
+			$user = $this->model->getuser();
+			$data['username'] = $user['username'];
+	  		$data['jabatan'] = $user['jabatan'];
+	  		$data['id'] = $user['id'];
+	  		$data['nama_lengkap'] = $user['nama_lengkap'];
+			$data['cetak'] = $this->m_keluar->lihatsuratkeluar_transfer($no);
+
+			$this->load->view('v_cetak_Surat_transfer', $data);
+		    $html=$this->output->get_output();
+		    $this->pdf->load_html($html);
+		    $this->pdf->setPaper('A4', 'potrait');
+			$this->pdf->render();
+			$this->pdf->stream("laporan.pdf",array('Attachment'=>0)); 
 		}
 	}
 	
@@ -513,6 +623,9 @@ class Skeluar extends CI_Controller {
 		} else if(($jenis_surat == 'Pembayaran')){
 			$data['ubahskeluar'] = $this->m_keluar->ubahsuratkeluar($no,$jenis_surat);
 			$this->template->load('template','v_update_sposgiro',$data);
+		} else if(($jenis_surat == 'Transfer')){
+			$data['ubahskeluar'] = $this->m_keluar->lihatsuratkeluar_transfer($no,$jenis_surat);
+			$this->template->load('template','v_update_skeluar_transfer',$data);
 		}
 	}
 	
@@ -788,6 +901,106 @@ class Skeluar extends CI_Controller {
 		];
 
 		$result2 = $this->m_keluar->updateDatasuratkeluar2($data2,$where,$jenissurat);
+		$result = $this->m_keluar->updateDatasuratkeluar($data, $where);
+
+		if ($result) {
+			redirect(base_url('skeluar/data_table'));
+		} else {
+			redirect(base_url('skeluar/ubahDatasmasuk'));
+		}
+	}
+
+	public function gantiDataskeluar_transfer()
+	{
+		$no = $this->input->post('no');
+		$nosurat = $this->input->post('nosurat');
+		$prihal = $this->input->post('prihal');
+		$userid = $this->input->post('userid');
+		$tanggal = $this->input->post('tanggal');
+
+		$jenis_pencairan = $this->input->post('jenis_pencairan');
+		$tgl_pencairan = $this->input->post('tgl_pencairan');
+		$input = $this->input->post();
+		$total_post= count($this->input->post('sekolah'));
+		
+		$data= array(
+			'no' => $no,
+			'no_surat' => $nosurat,
+			'perihal' => $prihal,
+			'tgl_SuratKeluar' => $tanggal,
+			'userid' => $userid
+
+		);
+		
+		$where = [
+			'no' => $no
+		];
+		$where2 = [
+			'no' => $no
+		];
+		if ($jenis_pencairan == "mgm"){ 
+			$input = $this->input->post();
+			$total_post= count($this->input->post('bank_m'));
+		
+			$this->m_keluar->deleteDatasuratkeluar_transfer($where2);
+
+			foreach ($input['bank_m'] as $key => $val) {
+				$add=array(
+					'no' => $no,
+					'no_surat' => $nosurat,
+					'tgl_pencairan' => $tgl_pencairan,
+					'jenis_pencairan' => $jenis_pencairan,
+					'bank' => $input['bank_m'][$key],
+					'jml_order_mgm' => $input['jmlor_mgm_m'][$key],
+					'jml_siswa_mgm' => $input['jmlsis_mgm_m'][$key],
+					'tot_order' => $input['jmlor_mgm_m'][$key],
+					'tot_siswa' => $input['jmlsis_mgm_m'][$key]
+					);			
+				$result2 = $this->m_keluar->saveDatasuratTransfer($add);
+			}
+		} elseif ($jenis_pencairan == "pengembalian biaya") {
+			$input = $this->input->post();
+			$total_post= count($this->input->post('bank_b'));
+		
+			$this->m_keluar->deleteDatasuratkeluar_transfer($where2);
+
+			foreach ($input['bank_b'] as $key => $val) {
+				$add=array(
+					'no' => $no,
+					'no_surat' => $nosurat,
+					'tgl_pencairan' => $tgl_pencairan,
+					'jenis_pencairan' => $jenis_pencairan,
+					'bank' => $input['bank_b'][$key],
+					'jml_order_biaya' => $input['jmlor_biaya_b'][$key],
+					'jml_siswa_biaya' => $input['jmlsis_biaya_b'][$key],
+					'tot_order' => $input['jmlor_biaya_b'][$key],
+					'tot_siswa' => $input['jmlsis_biaya_b'][$key]
+					);			
+				$result2 = $this->m_keluar->saveDatasuratTransfer($add);
+			}
+		}elseif ($jenis_pencairan == "mgm dan pengembalian biaya") {
+			$input = $this->input->post();
+			$total_post= count($this->input->post('bank_mb'));
+		
+			$this->m_keluar->deleteDatasuratkeluar_transfer($where2);
+
+			foreach ($input['bank_mb'] as $key => $val) {
+				$add=array(
+					'no' => $no,
+					'no_surat' => $nosurat,
+					'tgl_pencairan' => $tgl_pencairan,
+					'jenis_pencairan' => $jenis_pencairan,
+					'bank' => $input['bank_mb'][$key],
+					'jml_order_mgm' => $input['jmlor_mgm_mb'][$key],
+					'jml_siswa_mgm' => $input['jmlsis_mgm_mb'][$key],
+					'jml_order_biaya' => $input['jmlor_biaya_mb'][$key],
+					'jml_siswa_biaya' => $input['jmlsis_biaya_mb'][$key],
+					'tot_order' => $input['jmlor_mgm_mb'][$key] + $input['jmlor_biaya_mb'][$key],
+					'tot_siswa' => $input['jmlsis_mgm_mb'][$key] + $input['jmlsis_biaya_mb'][$key]
+					);			
+				$result2 = $this->m_keluar->saveDatasuratTransfer($add);
+			}
+		}
 		$result = $this->m_keluar->updateDatasuratkeluar($data, $where);
 
 		if ($result) {

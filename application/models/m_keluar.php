@@ -104,6 +104,21 @@ class M_keluar extends CI_Model
 		}
 	}
 
+	function lihatsuratkeluar_transfer($no)
+	{
+			$this->db->from('skeluar');
+		    $this->db->join('tb_sk_transfer_mgmbiaya', 'skeluar.no = tb_sk_transfer_mgmbiaya.no','left');
+		    $this->db->where('skeluar.no', $no);
+
+		$query = $this->db->get();
+
+		if ($query->num_rows() > 0) {
+			return $query->result_array();
+		} else {
+			return false;
+		}
+	}
+
 	function getDatasuratkeluar($where)
 	{
 		$this->db->from('skeluar');
@@ -176,6 +191,17 @@ class M_keluar extends CI_Model
 	function saveDataspembayaran($data2)
 	{
 		$data2 = $this->db->insert('tb_sk_pos_giro', $data2);
+
+		if ($data2) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	function saveDatasuratTransfer($data2)
+	{
+		$data2 = $this->db->insert('tb_sk_transfer_mgmbiaya', $data2);
 
 		if ($data2) {
 			return true;
@@ -264,6 +290,9 @@ class M_keluar extends CI_Model
  		} elseif ($jenis_surat == 'Pembayaran') {
  			$data = $this->db->delete('skeluar', $where);
 			$data2 = $this->db->delete('tb_sk_pos_giro', $where);
+ 		} elseif ($jenis_surat == 'Transfer') {
+ 			$data = $this->db->delete('skeluar', $where);
+			$data2 = $this->db->delete('tb_sk_transfer_mgmbiaya', $where);
  		}
 
  		if ($data) {
@@ -275,6 +304,17 @@ class M_keluar extends CI_Model
  	function deleteDatasuratkeluar_fee($where3)
  	{
  		$data3 = $this->db->delete('tb_sk_pencairan_fee', $where3);
+
+ 		if ($data3) {
+			return true;
+		} else {
+			return false;
+		}
+ 	}
+
+ 	function deleteDatasuratkeluar_transfer($where3)
+ 	{
+ 		$data3 = $this->db->delete('tb_sk_transfer_mgmbiaya', $where3);
 
  		if ($data3) {
 			return true;

@@ -31,11 +31,12 @@
                     <option value="Peringatan">Surat Peringatan</option>
                     <?php 
                       if (($username == "bunia") || ($username == "bu dewi")) { ?>
-                      <option value="Transfer"> Transfer Pencairan </option>
+                      <option value="Transfer"> Surat Transfer Pencairan </option>
                       <option value="Pembayaran">Surat Pembayaran Ekspedisi Pengiriman Barang POS GIRO</option>
+                      <option value="Sidak">Surat Sidak</option>
+                    <?php } ?>
                   </select>
-                    <?php }
-                    ?>
+                    
                 </div>
                 
                 <div id="pengirim">
@@ -64,6 +65,7 @@
                     </div>
                   </div>
                 </div>
+
                 <div id="prihal">
                 <div class="form-group">
                   <label>Perihal</label>
@@ -180,6 +182,7 @@
                 </div>
               </div>
 
+<!-- =========================================TRANSFER PENCAIRAN=========================================================== -->
               <div id= "Transfer">
                 <div class="form-group">
                   <label>Tanggal Pencairan</label>
@@ -194,93 +197,25 @@
                     <option value="mgm dan pengembalian biaya">MGM dan Pengembalian Biaya</option>
                   </select>
                 </div>
-               
-                  <!-- <div class="form-group" >
-                    <div class="row">
-                      <div class="col-xs-12">
-                        <div class="box"> -->
-                </div>
-                        <div id="mgm_biaya"> 
-                           <div  class="form-group">
-                            <button id="btnAddRow_mgm_biaya" type="button">
-                                Add Row
-                            </button>
-                            <button id="btnDelLastRow_mgm_biaya" type="button">
-                                Delete Last Row
-                            </button>
-                            <button id="btnDelCheckRow_mgm_biaya" type="button">
-                                Delete Checked Row
-                           </div> 
-                           <table id="tblAddRow_mgm_biaya" border="1" width="100%" class="table table-bordered">
-                              <thead>
-                                <tr>
-                                  <th rowspan="2"><input type="checkbox" id="checkedAll"/></th>
-                                  <th rowspan="2">Bank</th>
-                                  <th rowspan="2">Jumlah Order (Rp) Pencairan MGM</th>
-                                  <th rowspan="2">Jumlah Siswa Pencairan MGM</th>
-                                  <th rowspan="2">Jumlah Order (Rp) Pengembalian Biaya</th>
-                                  <th rowspan="2">Jumlah Siswa Pengembalian Biaya</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr>
-                                  <td><input name="ckcDel[]" type="checkbox" /></td>
-                                  <td><input name="bank[]" value="" /></td>
-                                  <td><input name="jmlor_mgm[]" value="" /></td>
-                                  <td><input name="jmlsis_mgm[]" value="" size="5" /></td>
-                                  <td><input name="jmlor_biaya[]" value="" size="3" /></td>
-                                  <td><input name="jmlsis_biaya[]" value="" size="3" /></td>
-                                </tr>
-                              </tbody>0
-                            </table>
-                        </div>
-
-                        <div id="mgm">
-                          <div  class="form-group">
-                            <button id="btnAddRow_mgm" type="button">
-                                Add Row
-                            </button>
-                            <button id="btnDelLastRow_mgm" type="button">
-                                Delete Last Row
-                            </button>
-                            <button id="btnDelCheckRow_mgm" type="button">
-                                Delete Checked Row
-                           </div> 
-                            <table id="tblAddRow_mgm" border="1" width="100%" class="table table-bordered">
-                              <thead>
-                              <tr>
-                                <th rowspan="2"><input type="checkbox" id="checkedAll"/></th>
-                                <th rowspan="2">Bank</th>
-                                <th rowspan="2">Jumlah Order (Rp) Pencairan MGM</th>
-                                <th rowspan="2">Jumlah Siswa Pencairan MGM</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td><input name="ckcDel[]" type="checkbox" /></td>
-                                <td><input name="bank[]" value="" /></td>
-                                <td><input name="jmlor_mgm[]" value="" /></td>
-                                <td><input name="jmlsis_mgm[]" value="" size="5" /></td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      <div id="biaya">
-                        <div  class="form-group">
-                            <button id="btnAddRow_biaya" type="button">
-                                Add Row
-                            </button>
-                            <button id="btnDelLastRow_biaya" type="button">
-                                Delete Last Row
-                            </button>
-                            <button id="btnDelCheckRow_biaya" type="button">
-                                Delete Checked Row
-                           </div> 
-                        <table id="tblAddRow_biaya" border="1" width="100%" class="table table-bordered">
+              </div>
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+              <div id="mgm_biaya"> 
+                 <div  class="form-group">
+                    <button id="btnAddRow_1" type="button"> Add Row </button>
+                    <button id="btnDelLastRow_mgm_biaya" type="button"> Delete Last Row </button>
+                    <button id="btnDelCheckRow_mgm_biaya" type="button"> Delete Checked Row</button>
+                 </div> 
+                 <div  class="form-group">
+                  <div class="row">
+                   <div class="col-xs-12">
+                    <div class="box">
+                     <table id="tblAddRow_mgm_biaya" border="1" width="100%" class="table table-bordered">
                         <thead>
                           <tr>
-                            <th rowspan="2"><input type="checkbox" id="checkedAll"/></th>
+                            <th rowspan="2"><input type="checkbox" id="checkedAll_mgm_biaya"/></th>
                             <th rowspan="2">Bank</th>
+                            <th rowspan="2">Jumlah Order (Rp) Pencairan MGM</th>
+                            <th rowspan="2">Jumlah Siswa Pencairan MGM</th>
                             <th rowspan="2">Jumlah Order (Rp) Pengembalian Biaya</th>
                             <th rowspan="2">Jumlah Siswa Pengembalian Biaya</th>
                           </tr>
@@ -288,17 +223,91 @@
                         <tbody>
                           <tr>
                             <td><input name="ckcDel[]" type="checkbox" /></td>
-                            <td><input name="bank[]" value="" /></td>
-                            <td><input name="jmlor_biaya[]" value="" size="3" /></td>
-                            <td><input name="jmlsis_biaya[]" value="" size="3" /></td>
+                            <td><input name="bank_mb[]" value="" /></td>
+                            <td><input name="jmlor_mgm_mb[]" value="" /></td>
+                            <td><input name="jmlsis_mgm_mb[]" value="" size="5" /></td>
+                            <td><input name="jmlor_biaya_mb[]" value="" size="3" /></td>
+                            <td><input name="jmlsis_biaya_mb[]" value="" size="3" /></td>
                           </tr>
                         </tbody>
                       </table>
+                    </div>
                   </div>
+                </div>
+              </div>
+            </div>
+<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+            <div id="mgm">
+              <div  class="form-group">
+                <button id="btnAddRow_mgm" type="button">Add Row</button>
+                <button id="btnDelLastRow_mgm" type="button">Delete Last Row</button>
+                <button id="btnDelCheckRow_mgm" type="button">Delete Checked Row</button>
+              </div> 
+              <div  class="form-group">
+               <div class="row">
+                <div class="col-xs-12">
+                 <div class="box">
+                  <table id="tblAddRow_mgm" border="1" width="100%" class="table table-bordered">
+                    <thead>
+                    <tr>
+                      <th rowspan="2"><input type="checkbox" id="checkedAll"/></th>
+                      <th rowspan="2">Bank</th>
+                      <th rowspan="2">Jumlah Order (Rp) Pencairan MGM</th>
+                      <th rowspan="2">Jumlah Siswa Pencairan MGM</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                      <td><input name="ckcDel[]" type="checkbox" /></td>
+                      <td><input name="bank_m[]" value="" /></td>
+                      <td><input name="jmlor_mgm_m[]" value="" /></td>
+                      <td><input name="jmlsis_mgm_m[]" value="" size="5" /></td>
+                    </tr>
+                    </tbody>
+                  </table>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+          <div id="biaya">
+            <div  class="form-group">
+              <button id="btnAddRow_biaya" type="button">Add Row</button>
+              <button id="btnDelLastRow_biaya" type="button">Delete Last Row</button>
+              <button id="btnDelCheckRow_biaya" type="button">Delete Checked Row</button>
+            </div>
+            <div  class="form-group">
+             <div class="row">
+              <div class="col-xs-12">
+                <div class="box"> 
+                  <table id="tblAddRow_biaya" border="1" width="100%" class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th rowspan="2"><input type="checkbox" id="checkedAll"/></th>
+                      <th rowspan="2">Bank</th>
+                      <th rowspan="2">Jumlah Order (Rp) Pengembalian Biaya</th>
+                      <th rowspan="2">Jumlah Siswa Pengembalian Biaya</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><input name="ckcDel[]" type="checkbox" /></td>
+                      <td><input name="bank_b[]" value="" /></td>
+                      <td><input name="jmlor_biaya_b[]" value="" size="3" /></td>
+                      <td><input name="jmlsis_biaya_b[]" value="" size="3" /></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
+        </div>
+      </div>
+<!--========================================TRANFER PENCAIRAN SELESAI===========================================  -->
 
 
-                <!-- pengelommpokkan jenis surat Peringatan-->
+<!-- ================================pengelommpokkan jenis surat Peringatan=======================================-->
                 <div id="Peringatan">
                     <div class="form-group">
                       <label>Lokasi Tujuan</label>
@@ -328,7 +337,9 @@
                       <p><i>Untuk memisahkan Tembusan beri tanda koma <b> (",") </b> tanpa spasi</i></p>
                     </div>
                 </div>
-                <!-- pengelommpokkan jenis surat Teguran-->
+<!-- =====================================================================================================================  -->
+
+<!-- ====================================== pengelommpokkan jenis surat Teguran ==========================================  -->
                 <div id="Teguran">
                     <div class="form-group">
                       <label>Pemeriksa</label>
@@ -355,7 +366,9 @@
                       <p><i>Untuk memisahkan Tembusan beri tanda koma <b> (",") </b> tanpa spasi</i></p>
                     </div>
                 </div>
-                <!-- pengelommpokkan jenis Surat Pembayaran Ekspedisi Pengiriman Barang (POS GIRO)-->
+<!-- ==================================================================================================================  -->
+
+<!-- ===================== pengelommpokkan jenis Surat Pembayaran Ekspedisi Pengiriman Barang (POS GIRO) ==============-->
                 <div id="Pembayaranpos">
                     <div class="form-group">
                       <label>Periode Pengiriman</label>
@@ -373,6 +386,8 @@
                       <p><i>Contoh : "BCA 5170-147-822 a.n Iren"</i></p>
                     </div>
                 </div>
+<!-- ================================================================================================================== -->
+
                 <button type="submit" class="pull-right btn btn-app" id=""><i class="fa fa-save"></i>Save</button>
             </form>       
     </section>
