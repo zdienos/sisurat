@@ -48,8 +48,9 @@
             <!-- pengelommpokkan jenis surat -->
                 <div id="TidakKuota">
                     <div class="form-group">
-                      <label>Tanggal Marketing</label>
+                      <label>Tanggal ACC Surat Marketing</label>
                       <input class="form-control" placeholder="Enter ..." type="date" name="tglmarketing"  id="TidakKuota" required="" value="<?= $usk['tgl_marketing'] ?>" >
+                      <p><i>Jika Format Tanggal Tidak keluar, Input dengan manual dengan format <b> ("YYYY/MM/DD") </b> </i></p>
                     </div>
                     <div class="form-group">
                       <label>Unit</label>
@@ -74,6 +75,7 @@
                     <div class="form-group">
                       <label>Tembusan</label>
                       <input class="form-control" id="TidakKuota" value="<?= $usk['tembusan'] ?>" placeholder="Enter ..." type="text" required="" name="tembusan">
+                      <p><i>Untuk memisahkan Tembusan beri tanda koma <b> (",") </b> tanpa spasi</i> </p>
                     </div>
                     <?php } } ?>
                 </div>

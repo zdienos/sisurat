@@ -38,6 +38,7 @@
                     //?> -->
                 </div>
                 <div id="pengirim">
+
                   <div class="form-group">
                     <label>Nama Penerima</label>
                     <input class="form-control" placeholder="Masukan Nama Penerima" type="text" name="namatujuan">
@@ -54,11 +55,14 @@
                             <option value="Kepala Unit">Kepala Unit</option>
                             <option value="Kepala Sekretariat">Kepala Sekretariat</option>
                             <option value="Plt. Kepala Cabang">Plt. Kepala Cabang</option>
+                            <option value="Plt. Kepala Unit">Plt. Kepala Unit</option>
+                            <option value="">Lain-lain</option>
                           </select>
                       </div>
                       <div class="col-md-9">
                          <label>Kota Penerima</label>
                          <input class="form-control" placeholder="Masukan Kota Penerima" type="text" name="tujuan">
+                         <p><i>Jika Jabatan Penerima tidak ada dalam ComboBox Pilih lain-lain dan isi di kota Penerima Contoh: <b>... ... Surabaya</b></i></p>
                       </div>
                     </div>
                   </div>
@@ -70,18 +74,26 @@
                     <option hidden="true" selected>Pilih Perihal</option>
                       <option value="Surat ACC Pencairan PT Kolektif/Bimker">Surat ACC Pencairan PT Kolektif/Bimker</option>
                       <option value="Surat ACC Pengembalian Kelas Tidak Kuota">Surat ACC Pengembalian Kelas Tidak Kuota</option>
-                      <option value="Surat ACC Pengembalian Diskon Guru">Surat ACC Pengembalian Diskon Guru</option>
+                      <option value="Surat ACC Pengembalian Diskon Anak Guru">Surat ACC Pengembalian Diskon Anak Guru</option>
                       <option value="Surat ACC Pengembalian Pindah Program">Surat ACC Pengembalian Pindah Program</option>
                       <option value="Surat ACC Pengembalian Pengalihan Biaya">Surat ACC Pengembalian Pengalihan Biaya</option>
                       <option value="Surat ACC Pengembalian Diskon Karyawan">Surat ACC Pengembalian Diskon Karyawan</option>
                       <option value="Surat ACC Pengembalian Diskon Pengajar">Surat ACC Pengembalian Diskon Pengajar</option>
+                      <option value="Surat ACC Pengembalian Kelebihan Bayar">Surat ACC Pengembalian Kelebihan Bayar</option>
+                      <option value="Surat ACC Pengembalian Jaminan PTN">Surat ACC Pengembalian Jaminan PTN</option>
+                      <option value="Surat ACC Pengembalian Jaminan SMA Favorit">Surat ACC Pengembalian Jaminan SMA Favorit</option>
+                      <option value="Surat ACC Diskon Susulan">Surat ACC Diskon Susulan</option>
                       <option value="Surat Tidak ACC Pencairan PT Kolektif/Bimker">Surat Tidak ACC Pencairan PT Kolektif/Bimker</option>
                       <option value="Surat Tidak ACC Pengembalian Kelas Tidak Kuota">Surat Tidak ACC Pengembalian Kelas Tidak Kuota</option>
-                      <option value="Surat Tidak ACC Pengembalian Diskon Guru">Surat Tidak ACC Pengembalian Diskon Guru</option>
+                      <option value="Surat Tidak ACC Pengembalian Diskon Anak Guru">Surat Tidak ACC Pengembalian Diskon Anak Guru</option>
                       <option value="Surat Tidak ACC Pengembalian Pindah Program">Surat Tidak ACC Pengembalian Pindah Program</option>
                       <option value="Surat Tidak ACC Pengembalian Pengalihan Biaya">Surat Tidak ACC Pengembalian Pengalihan Biaya</option>
                       <option value="Surat Tidak ACC Pengembalian Diskon Karyawan">Surat Tidak ACC Pengembalian Diskon Karyawan</option>
                       <option value="Surat Tidak ACC Pengembalian Diskon Pengajar">Surat Tidak ACC Pengembalian Diskon Pengajar</option>
+                      <option value="Surat Tidak ACC Pengembalian Kelebihan Bayar">Surat Tidak ACC Pengembalian Kelebihan Bayar</option>
+                      <option value="Surat Tidak ACC Pengembalian Jaminan PTN">Surat Tidak ACC Pengembalian Jaminan PTN</option>
+                      <option value="Surat Tidak ACC Pengembalian Jaminan SMA Favorit">Surat Tidak ACC Pengembalian Jaminan SMA Favorit</option>
+                      <option value="Surat Tidak ACC Diskon Susulan">Surat Tidak ACC Diskon Susulan</option>
                   </select>
                 </div>
                 </div>
@@ -112,7 +124,7 @@
                     <div class="form-group">
                       <label id="norek">Norek Siswa</label>
                       <input class="form-control" placeholder="Masukan No. Rekening" type="text" name="norek">
-                      <p><i>Contoh: BRI <b>&lt;br&gt;</b> 0883 01 017263 530 <b>&lt;br&gt;</b> a.n Srimulyani | <b>&lt;br&gt;</b> untuk membuat baris baru (Enter)</i> </p>
+                      <p id="ketnorek"><i>Contoh: BRI <b>&lt;br&gt;</b> 0883 01 017263 530 <b>&lt;br&gt;</b> a.n Srimulyani | <b>&lt;br&gt;</b> untuk membuat baris baru (Enter)</i> </p>
                     </div>
                     <div class="form-group">
                       <label>Tembusan</label>
@@ -173,8 +185,8 @@
                                 <td><input name="program[]" value="" size="5" /></td>
                                 <td><input name="acc[]" value="" size="3" /></td>
                                 <td><input name="tdk_acc[]" value="" size="3" /></td>
-                                <td><input name="fee_siswa[]" value=""/></td>
-                                <td><textarea name="ket[]" cols="50" ></textarea> <p><i>Jika ingin membuat baris baru(Enter) tambahkan <b>&lt;br&gt;</b> </i></p></td>
+                                <td><input name="fee_siswa[]" value="" size="10"/></td>
+                                <td><textarea name="ket[]" cols="40" ></textarea> <p><i>Jika ingin membuat baris baru(Enter) tambahkan <b>&lt;br&gt;</b> </i></p></td>
                               </tr>
                             </tbody>
                         </table>

@@ -33,11 +33,11 @@
                 </div>
                 <div class="form-group">
                   <label>Tujuan</label>
-                  <input class="form-control" value="<?= $usk['tujuan'] ?>" placeholder="Enter ..." type="text" name="tujuan" required="">
+                  <input class="form-control" value="<?= $usk['tujuan'] ?>" placeholder="Enter ..." type="text" name="tujuan" required=""readonly="">
                 </div>
                 <div class="form-group">
                   <label>Nama Tujuan</label>
-                  <input class="form-control" value="<?= $usk['nama_tujuan'] ?>" placeholder="Enter ..." type="text" name="namatujuan" required="">
+                  <input class="form-control" value="<?= $usk['nama_tujuan'] ?>" placeholder="Enter ..." type="text" name="namatujuan" required=""readonly="">
                 </div>
 
                 <div class="form-group">
@@ -48,8 +48,9 @@
             <!-- pengelommpokkan jenis surat -->
                 <div id="TidakKuota">
                     <div class="form-group">
-                      <label>Tanggal Marketing</label>
+                      <label>Tanggal ACC Surat Marketing</label>
                       <input class="form-control" placeholder="Enter ..." type="date" name="tglmarketing"  id="TidakKuota" required="" value="<?= $usk['tgl_marketing'] ?>" >
+                      <p><i>Jika Format Tanggal Tidak keluar, Input dengan manual dengan format <b> ("YYYY/MM/DD") </b> </i></p>
                     </div>
                     <div class="form-group">
                       <label>Unit</label>
@@ -64,16 +65,18 @@
                       <input class="form-control" id="TidakKuota" value="<?= $usk['kelas'] ?>" placeholder="Enter ..." type="text" required="" name="kelas">
                     </div>
                     <div class="form-group">
-                      <label>Jumlah Bayar + PT</label>
+                      <label>Jumlah Bayar yg Disetujui</label>
                       <input class="form-control" id="TidakKuota" value="<?= $usk['jumlahbayar'] ?>" placeholder="Enter ..." type="text" required="" name="jumlahbayar_pt">
                     </div>
                     <div class="form-group">
-                      <label>Pengembalian Norek</label>
+                      <label>Norek Siswa</label>
                       <input class="form-control" id="TidakKuota" value="<?= $usk['pengembaliannorek'] ?>" placeholder="Enter ..." type="text" required="" name="norek">
+                      <p><i>Contoh: BRI <b>&lt;br&gt;</b> 0883 01 017263 530 <b>&lt;br&gt;</b> a.n Srimulyani | <b>&lt;br&gt;</b> untuk membuat baris baru (Enter)</i> </p>
                     </div>
                     <div class="form-group">
                       <label>Tembusan</label>
                       <input class="form-control" id="TidakKuota" value="<?= $usk['tembusan'] ?>" placeholder="Enter ..." type="text" required="" name="tembusan">
+                      <p><i>Untuk memisahkan Tembusan beri tanda koma <b> (",") </b> tanpa spasi</i> </p>
                     </div>
                     <?php } } ?>
                 </div>

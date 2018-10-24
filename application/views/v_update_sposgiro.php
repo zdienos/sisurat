@@ -50,14 +50,17 @@
                   <div class="form-group">
                   <label>Periode Pengiriman</label>
                   <input class="form-control" placeholder="Enter ..." type="text" name="periode"required="" value="<?= $usk['periodepengiriman'] ?>" >
+                  <p><i>Contoh : "24 agustus - 24 september"</i></p>
                 </div>
                     <div class="form-group">
                       <label>Total Tagihan</label>
                       <input class="form-control"value="<?= $usk['totaltagihan'] ?>"  placeholder="Enter ..." type="text" required="" name="totaltagihan">
+                      <p><i>Contoh : "4.470.351"</i></p>
                     </div>
                     <div class="form-group">
                       <label>Norek</label>
                       <input class="form-control" value="<?= $usk['norek'] ?>" placeholder="Enter ..." type="text" required="" name="norek">
+                      <p><i>Contoh : "BCA 5170-147-822 a.n Iren"</i></p>
                     </div>
                     <?php } } ?>
                 </div>

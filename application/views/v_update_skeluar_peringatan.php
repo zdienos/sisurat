@@ -29,15 +29,15 @@
                 </div>
                 <div class="form-group">
                   <label>Prihal</label>
-                  <input class="form-control" value="<?= $usk['perihal'] ?>" placeholder="Enter ..." type="text" name="prihal" required="">
+                  <input class="form-control" value="<?= $usk['perihal'] ?>" placeholder="Enter ..." type="text" name="prihal" required="" readonly="">
                 </div>
                 <div class="form-group">
                   <label>Tujuan</label>
-                  <input class="form-control" value="<?= $usk['tujuan'] ?>" placeholder="Enter ..." type="text" name="tujuan" required="">
+                  <input class="form-control" value="<?= $usk['tujuan'] ?>" placeholder="Enter ..." type="text" name="tujuan" required="" readonly="">
                 </div>
                 <div class="form-group">
                   <label>Nama Tujuan</label>
-                  <input class="form-control" value="<?= $usk['nama_tujuan'] ?>" placeholder="Enter ..." type="text" name="namatujuan" required="">
+                  <input class="form-control" value="<?= $usk['nama_tujuan'] ?>" placeholder="Enter ..." type="text" name="namatujuan" required="" readonly="">
                 </div>
 
                 <div class="form-group">
@@ -50,6 +50,7 @@
                   <div class="form-group">
                   <label>Lokasi Tujuan</label>
                   <input class="form-control" placeholder="Enter ..." type="text" name="loktujuan"required="" value="<?= $usk['loktujuan'] ?>" >
+                  <p><i>Contoh : "Ganesha Operation ... "</i></p>
                 </div>
                     <div class="form-group">
                       <label>NIP</label>
@@ -71,6 +72,7 @@
                     <div class="form-group">
                       <label>Tembusan</label>
                       <input class="form-control" value="<?= $usk['tembusan'] ?>" placeholder="Enter ..." type="text" required="" name="tembusan">
+                       <p><i>Untuk memisahkan Tembusan beri tanda koma <b> (",") </b> tanpa spasi</i></p>
                     </div>
                     <?php } } ?>
                 </div>

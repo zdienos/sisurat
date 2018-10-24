@@ -135,7 +135,7 @@ foreach($cetak as $l) {
   </table>
   </div>
 
-  <p>Demikian hal ini disampaikan, Atas Kerjasamanya yang baik kami ucapkan terimakasih.</p>
+  <p>Demikian hal ini disampaikan, Atas Kerjasamanya kami ucapkan terimakasih.</p>
   <?php 
    if($kacab[1] != "Cabang" ){ ?>
       <table>

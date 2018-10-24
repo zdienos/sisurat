@@ -136,7 +136,7 @@ class Skeluar extends CI_Controller {
 			);
 
 				
-		if (($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Pengembalian Kelas Tidak Kuota')or($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Pengembalian Diskon Guru')or($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Pengembalian Pindah Program')or($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Pengembalian Pengalihan Biaya')or($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Pengembalian Diskon Karyawan')or($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Pengembalian Diskon Pengajar')) {
+		if (($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Pengembalian Kelas Tidak Kuota')or($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Pengembalian Diskon Anak Guru')or($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Pengembalian Pindah Program')or($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Pengembalian Pengalihan Biaya')or($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Pengembalian Diskon Karyawan')or($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Pengembalian Diskon Pengajar')or($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Pengembalian Kelebihan Bayar')or($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Pengembalian Jaminan PTN')or($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Pengembalian Jaminan SMA Favorit')or($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Diskon Susulan')) {
 
 			$namasiswa = $this->input->post('nama_siswa');
 			$kelas = $this->input->post('kelas');
@@ -182,7 +182,7 @@ class Skeluar extends CI_Controller {
 			}
 
 		
-		} elseif (($jenissurat == 'Pencairan' and $prihal == 'Surat Tidak ACC Pengembalian Kelas Tidak Kuota')or($jenissurat == 'Pencairan' and $prihal == 'Surat Tidak ACC Pengembalian Diskon Guru')or($jenissurat == 'Pencairan' and $prihal == 'Surat Tidak ACC Pengembalian Pindah Program')or($jenissurat == 'Pencairan' and $prihal == 'Surat Tidak ACC Pengembalian Pengalihan Biaya')or($jenissurat == 'Pencairan' and $prihal == 'Surat Tidak ACC Pengembalian Diskon Karyawan')or($jenissurat == 'Pencairan' and $prihal == 'Surat Tidak ACC Pengembalian Diskon Pengajar')) {
+		} elseif (($jenissurat == 'Pencairan' and $prihal == 'Surat Tidak ACC Pengembalian Kelas Tidak Kuota')or($jenissurat == 'Pencairan' and $prihal == 'Surat Tidak ACC Pengembalian Diskon Anak Guru')or($jenissurat == 'Pencairan' and $prihal == 'Surat Tidak ACC Pengembalian Pindah Program')or($jenissurat == 'Pencairan' and $prihal == 'Surat Tidak ACC Pengembalian Pengalihan Biaya')or($jenissurat == 'Pencairan' and $prihal == 'Surat Tidak ACC Pengembalian Diskon Karyawan')or($jenissurat == 'Pencairan' and $prihal == 'Surat Tidak ACC Pengembalian Diskon Pengajar')or($jenissurat == 'Pencairan' and $prihal == 'Surat Tidak ACC Pengembalian Kelebihan Bayar')or($jenissurat == 'Pencairan' and $prihal == 'Surat Tidak ACC Pengembalian Jaminan PTN')or($jenissurat == 'Pencairan' and $prihal == 'Surat Tidak ACC Pengembalian Jaminan SMA Favorit')or($jenissurat == 'Pencairan' and $prihal == 'Surat Tidak ACC Diskon Susulan')) {
 
 			$namasiswa = $this->input->post('nama_siswa');
 			$kelas = $this->input->post('kelas');
@@ -442,9 +442,9 @@ class Skeluar extends CI_Controller {
   			
 		if (($prihal == 'Surat%20ACC%20Pencairan%20PT%20Kolektif')or($prihal == 'Surat%20Tidak%20ACC%20Pencairan%20PT%20Kolektif')) {
 			$prihal = 1;
-		} elseif(($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Kelas%20Tidak%20Kuota')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Guru')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Pindah%20Program')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Pengalihan%20Biaya')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Karyawan')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Pengajar')) {
+		} elseif(($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Kelas%20Tidak%20Kuota')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Anak%20Guru')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Pindah%20Program')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Pengalihan%20Biaya')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Karyawan')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Pengajar')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Kelebihan%20Bayar')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Jaminan%20PTN')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Jaminan%20SMA%20Favorit')or($prihal == 'Surat%20Tidak%20ACC%20Diskon%20Susulan')) {
 			$prihal = 2;
-		} elseif(($prihal == 'Surat%20ACC%20Pengembalian%20Kelas%20Tidak%20Kuota')or($prihal == 'Surat%20ACC%20Pengembalian%20Diskon%20Guru')or($prihal == 'Surat%20ACC%20Pengembalian%20Pindah%20Program')or($prihal == 'Surat%20ACC%20Pengembalian%20Pengalihan%20Biaya')or($prihal == 'Surat%20ACC%20Pengembalian%20Diskon%20Karyawan')or($prihal == 'Surat%20ACC%20Pengembalian%20Diskon%20Pengajar')) {
+		} elseif(($prihal == 'Surat%20ACC%20Pengembalian%20Kelas%20Tidak%20Kuota')or($prihal == 'Surat%20ACC%20Pengembalian%20Diskon%20Anak%20Guru')or($prihal == 'Surat%20ACC%20Pengembalian%20Pindah%20Program')or($prihal == 'Surat%20ACC%20Pengembalian%20Pengalihan%20Biaya')or($prihal == 'Surat%20ACC%20Pengembalian%20Diskon%20Karyawan')or($prihal == 'Surat%20ACC%20Pengembalian%20Diskon%20Pengajar')or($prihal == 'Surat%20ACC%20Pengembalian%20Kelebihan%20Bayar')or($prihal == 'Surat%20ACC%20Pengembalian%20Jaminan%20PTN')or($prihal == 'Surat%20ACC%20Pengembalian%20Jaminan%20SMA%20Favorit')or($prihal == 'Surat%20ACC%20Diskon%20Susulan')) {
 			$prihal = 3;
 		}
 
@@ -473,11 +473,11 @@ class Skeluar extends CI_Controller {
 	{
 		if (($prihal == 'Surat%20ACC%20Pencairan%20PT%20Kolektif')or($prihal == 'Surat%20Tidak%20ACC%20Pencairan%20PT%20Kolektif')) {
 			$prihal = 1;
-		} elseif(($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Kelas%20Tidak%20Kuota')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Guru')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Pindah%20Program')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Pengalihan%20Biaya')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Karyawan')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Pengajar')) {
+		} elseif(($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Kelas%20Tidak%20Kuota')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Anak%20Guru')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Pindah%20Program')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Pengalihan%20Biaya')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Karyawan')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Pengajar')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Kelebihan%20Bayar')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Jaminan%20PTN')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Jaminan%20SMA%20Favorit')or($prihal == 'Surat%20Tidak%20ACC%20Diskon%20Susulan')) {
 			$prihal = 2;
-		} elseif(($prihal == 'Surat%20ACC%20Pengembalian%20Kelas%20Tidak%20Kuota')or($prihal == 'Surat%20ACC%20Pengembalian%20Diskon%20Guru')or($prihal == 'Surat%20ACC%20Pengembalian%20Pindah%20Program')or($prihal == 'Surat%20ACC%20Pengembalian%20Pengalihan%20Biaya')or($prihal == 'Surat%20ACC%20Pengembalian%20Diskon%20Karyawan')or($prihal == 'Surat%20ACC%20Pengembalian%20Diskon%20Pengajar')) {
+		} elseif(($prihal == 'Surat%20ACC%20Pengembalian%20Kelas%20Tidak%20Kuota')or($prihal == 'Surat%20ACC%20Pengembalian%20Diskon%20Anak%20Guru')or($prihal == 'Surat%20ACC%20Pengembalian%20Pindah%20Program')or($prihal == 'Surat%20ACC%20Pengembalian%20Pengalihan%20Biaya')or($prihal == 'Surat%20ACC%20Pengembalian%20Diskon%20Karyawan')or($prihal == 'Surat%20ACC%20Pengembalian%20Diskon%20Pengajar')or($prihal == 'Surat%20ACC%20Pengembalian%20Kelebihan%20Bayar')or($prihal == 'Surat%20ACC%20Pengembalian%20Jaminan%20PTN')or($prihal == 'Surat%20ACC%20Pengembalian%20Jaminan%20SMA%20Favorit')or($prihal == 'Surat%20ACC%20Diskon%20Susulan')) {
 			$prihal = 3;
-		} 
+		}
 
 
 		$user = $this->model->getuser();
@@ -569,9 +569,9 @@ class Skeluar extends CI_Controller {
 
 		if (($prihal == 'Surat%20ACC%20Pencairan%20PT%20Kolektif')or($prihal == 'Surat%20Tidak%20ACC%20Pencairan%20PT%20Kolektif')){
 			$prihal = 1;
-		} elseif(($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Kelas%20Tidak%20Kuota')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Guru')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Pindah%20Program')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Pengalihan%20Biaya')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Karyawan')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Pengajar')) {
+		} elseif(($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Kelas%20Tidak%20Kuota')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Anak%20Guru')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Pindah%20Program')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Pengalihan%20Biaya')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Karyawan')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Pengajar')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Kelebihan%20Bayar')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Jaminan%20PTN')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Jaminan%20SMA%20Favorit')or($prihal == 'Surat%20Tidak%20ACC%20Diskon%20Susulan')) {
 			$prihal = 2;
-		} elseif(($prihal == 'Surat%20ACC%20Pengembalian%20Kelas%20Tidak%20Kuota')or($prihal == 'Surat%20ACC%20Pengembalian%20Diskon%20Guru')or($prihal == 'Surat%20ACC%20Pengembalian%20Pindah%20Program')or($prihal == 'Surat%20ACC%20Pengembalian%20Pengalihan%20Biaya')or($prihal == 'Surat%20ACC%20Pengembalian%20Diskon%20Karyawan')or($prihal == 'Surat%20ACC%20Pengembalian%20Diskon%20Pengajar')) {
+		} elseif(($prihal == 'Surat%20ACC%20Pengembalian%20Kelas%20Tidak%20Kuota')or($prihal == 'Surat%20ACC%20Pengembalian%20Diskon%20Anak%20Guru')or($prihal == 'Surat%20ACC%20Pengembalian%20Pindah%20Program')or($prihal == 'Surat%20ACC%20Pengembalian%20Pengalihan%20Biaya')or($prihal == 'Surat%20ACC%20Pengembalian%20Diskon%20Karyawan')or($prihal == 'Surat%20ACC%20Pengembalian%20Diskon%20Pengajar')or($prihal == 'Surat%20ACC%20Pengembalian%20Kelebihan%20Bayar')or($prihal == 'Surat%20ACC%20Pengembalian%20Jaminan%20PTN')or($prihal == 'Surat%20ACC%20Pengembalian%20Jaminan%20SMA%20Favorit')or($prihal == 'Surat%20ACC%20Diskon%20Susulan')) {
 			$prihal = 3;
 		}
 
