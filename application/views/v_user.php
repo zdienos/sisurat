@@ -12,15 +12,15 @@
                 <!-- text input -->
                 <div class="form-group">
                   <label>Nama Lengkap</label>
-                  <input class="form-control" placeholder="Enter ..." type="text" name="nama_lengkap" required="">
+                  <input class="form-control" placeholder="Masukan Nama Lengkap Beserta Gelar" type="text" name="nama_lengkap" required="">
                 </div>
                 <div class="form-group">
                   <label>Username</label>
-                  <input class="form-control" placeholder="Enter ..." type="text" name="nama" required="">
+                  <input class="form-control" placeholder="Masukan Username" type="text" name="nama" required="">
                 </div>
                 <div class="form-group">
                   <label>Password</label>
-                  <input class="form-control" placeholder="Enter ..." type="text" name="password" required="">
+                  <input class="form-control" placeholder="Masukan Password" type="text" name="password" required="">
                 </div>
                  <div class="form-group">
                   <label>Jabatan</label>
