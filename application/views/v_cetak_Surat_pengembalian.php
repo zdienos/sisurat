@@ -3,7 +3,7 @@
 <style type="text/css">
 @page {margin: 20px 50px 0px 50px; }
 body {
-  font-size: 12pt;
+  font-size: 11pt;
 }
       #logo {
       margin-top: 0px;
@@ -96,10 +96,11 @@ $bulan = explode("-", $date);
 			$infobulan = "-";
 		}
 
-
-
-
-foreach($cetak as $l) { ?>
+foreach($cetak as $l) { 
+  $tujuan = $l['tujuan'];
+  $nama_tujuan = $l['nama_tujuan'];
+  $kacab = explode(" ", $tujuan);
+  ?>
   <table style="margin-top: 30px;">
     <tr><td>No</td><td>:</td><td><?php echo $l['no'] .'/'. $l['no_surat'];?></td></tr>
     <tr><td>Hal</td><td>:</td><td><?php echo $l['perihal'];?></td></tr>
@@ -119,7 +120,7 @@ foreach($cetak as $l) { ?>
       <tr>
         <th style="width: 25%"><center>Nama Siswa</center></th>
         <th style="width: 25%"><center>Kelas</center></th>
-        <th style="width: 25%"><center>Jumlah Bayar + PT</center></th>
+        <th style="width: 25%"><center>Jumlah Bayar yang disetujui</center></th>
         <th style="width: 25%"><center>No. Rekening Pengembalian</center></th>
       </tr>
     </thead>
@@ -135,15 +136,29 @@ foreach($cetak as $l) { ?>
   </div>
 
   <p>Demikian hal ini disampaikan, pengembalian biaya akan di transfer dari Bidang Keuangan Bandung. Atas Kerjasamanya yang baik kami ucapkan terimakasih.</p>
-  <br> 
+  <?php 
+   if($kacab[1] != "Cabang" ){ ?>
+      <table>
+        <tr><td style="text-align: left;">Mengetahui,</td></tr>
+        <tr><td><br></td></tr>
+        <tr><td><br></td></tr>
+        <tr><td><b><u>Dra. Erna Veronika</u></b></td></tr>
+        <tr><td><b>Manajer Keuangan</b></td></tr>
+      </table>
+  <?php  }  ?>
     <div id="ttd">
       <table>
         <tr><td style="text-align: left;">Terimakasih,</td></tr>
         <tr><td>Bandung,<?php echo $bulan[0].' '.$infobulan.' '.$bulan[2] ;?></td></tr>
         <tr><td><br></td></tr>
         <tr><td><br></td></tr>
+       <?php if($kacab[1] != "Cabang" ){ ?>
+        <tr><td><b><u><?php echo $nama_lengkap?></u></b></td></tr>
+        <tr><td><b><?php echo $jabatan?></b></td></tr>
+      <?php } else {?>
         <tr><td><b><u>Dra. Erna Veronika</u></b></td></tr>
         <tr><td><b>Manajer Keuangan</b></td></tr>
+      <?php }?>
       </table>
     </div>
  
@@ -159,10 +174,11 @@ foreach($cetak as $l) { ?>
     	
 
     </ul>
-    </p>
+    </p> 
   </div>
 
 <?php }?>
  <p style="text-align: center;">Dikirim Via Email</p>
   
-</body></html>
+</body>
+</html>

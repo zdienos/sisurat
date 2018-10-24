@@ -52,12 +52,18 @@
                     <option value="Pencairan">Surat Pencairan</option>
                     <option value="Teguran">Surat Teguran</option>
                     <option value="Peringatan">Surat Peringatan</option>
+                    <?php 
+                      if (($username == "bunia") || ($username == "bu dewi")) { ?>
+                      <option value="Transfer"> Transfer Pencairan </option>
+                      <option value="pembayaran"> order pos </option>
+                    <?php }
+                    ?>
                   </select>
                 </div>
                 <div id="prihal">
                 <div class="form-group">
                   <label>Perihal</label>
-                  <select name="prihal" id="prihal_fee" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                  <select name="prihal" id="prihal_fee" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" onchange="gantilabel()">
                     <option hidden="true" selected>Pilih Perihal</option>
                       <option value="Surat ACC Pencairan PT Kolektif/Bimker">Surat ACC Pencairan PT Kolektif/Bimker</option>
                       <option value="Surat ACC Pengembalian Tidak Kuota">Surat ACC Pengembalian Tidak Kuota</option>
@@ -66,7 +72,7 @@
                       <option value="Surat ACC Pengembalian Pengalihan Biaya">Surat ACC Pengembalian Pengalihan Biaya</option>
                       <option value="Surat ACC Pengembalian Diskon Karyawan">Surat ACC Pengembalian Diskon Karyawan</option>
                       <option value="Surat ACC Pengembalian Diskon Pengajar">Surat ACC Pengembalian Diskon Pengajar</option>
-                      <option value="Surat ACC Pencairan PT Kolektif/Bimker">Surat Tidak ACC Pencairan PT Kolektif/Bimker</option>
+                      <option value="Surat Tidak ACC Pencairan PT Kolektif/Bimker">Surat Tidak ACC Pencairan PT Kolektif/Bimker</option>
                       <option value="Surat Tidak ACC Pengembalian Tidak Kuota">Surat Tidak ACC Pengembalian Tidak Kuota</option>
                       <option value="Surat Tidak ACC Pengembalian Diskon Guru">Surat Tidak ACC Pengembalian Diskon Guru</option>
                       <option value="Surat Tidak ACC Pengembalian Pindah Program">Surat Tidak ACC Pengembalian Pindah Program</option>
@@ -93,11 +99,11 @@
                       <input class="form-control" placeholder="Masukan Kelas" type="text" name="kelas">
                     </div>
                     <div class="form-group">
-                      <label>Jumlah yang Distujui</label>
+                      <label id="jml_disetujui">Jumlah Bayar yg Disetujui</label>
                       <input class="form-control" placeholder="Masukan Jumlah yang disetujui" type="text" name="jumlahbayar_pt">
                     </div>
                     <div class="form-group">
-                      <label>Norek Siswa</label>
+                      <label id="norek">Norek Siswa</label>
                       <input class="form-control" placeholder="Masukan No. Rekening" type="text" name="norek">
                     </div>
                     <div class="form-group">
@@ -169,6 +175,128 @@
                   </div>
                 </div>
               </div>
+
+              <div id= "Transfer">
+                <div class="form-group">
+                  <label>Tanggal Pencairan</label>
+                  <input class="form-control" type="date" name="tgl_pencairan" placeholder="Masukan Tanggal dengan format ('YYYY/MM/DD')">
+                  <p><i>Jika Format Tanggal Tidak keluar, Input dengan manual dengan format <b> ("YYYY/MM/DD") </b> </i></p>
+                </div>
+                <div class="form-group">
+                  <label>Jenis Pencairan</label>
+                  <select name="jenis_pencairan" id="jenis_pencairan" class="form-control">
+                    <option value="mgm">MGM</option>
+                    <option value="pengembalian biaya">Pengembalian Biaya</option>
+                    <option value="mgm dan pengembalian biaya">MGM dan Pengembalian Biaya</option>
+                  </select>
+                </div>
+               
+                  <!-- <div class="form-group" >
+                    <div class="row">
+                      <div class="col-xs-12">
+                        <div class="box"> -->
+                </div>
+                        <div id="mgm_biaya"> 
+                           <div  class="form-group">
+                            <button id="btnAddRow_mgm_biaya" type="button">
+                                Add Row
+                            </button>
+                            <button id="btnDelLastRow_mgm_biaya" type="button">
+                                Delete Last Row
+                            </button>
+                            <button id="btnDelCheckRow_mgm_biaya" type="button">
+                                Delete Checked Row
+                           </div> 
+                           <table id="tblAddRow_mgm_biaya" border="1" width="100%" class="table table-bordered">
+                              <thead>
+                                <tr>
+                                  <th rowspan="2"><input type="checkbox" id="checkedAll"/></th>
+                                  <th rowspan="2">Bank</th>
+                                  <th rowspan="2">Jumlah Order (Rp) Pencairan MGM</th>
+                                  <th rowspan="2">Jumlah Siswa Pencairan MGM</th>
+                                  <th rowspan="2">Jumlah Order (Rp) Pengembalian Biaya</th>
+                                  <th rowspan="2">Jumlah Siswa Pengembalian Biaya</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td><input name="ckcDel[]" type="checkbox" /></td>
+                                  <td><input name="bank[]" value="" /></td>
+                                  <td><input name="jmlor_mgm[]" value="" /></td>
+                                  <td><input name="jmlsis_mgm[]" value="" size="5" /></td>
+                                  <td><input name="jmlor_biaya[]" value="" size="3" /></td>
+                                  <td><input name="jmlsis_biaya[]" value="" size="3" /></td>
+                                </tr>
+                              </tbody>0
+                            </table>
+                        </div>
+
+                        <div id="mgm">
+                          <div  class="form-group">
+                            <button id="btnAddRow_mgm" type="button">
+                                Add Row
+                            </button>
+                            <button id="btnDelLastRow_mgm" type="button">
+                                Delete Last Row
+                            </button>
+                            <button id="btnDelCheckRow_mgm" type="button">
+                                Delete Checked Row
+                           </div> 
+                            <table id="tblAddRow_mgm" border="1" width="100%" class="table table-bordered">
+                              <thead>
+                              <tr>
+                                <th rowspan="2"><input type="checkbox" id="checkedAll"/></th>
+                                <th rowspan="2">Bank</th>
+                                <th rowspan="2">Jumlah Order (Rp) Pencairan MGM</th>
+                                <th rowspan="2">Jumlah Siswa Pencairan MGM</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td><input name="ckcDel[]" type="checkbox" /></td>
+                                <td><input name="bank[]" value="" /></td>
+                                <td><input name="jmlor_mgm[]" value="" /></td>
+                                <td><input name="jmlsis_mgm[]" value="" size="5" /></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      <div id="biaya">
+                        <div  class="form-group">
+                            <button id="btnAddRow_biaya" type="button">
+                                Add Row
+                            </button>
+                            <button id="btnDelLastRow_biaya" type="button">
+                                Delete Last Row
+                            </button>
+                            <button id="btnDelCheckRow_biaya" type="button">
+                                Delete Checked Row
+                           </div> 
+                        <table id="tblAddRow_biaya" border="1" width="100%" class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th rowspan="2"><input type="checkbox" id="checkedAll"/></th>
+                            <th rowspan="2">Bank</th>
+                            <th rowspan="2">Jumlah Order (Rp) Pengembalian Biaya</th>
+                            <th rowspan="2">Jumlah Siswa Pengembalian Biaya</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><input name="ckcDel[]" type="checkbox" /></td>
+                            <td><input name="bank[]" value="" /></td>
+                            <td><input name="jmlor_biaya[]" value="" size="3" /></td>
+                            <td><input name="jmlsis_biaya[]" value="" size="3" /></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
                 <!-- pengelommpokkan jenis surat Peringatan-->
                 <div id="Peringatan">
                     <div class="form-group">
@@ -226,7 +354,6 @@
                       <p><i>Untuk memisahkan Tembusan beri tanda koma <b> (",") </b> tanpa spasi</i></p>
                     </div>
                 </div>
-
                 <button type="submit" class="pull-right btn btn-app" id=""><i class="fa fa-save"></i>Save</button>
             </form>       
     </section>

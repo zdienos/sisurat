@@ -73,7 +73,7 @@ class Skeluar extends CI_Controller {
   		$this->pagination->initialize($config);
   		$data['paging']=$this->pagination->create_links();
   		$data['jlhpage']=$page;
-
+  		
   		$data['skeluar'] = $this->m_keluar->data($batas, $offset);
       // Akhir Pagination Pemohon
       // Awal load view Pemohon
@@ -143,6 +143,7 @@ class Skeluar extends CI_Controller {
 			$result2 = $this->m_keluar->saveDatasuratkeluar2($data2);
 
 			if ($result && $result2) {
+
 				$data['cetak'] = $this->m_keluar->lihatsuratkeluar($no,$jenissurat);
 
 				$this->load->library('pdf');
@@ -503,37 +504,52 @@ class Skeluar extends CI_Controller {
 		$kesalahan = $this->input->post('kesalahan');
 		$tembusan = $this->input->post('tembusan');
 
-		$data = array(
-			'no_surat' => $nosurat,
-			'perihal' => $prihal,
-			'nama_tujuan' => $namatujuan,
-			'tujuan' => $tujuan,
-			'jenis_surat' => $jenissurat,
-			'tgl_SuratKeluar' => $tanggal,
-			'userid' => $userid
+		$cek = $this->m_keluar->cekperingatan($nip,$spke);
+			
+		if ($cek == NULL){
+			$data = array(
+				'no_surat' => $nosurat,
+				'perihal' => $prihal,
+				'nama_tujuan' => $namatujuan,
+				'tujuan' => $tujuan,
+				'jenis_surat' => $jenissurat,
+				'tgl_SuratKeluar' => $tanggal,
+				'userid' => $userid
 
-		);
+			);
 
-		$data2 = array(
-			'no_surat' => $nosurat,
-			'loktujuan' => $loktujuan,
-			'nip' => $nip,
-			'spke' => $spke,
-			'kesalahan' => $kesalahan,
-			'tembusan' => $tembusan
-		);
+			$data2 = array(
+				'no_surat' => $nosurat,
+				'loktujuan' => $loktujuan,
+				'nip' => $nip,
+				'spke' => $spke,
+				'kesalahan' => $kesalahan,
+				'tembusan' => $tembusan
+			);
 
-		$where = [
-			'no' => $no
-		];
+			$where = [
+				'no' => $no
+			];
 
-		$result2 = $this->m_keluar->updateDatasuratkeluar2($data2,$where,$jenissurat);
-		$result = $this->m_keluar->updateDatasuratkeluar($data, $where);
+			$result2 = $this->m_keluar->updateDatasuratkeluar2($data2,$where,$jenissurat);
+			$result = $this->m_keluar->updateDatasuratkeluar($data, $where);
 
-		if ($result) {
-			redirect(base_url('skeluar/data_table'));
-		} else {
-			redirect(base_url('skeluar/ubahDatasmasuk'));
+			if ($result) {
+			  $this->session->set_flashdata('success','Data berhasil di ubah!');
+		      $this->session->set_flashdata('message','Periksa kembali data Pemohon.');
+		      redirect(base_url('skeluar/data_table'), 'refresh');
+			} else {
+				redirect(base_url('skeluar/ubahDatasmasuk'));
+			}
+		}else{
+				foreach ($cek as $key => $value) {
+					$nip = $value->nip;
+					$spke = $value->spke;
+				}
+				
+			  $this->session->set_flashdata('success','NIP '.$nip.' tersebut sudah dapat SP '.$spke.' !');
+		      $this->session->set_flashdata('message','Periksa kembali data Pemohon.');
+		      redirect(base_url('skeluar/data_table'), 'refresh');
 		}
 	}
 

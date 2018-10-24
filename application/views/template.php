@@ -178,6 +178,8 @@
 <!-- fullCalendar 2.2.5 -->
 <script src="<?php echo base_url('assets/fullcalendar/moment.js')?>"></script>
 <script src="<?php echo base_url('assets/fullcalendar/fullcalendar.min.js')?>"></script>
+<!-- Tabel Dinamis -->
+<script src="<?php echo base_url('assets/dist/js/table_dinamis.js')?>"></script>
 
 <script type="text/javascript">
   // Add button Delete in row
@@ -264,6 +266,10 @@ $('#btnDelCheckRow').click(function() {
       $('#Teguran').hide();
       $('#prihal').hide();
       $('#Pencairan3').hide();
+      $('#Transfer').hide();
+      $('#mgm_biaya').hide();
+      $('#mgm').hide();
+      $('#biaya').hide();
 
 
       $('#cjenissurat').change(function() {
@@ -271,38 +277,126 @@ $('#btnDelCheckRow').click(function() {
           $('#Pencairan').hide();
           $('#prihal').show();
           $('#Peringatan').hide();
+          $('#Transfer').hide();
           $('#Teguran').hide();
+          $('#mgm_biaya').hide();
+          $('#mgm').hide();
+          $('#biaya').hide();
         } else if ($('#cjenissurat').val() == 'Peringatan') {
           $('#Peringatan').show();
           $('#Pencairan').hide();
           $('#Teguran').hide();
           $('#prihal').hide();
           $('#Pencairan3').hide();
+          $('#Transfer').hide();
           $('#prihal').hide();
+          $('#mgm_biaya').hide();
+          $('#mgm').hide();
+          $('#biaya').hide();
         } else if ($('#cjenissurat').val() == 'Teguran') {
           $('#Peringatan').hide();
           $('#Pencairan').hide();
           $('#Teguran').show();
           $('#prihal').hide();
           $('#Pencairan3').hide();
+          $('#Transfer').hide();
+          $('#mgm_biaya').hide();
+          $('#mgm').hide();
+          $('#biaya').hide();
+        } else if ($('#cjenissurat').val() == 'Transfer') {
+          $('#Peringatan').hide();
+          $('#Pencairan').hide();
+          $('#Teguran').hide();
+          $('#prihal').hide();
+          $('#Pencairan3').hide();
+          $('#Transfer').show();
+          $('#mgm_biaya').hide();
+          $('#mgm').hide();
+          $('#biaya').hide();
         }
       });
+
       $('#prihal').change(function() {
-        console.log($('#prihal_fee').val());
+        // console.log($('#prihal_fee').val());
           if ($('#prihal_fee').val() == 'Surat ACC Pencairan PT Kolektif/Bimker'){
              $('#Pencairan').hide();
              $('#Pencairan3').show();  
              $('#Teguran').hide();  
+             $('#Transfer').hide();
              $('#Peringatan').hide();    
+             $('#mgm_biaya').hide();
+             $('#mgm').hide();
+             $('#biaya').hide();
            } else {
              $('#Pencairan').show();
              $('#Pencairan3').hide();
              $('#Peringatan').hide();
              $('#Teguran').hide();
+             $('#Transfer').hide();
+             $('#mgm_biaya').hide();
+             $('#mgm').hide();
+             $('#biaya').hide();
            }
+         });
 
-        });
+      $('#jenis_pencairan').change(function() {
+        console.log($('#jenis_pencairan').val());
+          if ($('#jenis_pencairan').val() == 'mgm'){
+             $('#Pencairan').hide();
+             $('#Pencairan3').hide();  
+             $('#Teguran').hide();  
+             $('#Transfer').show();
+             $('#Peringatan').hide();    
+             $('#mgm_biaya').hide();
+             $('#mgm').show();
+             $('#biaya').hide();
+           } else if ($('#jenis_pencairan').val() == 'pengembalian biaya'){
+             $('#Pencairan').hide();
+             $('#Pencairan3').hide();
+             $('#Peringatan').hide();
+             $('#Teguran').hide();
+             $('#Transfer').show();
+             $('#mgm_biaya').hide();
+             $('#mgm').hide();
+             $('#biaya').show();
+           }  else if ($('#jenis_pencairan').val() == 'mgm dan pengembalian biaya'){
+             $('#Pencairan').hide();
+             $('#Pencairan3').hide();
+             $('#Peringatan').hide();
+             $('#Teguran').hide();
+             $('#Transfer').show();
+             $('#mgm_biaya').show();
+             $('#mgm').hide();
+             $('#biaya').hide();
+           }
+         });
+
     });
+
+function gantilabel() {
+  var x = document.getElementById("prihal_fee").value;
+  var jml_disetujui = document.getElementById("jml_disetujui").innerHTML; 
+  var norek = document.getElementById("norek").innerHTML; 
+
+  var ganti_jml = jml_disetujui.replace("Jumlah Bayar yg Disetujui", "ACC Marketing");   
+  var ganti_acc = jml_disetujui.replace("ACC Marketing", "Jumlah Bayar yg Disetujui");
+
+  var ganti_norek = norek.replace("Norek Siswa", "Keterangan Tidak ACC");   
+  var ganti_ket = norek.replace("Keterangan Tidak ACC", "Norek Siswa");
+  console.log(x);
+    if((x == "Surat Tidak ACC Pengembalian Tidak Kuota") || (x == "Surat Tidak ACC Pengembalian Diskon Guru") || (x == "Surat Tidak ACC Pengembalian Pindah Program")|| (x == "Surat Tidak ACC Pengembalian Pengalihan Biaya") || (x == "Surat Tidak ACC Pengembalian Diskon Karyawan")|| (x == "Surat Tidak ACC Pengembalian Diskon Pengajar")){
+    document.getElementById("jml_disetujui").innerHTML = ganti_jml;
+    document.getElementById("norek").innerHTML = ganti_norek;
+        
+  console.log("tidak");
+        
+    } else{
+      document.getElementById("jml_disetujui").innerHTML = ganti_acc;                     
+        document.getElementById("norek").innerHTML = ganti_ket;
+    
+      console.log("acc");
+    }
+}
 </script>
 </body>
 </html>
