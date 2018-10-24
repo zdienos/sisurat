@@ -262,6 +262,7 @@ $('#btnDelCheckRow').click(function() {
 <script>
     $(window).load(function() {
       $('#Pencairan').hide();
+      $('#Pencairan_tidak').hide();
       $('#Peringatan').hide();
       $('#Teguran').hide();
       $('#prihal').hide();
@@ -270,7 +271,7 @@ $('#btnDelCheckRow').click(function() {
       $('#mgm_biaya').hide();
       $('#mgm').hide();
       $('#biaya').hide();
-
+      $('#Pembayaranpos').hide();
 
       $('#cjenissurat').change(function() {
         if ($('#cjenissurat').val() == 'Pencairan') {
@@ -282,6 +283,8 @@ $('#btnDelCheckRow').click(function() {
           $('#mgm_biaya').hide();
           $('#mgm').hide();
           $('#biaya').hide();
+          $('#Pembayaranpos').hide();
+          $('#pengirim').show();
         } else if ($('#cjenissurat').val() == 'Peringatan') {
           $('#Peringatan').show();
           $('#Pencairan').hide();
@@ -293,6 +296,8 @@ $('#btnDelCheckRow').click(function() {
           $('#mgm_biaya').hide();
           $('#mgm').hide();
           $('#biaya').hide();
+          $('#Pembayaranpos').hide();
+          $('#pengirim').show();
         } else if ($('#cjenissurat').val() == 'Teguran') {
           $('#Peringatan').hide();
           $('#Pencairan').hide();
@@ -304,6 +309,9 @@ $('#btnDelCheckRow').click(function() {
           $('#mgm').hide();
           $('#biaya').hide();
         } else if ($('#cjenissurat').val() == 'Transfer') {
+          $('#Pembayaranpos').hide();
+          $('#pengirim').show();
+        } else if ($('#cjenissurat').val() == 'Pembayaran') {
           $('#Peringatan').hide();
           $('#Pencairan').hide();
           $('#Teguran').hide();
@@ -313,12 +321,14 @@ $('#btnDelCheckRow').click(function() {
           $('#mgm_biaya').hide();
           $('#mgm').hide();
           $('#biaya').hide();
+          $('#Pembayaranpos').show();
+          $('#pengirim').hide();
         }
       });
 
       $('#prihal').change(function() {
         // console.log($('#prihal_fee').val());
-          if ($('#prihal_fee').val() == 'Surat ACC Pencairan PT Kolektif/Bimker'){
+          if (($('#prihal_fee').val() == 'Surat ACC Pencairan PT Kolektif/Bimker') || ($('#prihal_fee').val() == 'Surat Tidak ACC Pencairan PT Kolektif/Bimker')){
              $('#Pencairan').hide();
              $('#Pencairan3').show();  
              $('#Teguran').hide();  
