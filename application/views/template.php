@@ -309,8 +309,17 @@ $('#btnDelCheckRow').click(function() {
           $('#mgm').hide();
           $('#biaya').hide();
         } else if ($('#cjenissurat').val() == 'Transfer') {
+          $('#Peringatan').hide();
+          $('#Pencairan').hide();
+          $('#Teguran').hide();
+          $('#prihal').hide();
+          $('#Pencairan3').hide();
+          $('#pengirim').hide();
+          $('#Transfer').show();
+          $('#mgm_biaya').hide();
+          $('#mgm').hide();
+          $('#biaya').hide();
           $('#Pembayaranpos').hide();
-          $('#pengirim').show();
         } else if ($('#cjenissurat').val() == 'Pembayaran') {
           $('#Peringatan').hide();
           $('#Pencairan').hide();

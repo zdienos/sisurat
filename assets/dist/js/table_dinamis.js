@@ -109,12 +109,6 @@ $('#btnDelCheckRow_biaya').click(function() {
 //===================================================================================
 
 //=====================MGM & BIAYA================================================
-$('tbody tr')
-    .find('td')
-    //.append('<input type="button" value="Delete" class="del"/>')
-    .parent(); //traversing to 'tr' Element
-    //.append('<td><a href="#" class="delrow">Delete Row</a></td>');
-
 // For select all checkbox in table
 $('#checkedAll_mgm_biaya').click(function (e) {
   //e.preventDefault();
@@ -122,7 +116,7 @@ $('#checkedAll_mgm_biaya').click(function (e) {
 });
 
 // Add row the table
-$('#btnAddRow_mgm_biaya').on('click', function() {
+$('#btnAddRow_1').on('click', function() {
     var lastRow = $('#tblAddRow_mgm_biaya tbody tr:last').html();
     //alert(lastRow);
     $('#tblAddRow_mgm_biaya tbody').append('<tr>' + lastRow + '</tr>');
