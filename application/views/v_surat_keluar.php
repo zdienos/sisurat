@@ -29,17 +29,13 @@
                     <option value="Pencairan">Surat Pencairan</option>
                     <option value="Teguran">Surat Teguran</option>
                     <option value="Peringatan">Surat Peringatan</option>
-<<<<<<< HEAD
                     <?php 
                       if (($username == "bunia") || ($username == "bu dewi")) { ?>
                       <option value="Transfer"> Transfer Pencairan </option>
-                      <option value="pembayaran"> order pos </option>
+                      <option value="Pembayaran">Surat Pembayaran Ekspedisi Pengiriman Barang POS GIRO</option>
+                  </select>
                     <?php }
                     ?>
-=======
-                    <option value="Pembayaran">Surat Pembayaran Ekspedisi Pengiriman Barang POS GIRO</option>
->>>>>>> 2f3f539d4cf75c646cde5d87f19d85190ca77289
-                  </select>
                 </div>
                 
                 <div id="pengirim">
@@ -112,35 +108,6 @@
                     </div>
                     <div class="form-group">
                       <label id="norek">Norek Siswa</label>
-                      <input class="form-control" placeholder="Masukan No. Rekening" type="text" name="norek">
-                    </div>
-                    <div class="form-group">
-                      <label>Tembusan</label>
-                      <input class="form-control" placeholder="Masukan Tembusan" type="text" name="tbspencairan">
-                      <p><i>Untuk memisahkan Tembusan beri tanda koma <b> (",") </b> tanpa spasi</i> </p>
-                    </div>                    
-                  </div>
-
-                  <div id="Pencairan_tidak">
-                    <div class="form-group">
-                      <label>Tanggal ACC Surat Marketing</label>
-                      <input class="form-control" type="date" name="tglmarketing"  placeholder="Masukan Tanggal dengan format ('YYYY/MM/DD')">
-                      <p><i>Jika Format Tanggal Tidak keluar, Input dengan manual dengan format <b> ("YYYY/MM/DD") </b> </i></p>
-                    </div>
-                    <div class="form-group">
-                      <label>Nama Siswa </label>
-                      <input class="form-control" placeholder="Masukan Nama Siswa" type="text" name="nama_siswa">
-                    </div>
-                    <div class="form-group">
-                      <label>Kelas Siswa</label>
-                      <input class="form-control" placeholder="Masukan Kelas" type="text" name="kelas">
-                    </div>
-                    <div class="form-group">
-                      <label>ACC Marketing</label>
-                      <input class="form-control" placeholder="Masukan Jumlah yang disetujui" type="text" name="jumlahbayar_pt">
-                    </div>
-                    <div class="form-group">
-                      <label>Keterangan Tidak ACC</label>
                       <input class="form-control" placeholder="Masukan No. Rekening" type="text" name="norek">
                     </div>
                     <div class="form-group">
@@ -328,9 +295,6 @@
                         </tbody>
                       </table>
                   </div>
-                </div>
-              </div>
-            </div>
           </div>
 
 

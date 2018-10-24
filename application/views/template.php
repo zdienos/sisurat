@@ -262,7 +262,6 @@ $('#btnDelCheckRow').click(function() {
 <script>
     $(window).load(function() {
       $('#Pencairan').hide();
-      $('#Pencairan_tidak').hide();
       $('#Peringatan').hide();
       $('#Teguran').hide();
       $('#prihal').hide();
@@ -317,7 +316,7 @@ $('#btnDelCheckRow').click(function() {
           $('#Teguran').hide();
           $('#prihal').hide();
           $('#Pencairan3').hide();
-          $('#Transfer').show();
+          $('#Transfer').hide();
           $('#mgm_biaya').hide();
           $('#mgm').hide();
           $('#biaya').hide();

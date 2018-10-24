@@ -155,11 +155,16 @@ class Skeluar extends CI_Controller {
 				'pengembaliannorek' => $pengembaliannorek
 				
 			);
-			print_r($data2); exit();
+
 			$result = $this->m_keluar->saveDatasuratkeluar($data);
 			$result2 = $this->m_keluar->saveDatasuratkeluar2($data2);
 
 			if ($result && $result2) {
+				$user = $this->model->getuser();
+				$data['username'] = $user['username'];
+				$data['jabatan'] = $user['jabatan'];
+				$data['id'] = $user['id'];
+				$data['nama_lengkap'] = $user['nama_lengkap'];
 
 				$data['cetak'] = $this->m_keluar->lihatsuratkeluar($no,$jenissurat);
 
