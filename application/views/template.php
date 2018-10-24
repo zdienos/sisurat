@@ -271,6 +271,7 @@ $('#btnDelCheckRow').click(function() {
       $('#mgm').hide();
       $('#biaya').hide();
       $('#Pembayaranpos').hide();
+      $('#pengirim').hide();
 
       $('#cjenissurat').change(function() {
         if ($('#cjenissurat').val() == 'Pencairan') {

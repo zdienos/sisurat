@@ -29,15 +29,14 @@
                     <option value="Pencairan">Surat Pencairan</option>
                     <option value="Teguran">Surat Teguran</option>
                     <option value="Peringatan">Surat Peringatan</option>
-                    <?php 
-                      if (($username == "bunia") || ($username == "bu dewi")) { ?>
+                  <!--   <?php 
+                      //if (($username == "bunia") || ($username == "bu dewi")) { ?> -->
                       <option value="Transfer"> Transfer Pencairan </option>
                       <option value="Pembayaran">Surat Pembayaran Ekspedisi Pengiriman Barang POS GIRO</option>
                   </select>
-                    <?php }
-                    ?>
+                    <!-- <?php //}
+                    //?> -->
                 </div>
-                
                 <div id="pengirim">
                   <div class="form-group">
                     <label>Nama Penerima</label>
@@ -70,14 +69,14 @@
                   <select name="prihal" id="prihal_fee" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" onchange="gantilabel()">
                     <option hidden="true" selected>Pilih Perihal</option>
                       <option value="Surat ACC Pencairan PT Kolektif/Bimker">Surat ACC Pencairan PT Kolektif/Bimker</option>
-                      <option value="Surat ACC Pengembalian Tidak Kuota">Surat ACC Pengembalian Tidak Kuota</option>
+                      <option value="Surat ACC Pengembalian Kelas Tidak Kuota">Surat ACC Pengembalian Kelas Tidak Kuota</option>
                       <option value="Surat ACC Pengembalian Diskon Guru">Surat ACC Pengembalian Diskon Guru</option>
                       <option value="Surat ACC Pengembalian Pindah Program">Surat ACC Pengembalian Pindah Program</option>
                       <option value="Surat ACC Pengembalian Pengalihan Biaya">Surat ACC Pengembalian Pengalihan Biaya</option>
                       <option value="Surat ACC Pengembalian Diskon Karyawan">Surat ACC Pengembalian Diskon Karyawan</option>
                       <option value="Surat ACC Pengembalian Diskon Pengajar">Surat ACC Pengembalian Diskon Pengajar</option>
                       <option value="Surat Tidak ACC Pencairan PT Kolektif/Bimker">Surat Tidak ACC Pencairan PT Kolektif/Bimker</option>
-                      <option value="Surat Tidak ACC Pengembalian Tidak Kuota">Surat Tidak ACC Pengembalian Tidak Kuota</option>
+                      <option value="Surat Tidak ACC Pengembalian Kelas Tidak Kuota">Surat Tidak ACC Pengembalian Kelas Tidak Kuota</option>
                       <option value="Surat Tidak ACC Pengembalian Diskon Guru">Surat Tidak ACC Pengembalian Diskon Guru</option>
                       <option value="Surat Tidak ACC Pengembalian Pindah Program">Surat Tidak ACC Pengembalian Pindah Program</option>
                       <option value="Surat Tidak ACC Pengembalian Pengalihan Biaya">Surat Tidak ACC Pengembalian Pengalihan Biaya</option>
@@ -95,6 +94,10 @@
                       <p><i>Jika Format Tanggal Tidak keluar, Input dengan manual dengan format <b> ("YYYY/MM/DD") </b> </i></p>
                     </div>
                     <div class="form-group">
+                      <label>Unit</label>
+                      <input class="form-control" placeholder="Masukan Unit" type="text" name="unit">
+                    </div>
+                    <div class="form-group">
                       <label>Nama Siswa </label>
                       <input class="form-control" placeholder="Masukan Nama Siswa" type="text" name="nama_siswa">
                     </div>
@@ -109,6 +112,7 @@
                     <div class="form-group">
                       <label id="norek">Norek Siswa</label>
                       <input class="form-control" placeholder="Masukan No. Rekening" type="text" name="norek">
+                      <p><i>Contoh: BRI <b>&lt;br&gt;</b> 0883 01 017263 530 <b>&lt;br&gt;</b> a.n Srimulyani | <b>&lt;br&gt;</b> untuk membuat baris baru (Enter)</i> </p>
                     </div>
                     <div class="form-group">
                       <label>Tembusan</label>
@@ -295,7 +299,7 @@
                         </tbody>
                       </table>
                   </div>
-          </div>
+          
 
 
                 <!-- pengelommpokkan jenis surat Peringatan-->
@@ -374,6 +378,8 @@
                     </div>
                 </div>
                 <button type="submit" class="pull-right btn btn-app" id=""><i class="fa fa-save"></i>Save</button>
-            </form>       
+            </form>
+      </div>
     </section>
+
     <!-- /.content -->

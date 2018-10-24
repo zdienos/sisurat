@@ -28,8 +28,8 @@
                   <tr><td>Unit</td><td><?= $srt['unit']; ?></td></tr>
                   <tr><td>Nama Siswa</td><td><?= $srt['nama_siswa']; ?></td></tr>
                   <tr><td>Kelas</td><td><?= $srt['kelas']; ?></td></tr>
-                  <tr><td>Jumlah Bayar</td><td><?= $srt['jumlahbayar']; ?></td></tr>
-                  <tr><td>No Rekening</td><td><?= $srt['pengembaliannorek']; ?></td></tr>
+                  <tr><td>ACC Marketing</td><td><?= $srt['jumlahbayar']; ?></td></tr>
+                  <tr><td>Keterangan</td><td><?= $srt['pengembaliannorek']; ?></td></tr>
                   <tr><td>Tembusan</td><td><?= $srt['tembusan']; ?></td></tr>
                   <tr><td>Tanggal Input</td><td><?= $srt['tgl_SuratKeluar']; ?></td></tr>
                   <tr><td>Yang Membuat</td> <td><?= $srt['userid'];?></td></tr>

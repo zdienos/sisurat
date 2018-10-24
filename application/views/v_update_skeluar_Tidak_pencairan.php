@@ -64,11 +64,11 @@
                       <input class="form-control" id="TidakKuota" value="<?= $usk['kelas'] ?>" placeholder="Enter ..." type="text" required="" name="kelas">
                     </div>
                     <div class="form-group">
-                      <label>Jumlah Bayar + PT</label>
+                      <label>ACC Marketing</label>
                       <input class="form-control" id="TidakKuota" value="<?= $usk['jumlahbayar'] ?>" placeholder="Enter ..." type="text" required="" name="jumlahbayar_pt">
                     </div>
                     <div class="form-group">
-                      <label>Pengembalian Norek</label>
+                      <label>Keterangan</label>
                       <input class="form-control" id="TidakKuota" value="<?= $usk['pengembaliannorek'] ?>" placeholder="Enter ..." type="text" required="" name="norek">
                     </div>
                     <div class="form-group">
