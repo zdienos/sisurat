@@ -178,10 +178,10 @@ foreach($cetak as $l) {
     </ul>
     </td></tr>
     </table>
+     <p style="text-align: center;">Dikirim Via Email</p>
   </div>
 
 <?php }?>
- <p style="text-align: center;">Dikirim Via Email</p>
   
 </body>
 </html>

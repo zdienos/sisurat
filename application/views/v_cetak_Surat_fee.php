@@ -199,7 +199,8 @@ foreach($cetak as $l) {
     ?>
     </ul>
     </p>
+     <p style="text-align: center;">Dikirim Via Email</p>
   </div>
- <p style="text-align: center;">Dikirim Via Email</p>
+
   
 </body></html>
