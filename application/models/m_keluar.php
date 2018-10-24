@@ -74,8 +74,11 @@ class M_keluar extends CI_Model
 			$this->db->from('skeluar');
 		    $this->db->join('tb_sk_teguran', 'skeluar.no = tb_sk_teguran.no');
 		    $this->db->where('skeluar.no', $no);
+		}elseif(($jenis_surat == 'Pembayaran') or($jenis_surat == 'Pembayaran')) {
+			$this->db->from('skeluar');
+		    $this->db->join('tb_sk_pos_giro', 'skeluar.no = tb_sk_pos_giro.no');
+		    $this->db->where('skeluar.no', $no);
 		}
-
 		$query = $this->db->get();
 
 		if ($query->num_rows() > 0) {
@@ -84,6 +87,7 @@ class M_keluar extends CI_Model
 			return false;
 		}
 	}
+
 
 	function lihatsuratkeluar_fee($no,$jenis_surat)
 	{
@@ -168,6 +172,17 @@ class M_keluar extends CI_Model
 			return false;
 		}
 	}
+
+	function saveDataspembayaran($data2)
+	{
+		$data2 = $this->db->insert('tb_sk_pos_giro', $data2);
+
+		if ($data2) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	
 	function ubahsuratkeluar($no,$jenis_surat)
 	{
@@ -182,6 +197,10 @@ class M_keluar extends CI_Model
 		}elseif($jenis_surat == 'Teguran'){
 			$this->db->from('skeluar');
 		    $this->db->join('tb_sk_teguran', 'skeluar.no = tb_sk_teguran.no');
+		    $this->db->where('skeluar.no', $no);
+		}elseif($jenis_surat == 'Pembayaran'){
+			$this->db->from('skeluar');
+		    $this->db->join('tb_sk_pos_giro', 'skeluar.no = tb_sk_pos_giro.no');
 		    $this->db->where('skeluar.no', $no);
 		}
 		$query = $this->db->get();
@@ -212,6 +231,8 @@ class M_keluar extends CI_Model
  			$data = $this->db->update('tb_sk_peringatan', $data2, $where);	
  		} elseif ($jenis_surat == "Teguran") {
  			$data = $this->db->update('tb_sk_teguran', $data2, $where);	
+ 		} elseif ($jenis_surat == "Pembayaran") {
+ 			$data = $this->db->update('tb_sk_pos_giro', $data2, $where);	
  		}
 
  		if ($data) {
@@ -240,7 +261,10 @@ class M_keluar extends CI_Model
  		} elseif ($jenis_surat == 'Pencairan'  and $prihal == 1 ) {
  			$data = $this->db->delete('skeluar', $where);
  			$data2 = $this->db->delete('tb_sk_pencairan_fee', $where);
- 		} 
+ 		} elseif ($jenis_surat == 'Pembayaran') {
+ 			$data = $this->db->delete('skeluar', $where);
+			$data2 = $this->db->delete('tb_sk_pos_giro', $where);
+ 		}
 
  		if ($data) {
 			return true;

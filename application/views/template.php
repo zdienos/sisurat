@@ -260,10 +260,12 @@ $('#btnDelCheckRow').click(function() {
 <script>
     $(window).load(function() {
       $('#Pencairan').hide();
+      $('#Pencairan_tidak').hide();
       $('#Peringatan').hide();
       $('#Teguran').hide();
       $('#prihal').hide();
       $('#Pencairan3').hide();
+      $('#Pembayaranpos').hide();
 
 
       $('#cjenissurat').change(function() {
@@ -272,6 +274,8 @@ $('#btnDelCheckRow').click(function() {
           $('#prihal').show();
           $('#Peringatan').hide();
           $('#Teguran').hide();
+          $('#Pembayaranpos').hide();
+          $('#pengirim').show();
         } else if ($('#cjenissurat').val() == 'Peringatan') {
           $('#Peringatan').show();
           $('#Pencairan').hide();
@@ -279,31 +283,43 @@ $('#btnDelCheckRow').click(function() {
           $('#prihal').hide();
           $('#Pencairan3').hide();
           $('#prihal').hide();
+          $('#Pembayaranpos').hide();
+          $('#pengirim').show();
         } else if ($('#cjenissurat').val() == 'Teguran') {
           $('#Peringatan').hide();
           $('#Pencairan').hide();
           $('#Teguran').show();
           $('#prihal').hide();
           $('#Pencairan3').hide();
+          $('#Pembayaranpos').hide();
+          $('#pengirim').show();
+        } else if ($('#cjenissurat').val() == 'Pembayaran') {
+          $('#Peringatan').hide();
+          $('#Pencairan').hide();
+          $('#Teguran').hide();
+          $('#prihal').hide();
+          $('#Pencairan3').hide();
+          $('#Pembayaranpos').show();
+          $('#pengirim').hide();
         }
       });
       $('#prihal').change(function() {
         console.log($('#prihal_fee').val());
-          if ($('#prihal_fee').val() == 'Surat ACC Pencairan PT Kolektif/Bimker'){
+          if (($('#prihal_fee').val() == 'Surat ACC Pencairan PT Kolektif/Bimker') || ($('#prihal_fee').val() == 'Surat Tidak ACC Pencairan PT Kolektif/Bimker')){
              $('#Pencairan').hide();
              $('#Pencairan3').show();  
              $('#Teguran').hide();  
              $('#Peringatan').hide();    
-           } else if ($('#prihal_fee').val() == 'Surat ACC Pengembalian Tidak Kuota' || 'Surat ACC Pengembalian Diskon Guru' || 'Surat ACC Pengembalian Pindah Program' || 'Surat ACC Pengembalian Pengalihan Biaya' || 'Surat ACC Pengembalian Diskon Karyawan' || 'Surat ACC Pengembalian Diskon Pengajar') {}{
+           } else if ($('#prihal_fee').val() == 'Surat ACC Pengembalian Tidak Kuota' || 'Surat ACC Pengembalian Diskon Guru' || 'Surat ACC Pengembalian Pindah Program' || 'Surat ACC Pengembalian Pengalihan Biaya' || 'Surat ACC Pengembalian Diskon Karyawan' || 'Surat ACC Pengembalian Diskon Pengajar'){
              $('#Pencairan').show();
              $('#Pencairan3').hide();
              $('#Peringatan').hide();
              $('#Teguran').hide();
-           } else if ($('#prihal_fee').val() == 'Surat Tidak ACC Pengembalian Tidak Kuota' || 'Surat Tidak ACC Pengembalian Diskon Guru' || 'Surat Tidak ACC Pengembalian Pindah Program' || 'Surat Tidak ACC Pengembalian Pengalihan Biaya' || 'Surat Tidak ACC Pengembalian Diskon Karyawan' || 'Surat Tidak ACC Pengembalian Diskon Pengajar') {}{
-             $('#Pencairan').show();
-             $('#Pencairan3').hide();
-             $('#Peringatan').hide();
-             $('#Teguran').hide();
+           } else if ($('#prihal_fee').val() == 'Surat Tidak ACC Pengembalian Tidak Kuota' || 'Surat Tidak ACC Pengembalian Diskon Guru' || 'Surat Tidak ACC Pengembalian Pindah Program' || 'Surat Tidak ACC Pengembalian Pengalihan Biaya' || 'Surat Tidak ACC Pengembalian Diskon Karyawan' || 'Surat Tidak ACC Pengembalian Diskon Pengajar'){
+              $('#Pencairan_tidak').show();
+              $('#Pencairan3').hide();
+              $('#Peringatan').hide();
+              $('#Teguran').hide();
            }
 
         });

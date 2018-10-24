@@ -21,30 +21,7 @@
                     <input class="form-control" placeholder="Masukan Kode Surat" type="text" name="nosurat">
                     <p><i>Contoh : "MK-KEU/../../.."</i></p>
                 </div>
-                <div class="form-group">
-                  <label>Nama Penerima</label>
-                  <input class="form-control" placeholder="Masukan Nama Penerima" type="text" name="namatujuan">
-                </div>
-                <div class="form-group">
-                  <div class="row">
-                    <div class="col-md-3">
-                       <label>Jabatan Penerima</label>
-                        <select name="tujuan1" class="form-control"> 
-                          <option hidden="true" selected>Pilih Jabatan</option>
-                          <option value="Kepala Wilayah">Kepala Wilayah</option>
-                          <option value="Kepala Cabang">Kepala Cabang</option>
-                          <option value="Kepala Rayon">Kepala Rayon</option>
-                          <option value="Kepala Unit">Kepala Unit</option>
-                          <option value="Kepala Sekretariat">Kepala Sekretariat</option>
-                          <option value="Plt. Kepala Cabang">Plt. Kepala Cabang</option>
-                        </select>
-                    </div>
-                    <div class="col-md-9">
-                       <label>Kota Penerima</label>
-                       <input class="form-control" placeholder="Masukan Kota Penerima" type="text" name="tujuan">
-                    </div>
-                  </div>
-                </div>
+
                 <div class="form-group">
                   <label>Jenis Surat</label>
                   <select name="cjenissurat" id="cjenissurat" class="form-control">
@@ -52,7 +29,35 @@
                     <option value="Pencairan">Surat Pencairan</option>
                     <option value="Teguran">Surat Teguran</option>
                     <option value="Peringatan">Surat Peringatan</option>
+                    <option value="Pembayaran">Surat Pembayaran Ekspedisi Pengiriman Barang POS GIRO</option>
                   </select>
+                </div>
+                
+                <div id="pengirim">
+                  <div class="form-group">
+                    <label>Nama Penerima</label>
+                    <input class="form-control" placeholder="Masukan Nama Penerima" type="text" name="namatujuan">
+                  </div>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-md-3">
+                         <label>Jabatan Penerima</label>
+                          <select name="tujuan1" class="form-control"> 
+                            <option hidden="true" selected>Pilih Jabatan</option>
+                            <option value="Kepala Wilayah">Kepala Wilayah</option>
+                            <option value="Kepala Cabang">Kepala Cabang</option>
+                            <option value="Kepala Rayon">Kepala Rayon</option>
+                            <option value="Kepala Unit">Kepala Unit</option>
+                            <option value="Kepala Sekretariat">Kepala Sekretariat</option>
+                            <option value="Plt. Kepala Cabang">Plt. Kepala Cabang</option>
+                          </select>
+                      </div>
+                      <div class="col-md-9">
+                         <label>Kota Penerima</label>
+                         <input class="form-control" placeholder="Masukan Kota Penerima" type="text" name="tujuan">
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div id="prihal">
                 <div class="form-group">
@@ -98,6 +103,35 @@
                     </div>
                     <div class="form-group">
                       <label>Norek Siswa</label>
+                      <input class="form-control" placeholder="Masukan No. Rekening" type="text" name="norek">
+                    </div>
+                    <div class="form-group">
+                      <label>Tembusan</label>
+                      <input class="form-control" placeholder="Masukan Tembusan" type="text" name="tbspencairan">
+                      <p><i>Untuk memisahkan Tembusan beri tanda koma <b> (",") </b> tanpa spasi</i> </p>
+                    </div>                    
+                  </div>
+
+                  <div id="Pencairan_tidak">
+                    <div class="form-group">
+                      <label>Tanggal ACC Surat Marketing</label>
+                      <input class="form-control" type="date" name="tglmarketing"  placeholder="Masukan Tanggal dengan format ('YYYY/MM/DD')">
+                      <p><i>Jika Format Tanggal Tidak keluar, Input dengan manual dengan format <b> ("YYYY/MM/DD") </b> </i></p>
+                    </div>
+                    <div class="form-group">
+                      <label>Nama Siswa </label>
+                      <input class="form-control" placeholder="Masukan Nama Siswa" type="text" name="nama_siswa">
+                    </div>
+                    <div class="form-group">
+                      <label>Kelas Siswa</label>
+                      <input class="form-control" placeholder="Masukan Kelas" type="text" name="kelas">
+                    </div>
+                    <div class="form-group">
+                      <label>ACC Marketing</label>
+                      <input class="form-control" placeholder="Masukan Jumlah yang disetujui" type="text" name="jumlahbayar_pt">
+                    </div>
+                    <div class="form-group">
+                      <label>Keterangan Tidak ACC</label>
                       <input class="form-control" placeholder="Masukan No. Rekening" type="text" name="norek">
                     </div>
                     <div class="form-group">
@@ -224,6 +258,24 @@
                       <label>Tembusan</label>
                       <input class="form-control" placeholder="Masukan Tembusan" type="text" name="tbsteguran">
                       <p><i>Untuk memisahkan Tembusan beri tanda koma <b> (",") </b> tanpa spasi</i></p>
+                    </div>
+                </div>
+                <!-- pengelommpokkan jenis Surat Pembayaran Ekspedisi Pengiriman Barang (POS GIRO)-->
+                <div id="Pembayaranpos">
+                    <div class="form-group">
+                      <label>Periode Pengiriman</label>
+                      <input class="form-control" placeholder="Masukan Periode pengiriman" type="text" name="periode">
+                      <p><i>Contoh : "24 agustus - 24 september"</i></p>
+                    </div>
+                    <div class="form-group">
+                      <label>Total Tagihan</label>
+                      <input class="form-control" placeholder="Masukan Total Tagihan" type="text" name="totaltagihan">
+                      <p><i>Contoh : "Rp.4.470.351"</i></p>
+                    </div>
+                    <div class="form-group">
+                      <label>Nomer Rekening</label>
+                      <input class="form-control" placeholder="Masukan Nomer Rekening" type="text" name="nomerrekening">
+                      <p><i>Contoh : "BCA 5170-147-822 a.n Iren"</i></p>
                     </div>
                 </div>
 
