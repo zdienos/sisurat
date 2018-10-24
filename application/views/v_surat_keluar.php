@@ -30,7 +30,7 @@
                     <option value="Teguran">Surat Teguran</option>
                     <option value="Peringatan">Surat Peringatan</option>
                     <?php 
-                      if (($username == "bunia") || ($username == "bu dewi")) { ?>
+                      if (($username == "bunia") || ($username == "bu dewi") || ($username == "pakalvin")) { ?>
                       <option value="Transfer"> Surat Transfer Pencairan </option>
                       <option value="Pembayaran">Surat Pembayaran Ekspedisi Pengiriman Barang POS GIRO</option>
                       <option value="Sidak">Surat Sidak</option>
