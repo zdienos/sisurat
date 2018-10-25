@@ -125,7 +125,7 @@ foreach($cetak as $l) { ?>
     <tbody>
       <tr>
         <td><center><?php echo $l['periodepengiriman'];?></center></td>
-        <td><center>Rp.<?php echo $l['totaltagihan'];?></center></td>
+        <td><center>Rp.<?php echo number_format($l['totaltagihan']);?></center></td>
         <td><center><?php echo $l['norek'];?></center></td>
       </tr>
     </tbody>
