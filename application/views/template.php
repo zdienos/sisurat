@@ -338,7 +338,7 @@ $('#btnDelCheckRow').click(function() {
 
       $('#prihal').change(function() {
         // console.log($('#prihal_fee').val());
-          if (($('#prihal_fee').val() == 'Surat ACC Pencairan PT Kolektif/Bimker') || ($('#prihal_fee').val() == 'Surat Tidak ACC Pencairan PT Kolektif/Bimker')){
+          if (($('#prihal_fee').val() == 'Surat ACC Pencairan PT Kolektif') || ($('#prihal_fee').val() == 'Surat Tidak ACC Pencairan PT Kolektif') || ($('#prihal_fee').val() == 'Surat ACC Pencairan Fee Bimker') || ($('#prihal_fee').val() == 'Surat Tidak ACC Pencairan Fee Bimker')){
              $('#Pencairan').hide();
              $('#Pencairan3').show();  
              $('#Teguran').hide();  
