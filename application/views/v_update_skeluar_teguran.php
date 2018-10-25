@@ -73,6 +73,7 @@
                     </div>
                     <?php } } ?>
                 </div>
+                <a href="<?= base_url('Skeluar/data_table/') ?>" class="btn btn-primary"><i class="fa fa-mail-reply"></i> Kembali</a>
 
                 <button type="submit" class="pull-right btn btn-default" id="">Save
                 <i class="fa fa-arrow-circle-right"></i></button>
