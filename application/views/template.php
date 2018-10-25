@@ -68,6 +68,12 @@
               
               <!-- Menu Footer-->
               <li class="user-footer">
+                <?php $jabat = explode(" ", $jabatan);
+                 if($jabat[0] == "Kasie"){ ?>
+                <div class="pull-left">
+                <a href="<?php echo site_url('login/user') ?>"" class="btn btn-default btn-flat">User</a>                 
+                </div>
+              <?php }?>
                 <div class="pull-right">
                   <a href="<?php echo site_url('login/logout') ?>"" class="btn btn-default btn-flat">Sign out</a>
                 </div>

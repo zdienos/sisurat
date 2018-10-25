@@ -4,7 +4,8 @@
         <small>Selamat Bekerja!</small>
       </h1>
     </section>
-
+<?php $jabat = explode(" ", $jabatan);
+?>
 <section class="content">
   <div class="panel panel-default">
             <div class="panel-body">
@@ -36,7 +37,7 @@
             <div class="box-header">
 
               <a href="<?= base_url('Skeluar/data_table/')?>" class="btn btn-default">Data Surat</a>
-              <?php if(($username == "bunia") || ($username == "bu dewi") || ($username == "pakalvin")){?>
+              <?php if($jabat[0] == "Kasie"){?>
                   <a href="<?= base_url('Skeluar/data_table_sidak/')?>" class="btn btn-default">Data Sidak</a>
               <?php }?>
             </div>
@@ -69,7 +70,7 @@
                           <td><?= $srt->tgl_SuratKeluar; ?></td>
                           <td>
                           <?php 
-                          if($jabatan == "Kasie Keuangan"){ ?>
+                            if($jabat[0] == "Kasie"){ ?>
                             <a href="<?= base_url('Skeluar/ubahDataskeluar/'). $srt->no.'/'. $srt->jenis_surat.'/'. $srt->perihal ?>" class="btn btn-success btn-sm"><span class="fa fa-edit"></span> Edit</a>
                             <a href="<?= base_url('Skeluar/lihatsuratkeluar/') . $srt->no.'/'. $srt->jenis_surat.'/'. $srt->perihal ?>" class=" btn btn-primary btn-sm"><span class="fa fa-eye"></span> Lihat</a>
                             <a href="<?= base_url('Skeluar/hapusDatasuratkeluar/') . $srt->no.'/'. $srt->jenis_surat.'/'. $srt->perihal ?>" class=" btn btn-danger btn-sm" onClick="return doconfirm();"><span class="fa fa-remove"></span> Delete</a>

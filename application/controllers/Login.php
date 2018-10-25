@@ -62,7 +62,10 @@ class Login extends CI_Controller {
     $nama = $this->input->post('nama');
     $nama_lengkap = $this->input->post('nama_lengkap');
     $password = $this->input->post('password');
-    $jabatan = $this->input->post('jabatan');
+    $jabatan1 = $this->input->post('jabatan1');
+    $jabatan2 = $this->input->post('jabatan2');
+
+    $jabatan = $jabatan1.' '.$jabatan2;
     
     $data = array(
       'username' => $nama,

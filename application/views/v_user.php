@@ -22,13 +22,22 @@
                   <label>Password</label>
                   <input class="form-control" placeholder="Masukan Password" type="text" name="password" required="">
                 </div>
-                 <div class="form-group">
+                <div class="form-group">
+                  <div class="row">
+                  <div class="col-md-3">
                   <label>Jabatan</label>
-                  <select name="jabatan" class="form-control"> 
+                  <select name="jabatan1" class="form-control"> 
                     <option hidden="true" selected>Pilih Jabatan</option>
-                    <option value="Kasie Keuangan">Kasie Keuangan</option>
-                    <option value="Staff Keuangan">Staff Keuangan</option>
+                    <option value="Kasie">Kasie</option>
+                    <option value="Staff">Staff</option>
                   </select>
+                  </div>
+                  <div class="col-md-9">
+                    <label>Bagian</label>
+                    <input class="form-control" placeholder="Masukan Nama Bagian" type="text" name="jabatan2">
+                    <p><i></i></p>
+                  </div>
+                  </div>
                 </div>
                 <button type="submit" name="savesm" class="pull-right btn btn-primary" id="savesm">save 
                 <i class="fa fa-arrow-circle-right"></i></button>

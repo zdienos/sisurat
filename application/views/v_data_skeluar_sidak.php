@@ -32,10 +32,10 @@
       <div class="row">
       <div class="col-xs-12">
       <div class="box">
-
+ <?php $jabat = explode(" ", $jabatan);?>
             <div class="box-header">
                   <a href="<?= base_url('Skeluar/data_table/')?>" class="btn btn-default">Data Surat</a>
-              <?php if($jabatan == "Kasie Keuangan"){?>
+              <?php if($jabat[0] == "Kasie"){?>
                   <a href="<?= base_url('Skeluar/data_table_sidak/')?>" class="btn btn-default">Data Sidak</a>
               <?php }?>
             </div>

@@ -4,6 +4,8 @@
         <small>Selamat Bekerja!</small>
       </h1>
     </section>
+    <?php $jabat = explode(" ", $jabatan);
+?>
 <section class="content">
           <div class="panel panel-default">
             <div class="panel-body">
@@ -62,7 +64,7 @@
                           <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;"><?= $srt->keterangan; ?></td>
                           <td><?= $srt->tanggal; ?></td>
                           <td>
-                          <?php if($jabatan == "Kasie Keuangan"){ ?>
+                          <?php if($jabat[0] == "Kasie"){ ?>
                           <a href="<?= base_url('Smasuk/ubahdatasmasuk/') . $srt->id ?>" class="btn-sm btn btn-success"><span class="fa fa-edit"></span> Edit</a>
                           <a href="<?= base_url('Smasuk/lihatsuratmasuk/') . $srt->id ?>" class="btn-sm btn btn-primary"><span class="fa fa-eye"></span> Lihat</a>
                           <a href="<?= base_url('Smasuk/hapusDatasuratmasuk/') . $srt->id ?>" class="btn-sm btn btn-danger"  onClick="return doconfirm();"><span class="fa fa-remove"></span> Delete</a>
