@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 25 Okt 2018 pada 08.38
+-- Waktu pembuatan: 25 Okt 2018 pada 10.50
 -- Versi server: 10.1.36-MariaDB
 -- Versi PHP: 5.6.38
 
@@ -44,11 +44,10 @@ INSERT INTO `tabel_menu` (`id`, `judul_menu`, `link`, `icon`, `is_main_menu`) VA
 (1, 'Dashboard', 'home', 'fa fa-dashboard', '0'),
 (2, 'Surat Masuk', '#', 'fa fa-envelope', '0'),
 (3, 'Surat Keluar', '#', 'fa fa-envelope', '0'),
-(4, 'Data Surat Masuk', 'Smasuk/data_table', 'fa-fa-dashboard', '2'),
-(5, 'Input Surat Masuk', 'Smasuk', 'fa-fa-dashboard', '2'),
-(6, 'Data Surat Keluar', 'Skeluar/data_table', 'fa-fa-dashboard', '3'),
-(7, 'Input Surat Keluar', 'Skeluar', '', '3'),
-(8, 'User', 'Login/user', 'fa fa-users', '0');
+(4, 'Data Surat Masuk', 'Smasuk/data_table', 'fa fa-line-chart', '2'),
+(5, 'Input Surat Masuk', 'Smasuk', 'fa fa-file-text-o', '2'),
+(6, 'Data Surat Keluar', 'Skeluar/data_table', 'fa fa-line-chart', '3'),
+(7, 'Input Surat Keluar', 'Skeluar', 'fa fa-file-text-o', '3');
 
 --
 -- Indexes for dumped tables
