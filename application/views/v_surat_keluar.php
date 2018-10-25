@@ -467,7 +467,7 @@
                     <div class="form-group">
                       <label>Total Tagihan</label>
                       <input class="form-control" placeholder="Masukan Total Tagihan" type="text" name="totaltagihan">
-                      <p><i>Contoh : "Rp.4.470.351"</i></p>
+                      <p><i>Contoh : "4.470.351"</i></p>
                     </div>
                     <div class="form-group">
                       <label>Nomer Rekening</label>
