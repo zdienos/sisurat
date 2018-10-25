@@ -1,5 +1,5 @@
     <section class="content-header">
-      <h1>
+      <h1><span class="fa fa-users"></span>
         User
       </h1>
     </section>
@@ -30,7 +30,7 @@
                     <option value="Staff Keuangan">Staff Keuangan</option>
                   </select>
                 </div>
-                <button type="submit" name="savesm" class="pull-right btn btn-default" id="savesm">save 
+                <button type="submit" name="savesm" class="pull-right btn btn-primary" id="savesm">save 
                 <i class="fa fa-arrow-circle-right"></i></button>
                 <a href="<?= base_url('Login/data_table/')?>" class="btn btn-primary">Lihat Data</a>
             </form>

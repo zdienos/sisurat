@@ -1,6 +1,6 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>
+      <h1><span class="fa fa-edit"></span>
         Edit Surat Teguran
       </h1>
     </section>

@@ -1,5 +1,5 @@
     <section class="content-header">
-      <h1>
+      <h1><span class="fa fa-edit"></span>
         Edit Surat Masuk
       </h1>
     </section>

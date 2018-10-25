@@ -1,6 +1,6 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>
+      <h1><span class="fa fa-envelope"></span>
         Surat Keluar
       </h1>
     </section>
@@ -419,7 +419,7 @@
                 </div>
 <!-- ================================================================================================================== -->
 
-                <button type="submit" class="pull-right btn btn-app" id=""><i class="fa fa-save"></i>Save</button>
+                <button type="submit" class="pull-right btn btn-primary" id=""><span class="fa fa-save"></span> Save</button>
             </form>
       </div>
     </section>

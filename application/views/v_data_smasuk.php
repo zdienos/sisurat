@@ -1,7 +1,7 @@
     <section class="content-header">
-      <h1>
+      <h1><span class="fa fa-line-chart"></span>
         Data Surat Masuk
-        <small>advanced tables</small>
+        <small>Selamat Bekerja!</small>
       </h1>
     </section>
 <section class="content">

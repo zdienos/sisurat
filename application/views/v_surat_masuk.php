@@ -1,5 +1,5 @@
     <section class="content-header">
-      <h1>
+      <h1><span class="fa fa-envelope"></span>
         Surat Masuk
       </h1>
     </section>
@@ -39,8 +39,7 @@
                   <input class="form-control"  placeholder="Masukan Tanggal dengan format ('YYYY/MM/DD')" type="date" name="tanggal" id="tanggal" required="">
                   <p><i>Jika Format Tanggal Tidak keluar Input dengan manual dengan format <b> ("yyyy/mm/dd") </b> <i></p>
                 </div>
-                <button type="submit" name="savesm" class="pull-right btn btn-app" id="savesm">
-                <i class="fa fa-save"></i>save</button>
+                <button type="submit" name="savesm" class="pull-right btn btn-primary" id="savesm"><span class="fa fa-save"></span> save</button>
             </form>
                 
       </div>         
