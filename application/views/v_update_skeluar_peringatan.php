@@ -1,7 +1,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>
-        Edit Surat Keluar
+      <h1><span class="fa fa-edit"></span>
+        Edit Surat Peringatan
       </h1>
     </section>
 

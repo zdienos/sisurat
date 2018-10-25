@@ -1,13 +1,13 @@
     <section class="content-header">
-      <h1>
+      <h1><span class="fa fa-line-chart"></span>
         Data Surat Masuk
-        <small>advanced tables</small>
+        <small>Selamat Bekerja!</small>
       </h1>
     </section>
 <section class="content">
           <div class="panel panel-default">
             <div class="panel-body">
-               <a href="<?= base_url('Smasuk/index/')?>" class="btn btn-primary"><span class="fa fa-plus-circle"></span>  Input Surat</a>
+               <a href="<?= base_url('Smasuk/index/')?>" class="btn btn-primary"><span class="fa fa-plus-circle"></span>  Buat Surat</a>
               <div class="col-md-4 pull-right">
                 <form action="<?php echo site_url('Smasuk/search') ?>" method="get">
                   <div class="input-group input-group-sm">
@@ -33,7 +33,7 @@
       <div class="box">
 
             <div class="box-header">
-              <h3 class="box-title">Data Table</h3>
+              <h3 class="box-title"><span class="fa fa-files-o"></span> Data Table</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -63,12 +63,12 @@
                           <td><?= $srt->tanggal; ?></td>
                           <td>
                           <?php if($jabatan == "Kasie Keuangan"){ ?>
-                          <a href="<?= base_url('Smasuk/ubahdatasmasuk/') . $srt->id ?>" class="btn-sm btn btn-success">Edit</a>
-                          <a href="<?= base_url('Smasuk/lihatsuratmasuk/') . $srt->id ?>" class="btn-sm btn btn-primary">Lihat</a>
-                          <a href="<?= base_url('Smasuk/hapusDatasuratmasuk/') . $srt->id ?>" class="btn-sm btn btn-danger"  onClick="return doconfirm();">Delete</a>
+                          <a href="<?= base_url('Smasuk/ubahdatasmasuk/') . $srt->id ?>" class="btn-sm btn btn-success"><span class="fa fa-edit"></span> Edit</a>
+                          <a href="<?= base_url('Smasuk/lihatsuratmasuk/') . $srt->id ?>" class="btn-sm btn btn-primary"><span class="fa fa-eye"></span> Lihat</a>
+                          <a href="<?= base_url('Smasuk/hapusDatasuratmasuk/') . $srt->id ?>" class="btn-sm btn btn-danger"  onClick="return doconfirm();"><span class="fa fa-remove"></span> Delete</a>
                           <?php }  else{?>
-                           <a href="<?= base_url('Smasuk/ubahdatasmasuk/') . $srt->id ?>" class="btn-sm btn btn-success">Edite</a>
-                          <a href="<?= base_url('Smasuk/lihatsuratmasuk/') . $srt->id ?>" class="btn-sm btn btn-primary">Lihat</a>
+                           <a href="<?= base_url('Smasuk/ubahdatasmasuk/') . $srt->id ?>" class="btn-sm btn btn-success"><span class="fa fa-edit"></span> Edite</a>
+                          <a href="<?= base_url('Smasuk/lihatsuratmasuk/') . $srt->id ?>" class="btn-sm btn btn-primary"><span class="fa fa-eye"></span> Lihat</a>
                           </td>
                         </tr>
 

@@ -113,7 +113,7 @@ foreach($cetak as $l) {
   }?>
   <table>
     <tr><td>No Surat</td><td>:</td><td><?php echo $no .'/'. $no_surat;?></td></tr>
-    <tr><td>Perihal</td><td>:</td><td><?php echo $perihal;?></td></tr>
+    <tr><td>Perihal</td><td>:</td><td><?php echo $perihal;?> TP.18/19</td></tr>
     <tr><td>Lampiran</td><td>:</td><td><?php echo $lampiran;?></td></tr>
   </table>
   <p>Kepada Yth,<br>

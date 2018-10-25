@@ -151,17 +151,23 @@ class Skeluar extends CI_Controller {
 			$namatujuan = "Dra. Erna Veronika";
 			$concat = "up.Ibu Wina Wibawa";
 		} elseif ($jenissurat == "Teguran") {
-			$namatujuan = $this->input->post('namatujuan');
+			$bpkibu = $this->input->post('bpkibu');
+			$namatjn = $this->input->post('namatujuan');
+			$namatujuan = $bpkibu." ".$namatjn ;
 			$jabatan = $this->input->post('tujuan1');
 			$tujuan = $this->input->post('tujuan');
 			$concat = $jabatan." ".$tujuan;
 		} elseif ($jenissurat == "Peringatan") {
-			$namatujuan = $this->input->post('namatujuan');
+			$bpkibu = $this->input->post('bpkibu');
+			$namatjn = $this->input->post('namatujuan');
+			$namatujuan = $bpkibu." ".$namatjn ;
 			$jabatan = $this->input->post('tujuan1');
 			$tujuan = $this->input->post('tujuan');
 			$concat = $jabatan." ".$tujuan;
 		} elseif ($jenissurat == "Pencairan") {
-			$namatujuan = $this->input->post('namatujuan');
+			$bpkibu = $this->input->post('bpkibu');
+			$namatjn = $this->input->post('namatujuan');
+			$namatujuan = $bpkibu." ".$namatjn ;
 			$jabatan = $this->input->post('tujuan1');
 			$tujuan = $this->input->post('tujuan');
 			$concat = $jabatan." ".$tujuan;
@@ -374,7 +380,7 @@ class Skeluar extends CI_Controller {
 				redirect(base_url('Skeluar/index'));
 			}
 	
-		} elseif (($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Pencairan PT Kolektif/Bimker') or ($jenissurat == 'Pencairan' and $prihal == 'Surat Tidak ACC Pencairan PT Kolektif/Bimker')) {
+		} elseif (($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Pencairan PT Kolektif') or ($jenissurat == 'Pencairan' and $prihal == 'Surat Tidak ACC Pencairan PT Kolektif') or ($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Pencairan Fee Bimker') or ($jenissurat == 'Pencairan' and $prihal == 'Surat Tidak ACC Pencairan Fee Bimker')) {
 			//Pencairan fee
 			$lampiran = $this->input->post('lampiran');
 			$tgl_marketing = $this->input->post('tgl_marketing');
@@ -605,17 +611,23 @@ class Skeluar extends CI_Controller {
 
 	public function hapusDatasuratkeluar($no,$jenissurat,$prihal)
 	{
-		if (($prihal == 'Surat%20ACC%20Pencairan%20PT%20Kolektif')or($prihal == 'Surat%20Tidak%20ACC%20Pencairan%20PT%20Kolektif')){
+		if (($prihal == 'Surat%20ACC%20Pencairan%20PT%20Kolektif')or($prihal == 'Surat%20Tidak%20ACC%20Pencairan%20PT%20Kolektif')or($prihal == 'Surat%20ACC%20Pencairan%20Fee%20Bimker')or($prihal == 'Surat%20Tidak%20ACC%20Pencairan%20Fee%20Bimker')){
 			$prihal = 1;
+		} elseif(($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Kelas%20Tidak%20Kuota')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Anak%20Guru')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Pindah%20Program')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Pengalihan%20Biaya')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Karyawan')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Pengajar')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Kelebihan%20Bayar')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Jaminan%20PTN')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Jaminan%20SMA%20Favorit')or($prihal == 'Surat%20Tidak%20ACC%20Diskon%20Susulan')) {
+			$prihal = 2;
+		} elseif(($prihal == 'Surat%20ACC%20Pengembalian%20Kelas%20Tidak%20Kuota')or($prihal == 'Surat%20ACC%20Pengembalian%20Diskon%20Anak%20Guru')or($prihal == 'Surat%20ACC%20Pengembalian%20Pindah%20Program')or($prihal == 'Surat%20ACC%20Pengembalian%20Pengalihan%20Biaya')or($prihal == 'Surat%20ACC%20Pengembalian%20Diskon%20Karyawan')or($prihal == 'Surat%20ACC%20Pengembalian%20Diskon%20Pengajar')or($prihal == 'Surat%20ACC%20Pengembalian%20Kelebihan%20Bayar')or($prihal == 'Surat%20ACC%20Pengembalian%20Jaminan%20PTN')or($prihal == 'Surat%20ACC%20Pengembalian%20Jaminan%20SMA%20Favorit')or($prihal == 'Surat%20ACC%20Diskon%20Susulan')) {
+			$prihal = 3;
 		}
 
 		$where = array(
 			'no'=> $no
 		);
 
-		if($jenissurat == 'Pencairan' and $prihal != 1){
-			$data = $this->m_keluar->deleteDatasuratkeluar($jenissurat,$where);
-		} elseif ($jenissurat == 'Pencairan'  and $prihal == 1 ) {	
+		if($jenissurat == 'Pencairan' and $prihal == 1){
+			$data = $this->m_keluar->deleteDatasuratkeluar($jenissurat,$where,$prihal);
+		} elseif ($jenissurat == 'Pencairan'  and $prihal == 2 ) {	
+			$data = $this->m_keluar->deleteDatasuratkeluar($jenissurat,$where,$prihal);
+		} elseif ($jenissurat == 'Pencairan'  and $prihal == 3 ) {	
 			$data = $this->m_keluar->deleteDatasuratkeluar($jenissurat,$where,$prihal);
 		} elseif($jenissurat == 'Peringatan'){
 			$data = $this->m_keluar->deleteDatasuratkeluar($jenissurat,$where);		
@@ -658,7 +670,7 @@ class Skeluar extends CI_Controller {
   			$data['jabatan'] = $user['jabatan'];
   			$data['id'] = $user['id'];
   			
-		if (($prihal == 'Surat%20ACC%20Pencairan%20PT%20Kolektif')or($prihal == 'Surat%20Tidak%20ACC%20Pencairan%20PT%20Kolektif')) {
+		if (($prihal == 'Surat%20ACC%20Pencairan%20PT%20Kolektif')or($prihal == 'Surat%20Tidak%20ACC%20Pencairan%20PT%20Kolektif')or($prihal == 'Surat%20ACC%20Pencairan%20Fee%20Bimker')or($prihal == 'Surat%20Tidak%20ACC%20Pencairan%20Fee%20Bimker')) {
 			$prihal = 1;
 		} elseif(($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Kelas%20Tidak%20Kuota')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Anak%20Guru')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Pindah%20Program')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Pengalihan%20Biaya')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Karyawan')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Pengajar')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Kelebihan%20Bayar')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Jaminan%20PTN')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Jaminan%20SMA%20Favorit')or($prihal == 'Surat%20Tidak%20ACC%20Diskon%20Susulan')) {
 			$prihal = 2;
@@ -703,7 +715,7 @@ class Skeluar extends CI_Controller {
 
 	public function cetaksuratkeluar($no,$jenis_surat,$prihal)
 	{
-		if (($prihal == 'Surat%20ACC%20Pencairan%20PT%20Kolektif')or($prihal == 'Surat%20Tidak%20ACC%20Pencairan%20PT%20Kolektif')) {
+		if (($prihal == 'Surat%20ACC%20Pencairan%20PT%20Kolektif')or($prihal == 'Surat%20Tidak%20ACC%20Pencairan%20PT%20Kolektif')or($prihal == 'Surat%20ACC%20Pencairan%20Fee%20Bimker')or($prihal == 'Surat%20Tidak%20ACC%20Pencairan%20Fee%20Bimker')) {
 			$prihal = 1;
 		} elseif(($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Kelas%20Tidak%20Kuota')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Anak%20Guru')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Pindah%20Program')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Pengalihan%20Biaya')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Karyawan')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Pengajar')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Kelebihan%20Bayar')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Jaminan%20PTN')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Jaminan%20SMA%20Favorit')or($prihal == 'Surat%20Tidak%20ACC%20Diskon%20Susulan')) {
 			$prihal = 2;
@@ -829,7 +841,7 @@ class Skeluar extends CI_Controller {
 		$data['jabatan'] = $user['jabatan'];
 		$data['id'] = $user['id'];
 
-		if (($prihal == 'Surat%20ACC%20Pencairan%20PT%20Kolektif')or($prihal == 'Surat%20Tidak%20ACC%20Pencairan%20PT%20Kolektif')){
+		if (($prihal == 'Surat%20ACC%20Pencairan%20PT%20Kolektif')or($prihal == 'Surat%20Tidak%20ACC%20Pencairan%20PT%20Kolektif')or($prihal == 'Surat%20ACC%20Pencairan%20Fee%20Bimker')or($prihal == 'Surat%20Tidak%20ACC%20Pencairan%20Fee%20Bimker')){
 			$prihal = 1;
 		} elseif(($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Kelas%20Tidak%20Kuota')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Anak%20Guru')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Pindah%20Program')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Pengalihan%20Biaya')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Karyawan')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Pengajar')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Kelebihan%20Bayar')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Jaminan%20PTN')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Jaminan%20SMA%20Favorit')or($prihal == 'Surat%20Tidak%20ACC%20Diskon%20Susulan')) {
 			$prihal = 2;

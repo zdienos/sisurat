@@ -1,6 +1,6 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>
+      <h1><span class="fa fa-envelope"></span>
         Surat Keluar
       </h1>
     </section>
@@ -39,11 +39,22 @@
 
                 </div>
                 <div id="pengirim">
-
-                  <div class="form-group">
+                 <div class="row">
+                  <div class="col-md-3">
+                       <label>Bapak/Ibu</label>
+                          <select name="bpkibu" class="form-control"> 
+                            <option hidden="true" selected>Pilih</option>
+                            <option value="Bapak">Bapak</option>
+                            <option value="Ibu">Ibu</option>
+                            <option value="">Lain-lain(kosong)</option>
+                          </select>
+                  </div>
+                  <div class="col-md-9">
                     <label>Nama Penerima</label>
                     <input class="form-control" placeholder="Masukan Nama Penerima" type="text" name="namatujuan">
+                    <p><i></i></p>
                   </div>
+                 </div>
                   <div class="form-group">
                     <div class="row">
                       <div class="col-md-3">
@@ -74,7 +85,9 @@
                   <label>Perihal</label>
                   <select name="prihal" id="prihal_fee" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" onchange="gantilabel()">
                     <option hidden="true" selected>Pilih Perihal</option>
-                      <option value="Surat ACC Pencairan PT Kolektif/Bimker">Surat ACC Pencairan PT Kolektif/Bimker</option>
+                      <option value="Surat ACC Pencairan PT Kolektif">Surat ACC Pencairan PT Kolektif</option>
+                      <option value="Surat ACC Pencairan Fee Bimker">Surat ACC Pencairan Fee Bimker</option>
+
                       <option value="Surat ACC Pengembalian Kelas Tidak Kuota">Surat ACC Pengembalian Kelas Tidak Kuota</option>
                       <option value="Surat ACC Pengembalian Diskon Anak Guru">Surat ACC Pengembalian Diskon Anak Guru</option>
                       <option value="Surat ACC Pengembalian Pindah Program">Surat ACC Pengembalian Pindah Program</option>
@@ -85,7 +98,9 @@
                       <option value="Surat ACC Pengembalian Jaminan PTN">Surat ACC Pengembalian Jaminan PTN</option>
                       <option value="Surat ACC Pengembalian Jaminan SMA Favorit">Surat ACC Pengembalian Jaminan SMA Favorit</option>
                       <option value="Surat ACC Diskon Susulan">Surat ACC Diskon Susulan</option>
-                      <option value="Surat Tidak ACC Pencairan PT Kolektif/Bimker">Surat Tidak ACC Pencairan PT Kolektif/Bimker</option>
+                      <option value="Surat Tidak ACC Pencairan PT Kolektif">Surat Tidak ACC Pencairan PT Kolektif</option>
+                      <option value="Surat Tidak ACC Pencairan Fee Bimker">Surat Tidak ACC Pencairan Fee Bimker</option>
+
                       <option value="Surat Tidak ACC Pengembalian Kelas Tidak Kuota">Surat Tidak ACC Pengembalian Kelas Tidak Kuota</option>
                       <option value="Surat Tidak ACC Pengembalian Diskon Anak Guru">Surat Tidak ACC Pengembalian Diskon Anak Guru</option>
                       <option value="Surat Tidak ACC Pengembalian Pindah Program">Surat Tidak ACC Pengembalian Pindah Program</option>
@@ -121,12 +136,12 @@
                     </div>
                     <div class="form-group">
                       <label id="jml_disetujui">Jumlah Bayar yg Disetujui</label>
-                      <input class="form-control" placeholder="Masukan Jumlah yang disetujui" type="text" name="jumlahbayar_pt">
+                      <input class="form-control" placeholder="Masukan Data" type="text" name="jumlahbayar_pt">
                     </div>
                     <div class="form-group">
                       <label id="norek">Norek Siswa</label>
-                      <input class="form-control" placeholder="Masukan No. Rekening" type="text" name="norek">
-                      <p id="ketnorek"><i>Contoh: BRI <b>&lt;br&gt;</b> 0883 01 017263 530 <b>&lt;br&gt;</b> a.n Srimulyani | <b>&lt;br&gt;</b> untuk membuat baris baru (Enter)</i> </p>
+                      <input class="form-control" placeholder="Masukan Data" type="text" name="norek">
+                      <p id="ketnorek"><i>Bila di ACC Contoh: BRI <b>&lt;br&gt;</b> 0883 01 017263 530 <b>&lt;br&gt;</b> a.n Srimulyani | <b>&lt;br&gt;</b> untuk membuat baris baru (Enter)</i> </p>
                     </div>
                     <div class="form-group">
                       <label>Tembusan</label>
@@ -462,7 +477,7 @@
                 </div>
 <!-- ================================================================================================================== -->
 
-                <button type="submit" class="pull-right btn btn-app" id=""><i class="fa fa-save"></i>Save</button>
+                <button type="submit" class="pull-right btn btn-primary" id=""><span class="fa fa-save"></span> Save</button>
             </form>
       </div>
     </section>

@@ -1,5 +1,5 @@
     <section class="content-header">
-      <h1>
+      <h1><span class="fa fa-line-chart"></span>
         Data User
       </h1>
     </section>
@@ -9,7 +9,7 @@
       <div class="box">
 
             <div class="box-header">
-              <h3 class="box-title">Data Table</h3>
+              <h3 class="box-title"><span class="fa fa-files-o"></span> Data Table</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
