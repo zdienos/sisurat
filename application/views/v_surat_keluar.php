@@ -39,11 +39,22 @@
 
                 </div>
                 <div id="pengirim">
-
-                  <div class="form-group">
+                 <div class="row">
+                  <div class="col-md-2">
+                       <label>Bapak/Ibu</label>
+                          <select name="bpkibu" class="form-control"> 
+                            <option hidden="true" selected>Pilih</option>
+                            <option value="Bapak">Bapak</option>
+                            <option value="Ibu">Ibu</option>
+                            <option value="">Lain-lain(kosong)</option>
+                          </select>
+                  </div>
+                  <div class="col-md-10">
                     <label>Nama Penerima</label>
                     <input class="form-control" placeholder="Masukan Nama Penerima" type="text" name="namatujuan">
+                    <p><i></i></p>
                   </div>
+                 </div>
                   <div class="form-group">
                     <div class="row">
                       <div class="col-md-3">

@@ -95,17 +95,23 @@ class Skeluar extends CI_Controller {
 			$namatujuan = "Dra. Erna Veronika";
 			$concat = "up.Ibu Wina Wibawa";
 		} elseif ($jenissurat == "Teguran") {
-			$namatujuan = $this->input->post('namatujuan');
+			$bpkibu = $this->input->post('bpkibu');
+			$namatjn = $this->input->post('namatujuan');
+			$namatujuan = $bpkibu." ".$namatjn ;
 			$jabatan = $this->input->post('tujuan1');
 			$tujuan = $this->input->post('tujuan');
 			$concat = $jabatan." ".$tujuan;
 		} elseif ($jenissurat == "Peringatan") {
-			$namatujuan = $this->input->post('namatujuan');
+			$bpkibu = $this->input->post('bpkibu');
+			$namatjn = $this->input->post('namatujuan');
+			$namatujuan = $bpkibu." ".$namatjn ;
 			$jabatan = $this->input->post('tujuan1');
 			$tujuan = $this->input->post('tujuan');
 			$concat = $jabatan." ".$tujuan;
 		} elseif ($jenissurat == "Pencairan") {
-			$namatujuan = $this->input->post('namatujuan');
+			$bpkibu = $this->input->post('bpkibu');
+			$namatjn = $this->input->post('namatujuan');
+			$namatujuan = $bpkibu." ".$namatjn ;
 			$jabatan = $this->input->post('tujuan1');
 			$tujuan = $this->input->post('tujuan');
 			$concat = $jabatan." ".$tujuan;
