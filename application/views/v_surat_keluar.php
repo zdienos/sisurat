@@ -431,7 +431,7 @@
 <!-- ====================================== pengelommpokkan jenis surat Teguran ==========================================  -->
                 <div id="Teguran">
                     <div class="form-group">
-                      <label>Pemeriksa</label>
+                      <label>Bagian Pemeriksa</label>
                       <input class="form-control" placeholder="Masukan Pemeriksa" type="text" name="pemeriksa">
                       <p><i>Contoh : "Bagian Keuangan"</i></p>
                     </div>

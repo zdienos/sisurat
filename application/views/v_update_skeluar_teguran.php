@@ -48,7 +48,7 @@
             <!-- pengelommpokkan jenis surat -->
                 <div id="TidakKuota">
                   <div class="form-group">
-                  <label>Pemeriksa</label>
+                  <label>Bagian Pemeriksa</label>
                   <input class="form-control" placeholder="Enter ..." type="text" name="pemeriksa"required="" value="<?= $usk['pemeriksa'] ?>" >
                   <p><i>Contoh : "Bagian Keuangan"</i></p>
                 </div>
