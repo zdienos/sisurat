@@ -17,13 +17,18 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo base_url('assets/dist/css/AdminLTE.min.css')?>">
   <link rel="stylesheet" href="<?php echo base_url('assets/dist/css/skins/skin-blue.min.css')?>">
-  <!-- fullCalendar 2.2.5-->
-  <link rel="stylesheet" href="<?php echo base_url('assets/fullcalendar/fullcalendar.min.css')?>">
-  <link rel="stylesheet" href="<?php echo base_url('assets/fullcalendar/ullcalendar.print.css')?>" media="print">
-  <link rel="stylesheet" href="<?php echo base_url('assets/fullcalendar/fullcalendar.css')?>">
+  <link rel="stylesheet" href="<?php echo base_url('assets/dist/css/skins/_all-skins.min.css')?>">
+  <!-- Morris chart -->
+  <link rel="stylesheet" href="<?php echo base_url('assets/bower_components/morris.js/morris.css')?>">
+  <!-- jvectormap -->
+  <link rel="stylesheet" href="<?php echo base_url('assets/bower_components/jvectormap/jquery-jvectormap.css')?>">
+  <!-- Date Picker -->
+  <link rel="stylesheet" href="<?php echo base_url('assets/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')?>">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="<?php echo base_url('assets/bower_components/bootstrap-daterangepicker/daterangepicker.css')?>">
   
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-yellow sidebar-mini ">
 <div class="wrapper">
 
   <!-- Main Header -->
@@ -104,7 +109,7 @@
       </div>
       <br><br><br>
       <!-- Sidebar Menu -->
-      <ul class="sidebar-menu">
+      <ul class="sidebar-menu" data-widget="tree">
       <!-- MENU DINAMIS -->
       <?php
       $main_menu = $this->db->get_where('tabel_menu',array('is_main_menu'=>0))->result();
@@ -113,8 +118,8 @@
           $submenu = $this->db->get_where('tabel_menu',array('is_main_menu'=>$main->id));
           if ($submenu->num_rows()>0) {
               //tampilkan submenu disini
-              echo "<li>
-              <a href='#'><i class='".$main->icon."'></i>".$main->judul_menu."</a>
+              echo "<li class='treeview'>
+              <a href='#'><i class='".$main->icon."'></i><span>".$main->judul_menu."</span></a>
               <ul class='treeview-menu'>";
               foreach ($submenu->result() as $sub){
                   echo "<li>".anchor($sub->link,"<i class='".$sub->icon."'></i>".$sub->judul_menu)."</li>";
@@ -124,7 +129,10 @@
               <!-- /.nav-second-level -->
               </li>";
           } else {
-              echo "<li>".anchor($main->link,"<i class='".$main->icon."'></i>".$main->judul_menu)."</li>";
+              echo "<li class='treeview'>".anchor($main->link,"<i class='".$main->icon."'></i><span>".$main->judul_menu)."</span></li>
+              <span class='pull-right-container'>
+              <i class='fa fa-angle-left pull-right'></i>
+            </span>";
           }
       }
       ?>
