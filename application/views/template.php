@@ -308,6 +308,7 @@ $('#btnDelCheckRow').click(function() {
           $('#mgm_biaya').hide();
           $('#mgm').hide();
           $('#biaya').hide();
+          $('#pengirim').show();
         } else if ($('#cjenissurat').val() == 'Transfer') {
           $('#Peringatan').hide();
           $('#Pencairan').hide();
