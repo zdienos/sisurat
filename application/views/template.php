@@ -146,7 +146,7 @@
 
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2018 <a href="#">Ganesha Operation</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2018 <a href="http://www.ganesha-operation.com/">Ganesha Operation</a>.</strong> All rights reserved.
   </footer>
 
   <!-- Add the sidebar's background. This div must be placed

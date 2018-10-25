@@ -431,7 +431,7 @@
 <!-- ====================================== pengelommpokkan jenis surat Teguran ==========================================  -->
                 <div id="Teguran">
                     <div class="form-group">
-                      <label>Pemeriksa</label>
+                      <label>Bagian Pemeriksa</label>
                       <input class="form-control" placeholder="Masukan Pemeriksa" type="text" name="pemeriksa">
                       <p><i>Contoh : "Bagian Keuangan"</i></p>
                     </div>
@@ -467,7 +467,7 @@
                     <div class="form-group">
                       <label>Total Tagihan</label>
                       <input class="form-control" placeholder="Masukan Total Tagihan" type="text" name="totaltagihan">
-                      <p><i>Contoh : "Rp.4.470.351"</i></p>
+                      <p><i>Contoh : "4.470.351"</i></p>
                     </div>
                     <div class="form-group">
                       <label>Nomer Rekening</label>
