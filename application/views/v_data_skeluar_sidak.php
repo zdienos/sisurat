@@ -1,7 +1,7 @@
     <section class="content-header">
-      <h1>
+      <h1> <span class="fa fa-line-chart"></span>
         Data Surat Keluar 
-        <small>advanced tables</small>
+        <small>Selamat Bekerja!</small>
       </h1>
     </section>
 
@@ -47,9 +47,9 @@
                   <th style="width: 10%;">No Surat</th>
                   <th style="width: 15%;">Prihal</th>
                   <th style="width: 15%;">Tujuan</th>
-                  <th style="width: 20%;">Nama Tujuan</th>
+                  <th style="width: 15%;">Nama Tujuan</th>
                   <th style="width: 10%;">Tanggal Sidak</th>
-                  <th style="width: 20%;"align="center"><span class="fa fa-gears"></span></th>
+                  <th style="width: 25%;"align="center"><span class="fa fa-gears"></span></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -65,10 +65,10 @@
                           <td><?= $srt->nama_penerima; ?></td>
                           <td><?= $srt->tgl_sidak; ?></td>
                           <td>
-                            <a href="<?= base_url('Skeluar/ubahsuratkeluar_sidak/'). $srt->no?>" class="btn btn-success btn-sm">Edit</a>
-                            <a href="<?= base_url('Skeluar/lihatsuratkeluar_sidak/') . $srt->no ?>" class=" btn btn-primary btn-sm">Lihat</a>
-                            <a href="<?= base_url('Skeluar/hapusDatasuratkeluar_sidak/') . $srt->no?>" class=" btn btn-danger btn-sm" onClick="return doconfirm();">Delete</a>
-                            <a href="<?= base_url('Skeluar/cetak_sidak/') . $srt->no?>" class="btn btn-info btn-sm">Cetak</a>
+                            <a href="<?= base_url('Skeluar/ubahsuratkeluar_sidak/'). $srt->no?>" class="btn btn-success btn-sm"><span class="fa fa-edit"></span> Edit</a>
+                            <a href="<?= base_url('Skeluar/lihatsuratkeluar_sidak/') . $srt->no ?>" class=" btn btn-primary btn-sm"> <span class="fa fa-eye"></span> Lihat</a>
+                            <a href="<?= base_url('Skeluar/hapusDatasuratkeluar_sidak/') . $srt->no?>" class=" btn btn-danger btn-sm" onClick="return doconfirm();"> <span class="fa fa-remove"></span> Delete</a>
+                            <a href="<?= base_url('Skeluar/cetak_sidak/') . $srt->no?>" class="btn btn-info btn-sm"> <span class="fa fa-print"></span> &nbspCetak</a>
                           </td>
                         </tr>
 

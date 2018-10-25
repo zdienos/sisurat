@@ -100,6 +100,7 @@ $bulan = explode("-", $date);
     }
 
 foreach($cetak as $l) { 
+//  print_r($cetak); exit();
   $no = $l['no'];
   $no_surat = $l['no_surat'];
   $perihal = $l['perihal'];
@@ -180,19 +181,19 @@ if ($jenis_pencairan == "mgm"){ ?>
   </table>
 
 <?php } elseif ($jenis_pencairan == "mgm dan pengembalian biaya") { ?>
-     <table border="1px" style="position: center;" class="data">
+     <table border="1px" style="position: center; text-align: left;" class="data">
     <tr>
-      <th style="width: 7%" rowspan="2">Tanggal</th>
-      <th style="width: 10%" rowspan="2">Bank</th>
+      <th style="width: 9%" rowspan="2">Tanggal</th>
+      <th style="width: 9%" rowspan="2">Bank</th>
       <th style="width: 10%" colspan="2">Pencairan MGM</th>
       <th style="width: 10%" colspan="2">Pengembalian Biaya</th>
-      <th style="width: 7%" rowspan="2">Total Order (Rp)</th>
-      <th style="width: 10%" rowspan="2">Total Jumlah Siswa</th>
+      <th style="width: 15%" rowspan="2">Total Order (Rp)</th>
+      <th style="width: 5%" rowspan="2">Total Jumlah Siswa</th>
     </tr>
     <tr>
-      <th style="width: 5%" >Jumlah Order (Rp)</th>
+      <th style="width: 15%" >Jumlah Order (Rp)</th>
       <th style="width: 5%" >Jumlah Siswa</th>
-      <th style="width: 5%" >Jumlah Order (Rp)</th>
+      <th style="width: 15%" >Jumlah Order (Rp)</th>
       <th style="width: 5%" >Jumlah Siswa</th>
     </tr>
     <?php 
@@ -207,11 +208,11 @@ if ($jenis_pencairan == "mgm"){ ?>
     <tr>
       <td><?php echo $l['tgl_pencairan'];?></td>
       <td><?php echo $l['bank'];?></td>
-      <td><?php echo number_format($l['jml_order_mgm']);?></td>
+      <td>Rp. <?php echo number_format($l['jml_order_mgm']);?></td>
       <td><?php echo $l['jml_siswa_mgm'];?></td>
-      <td><?php echo number_format($l['jml_order_biaya']);?></td>
+      <td>Rp. <?php echo number_format($l['jml_order_biaya']);?></td>
       <td><?php echo $l['jml_siswa_biaya'];?></td>
-      <td><?php echo number_format($l['tot_order']);?></td>
+      <td>Rp. <?php echo number_format($l['tot_order']);?></td>
       <td><?php echo $l['tot_siswa'];?></td>
     </tr>
     <?php  } ?>
@@ -227,6 +228,7 @@ if ($jenis_pencairan == "mgm"){ ?>
 <?php }?>
   
   <p> Demikian hal ini disampaikan. Atas Kerjasama yang baik kami ucapkan terimakasih.</p>
+  <br><br><br><br><br>
     <div id="ttd">
       <table>
         <tr><td style="text-align: left;">Terimakasih,</td></tr>

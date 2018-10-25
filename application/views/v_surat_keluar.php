@@ -258,8 +258,8 @@
                             <td><input name="bank_mb[]" value="" /></td>
                             <td><input name="jmlor_mgm_mb[]" value="" /></td>
                             <td><input name="jmlsis_mgm_mb[]" value="" size="5" /></td>
-                            <td><input name="jmlor_biaya_mb[]" value="" size="3" /></td>
-                            <td><input name="jmlsis_biaya_mb[]" value="" size="3" /></td>
+                            <td><input name="jmlor_biaya_mb[]" value=""  /></td>
+                            <td><input name="jmlsis_biaya_mb[]" value="" size="5" /></td>
                           </tr>
                         </tbody>
                       </table>

@@ -83,8 +83,8 @@
                             <td><input name="bank_mb[]" value="<?= $l['bank'] ?>" /></td>
                             <td><input name="jmlor_mgm_mb[]" value="<?= $l['jml_order_mgm'] ?>" /></td>
                             <td><input name="jmlsis_mgm_mb[]" value="<?= $l['jml_siswa_mgm'] ?>" size="5" /></td>
-                            <td><input name="jmlor_biaya_mb[]" value="<?= $l['jml_order_biaya'] ?>" size="3" /></td>
-                            <td><input name="jmlsis_biaya_mb[]" value="<?= $l['jml_siswa_biaya'] ?>" size="3" /></td>
+                            <td><input name="jmlor_biaya_mb[]" value="<?= $l['jml_order_biaya'] ?>"  /></td>
+                            <td><input name="jmlsis_biaya_mb[]" value="<?= $l['jml_siswa_biaya'] ?>" size="5" /></td>
                           </tr>
                         <?php }?>
                         </tbody>

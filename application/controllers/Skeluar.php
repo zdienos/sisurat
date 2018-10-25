@@ -526,8 +526,8 @@ class Skeluar extends CI_Controller {
 						'jml_siswa_mgm' => $input['jmlsis_mgm_mb'][$key],
 						'jml_order_biaya' => $input['jmlor_biaya_mb'][$key],
 						'jml_siswa_biaya' => $input['jmlsis_biaya_mb'][$key],
-						'tot_order' => $input['jmlor_mgm_mb'][$key] + $input['jmlor_biaya_mb'][$key],
-						'tot_siswa' => $input['jmlsis_mgm_mb'][$key] + $input['jmlsis_biaya_mb'][$key]
+						'tot_order' => (int)$input['jmlor_mgm_mb'][$key] + (int)$input['jmlor_biaya_mb'][$key],
+						'tot_siswa' => (int)$input['jmlsis_mgm_mb'][$key] + (int)$input['jmlsis_biaya_mb'][$key]
 						);	
 					$result2 = $this->m_keluar->saveDatasuratTransfer($add);
 				}
