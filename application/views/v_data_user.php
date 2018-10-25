@@ -9,7 +9,7 @@
       <div class="box">
 
             <div class="box-header">
-              <h3 class="box-title">Data Table</h3>
+              <h3 class="box-title"><span class="fa fa-files-o"></span> Data Table</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">

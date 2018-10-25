@@ -40,7 +40,7 @@
                 </div>
                 <div id="pengirim">
                  <div class="row">
-                  <div class="col-md-2">
+                  <div class="col-md-3">
                        <label>Bapak/Ibu</label>
                           <select name="bpkibu" class="form-control"> 
                             <option hidden="true" selected>Pilih</option>
@@ -49,7 +49,7 @@
                             <option value="">Lain-lain(kosong)</option>
                           </select>
                   </div>
-                  <div class="col-md-10">
+                  <div class="col-md-9">
                     <label>Nama Penerima</label>
                     <input class="form-control" placeholder="Masukan Nama Penerima" type="text" name="namatujuan">
                     <p><i></i></p>
@@ -136,12 +136,12 @@
                     </div>
                     <div class="form-group">
                       <label id="jml_disetujui">Jumlah Bayar yg Disetujui</label>
-                      <input class="form-control" placeholder="Masukan Jumlah yang disetujui" type="text" name="jumlahbayar_pt">
+                      <input class="form-control" placeholder="Masukan Data" type="text" name="jumlahbayar_pt">
                     </div>
                     <div class="form-group">
                       <label id="norek">Norek Siswa</label>
-                      <input class="form-control" placeholder="Masukan No. Rekening" type="text" name="norek">
-                      <p id="ketnorek"><i>Contoh: BRI <b>&lt;br&gt;</b> 0883 01 017263 530 <b>&lt;br&gt;</b> a.n Srimulyani | <b>&lt;br&gt;</b> untuk membuat baris baru (Enter)</i> </p>
+                      <input class="form-control" placeholder="Masukan Data" type="text" name="norek">
+                      <p id="ketnorek"><i>Bila di ACC Contoh: BRI <b>&lt;br&gt;</b> 0883 01 017263 530 <b>&lt;br&gt;</b> a.n Srimulyani | <b>&lt;br&gt;</b> untuk membuat baris baru (Enter)</i> </p>
                     </div>
                     <div class="form-group">
                       <label>Tembusan</label>
