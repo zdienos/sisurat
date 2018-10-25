@@ -35,14 +35,49 @@ class M_keluar extends CI_Model
 	      return false;
 	    }
 	  }
+
+	  function data_sidak($batas=null, $offset=null, $key=null)
+	  {
+	    if($batas != null) {
+	       $this->db->limit($batas,$offset);
+	    }
+	    if ($key != null) {
+	       $this->db->or_like($key);
+	    }
+	    $this->db->from('tb_sk_sidak');
+	    $this->db->order_by('no','DESC');
+
+	    $query = $this->db->get();
+
+	   // print_r($query)."zz"; exit();
+	    if ($query->num_rows() > 0) {
+	        return $query->result();
+	    } else {
+	      return false;
+	    }
+	  }
+ 
  
 	function jumlah_data(){
 		return $this->db->get('skeluar')->num_rows();
 	}
 
+	function jumlah_data_sidak(){
+		return $this->db->get('tb_sk_sidak')->num_rows();
+	}
+
 	function count_skeluar_search($orlike)
 	  {
 	    $this->db->from('skeluar');
+	    $this->db->or_like($orlike);
+
+	    $query = $this->db->get()->num_rows();
+	    return $query;
+	  }
+
+	  function count_skeluar_search_sidak($orlike)
+	  {
+	    $this->db->from('tb_sk_sidak');
 	    $this->db->or_like($orlike);
 
 	    $query = $this->db->get()->num_rows();
@@ -55,6 +90,31 @@ class M_keluar extends CI_Model
 		$query = $this->db->get('skeluar');
 		if ($query->num_rows() > 0) {
 			return $query->result();
+		} else {
+			return false;
+		}
+	}
+
+	function getNoSurat_sidak()
+	{
+		$this->db->select_max('no','no_surat');
+		$query = $this->db->get('tb_sk_sidak');
+		if ($query->num_rows() > 0) {
+			return $query->result();
+		} else {
+			return false;
+		}
+	}
+
+	function lihatsuratkeluar_sidak($no)
+	{
+		$this->db->from('tb_sk_sidak');
+	    $this->db->where('no', $no);
+
+	    $query = $this->db->get();
+
+		if ($query->num_rows() > 0) {
+			return $query->result_array();
 		} else {
 			return false;
 		}
@@ -136,6 +196,17 @@ class M_keluar extends CI_Model
 	function saveDatasuratkeluar($data)
 	{
 		$data = $this->db->insert('skeluar', $data);
+
+		if ($data) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	function saveDatasuratkeluar_sidak($data)
+	{
+		$data = $this->db->insert('tb_sk_sidak', $data);
 
 		if ($data) {
 			return true;
@@ -249,6 +320,17 @@ class M_keluar extends CI_Model
 		}
  	}
 
+ 	function updateDatasuratkeluar_sidak($data, $where)
+ 	{
+ 		$data = $this->db->update('tb_sk_sidak', $data, $where);
+
+ 		if ($data) {
+			return true;
+		} else {
+			return false;
+		}
+ 	}
+
  	function updateDatasuratkeluar2($data2, $where,$jenis_surat)
  	{
  		if ($jenis_surat == "Pencairan"){
@@ -311,6 +393,18 @@ class M_keluar extends CI_Model
 			return false;
 		}
  	}
+
+ 	function deleteDatasuratkeluar_sidak($where3)
+ 	{
+ 		$data3 = $this->db->delete('tb_sk_sidak', $where3);
+
+ 		if ($data3) {
+			return true;
+		} else {
+			return false;
+		}
+ 	}
+
 
  	function deleteDatasuratkeluar_transfer($where3)
  	{

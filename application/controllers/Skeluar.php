@@ -73,11 +73,67 @@ class Skeluar extends CI_Controller {
   		$this->pagination->initialize($config);
   		$data['paging']=$this->pagination->create_links();
   		$data['jlhpage']=$page;
-  		
   		$data['skeluar'] = $this->m_keluar->data($batas, $offset);
       // Akhir Pagination Pemohon
       // Awal load view Pemohon
       $this->template->load('template','v_data_skeluar',$data);
+	}
+
+	public function data_table_sidak()
+	{
+		$user = $this->model->getuser();
+		$data['username'] = $user['username'];
+		$data['jabatan'] = $user['jabatan'];
+		$data['id'] = $user['id'];
+
+		$page = $this->input->get('per_page');	
+  		$batas = 5;
+  		if (!$page) {
+  			$offset = 0;
+  		} else {
+  			$offset = $page;
+  		}
+
+  		$config['page_query_string'] = TRUE;
+  		$config['base_url'] = base_url().'Skeluar/data_table_sidak/?';
+  		$config['total_rows'] = $this->m_keluar->jumlah_data_sidak();
+  		$config['per_page'] = $batas;
+
+  		$config['uri_segment'] = $page;
+
+  		$config['full_tag_open'] = '<ul class="pagination">';
+  		$config['full_tag_close'] = '</ul>';
+
+  		$config['first_link'] = '&laquo; First';
+  		$config['first_tag_open'] = '<li class="prev page">';
+  		$config['first_tag_close'] = '</li>';
+
+  		$config['last_link'] = 'Last &raquo;';
+  		$config['last_tag_open'] = '<li class="next page">';
+  		$config['last_tag_close'] = '</li>';
+
+  		$config['next_link'] = 'Next <span class="fa fa-angle-right"></span>';
+  		$config['next_tag_open'] = '<li class="next page">';
+  		$config['next_tag_close'] = '</li>';
+
+  		$config['prev_link'] = '<span class="fa fa-angle-left"></span> Prev';
+  		$config['prev_tag_open'] = '<li class="prev page">';
+  		$config['prev_tag_close'] = '</li>';
+
+  		$config['cur_tag_open'] = '<li class="active"><a href="">';
+  		$config['cur_tag_close'] = '</a></li>';
+
+  		$config['num_tag_open'] = '<li class="page">';
+  		$config['num_tag_close'] = '</li>';
+
+  		$this->pagination->initialize($config);
+  		$data['paging_sidak']=$this->pagination->create_links();
+  		$data['jlhpage']=$page;
+  		
+  		$data['sidak'] = $this->m_keluar->data_sidak($batas, $offset);
+      // Akhir Pagination Pemohon
+      // Awal load view Pemohon
+      $this->template->load('template','v_data_skeluar_sidak',$data);
 	}
 
 	public function masukanData()
@@ -490,7 +546,60 @@ class Skeluar extends CI_Controller {
 			} else {
 				redirect(base_url('Skeluar/index'));
 			}
-		}
+		} elseif ($jenissurat == 'Sidak') {
+			$data= $this->m_keluar->getNoSurat_sidak();
+		
+			foreach($data as $row  => $val) {
+	            	$surat = $val->no_surat;
+	    	}
+
+	    	$no = $surat + 1;
+			$nosurat = $this->input->post('nosurat');
+			$perihal = $this->input->post('perihal_sidak');
+			$nama_penerima = $this->input->post('namapenerima_sidak');
+			$jabatan = $this->input->post('tujuan1_sidak');
+			$tujuan = $this->input->post('tujuan_sidak');
+			$tgl_sidak = $this->input->post('tgl_sidak');
+			$petugas_sidak = $this->input->post('petugas_sidak');
+			$tugas_sidak = $this->input->post('tugas_sidak');
+			$tembusan = $this->input->post('tembusan_sidak');
+
+			$tujuan_sidak = $jabatan." ".$tujuan;
+
+			$data = array(
+				'no' => $no,
+				'no_surat' => $nosurat,
+				'perihal' => $perihal,
+				'nama_penerima' => $nama_penerima,
+				'tujuan_penerima' => $tujuan_sidak,
+				'tgl_sidak' => $tgl_sidak,
+				'petugas_sidak' => $petugas_sidak,
+				'tugas_sidak' => $tugas_sidak,
+				'tembusan' => $tembusan
+			);
+
+			$result = $this->m_keluar->saveDatasuratkeluar_sidak($data);
+
+			if ($result) {
+				$user = $this->model->getuser();
+				$data['username'] = $user['username'];
+	  			$data['jabatan'] = $user['jabatan'];
+	  			$data['id'] = $user['id'];
+	  			$data['nama_lengkap'] = $user['nama_lengkap'];
+
+				$data['cetak'] = $this->m_keluar->lihatsuratkeluar_sidak($no);
+
+				$this->load->library('pdf');
+
+			    $this->pdf->setPaper('Letter', 'potrait');
+			    $this->pdf->filename = "laporan-".$jenissurat.".pdf";
+			    $this->pdf->load_view('v_cetak_Surat_Sidak', $data);
+
+			} else {
+				redirect(base_url('Skeluar/index'));
+			}
+	
+		} 
 	}
 
 
@@ -524,6 +633,22 @@ class Skeluar extends CI_Controller {
 	      redirect(base_url('skeluar/data_table'), 'refresh');
 	    }
 		
+	}
+
+	public function hapusDatasuratkeluar_sidak($no)
+	{
+		$where = array(
+			'no'=> $no
+		);
+
+		$data = $this->m_keluar->deleteDatasuratkeluar_sidak($where);	
+		
+		
+		if ($data >= 1) {
+	      $this->session->set_flashdata('success','Data berhasil dihapus!');
+	      $this->session->set_flashdata('message','Periksa kembali data Pemohon.');
+	      redirect(base_url('skeluar/data_table_sidak'), 'refresh');
+	    }
 	}
 
 	public function lihatsuratkeluar($no,$jenis_surat,$prihal)
@@ -565,6 +690,17 @@ class Skeluar extends CI_Controller {
 		}
 	
 	}
+
+	public function lihatsuratkeluar_sidak($no)
+	{
+		$user = $this->model->getuser();
+  			$data['username'] = $user['username'];
+  			$data['jabatan'] = $user['jabatan'];
+  			$data['id'] = $user['id'];
+		$data['lihat'] = $this->m_keluar->lihatsuratkeluar_sidak($no);
+		$this->template->load('template','v_lihat_sidak',$data);
+	}
+
 	public function cetaksuratkeluar($no,$jenis_surat,$prihal)
 	{
 		if (($prihal == 'Surat%20ACC%20Pencairan%20PT%20Kolektif')or($prihal == 'Surat%20Tidak%20ACC%20Pencairan%20PT%20Kolektif')) {
@@ -574,7 +710,6 @@ class Skeluar extends CI_Controller {
 		} elseif(($prihal == 'Surat%20ACC%20Pengembalian%20Kelas%20Tidak%20Kuota')or($prihal == 'Surat%20ACC%20Pengembalian%20Diskon%20Anak%20Guru')or($prihal == 'Surat%20ACC%20Pengembalian%20Pindah%20Program')or($prihal == 'Surat%20ACC%20Pengembalian%20Pengalihan%20Biaya')or($prihal == 'Surat%20ACC%20Pengembalian%20Diskon%20Karyawan')or($prihal == 'Surat%20ACC%20Pengembalian%20Diskon%20Pengajar')or($prihal == 'Surat%20ACC%20Pengembalian%20Kelebihan%20Bayar')or($prihal == 'Surat%20ACC%20Pengembalian%20Jaminan%20PTN')or($prihal == 'Surat%20ACC%20Pengembalian%20Jaminan%20SMA%20Favorit')or($prihal == 'Surat%20ACC%20Diskon%20Susulan')) {
 			$prihal = 3;
 		}
-
 
 		$user = $this->model->getuser();
   			$data['username'] = $user['username'];
@@ -670,6 +805,23 @@ class Skeluar extends CI_Controller {
 		}
 	}
 	
+	public function cetak_sidak($no)
+	{
+		$user = $this->model->getuser();
+		$data['username'] = $user['username'];
+  		$data['jabatan'] = $user['jabatan'];
+  		$data['id'] = $user['id'];
+  		$data['nama_lengkap'] = $user['nama_lengkap'];
+		$data['cetak'] = $this->m_keluar->lihatsuratkeluar_sidak($no);
+
+		$this->load->view('v_cetak_Surat_sidak', $data);
+	    $html=$this->output->get_output();
+	    $this->pdf->load_html($html);
+	    $this->pdf->setPaper('A4', 'potrait');
+		$this->pdf->render();
+		$this->pdf->stream("laporan.pdf",array('Attachment'=>0)); 
+	}
+
 	public function ubahDataskeluar($no,$jenis_surat,$prihal)
 	{
 		$user = $this->model->getuser();
@@ -709,6 +861,17 @@ class Skeluar extends CI_Controller {
 		}
 	}
 	
+	public function ubahsuratkeluar_sidak($no)
+	{
+		$user = $this->model->getuser();
+		$data['username'] = $user['username'];
+		$data['jabatan'] = $user['jabatan'];
+		$data['id'] = $user['id'];
+
+		$data['ubahskeluar'] = $this->m_keluar->lihatsuratkeluar_sidak($no);
+		$this->template->load('template','v_update_skeluar_sidak',$data);
+	}
+
 	public function gantiDataskeluar()
 	{
 		$no = $this->input->post('no');
@@ -827,6 +990,45 @@ class Skeluar extends CI_Controller {
 		      $this->session->set_flashdata('message','Periksa kembali data Pemohon.');
 		      redirect(base_url('skeluar/data_table'), 'refresh');
 		}
+	}
+
+	public function gantiDatasidak()
+	{
+		$no = $this->input->post('no');
+		$nosurat = $this->input->post('nosurat');
+		$perihal = $this->input->post('perihal_sidak');
+		$nama_penerima = $this->input->post('namapenerima_sidak');
+		$tujuan = $this->input->post('tujuan_sidak');
+		$tgl_sidak = $this->input->post('tgl_sidak');
+		$petugas_sidak = $this->input->post('petugas_sidak');
+		$tugas_sidak = $this->input->post('tugas_sidak');
+		$tembusan = $this->input->post('tembusan_sidak');
+
+		$data = array(
+			'no' => $no,
+			'no_surat' => $nosurat,
+			'perihal' => $perihal,
+			'nama_penerima' => $nama_penerima,
+			'tujuan_penerima' => $tujuan,
+			'tgl_sidak' => $tgl_sidak,
+			'petugas_sidak' => $petugas_sidak,
+			'tugas_sidak' => $tugas_sidak,
+			'tembusan' => $tembusan
+		);
+
+			$where = [
+				'no' => $no
+			];
+
+			$result = $this->m_keluar->updateDatasuratkeluar_sidak($data, $where);
+
+			if ($result) {
+			  $this->session->set_flashdata('success','Data berhasil di ubah!');
+		      $this->session->set_flashdata('message','Periksa kembali data Pemohon.');
+		      redirect(base_url('skeluar/data_table_sidak'), 'refresh');
+			} else {
+				redirect(base_url('skeluar/index'));
+			}
 	}
 
 	public function gantiDatasteguran()
@@ -1160,4 +1362,69 @@ class Skeluar extends CI_Controller {
 		 $this->template->load('template','v_data_skeluar',$data);
 	}
 	
+	public function search_sidak()
+	{
+		$user = $this->model->getuser();
+		$data['username'] = $user['username'];
+		$data['jabatan'] = $user['jabatan'];
+		$data['id'] = $user['id'];
+
+		$keyword = $this->input->get('keyword');
+
+		$search = array(
+			'no'=> $keyword,
+			'no_surat'=> $keyword,
+			'perihal' => $keyword,
+			'nama_penerima' =>$keyword,
+			'tujuan_penerima'=>$keyword,
+			'tgl_sidak'=>$keyword
+		);
+
+		$page = $this->input->get('per_page');
+		$batas = 5;
+		if (!$page) {
+			$offset = 0;
+		} else {
+			$offset = $page;
+		}
+
+		$config['page_query_string'] = TRUE;
+		$config['base_url'] = base_url().'Skeluar/search_sidak/?'.$keyword;
+		$config['total_rows'] = $this->m_keluar->count_skeluar_search_sidak($search);
+		$config['per_page'] = $batas;
+
+		$config['uri_segment'] = $page;
+
+		$config['full_tag_open'] = '<ul class="pagination">';
+		$config['full_tag_close'] = '</ul>';
+		$config['first_link'] = '&laquo; First';
+		$config['first_tag_open'] = '<li class="prev page">';
+		$config['first_tag_close'] = '</li>';
+
+		$config['last_link'] = 'Last &raquo;';
+		$config['last_tag_open'] = '<li class="next page">';
+		$config['last_tag_close'] = '</li>';
+
+		$config['next_link'] = 'Next <span class="fa fa-angle-right"></span>';
+		$config['next_tag_open'] = '<li class="next page">';
+		$config['next_tag_close'] = '</li>';
+
+		$config['prev_link'] = '<span class="fa fa-angle-left"></span> Prev';
+		$config['prev_tag_open'] = '<li class="prev page">';
+		$config['prev_tag_close'] = '</li>';
+
+		$config['cur_tag_open'] = '<li class="active"><a href="">';
+		$config['cur_tag_close'] = '</a></li>';
+
+		$config['num_tag_open'] = '<li class="page">';
+		$config['num_tag_close'] = '</li>';
+
+		$this->pagination->initialize($config);
+		$data['paging_sidak']=$this->pagination->create_links();
+		$data['jlhpage']=$page;
+
+		$data['sidak'] = $this->m_keluar->data_sidak($batas, $offset, $search);
+
+		 $this->template->load('template','v_data_skeluar_sidak',$data);
+	}
 }

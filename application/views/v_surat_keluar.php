@@ -208,6 +208,7 @@
                 <div class="form-group">
                   <label>Jenis Pencairan</label>
                   <select name="jenis_pencairan" id="jenis_pencairan" class="form-control">
+                    <option hidden="true" selected>Pilih Jenis Pencairan</option>
                     <option value="mgm">MGM</option>
                     <option value="pengembalian biaya">Pengembalian Biaya</option>
                     <option value="mgm dan pengembalian biaya">MGM dan Pengembalian Biaya</option>
@@ -321,6 +322,63 @@
         </div>
       </div>
 <!--========================================TRANFER PENCAIRAN SELESAI===========================================  -->
+
+<!--======================================== SURAT SIDAK ========================================================  -->
+      <div id="Sidak">
+        <div class="form-group">
+          <label>Perihal</label>
+          <input class="form-control" placeholder="Masukan Perihal" type="text" name="perihal_sidak">
+        </div>
+        <div class="form-group">
+          <label>Nama Penerima</label>
+          <input class="form-control" placeholder="Masukan Nama Penerima" type="text" name="namapenerima_sidak">
+        </div>
+         <div class="form-group">
+          <div class="row">
+            <div class="col-md-3">
+               <label>Jabatan Penerima</label>
+                <select name="tujuan1_sidak" class="form-control"> 
+                  <option hidden="true" selected>Pilih Jabatan</option>
+                  <option value="Kepala Wilayah">Kepala Wilayah</option>
+                  <option value="Kepala Cabang">Kepala Cabang</option>
+                  <option value="Kepala Rayon">Kepala Rayon</option>
+                  <option value="Kepala Unit">Kepala Unit</option>
+                  <option value="Kepala Sekretariat">Kepala Sekretariat</option>
+                  <option value="Plt. Kepala Cabang">Plt. Kepala Cabang</option>
+                  <option value="Plt. Kepala Unit">Plt. Kepala Unit</option>
+                  <option value="">Lain-lain</option>
+                </select>
+            </div>
+            <div class="col-md-9">
+               <label>Kota Penerima</label>
+               <input class="form-control" placeholder="Masukan Kota Penerima" type="text" name="tujuan_sidak">
+               <p><i>Jika Jabatan Penerima tidak ada dalam ComboBox Pilih lain-lain dan isi di kota Penerima Contoh: <b>... ... Surabaya</b></i></p>
+            </div>
+          </div>
+        </div>
+       <div class="form-group">
+        <label>Tanggal Sidak</label>
+        <input class="form-control" type="date" name="tgl_sidak"  placeholder="Masukan Tanggal dengan format ('YYYY/MM/DD')">
+        <p><i>Jika Format Tanggal Tidak keluar, Input dengan manual dengan format <b> ("YYYY/MM/DD") </b> </i></p>
+      </div>
+      <div class="form-group">
+        <label>Petugas Sidak - Jabatan Petugas Sidak</label>
+        <input class="form-control" type="text" name="petugas_sidak"  placeholder="Masukan Nama Petugas Sidak & Jabatan Sidak">
+        <ul><li><i>Pisahkan Nama Petugas dengan Jabatan dengan Strip <b>"-"</b></i></li>
+        <li><i>Jika Nama Petugas lebih dari satu pisahkan dengan Koma<b>","</b></i></p></li></ul>
+      </div>
+      <div class="form-group">
+        <label>Tugas Sidak</label>
+        <input class="form-control" placeholder="Masukan Tugas Sidak" type="text" name="tugas_sidak">
+      </div>
+      <div class="form-group">
+        <label>Tembusan</label>
+        <input class="form-control" placeholder="Masukan Tembusan" type="text" name="tembusan_sidak">
+        <p><i>Untuk memisahkan Tembusan beri tanda koma <b> (",") </b> tanpa spasi</i></p>
+      </div>
+    </div>
+<!--======================================== SURAT SIDAK SELESAI ================================================  -->
+
 
 
 <!-- ================================pengelommpokkan jenis surat Peringatan=======================================-->

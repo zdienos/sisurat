@@ -272,6 +272,7 @@ $('#btnDelCheckRow').click(function() {
       $('#biaya').hide();
       $('#Pembayaranpos').hide();
       $('#pengirim').hide();
+      $('#Sidak').hide();
 
       $('#cjenissurat').change(function() {
         if ($('#cjenissurat').val() == 'Pencairan') {
@@ -285,6 +286,7 @@ $('#btnDelCheckRow').click(function() {
           $('#biaya').hide();
           $('#Pembayaranpos').hide();
           $('#pengirim').show();
+          $('#Sidak').hide();
         } else if ($('#cjenissurat').val() == 'Peringatan') {
           $('#Peringatan').show();
           $('#Pencairan').hide();
@@ -298,6 +300,7 @@ $('#btnDelCheckRow').click(function() {
           $('#biaya').hide();
           $('#Pembayaranpos').hide();
           $('#pengirim').show();
+          $('#Sidak').hide();
         } else if ($('#cjenissurat').val() == 'Teguran') {
           $('#Peringatan').hide();
           $('#Pencairan').hide();
@@ -308,6 +311,7 @@ $('#btnDelCheckRow').click(function() {
           $('#mgm_biaya').hide();
           $('#mgm').hide();
           $('#biaya').hide();
+          $('#Sidak').hide();
         } else if ($('#cjenissurat').val() == 'Transfer') {
           $('#Peringatan').hide();
           $('#Pencairan').hide();
@@ -320,6 +324,7 @@ $('#btnDelCheckRow').click(function() {
           $('#mgm').hide();
           $('#biaya').hide();
           $('#Pembayaranpos').hide();
+          $('#Sidak').hide();
         } else if ($('#cjenissurat').val() == 'Pembayaran') {
           $('#Peringatan').hide();
           $('#Pencairan').hide();
@@ -332,6 +337,20 @@ $('#btnDelCheckRow').click(function() {
           $('#biaya').hide();
           $('#Pembayaranpos').show();
           $('#pengirim').hide();
+          $('#Sidak').hide();
+        } else if ($('#cjenissurat').val() == 'Sidak') {
+          $('#Peringatan').hide();
+          $('#Pencairan').hide();
+          $('#Teguran').hide();
+          $('#prihal').hide();
+          $('#Pencairan3').hide();
+          $('#Transfer').hide();
+          $('#mgm_biaya').hide();
+          $('#mgm').hide();
+          $('#biaya').hide();
+          $('#Pembayaranpos').hide();
+          $('#pengirim').hide();
+          $('#Sidak').show();
         }
       });
 
@@ -346,6 +365,7 @@ $('#btnDelCheckRow').click(function() {
              $('#mgm_biaya').hide();
              $('#mgm').hide();
              $('#biaya').hide();
+             $('#Sidak').hide();
            } else {
              $('#Pencairan').show();
              $('#Pencairan3').hide();
@@ -355,6 +375,7 @@ $('#btnDelCheckRow').click(function() {
              $('#mgm_biaya').hide();
              $('#mgm').hide();
              $('#biaya').hide();
+             $('#Sidak').hide();
            }
          });
 
@@ -369,6 +390,7 @@ $('#btnDelCheckRow').click(function() {
              $('#mgm_biaya').hide();
              $('#mgm').show();
              $('#biaya').hide();
+             $('#Sidak').hide();
            } else if ($('#jenis_pencairan').val() == 'pengembalian biaya'){
              $('#Pencairan').hide();
              $('#Pencairan3').hide();
@@ -378,6 +400,7 @@ $('#btnDelCheckRow').click(function() {
              $('#mgm_biaya').hide();
              $('#mgm').hide();
              $('#biaya').show();
+             $('#Sidak').hide();
            }  else if ($('#jenis_pencairan').val() == 'mgm dan pengembalian biaya'){
              $('#Pencairan').hide();
              $('#Pencairan3').hide();
@@ -387,6 +410,7 @@ $('#btnDelCheckRow').click(function() {
              $('#mgm_biaya').show();
              $('#mgm').hide();
              $('#biaya').hide();
+             $('#Sidak').hide();
            }
          });
 

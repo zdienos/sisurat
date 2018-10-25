@@ -1,16 +1,16 @@
     <section class="content-header">
       <h1>
-        Data Surat Keluar
+        Data Surat Keluar 
         <small>advanced tables</small>
       </h1>
     </section>
 
 <section class="content">
-  <div class="panel panel-default">
+   <div class="panel panel-default">
             <div class="panel-body">
               <a href="<?= base_url('Skeluar/index/')?>" class="btn btn-primary"><span class="fa fa-plus-circle"></span> Buat Surat</a>
               <div class="col-md-4 pull-right">
-                <form action="<?php echo site_url('Skeluar/search') ?>" method="get">
+                <form action="<?php echo site_url('Skeluar/search_sidak') ?>" method="get">
                   <div class="input-group input-group-sm">
                     <input type="text" class="form-control" name="keyword">
                       <span class="input-group-btn">
@@ -20,7 +20,7 @@
                 </form>
               </div>
             </div>
-          </div>
+          </div> 
 
           <?php if ($this->session->flashdata('success')) { ?>
             <div class="alert alert-danger alert-dismissible">
@@ -34,8 +34,8 @@
       <div class="box">
 
             <div class="box-header">
-              <a href="<?= base_url('Skeluar/data_table/')?>" class="btn btn-default">Data Surat</a>
-              <?php if($username == "bunia"){?>
+                  <a href="<?= base_url('Skeluar/data_table/')?>" class="btn btn-default">Data Surat</a>
+              <?php if($jabatan == "Kasie Keuangan"){?>
                   <a href="<?= base_url('Skeluar/data_table_sidak/')?>" class="btn btn-default">Data Sidak</a>
               <?php }?>
             </div>
@@ -48,40 +48,32 @@
                   <th style="width: 15%;">Prihal</th>
                   <th style="width: 15%;">Tujuan</th>
                   <th style="width: 20%;">Nama Tujuan</th>
-                  <th style="width: 10%;">Jenis Surat</th>
-                  <th style="width: 10%;">Tanggal Surat</th>
+                  <th style="width: 10%;">Tanggal Sidak</th>
                   <th style="width: 20%;"align="center"><span class="fa fa-gears"></span></th>
                 </tr>
                 </thead>
                 <tbody>
                     <div id="notifications"><?php echo $this->session->flashdata('msg'); ?></div>
                     <?php 
-                    if (!empty($skeluar)){
-                    foreach($skeluar as $srt){ ?>
+                    if (!empty($sidak)){
+                    foreach($sidak as $srt){ ?>
 
                         <tr>
                           <td><?php echo $srt->no ."/". $srt->no_surat;?></td>
                           <td><?= $srt->perihal; ?></td>
-                          <td><?= $srt->tujuan; ?></td>
-                          <td><?= $srt->nama_tujuan; ?></td>
-                          <td><?= $srt->jenis_surat; ?></td>
-                          <td><?= $srt->tgl_SuratKeluar; ?></td>
+                          <td><?= $srt->tujuan_penerima; ?></td>
+                          <td><?= $srt->nama_penerima; ?></td>
+                          <td><?= $srt->tgl_sidak; ?></td>
                           <td>
-                          <?php 
-                          if($jabatan == "Kasie Keuangan"){ ?>
-                            <a href="<?= base_url('Skeluar/ubahDataskeluar/'). $srt->no.'/'. $srt->jenis_surat.'/'. $srt->perihal ?>" class="btn btn-success btn-sm">Edit</a>
-                            <a href="<?= base_url('Skeluar/lihatsuratkeluar/') . $srt->no.'/'. $srt->jenis_surat.'/'. $srt->perihal ?>" class=" btn btn-primary btn-sm">Lihat</a>
-                            <a href="<?= base_url('Skeluar/hapusDatasuratkeluar/') . $srt->no.'/'. $srt->jenis_surat.'/'. $srt->perihal ?>" class=" btn btn-danger btn-sm" onClick="return doconfirm();">Delete</a>
-                            <a href="<?= base_url('Skeluar/cetaksuratkeluar/') . $srt->no.'/'. $srt->jenis_surat.'/'. $srt->perihal ?>" class="btn btn-info btn-sm">Cetak</a>
-                          <?php } else{ ?>
-                            <a href="<?= base_url('Skeluar/ubahDataskeluar/'). $srt->no.'/'. $srt->jenis_surat.'/'. $srt->perihal ?>" class="btn-sm btn btn-success">Edit</a>
-                            <a href="<?= base_url('Skeluar/lihatsuratkeluar/') . $srt->no.'/'. $srt->jenis_surat.'/'. $srt->perihal ?>" class="btn-sm btn btn-primary">Lihat</a>
-                            <a href="<?= base_url('Skeluar/cetaksuratkeluar/') . $srt->no.'/'. $srt->jenis_surat.'/'. $srt->perihal ?>" class="btn-sm btn btn-info">Cetak</a>
+                            <a href="<?= base_url('Skeluar/ubahsuratkeluar_sidak/'). $srt->no?>" class="btn btn-success btn-sm">Edit</a>
+                            <a href="<?= base_url('Skeluar/lihatsuratkeluar_sidak/') . $srt->no ?>" class=" btn btn-primary btn-sm">Lihat</a>
+                            <a href="<?= base_url('Skeluar/hapusDatasuratkeluar_sidak/') . $srt->no?>" class=" btn btn-danger btn-sm" onClick="return doconfirm();">Delete</a>
+                            <a href="<?= base_url('Skeluar/cetak_sidak/') . $srt->no?>" class="btn btn-info btn-sm">Cetak</a>
                           </td>
                         </tr>
 
                     <?php 
-                       } } 
+                       } 
                     } else { ?>
 
                     <tr>
@@ -94,7 +86,7 @@
                 </tbody>
               </table> 
 
-               <?php echo $paging ?>
+               <?php echo $paging_sidak ?>
             </div>
             <!-- /.box-body -->
 </div>
