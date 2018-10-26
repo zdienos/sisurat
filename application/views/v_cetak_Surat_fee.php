@@ -103,6 +103,7 @@ foreach($cetak as $l) {
   $no = $l['no'];
   $no_surat = $l['no_surat'];
   $perihal = $l['perihal'];
+  $tidak_acc = explode(" ", $perihal);
   $lampiran = $l['lampiran'];
   $tujuan = $l['tujuan'];
   $nama_tujuan = $l['nama_tujuan'];
@@ -159,7 +160,7 @@ foreach($cetak as $l) {
    <tr class="total"><td colspan="7"><p></p></td><td>Total</td><td>Rp. <?php echo number_format($tot);?></td><td><p></p></td></tr>
   </table>
  
-  <p> Demikian hal ini disampaikan. Untuk pencairan dana harap diajukan ke Bidang Akuntansi. Atas Kerjasama nya kami ucapkan terimakasih.</p>
+  <p> Demikian hal ini disampaikan. <?php if($tidak_acc[1] != "Tidak"){?>Untuk pencairan dana harap diajukan ke Bidang Akuntansi. <?php }?> Atas Kerjasama nya kami ucapkan terimakasih.</p>
  <?php 
  if($kacab[1] != "Cabang" ){ ?>
     <table>
