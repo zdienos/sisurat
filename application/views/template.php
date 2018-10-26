@@ -17,13 +17,18 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo base_url('assets/dist/css/AdminLTE.min.css')?>">
   <link rel="stylesheet" href="<?php echo base_url('assets/dist/css/skins/skin-blue.min.css')?>">
-  <!-- fullCalendar 2.2.5-->
-  <link rel="stylesheet" href="<?php echo base_url('assets/fullcalendar/fullcalendar.min.css')?>">
-  <link rel="stylesheet" href="<?php echo base_url('assets/fullcalendar/ullcalendar.print.css')?>" media="print">
-  <link rel="stylesheet" href="<?php echo base_url('assets/fullcalendar/fullcalendar.css')?>">
+  <link rel="stylesheet" href="<?php echo base_url('assets/dist/css/skins/_all-skins.min.css')?>">
+  <!-- Morris chart -->
+  <link rel="stylesheet" href="<?php echo base_url('assets/bower_components/morris.js/morris.css')?>">
+  <!-- jvectormap -->
+  <link rel="stylesheet" href="<?php echo base_url('assets/bower_components/jvectormap/jquery-jvectormap.css')?>">
+  <!-- Date Picker -->
+  <link rel="stylesheet" href="<?php echo base_url('assets/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')?>">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="<?php echo base_url('assets/bower_components/bootstrap-daterangepicker/daterangepicker.css')?>">
   
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-yellow sidebar-mini ">
 <div class="wrapper">
 
   <!-- Main Header -->
@@ -104,7 +109,7 @@
       </div>
       <br><br><br>
       <!-- Sidebar Menu -->
-      <ul class="sidebar-menu">
+      <ul class="sidebar-menu" data-widget="tree">
       <!-- MENU DINAMIS -->
       <?php
       $main_menu = $this->db->get_where('tabel_menu',array('is_main_menu'=>0))->result();
@@ -113,8 +118,8 @@
           $submenu = $this->db->get_where('tabel_menu',array('is_main_menu'=>$main->id));
           if ($submenu->num_rows()>0) {
               //tampilkan submenu disini
-              echo "<li>
-              <a href='#'><i class='".$main->icon."'></i>".$main->judul_menu."</a>
+              echo "<li class='treeview'>
+              <a href='#'><i class='".$main->icon."'></i><span>".$main->judul_menu."</span></a>
               <ul class='treeview-menu'>";
               foreach ($submenu->result() as $sub){
                   echo "<li>".anchor($sub->link,"<i class='".$sub->icon."'></i>".$sub->judul_menu)."</li>";
@@ -124,7 +129,10 @@
               <!-- /.nav-second-level -->
               </li>";
           } else {
-              echo "<li>".anchor($main->link,"<i class='".$main->icon."'></i>".$main->judul_menu)."</li>";
+              echo "<li class='treeview'>".anchor($main->link,"<i class='".$main->icon."'></i><span>".$main->judul_menu)."</span></li>
+              <span class='pull-right-container'>
+              <i class='fa fa-angle-left pull-right'></i>
+            </span>";
           }
       }
       ?>
@@ -427,9 +435,12 @@ function gantilabel() {
   var x = document.getElementById("prihal_fee").value;
   var jml_disetujui = document.getElementById("jml_disetujui").innerHTML; 
   var norek = document.getElementById("norek").innerHTML; 
+  var ketnorek = document.getElementById("ketnorek").innerHTML; 
 
   var ganti_jml = jml_disetujui.replace("Jumlah Bayar yg Disetujui", "ACC Marketing");   
   var ganti_acc = jml_disetujui.replace("ACC Marketing", "Jumlah Bayar yg Disetujui");
+
+  var ganti_ket_2 = ketnorek.replace("<i> Untuk membuat baris baru (Enter) tambahkan '<b>&lt;br&gt;</b>' | Contoh: BRI <b>&lt;br&gt;</b> 0883 01 017263 530 <b>&lt;br&gt;</b> a.n Srimulyani</i>","&nbsp");
 
   var ganti_norek = norek.replace("Norek Siswa", "Keterangan Tidak ACC");   
   var ganti_ket = norek.replace("Keterangan Tidak ACC", "Norek Siswa");
@@ -437,9 +448,11 @@ function gantilabel() {
     if((x == "Surat Tidak ACC Pengembalian Kelas Tidak Kuota") || (x == "Surat Tidak ACC Pengembalian Diskon Anak Guru") || (x == "Surat Tidak ACC Pengembalian Pindah Program")|| (x == "Surat Tidak ACC Pengembalian Pengalihan Biaya") || (x == "Surat Tidak ACC Pengembalian Diskon Karyawan")|| (x == "Surat Tidak ACC Pengembalian Diskon Pengajar")|| (x == "Surat Tidak ACC Pengembalian Kelebihan Bayar")|| (x == "Surat Tidak ACC Pengembalian Jaminan PTN")|| (x == "Surat Tidak ACC Pengembalian Jaminan SMA Favorit")|| (x == "Surat Tidak ACC Diskon Susulan")){
     document.getElementById("jml_disetujui").innerHTML = ganti_jml;
     document.getElementById("norek").innerHTML = ganti_norek;        
+    document.getElementById("ketnorek").innerHTML = ganti_ket_2;        
     } else{
       document.getElementById("jml_disetujui").innerHTML = ganti_acc;                     
       document.getElementById("norek").innerHTML = ganti_ket;
+      document.getElementById("ketnorek").innerHTML = "<i> Untuk membuat baris baru (Enter) tambahkan '<b>&lt;br&gt;</b>' | Contoh: BRI <b>&lt;br&gt;</b> 0883 01 017263 530 <b>&lt;br&gt;</b> a.n Srimulyani</i>";
     }
 }
 </script>
