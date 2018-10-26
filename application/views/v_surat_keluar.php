@@ -100,7 +100,6 @@
                       <option value="Surat ACC Diskon Susulan">Surat ACC Diskon Susulan</option>
                       <option value="Surat Tidak ACC Pencairan PT Kolektif">Surat Tidak ACC Pencairan PT Kolektif</option>
                       <option value="Surat Tidak ACC Pencairan Fee Bimker">Surat Tidak ACC Pencairan Fee Bimker</option>
-
                       <option value="Surat Tidak ACC Pengembalian Kelas Tidak Kuota">Surat Tidak ACC Pengembalian Kelas Tidak Kuota</option>
                       <option value="Surat Tidak ACC Pengembalian Diskon Anak Guru">Surat Tidak ACC Pengembalian Diskon Anak Guru</option>
                       <option value="Surat Tidak ACC Pengembalian Pindah Program">Surat Tidak ACC Pengembalian Pindah Program</option>
@@ -141,7 +140,7 @@
                     <div class="form-group">
                       <label id="norek">Norek Siswa</label>
                       <input class="form-control" placeholder="Masukan Data" type="text" name="norek">
-                      <p id="ketnorek"><i>Bila di ACC Contoh: BRI <b>&lt;br&gt;</b> 0883 01 017263 530 <b>&lt;br&gt;</b> a.n Srimulyani | <b>&lt;br&gt;</b> untuk membuat baris baru (Enter)</i> </p>
+                      <p id="ketnorek"></p>
                     </div>
                     <div class="form-group">
                       <label>Tembusan</label>

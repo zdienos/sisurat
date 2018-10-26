@@ -435,9 +435,12 @@ function gantilabel() {
   var x = document.getElementById("prihal_fee").value;
   var jml_disetujui = document.getElementById("jml_disetujui").innerHTML; 
   var norek = document.getElementById("norek").innerHTML; 
+  var ketnorek = document.getElementById("ketnorek").innerHTML; 
 
   var ganti_jml = jml_disetujui.replace("Jumlah Bayar yg Disetujui", "ACC Marketing");   
   var ganti_acc = jml_disetujui.replace("ACC Marketing", "Jumlah Bayar yg Disetujui");
+
+  var ganti_ket_2 = ketnorek.replace("<i> Untuk membuat baris baru (Enter) tambahkan '<b>&lt;br&gt;</b>' | Contoh: BRI <b>&lt;br&gt;</b> 0883 01 017263 530 <b>&lt;br&gt;</b> a.n Srimulyani</i>","&nbsp");
 
   var ganti_norek = norek.replace("Norek Siswa", "Keterangan Tidak ACC");   
   var ganti_ket = norek.replace("Keterangan Tidak ACC", "Norek Siswa");
@@ -445,9 +448,11 @@ function gantilabel() {
     if((x == "Surat Tidak ACC Pengembalian Kelas Tidak Kuota") || (x == "Surat Tidak ACC Pengembalian Diskon Anak Guru") || (x == "Surat Tidak ACC Pengembalian Pindah Program")|| (x == "Surat Tidak ACC Pengembalian Pengalihan Biaya") || (x == "Surat Tidak ACC Pengembalian Diskon Karyawan")|| (x == "Surat Tidak ACC Pengembalian Diskon Pengajar")|| (x == "Surat Tidak ACC Pengembalian Kelebihan Bayar")|| (x == "Surat Tidak ACC Pengembalian Jaminan PTN")|| (x == "Surat Tidak ACC Pengembalian Jaminan SMA Favorit")|| (x == "Surat Tidak ACC Diskon Susulan")){
     document.getElementById("jml_disetujui").innerHTML = ganti_jml;
     document.getElementById("norek").innerHTML = ganti_norek;        
+    document.getElementById("ketnorek").innerHTML = ganti_ket_2;        
     } else{
       document.getElementById("jml_disetujui").innerHTML = ganti_acc;                     
       document.getElementById("norek").innerHTML = ganti_ket;
+      document.getElementById("ketnorek").innerHTML = "<i> Untuk membuat baris baru (Enter) tambahkan '<b>&lt;br&gt;</b>' | Contoh: BRI <b>&lt;br&gt;</b> 0883 01 017263 530 <b>&lt;br&gt;</b> a.n Srimulyani</i>";
     }
 }
 </script>
