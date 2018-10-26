@@ -950,14 +950,10 @@ class Skeluar extends CI_Controller {
 		$userid = $this->input->post('userid');
 		$tanggal = $this->input->post('tanggal');
 		$loktujuan = $this->input->post('loktujuan');
-		$nip = $this->input->post('nip');
-		$spke = $this->input->post('spke');
 		$kesalahan = $this->input->post('kesalahan');
 		$tembusan = $this->input->post('tembusan');
 
-		$cek = $this->m_keluar->cekperingatan($nip,$spke);
-			
-		if ($cek == NULL){
+
 			$data = array(
 				'no_surat' => $nosurat,
 				'perihal' => $prihal,
@@ -972,10 +968,8 @@ class Skeluar extends CI_Controller {
 			$data2 = array(
 				'no_surat' => $nosurat,
 				'loktujuan' => $loktujuan,
-				'nip' => $nip,
-				'spke' => $spke,
 				'kesalahan' => $kesalahan,
-				'tembusan' => $tembusan
+				'tembu0san' => $tembusan
 			);
 
 			$where = [
@@ -992,16 +986,6 @@ class Skeluar extends CI_Controller {
 			} else {
 				redirect(base_url('skeluar/ubahDatasmasuk'));
 			}
-		}else{
-				foreach ($cek as $key => $value) {
-					$nip = $value->nip;
-					$spke = $value->spke;
-				}
-				
-			  $this->session->set_flashdata('success','NIP '.$nip.' tersebut sudah dapat SP '.$spke.' !');
-		      $this->session->set_flashdata('message','Periksa kembali data Pemohon.');
-		      redirect(base_url('skeluar/data_table'), 'refresh');
-		}
 	}
 
 	public function gantiDatasidak()
