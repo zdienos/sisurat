@@ -379,11 +379,13 @@
         <label>Petugas Sidak - Jabatan Petugas Sidak</label>
         <input class="form-control" type="text" name="petugas_sidak"  placeholder="Masukan Nama Petugas Sidak & Jabatan Sidak">
         <ul><li><i>Pisahkan Nama Petugas dengan Jabatan dengan Strip <b>"-"</b></i></li>
-        <li><i>Jika Nama Petugas lebih dari satu pisahkan dengan Koma<b>","</b></i></p></li></ul>
+        <li><i>Jika Nama Petugas lebih dari satu pisahkan dengan Koma<b>","</b></i></li>
+        <li><i>Contoh : Agus suparman - staff keuangan,Diki Firmansyah - staff keuangan,...</i></p></li></ul>
       </div>
       <div class="form-group">
         <label>Tugas Sidak</label>
         <input class="form-control" placeholder="Masukan Tugas Sidak" type="text" name="tugas_sidak">
+        <p><i>Contoh : Administrasi Keuangan,Akuntansi, dan Tangible</i></p>
       </div>
       <div class="form-group">
         <label>Tembusan</label>
@@ -466,7 +468,6 @@
                     <div class="form-group">
                       <label>Total Tagihan</label>
                       <input class="form-control" placeholder="Masukan Total Tagihan" type="text" name="totaltagihan">
-                      <p><i>Contoh : "4.470.351"</i></p>
                     </div>
                     <div class="form-group">
                       <label>Nomer Rekening</label>
