@@ -4,32 +4,25 @@ class m_user extends CI_Model
 {
 	//model Surat masuk
 
-	function viewDatauser()
-	{
-		$this->db->from('user');
+	function data($batas=null, $offset=null, $key=null)
+	  {
+	    if($batas != null) {
+	       $this->db->limit($batas,$offset);
+	    }
+	    if ($key != null) {
+	       $this->db->or_like($key);
+	    }
+	    $this->db->from('user');
+	    $this->db->order_by('id','DESC');
+		$this->db->order_by("nama_lengkap", "asc");
 
-		$query = $this->db->get();
-		
-		if ($query->num_rows() > 0) {
-			return $query->result();
-		} else {
-			return false;
-		}
-	}
-
-	function lihatuser($where)
-	{
-		$this->db->from('user');
-		$this->db->where($where);
-
-		$query = $this->db->get();
-		
-		if ($query->num_rows() > 0) {
-			return $query->result();
-		} else {
-			return false;
-		}
-	}
+	    $query = $this->db->get();
+	    if ($query->num_rows() > 0) {
+	        return $query->result();
+	    } else {
+	      return false;
+	    }
+	  }
 
 	function saveDatauser($data)
 	{
@@ -40,6 +33,10 @@ class m_user extends CI_Model
 		} else {
 			return false;
 		}
+	}
+
+	function jumlah_data(){
+		return $this->db->get('user')->num_rows();
 	}
 
 	function getDatauser($where)

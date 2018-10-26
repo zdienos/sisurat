@@ -243,7 +243,7 @@ class Skeluar extends CI_Controller {
 			    $this->pdf->setPaper('Letter', 'potrait');
 			    $this->pdf->filename = "laporan-".$jenissurat.".pdf";
 			    $this->pdf->load_view('v_cetak_Surat_pengembalian', $data);
-
+			    redirect(base_url('Skeluar/data_table'));
 			} else {
 				redirect(base_url('Skeluar/index'));
 			}

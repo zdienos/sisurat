@@ -128,7 +128,7 @@ foreach($cetak as $l) {
       <tr>
         <td><center><?php echo $l['nama_siswa'];?></center></td>
         <td><center><?php echo $l['kelas'];?></center></td>
-        <td><center><?php echo $l['jumlahbayar'];?></center></td>
+        <td><center>Rp.<?php echo number_format($l['jumlahbayar']);?></center></td>
         <td><center><?php echo $l['pengembaliannorek'];?></center></td>
       </tr>
     </tbody>
