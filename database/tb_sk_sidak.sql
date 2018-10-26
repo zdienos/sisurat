@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 25, 2018 at 08:47 AM
--- Server version: 10.1.36-MariaDB
--- PHP Version: 7.2.10
+-- Waktu pembuatan: 26 Okt 2018 pada 06.25
+-- Versi server: 10.1.36-MariaDB
+-- Versi PHP: 5.6.38
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_sk_sidak`
+-- Struktur dari tabel `tb_sk_sidak`
 --
 
 CREATE TABLE `tb_sk_sidak` (
@@ -41,14 +41,14 @@ CREATE TABLE `tb_sk_sidak` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_sk_sidak`
+-- Dumping data untuk tabel `tb_sk_sidak`
 --
 
 INSERT INTO `tb_sk_sidak` (`no`, `no_surat`, `perihal`, `nama_penerima`, `tujuan_penerima`, `tgl_sidak`, `petugas_sidak`, `tugas_sidak`, `tembusan`) VALUES
 (3, 'rger', 'sidak', 'ibu dra.', 'Kepala Unit Ganesha operation st 35', '2018-01-01', 'Ima-staff sidak,hani-staff keuangan, maliah- staff keuangan', 'Administrasi, Akuntansi, dan tangible', 'hani,maliah,ima'),
 (4, 'rger', 'sidak', 'ibu dra.', 'Kepala Unit Ganesha operation st 35', '2018-01-01', 'Ima-staff sidak,hani-staff keuangan, maliah- staff keuangan', 'Administrasi, Akuntansi, dan tangible', 'hani,maliah,ima'),
 (5, 'rger', 'sidak', 'ibu dra.', 'Kepala Unit Ganesha operation st 35', '2018-01-01', 'Ima-staff sidak,hani-staff keuangan, maliah- staff keuangan', 'Administrasi, Akuntansi, dan tangible', 'hani,maliah,ima'),
-(6, 'rger', 'sidak', 'ibu dra.', 'Kepala Unit Ganesha operation st 35', '2018-01-01', 'Ima-staff sidak,hani-staff keuangan,maliah-staff keuangan', 'Administrasi, Akuntansi, dan tangible', 'hani,maliah,ima'),
+(6, 'rger', 'sidak', 'ibu dra.asdfa', 'Kepala Unit Ganesha operation st 35', '2018-01-01', 'Ima-staff sidak,hani-staff keuangan,maliah-staff keuangan', 'Administrasi, Akuntansi, dan tangible', 'hani,maliah,ima'),
 (7, 'dgd', 'hdf', 'hdfh', 'Kepala Unit hdsfh', '2018-02-01', 'hdhdh', 'herh', 'hreh'),
 (8, 'gerg', 'grg', 'reg', 'Kepala Rayon Ganesha operation st 35', '2018-01-01', 'Ima-staff sidak,hani-staff keuangan,maliah- staff keuangan', 'Administrasi, Akuntansi, dan tangible', 'hani,maliah,ima');
 COMMIT;
