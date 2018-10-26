@@ -477,7 +477,7 @@
                 </div>
 <!-- ================================================================================================================== -->
 
-                <button type="submit" class="pull-right btn btn-primary" id=""><span class="fa fa-save"></span> Save</button>
+                <button type="submit" class="pull-right btn btn-primary" id=""><span class="fa fa-save"></span>&nbsp&nbsp&nbspSave</button>
             </form>
       </div>
     </section>

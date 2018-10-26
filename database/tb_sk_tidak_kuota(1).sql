@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 24 Okt 2018 pada 10.51
+-- Waktu pembuatan: 26 Okt 2018 pada 06.25
 -- Versi server: 10.1.36-MariaDB
 -- Versi PHP: 5.6.38
 
@@ -36,7 +36,7 @@ CREATE TABLE `tb_sk_tidak_kuota` (
   `unit` varchar(50) NOT NULL,
   `jumlahbayar` varchar(150) NOT NULL,
   `pengembaliannorek` varchar(200) NOT NULL,
-  `tembusan` varchar(100) NOT NULL,
+  `tembusan` text NOT NULL,
   `tgl_marketing` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -63,7 +63,7 @@ INSERT INTO `tb_sk_tidak_kuota` (`no`, `no_surat`, `nama_siswa`, `kelas`, `unit`
 (28, 'asdf', 'asdf', 'asdf', 'asdf', 'asdf', 'asdf', 'asdf', '2018-10-16'),
 (29, 'asdf', 'adsf', 'asdf', 'asdf', 'adsf', 'adsf', 'adf', '2018-10-04'),
 (30, 'aasdf', 'adf', 'adf', 'asdf', 'adf', 'adf', 'adsf,afadf,adf', '2018-10-10'),
-(31, 'aasdf', 'asdf', 'asdf', 'asdf', 'asdf', 'asdf', 'asdf', '2018-10-23');
+(35, 'asdfasdf', 'asdf', 'asdf', 'asdf', 'asdf', 'asdf', 'asdf,asdf,asdf,asdf,asdf,asdf,asdf', '2018-10-03');
 
 --
 -- Indexes for dumped tables
