@@ -1423,4 +1423,20 @@ class Skeluar extends CI_Controller {
 
 		 $this->template->load('template','v_data_skeluar_sidak',$data);
 	}
+
+	public function gantistatus($no,$status)
+	{
+		$data2 = array('status' => $status );
+		$where = ['no' => $no ];
+
+		$data = $this->m_keluar->gantistatus($data2,$where);
+
+		if($data){
+			$this->session->set_flashdata('success','Status Data berhasil diubah !');
+		    redirect(base_url('skeluar/data_table'), 'refresh');
+		}else{
+			$this->session->set_flashdata('success','Status Data Tidak Berhasil diubah !');
+		    redirect(base_url('skeluar/data_table'), 'refresh');
+		}
+	}
 }

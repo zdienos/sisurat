@@ -438,5 +438,16 @@ class M_keluar extends CI_Model
 			return $query = '';
 		}
  	}
+
+ 	function gantistatus($data, $where)
+ 	{
+ 		$data = $this->db->update('skeluar', $data, $where);
+
+ 		if ($data) {
+			return true;
+		} else {
+			return false;
+		}
+ 	}
 }
 ?>
