@@ -444,6 +444,7 @@
                     <div class="form-group">
                       <label>Teguran</label>
                       <input class="form-control" placeholder="Masukan Teguran" type="text" name="teguran">
+                      <p><i>Untuk memisahkan Teguran beri tanda koma <b> (",") </b> tanpa spasi</i></p>
                     </div>
                     <div class="form-group">
                       <label>Nasihat</label>

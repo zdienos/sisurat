@@ -57,13 +57,8 @@
                       <input class="form-control" value="<?= $usk['nip'] ?>"  placeholder="Enter ..." type="text" required="" name="nip">
                     </div>
                     <div class="form-group">
-                      <label>SP Ke</label>
-                      <select class="form-control" name="spke">
-                        <option value="1" <?php if ($usk['spke'] == 1) echo "selected";?> >1</option>
-                        <option value="2" <?php if ($usk['spke'] == 2) echo "selected";?>>2</option>
-                        <option value="3" <?php if ($usk['spke'] == 3) echo "selected";?>>3</option>
-
-                      </select>
+                      <label>SP ke</label>
+                      <input class="form-control" value="<?= $usk['spke'] ?>"  placeholder="Enter ..." type="text" required="" name="spke" readonly="">
                     </div>
                     <div class="form-group">
                       <label>Kesalahan</label>

@@ -60,6 +60,7 @@
                     <div class="form-group">
                       <label>Teguran</label>
                       <input class="form-control" value="<?= $usk['teguran'] ?>" placeholder="Enter ..." type="text" required="" name="teguran">
+                      <p><i>Untuk memisahkan Teguran beri tanda koma <b> (",") </b> tanpa spasi</i></p>
                     </div>
                     <div class="form-group">
                       <label>Nasihat</label>
