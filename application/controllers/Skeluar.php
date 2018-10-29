@@ -969,7 +969,7 @@ class Skeluar extends CI_Controller {
 				'no_surat' => $nosurat,
 				'loktujuan' => $loktujuan,
 				'kesalahan' => $kesalahan,
-				'tembu0san' => $tembusan
+				'tembusan' => $tembusan
 			);
 
 			$where = [
