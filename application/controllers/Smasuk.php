@@ -11,6 +11,7 @@ class Smasuk extends CI_Controller {
 
 	public function data_table()
 	{
+		if ($this->session->userdata('log_in')) {
 		$user = $this->model->getuser();
   	    $data['username'] = $user['username'];
         $data['jabatan'] = $user['jabatan'];
@@ -64,15 +65,22 @@ class Smasuk extends CI_Controller {
       // Akhir Pagination Pemohon
       // Awal load view Pemohon
       $this->template->load('template','v_data_smasuk',$data);
+      } else {
+    	  redirect(site_url('login'), 'refresh');
+    	}	
 	}
 
 	public function index()
 	{
+		if ($this->session->userdata('log_in')) {
 			$user = $this->model->getuser();
   			$data['username'] = $user['username'];
   			$data['jabatan'] = $user['jabatan'];
   			$data['id'] = $user['id'];
 		$this->template->load('template','v_surat_masuk',$data);
+		} else {
+    	  redirect(site_url('login'), 'refresh');
+    	}	
 	}
 
 	public function masukanData()
@@ -85,6 +93,7 @@ class Smasuk extends CI_Controller {
 		$tanggal = $this->input->post('tanggal');
 		$tgl_input = $this->input->post('tgl_input');
 		$userid = $this->input->post('userid');
+		$jenissurat =$this->input->post('jenissurat');
 
 		$data = array(
 			'no_surat' => $nosurat,
@@ -94,7 +103,8 @@ class Smasuk extends CI_Controller {
 			'keterangan' => $keterangan,
 			'tanggal' => $tanggal,
 			'tgl_input' => $tgl_input,
-			'userid' => $userid
+			'userid' => $userid,
+			'jenissurat' => $jenissurat
 		);
 
 		$result = $this->m_surat->saveDatasuratmasuk($data);
@@ -127,6 +137,7 @@ class Smasuk extends CI_Controller {
 
 	public function lihatsuratmasuk($id)
 	{
+		if ($this->session->userdata('log_in')) {
 		$user = $this->model->getuser();
   			$data['username'] = $user['username'];
   			$data['jabatan'] = $user['jabatan'];
@@ -136,10 +147,14 @@ class Smasuk extends CI_Controller {
 		];
 		$data['lihat'] = $this->m_surat->lihatsuratmasuk($where);
 		$this->template->load('template','v_lihat_smasuk',$data);
+		} else {
+    	  redirect(site_url('login'), 'refresh');
+    	}	
 	}
 
 	public function ubahDatasmasuk($id)
 	{
+		if ($this->session->userdata('log_in')) {
 			$user = $this->model->getuser();
   			$data['username'] = $user['username'];
   			$data['jabatan'] = $user['jabatan'];
@@ -152,10 +167,14 @@ class Smasuk extends CI_Controller {
 		$data['ubahsurat'] = $this->m_surat->getDatasuratmasuk($where);
 		
 		$this->template->load('template','v_update_smasuk', $data);
+		} else {
+    	  redirect(site_url('login'), 'refresh');
+    	}	
 	}
 	
 	public function gantiDatasmasuk()
 	{
+
 		$id = $this->input->post('id');
 		$nosurat = $this->input->post('nosurat');
 		$hal = $this->input->post('hal');
@@ -165,6 +184,7 @@ class Smasuk extends CI_Controller {
 		$tanggal = $this->input->post('tanggal');
 		$tgl_input = $this->input->post('tgl_input');
 		$userid = $this->input->post('userid');
+		$jenissurat =$this->input->post('jenissurat');
 
 		$data = array(
 			'no_surat' => $nosurat,
@@ -174,7 +194,8 @@ class Smasuk extends CI_Controller {
 			'keterangan' => $keterangan,
 			'tanggal' => $tanggal,
 			'tgl_input' => $tgl_input,
-			'userid' => $userid
+			'userid' => $userid,
+			'jenissurat' => $jenissurat
 		);
 
 		$where = [
@@ -192,6 +213,7 @@ class Smasuk extends CI_Controller {
 
 	public function search()
 	{
+		if ($this->session->userdata('log_in')) {
 		$user = $this->model->getuser();
 		$data['username'] = $user['username'];
 		$data['jabatan'] = $user['jabatan'];
@@ -255,5 +277,8 @@ class Smasuk extends CI_Controller {
 		$data['link'] = $this->m_surat->data($batas, $offset, $search);
 
 		 $this->template->load('template','v_data_smasuk',$data);
+		 } else {
+    	  redirect(site_url('login'), 'refresh');
+    	}	
 	}
 }

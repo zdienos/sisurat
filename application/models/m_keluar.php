@@ -283,6 +283,7 @@ class M_keluar extends CI_Model
 	
 	function ubahsuratkeluar($no,$jenis_surat)
 	{
+
 		if(($jenis_surat == 'Pencairan') or ($jenis_surat == 'Pencairan')){
 			$this->db->from('skeluar');
 		    $this->db->join('tb_sk_tidak_kuota', 'skeluar.no = tb_sk_tidak_kuota.no');
@@ -436,6 +437,17 @@ class M_keluar extends CI_Model
 			return $query->result();
 		} else {
 			return $query = '';
+		}
+ 	}
+
+ 	function gantistatus($data, $where)
+ 	{
+ 		$data = $this->db->update('skeluar', $data, $where);
+
+ 		if ($data) {
+			return true;
+		} else {
+			return false;
 		}
  	}
 }

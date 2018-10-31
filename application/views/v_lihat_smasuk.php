@@ -27,6 +27,7 @@
                   <tr><td>Tanggal Surat</td> <td><?= $srt->tanggal;?></td></tr>
                   <tr><td>Tanggal Input</td> <td><?= $srt->tgl_input;?></td></tr>
                   <tr><td>Yang Menginput</td> <td><?= $srt->userid;?></td></tr>
+                  <tr><td>Jenis Surat</td> <td><?= $srt->jenissurat;?></td></tr>
                 </tbody>
                     <?php 
                         }

@@ -13,6 +13,14 @@
                 <input class="form-control" placeholder="Enter ..." type="hidden" name="userid" required="" value="<?= $username; ?>">
                 <!-- text input -->
                 <div class="form-group">
+                  <label>Jenis Surat Masuk</label>
+                    <select name="jenissurat" class="form-control"> 
+                       <option hidden="true" selected>Pilih</option>
+                       <option value="Email">Email</option>
+                       <option value="Ekspedisi">Ekspedisi</option>
+                    </select>
+                </div>
+                <div class="form-group">
                   <label>No Surat</label>
                   <input class="form-control" placeholder="Masukan No Surat" type="text" name="nosurat" id="nosurat" required="">
                 </div>

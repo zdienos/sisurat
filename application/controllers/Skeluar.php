@@ -25,6 +25,7 @@ class Skeluar extends CI_Controller {
 
 	public function data_table()
 	{
+		if ($this->session->userdata('log_in')) {
 		$user = $this->model->getuser();
 		$data['username'] = $user['username'];
 		$data['jabatan'] = $user['jabatan'];
@@ -77,10 +78,14 @@ class Skeluar extends CI_Controller {
       // Akhir Pagination Pemohon
       // Awal load view Pemohon
       $this->template->load('template','v_data_skeluar',$data);
+      } else {
+    	  redirect(site_url('login'), 'refresh');
+    	}	
 	}
 
 	public function data_table_sidak()
 	{
+		if ($this->session->userdata('log_in')) {
 		$user = $this->model->getuser();
 		$data['username'] = $user['username'];
 		$data['jabatan'] = $user['jabatan'];
@@ -134,10 +139,14 @@ class Skeluar extends CI_Controller {
       // Akhir Pagination Pemohon
       // Awal load view Pemohon
       $this->template->load('template','v_data_skeluar_sidak',$data);
+      } else {
+    	  redirect(site_url('login'), 'refresh');
+    	}	
 	}
 
 	public function masukanData()
 	{
+		if ($this->session->userdata('log_in')) {
 		$data= $this->m_keluar->getNoSurat();
 		
 		foreach($data as $row  => $val) {
@@ -197,6 +206,7 @@ class Skeluar extends CI_Controller {
 				'nama_tujuan' => $namatujuan,
 				'tujuan' => $concat,
 				'jenis_surat' => $jenissurat,
+				'status' => 'Proses',
 				'tgl_SuratKeluar' => $tanggal,
 				'userid' => $userid
 
@@ -606,11 +616,15 @@ class Skeluar extends CI_Controller {
 			}
 	
 		} 
+		} else {
+    	  redirect(site_url('login'), 'refresh');
+    	}	
 	}
 
 
 	public function hapusDatasuratkeluar($no,$jenissurat,$prihal)
 	{
+
 		if (($prihal == 'Surat%20ACC%20Pencairan%20PT%20Kolektif')or($prihal == 'Surat%20Tidak%20ACC%20Pencairan%20PT%20Kolektif')or($prihal == 'Surat%20ACC%20Pencairan%20Fee%20Bimker')or($prihal == 'Surat%20Tidak%20ACC%20Pencairan%20Fee%20Bimker')){
 			$prihal = 1;
 		} elseif(($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Kelas%20Tidak%20Kuota')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Anak%20Guru')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Pindah%20Program')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Pengalihan%20Biaya')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Karyawan')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Pengajar')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Kelebihan%20Bayar')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Jaminan%20PTN')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Jaminan%20SMA%20Favorit')or($prihal == 'Surat%20Tidak%20ACC%20Diskon%20Susulan')) {
@@ -665,6 +679,7 @@ class Skeluar extends CI_Controller {
 
 	public function lihatsuratkeluar($no,$jenis_surat,$prihal)
 	{
+		if ($this->session->userdata('log_in')) {
 		$user = $this->model->getuser();
   			$data['username'] = $user['username'];
   			$data['jabatan'] = $user['jabatan'];
@@ -700,21 +715,29 @@ class Skeluar extends CI_Controller {
 			$data['lihat'] = $this->m_keluar->lihatsuratkeluar_transfer($no,$jenis_surat);
 			$this->template->load('template','v_lihat_skeluar_transfer',$data);
 		}
+		} else {
+    	  redirect(site_url('login'), 'refresh');
+    	}	
 	
 	}
 
 	public function lihatsuratkeluar_sidak($no)
 	{
+		if ($this->session->userdata('log_in')) {
 		$user = $this->model->getuser();
   			$data['username'] = $user['username'];
   			$data['jabatan'] = $user['jabatan'];
   			$data['id'] = $user['id'];
 		$data['lihat'] = $this->m_keluar->lihatsuratkeluar_sidak($no);
 		$this->template->load('template','v_lihat_sidak',$data);
+		} else {
+    	  redirect(site_url('login'), 'refresh');
+    	}	
 	}
 
 	public function cetaksuratkeluar($no,$jenis_surat,$prihal)
 	{
+		if ($this->session->userdata('log_in')) {
 		if (($prihal == 'Surat%20ACC%20Pencairan%20PT%20Kolektif')or($prihal == 'Surat%20Tidak%20ACC%20Pencairan%20PT%20Kolektif')or($prihal == 'Surat%20ACC%20Pencairan%20Fee%20Bimker')or($prihal == 'Surat%20Tidak%20ACC%20Pencairan%20Fee%20Bimker')) {
 			$prihal = 1;
 		} elseif(($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Kelas%20Tidak%20Kuota')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Anak%20Guru')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Pindah%20Program')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Pengalihan%20Biaya')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Karyawan')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Pengajar')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Kelebihan%20Bayar')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Jaminan%20PTN')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Jaminan%20SMA%20Favorit')or($prihal == 'Surat%20Tidak%20ACC%20Diskon%20Susulan')) {
@@ -815,10 +838,14 @@ class Skeluar extends CI_Controller {
 			$this->pdf->render();
 			$this->pdf->stream("laporan.pdf",array('Attachment'=>0)); 
 		}
+		} else {
+    	  redirect(site_url('login'), 'refresh');
+    	}	
 	}
 	
 	public function cetak_sidak($no)
 	{
+		if ($this->session->userdata('log_in')) {
 		$user = $this->model->getuser();
 		$data['username'] = $user['username'];
   		$data['jabatan'] = $user['jabatan'];
@@ -832,10 +859,14 @@ class Skeluar extends CI_Controller {
 	    $this->pdf->setPaper('A4', 'potrait');
 		$this->pdf->render();
 		$this->pdf->stream("laporan.pdf",array('Attachment'=>0)); 
+		} else {
+    	  redirect(site_url('login'), 'refresh');
+    	}	
 	}
 
 	public function ubahDataskeluar($no,$jenis_surat,$prihal)
 	{
+		if ($this->session->userdata('log_in')) {
 		$user = $this->model->getuser();
 		$data['username'] = $user['username'];
 		$data['jabatan'] = $user['jabatan'];
@@ -871,10 +902,14 @@ class Skeluar extends CI_Controller {
 			$data['ubahskeluar'] = $this->m_keluar->lihatsuratkeluar_transfer($no,$jenis_surat);
 			$this->template->load('template','v_update_skeluar_transfer',$data);
 		}
+		} else {
+    	  redirect(site_url('login'), 'refresh');
+    	}	
 	}
 	
 	public function ubahsuratkeluar_sidak($no)
 	{
+		if ($this->session->userdata('log_in')) {
 		$user = $this->model->getuser();
 		$data['username'] = $user['username'];
 		$data['jabatan'] = $user['jabatan'];
@@ -882,6 +917,9 @@ class Skeluar extends CI_Controller {
 
 		$data['ubahskeluar'] = $this->m_keluar->lihatsuratkeluar_sidak($no);
 		$this->template->load('template','v_update_skeluar_sidak',$data);
+		} else {
+    	  redirect(site_url('login'), 'refresh');
+    	}	
 	}
 
 	public function gantiDataskeluar()
@@ -1292,6 +1330,7 @@ class Skeluar extends CI_Controller {
 
 	public function search()
 	{
+		if ($this->session->userdata('log_in')) {
 		$user = $this->model->getuser();
 		$data['username'] = $user['username'];
 		$data['jabatan'] = $user['jabatan'];
@@ -1356,10 +1395,14 @@ class Skeluar extends CI_Controller {
 		$data['skeluar'] = $this->m_keluar->data($batas, $offset, $search);
 
 		 $this->template->load('template','v_data_skeluar',$data);
+		 } else {
+    	  redirect(site_url('login'), 'refresh');
+    	}	
 	}
 	
 	public function search_sidak()
 	{
+		if ($this->session->userdata('log_in')) {
 		$user = $this->model->getuser();
 		$data['username'] = $user['username'];
 		$data['jabatan'] = $user['jabatan'];
@@ -1422,5 +1465,24 @@ class Skeluar extends CI_Controller {
 		$data['sidak'] = $this->m_keluar->data_sidak($batas, $offset, $search);
 
 		 $this->template->load('template','v_data_skeluar_sidak',$data);
+		 } else {
+    	  redirect(site_url('login'), 'refresh');
+    	}	
+	}
+
+	public function gantistatus($no,$status)
+	{
+		$data2 = array('status' => $status );
+		$where = ['no' => $no ];
+
+		$data = $this->m_keluar->gantistatus($data2,$where);
+
+		if($data){
+			$this->session->set_flashdata('success','Status Data berhasil diubah !');
+		    redirect(base_url('skeluar/data_table'), 'refresh');
+		}else{
+			$this->session->set_flashdata('success','Status Data Tidak Berhasil diubah !');
+		    redirect(base_url('skeluar/data_table'), 'refresh');
+		}
 	}
 }

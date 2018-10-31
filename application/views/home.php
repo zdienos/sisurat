@@ -115,10 +115,10 @@
             </div>
             <div class="box-footer no-padding">
               <ul class="nav nav-stacked">
-                <li><a href="#">Analisis Data<span class="pull-right badge bg-blue">11</span></a></li>
-                <li><a href="#">Pengembalian<span class="pull-right badge bg-aqua">8</span></a></li>
-                <li><a href="#">Kwitansi<span class="pull-right badge bg-green">8</span></a></li>
-                <li><a href="#">Storan<span class="pull-right badge bg-red">7</span></a></li>
+                <li><a href="#">Analisis Data<span class="pull-right badge bg-blue">11 Orang</span></a></li>
+                <li><a href="#">Pengembalian<span class="pull-right badge bg-aqua">8 Orang</span></a></li>
+                <li><a href="#">Kwitansi<span class="pull-right badge bg-green">8 Orang</span></a></li>
+                <li><a href="#">Storan<span class="pull-right badge bg-red">7 Orang</span></a></li>
               </ul>
             </div>
           </div>
