@@ -147,7 +147,7 @@ class Skeluar extends CI_Controller {
         $no = $surat + 1;
 		$nosurat = $this->input->post('nosurat');
 		$jenissurat = $this->input->post('cjenissurat');
-		if ($jenissurat != "Teguran" and $jenissurat != "Peringatan" and $jenissurat != "Pencairan") {
+		if ($jenissurat != "Teguran" and $jenissurat != "Peringatan" and $jenissurat != "Pencairan" and $jenissurat != "Pengecekan") {
 			$namatujuan = "Dra. Erna Veronika";
 			$concat = "up.Ibu Wina Wibawa";
 		} elseif ($jenissurat == "Teguran") {
@@ -171,12 +171,19 @@ class Skeluar extends CI_Controller {
 			$jabatan = $this->input->post('tujuan1');
 			$tujuan = $this->input->post('tujuan');
 			$concat = $jabatan." ".$tujuan;
+		} elseif ($jenissurat == "Pengecekan") {
+			$bpkibu = $this->input->post('bpkibu');
+			$namatjn = $this->input->post('namatujuan');
+			$namatujuan = $bpkibu." ".$namatjn ;
+			$jabatan = $this->input->post('tujuan1');
+			$tujuan = $this->input->post('tujuan');
+			$concat = $jabatan." ".$tujuan;
 		}
 		
 		$userid = $this->input->post('userid');
 		$tanggal = $this->input->post('tanggal');
 
-		if($jenissurat != "Teguran" and $jenissurat != "Peringatan" and $jenissurat != "Pembayaran" and $jenissurat != "Transfer" ){
+		if($jenissurat != "Teguran" and $jenissurat != "Peringatan" and $jenissurat != "Pembayaran" and $jenissurat != "Transfer" and $jenissurat != "Pengecekan" ){
 			$prihal = $this->input->post('prihal');
 		} elseif ($jenissurat == "Teguran") {
 			$prihal = "Surat Teguran";
@@ -186,6 +193,8 @@ class Skeluar extends CI_Controller {
 			$prihal = "Surat Pembayaran Ekspedisi Pengiriman Barang POS GIRO";
 		} elseif ($jenissurat == "Transfer") {
 			$prihal = "Surat Transfer Pencairan ";
+		} elseif ($jenissurat == "Pengecekan") {
+			$prihal = "Surat Pengecekan Transfer";
 		}
 		
 			
@@ -197,6 +206,7 @@ class Skeluar extends CI_Controller {
 				'nama_tujuan' => $namatujuan,
 				'tujuan' => $concat,
 				'jenis_surat' => $jenissurat,
+				'status' => 'Proses',
 				'tgl_SuratKeluar' => $tanggal,
 				'userid' => $userid
 
@@ -490,7 +500,7 @@ class Skeluar extends CI_Controller {
 					$result2 = $this->m_keluar->saveDatasuratTransfer($add);
 				}
 
-			} elseif ($jenis_pencairan == "pengembalian biaya"){ 
+		} elseif ($jenis_pencairan == "pengembalian biaya"){ 
 				$input = $this->input->post();
 
 				$total_post= count($this->input->post('bank_b'));
@@ -510,7 +520,7 @@ class Skeluar extends CI_Controller {
 					$result2 = $this->m_keluar->saveDatasuratTransfer($add);
 				}
 
-			} elseif ($jenis_pencairan == "mgm dan pengembalian biaya"){ 
+		} elseif ($jenis_pencairan == "mgm dan pengembalian biaya"){ 
 				$input = $this->input->post();
 
 				$total_post= count($this->input->post('bank_mb'));
@@ -552,6 +562,7 @@ class Skeluar extends CI_Controller {
 			} else {
 				redirect(base_url('Skeluar/index'));
 			}
+
 		} elseif ($jenissurat == 'Sidak') {
 			$data= $this->m_keluar->getNoSurat_sidak();
 		
@@ -605,7 +616,55 @@ class Skeluar extends CI_Controller {
 				redirect(base_url('Skeluar/index'));
 			}
 	
-		} 
+		} elseif ($jenissurat == 'Pengecekan') {
+			
+			$cku = $this->input->post('cku');
+			$norektrs = $this->input->post('norektransfer');
+			$tgltransfer = $this->input->post('tgltransfer');
+			$namatransfer = $this->input->post('namatransfer');
+			$norekpentransfer = $this->input->post('norekpentransfer');
+			$nominal = $this->input->post('nominal');
+			$hasil = $this->input->post('hasil');
+			$tglkonfirmasi = $this->input->post('tglkonfirmasi');
+
+
+			$data2 = array(
+				'no' => $no,
+				'no_surat' => $nosurat,
+				'cku' => $cku,
+				'norektrs' => $norektrs,
+				'tgltransfer' => $tgltransfer,
+				'namatransfer' => $namatransfer,
+				'norekpentransfer' => $norekpentransfer,
+				'nominal' => $nominal,
+				'hasil' => $hasil,
+				'tglkonfirmasi' => $tglkonfirmasi
+				
+				
+			);
+
+			$result = $this->m_keluar->saveDatasuratkeluar($data);
+			$result2 = $this->m_keluar->saveDataspengecekan($data2);
+
+			if ($result && $result2) {
+				$user = $this->model->getuser();
+				$data['username'] = $user['username'];
+	  			$data['jabatan'] = $user['jabatan'];
+	  			$data['id'] = $user['id'];
+	  			$data['nama_lengkap'] = $user['nama_lengkap'];
+				$data['cetak'] = $this->m_keluar->lihatsuratkeluar($no,$jenissurat);
+
+				$this->load->library('pdf');
+
+			    $this->pdf->setPaper('Letter', 'potrait');
+			    $this->pdf->filename = "laporan-".$jenissurat.".pdf";
+			    $this->pdf->load_view('v_cetak_Surat_pengecekan', $data);
+
+			} else {
+				redirect(base_url('Skeluar/index'));
+			}
+	
+		}
 	}
 
 
@@ -636,6 +695,8 @@ class Skeluar extends CI_Controller {
 		} elseif($jenissurat == 'Pembayaran'){
 			$data = $this->m_keluar->deleteDatasuratkeluar($jenissurat,$where);	
 		} elseif($jenissurat == 'Transfer'){
+			$data = $this->m_keluar->deleteDatasuratkeluar($jenissurat,$where);	
+		} elseif($jenissurat == 'Pengecekan'){
 			$data = $this->m_keluar->deleteDatasuratkeluar($jenissurat,$where);	
 		}
 		
@@ -699,6 +760,9 @@ class Skeluar extends CI_Controller {
 		} elseif ($jenis_surat == 'Transfer') {
 			$data['lihat'] = $this->m_keluar->lihatsuratkeluar_transfer($no,$jenis_surat);
 			$this->template->load('template','v_lihat_skeluar_transfer',$data);
+		} elseif ($jenis_surat == 'Pengecekan') {
+			$data['lihat'] = $this->m_keluar->lihatsuratkeluar($no,$jenis_surat);
+			$this->template->load('template','v_lihat_pengecekan',$data);
 		}
 	
 	}
@@ -814,6 +878,20 @@ class Skeluar extends CI_Controller {
 		    $this->pdf->setPaper('A4', 'potrait');
 			$this->pdf->render();
 			$this->pdf->stream("laporan.pdf",array('Attachment'=>0)); 
+		}elseif ($jenis_surat == 'Pengecekan') {
+			$user = $this->model->getuser();
+			$data['username'] = $user['username'];
+	  		$data['jabatan'] = $user['jabatan'];
+	  		$data['id'] = $user['id'];
+	  		$data['nama_lengkap'] = $user['nama_lengkap'];
+			$data['cetak'] = $this->m_keluar->lihatsuratkeluar($no);
+
+			$this->load->view('v_cetak_Surat_pengecekan', $data);
+		    $html=$this->output->get_output();
+		    $this->pdf->load_html($html);
+		    $this->pdf->setPaper('A4', 'potrait');
+			$this->pdf->render();
+			$this->pdf->stream("laporan.pdf",array('Attachment'=>0));
 		}
 	}
 	
@@ -1422,5 +1500,21 @@ class Skeluar extends CI_Controller {
 		$data['sidak'] = $this->m_keluar->data_sidak($batas, $offset, $search);
 
 		 $this->template->load('template','v_data_skeluar_sidak',$data);
+	}
+
+	public function gantistatus($no,$status)
+	{
+		$data2 = array('status' => $status );
+		$where = ['no' => $no ];
+
+		$data = $this->m_keluar->gantistatus($data2,$where);
+
+		if($data){
+			$this->session->set_flashdata('success','Status Data berhasil diubah !');
+		    redirect(base_url('skeluar/data_table'), 'refresh');
+		}else{
+			$this->session->set_flashdata('success','Status Data Tidak Berhasil diubah !');
+		    redirect(base_url('skeluar/data_table'), 'refresh');
+		}
 	}
 }

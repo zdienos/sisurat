@@ -29,6 +29,7 @@
                     <option value="Pencairan">Surat Pencairan</option>
                     <option value="Teguran">Surat Teguran</option>
                     <option value="Peringatan">Surat Peringatan</option>
+                    <option value="Pengecekan">Surat Pengecekan</option>
                     <?php 
                       if (($username == "bunia") || ($username == "bu dewi") || ($username == "pakalvin")) { ?>
                       <option value="Transfer"> Surat Transfer Pencairan </option>
@@ -87,7 +88,6 @@
                     <option hidden="true" selected>Pilih Perihal</option>
                       <option value="Surat ACC Pencairan PT Kolektif">Surat ACC Pencairan PT Kolektif</option>
                       <option value="Surat ACC Pencairan Fee Bimker">Surat ACC Pencairan Fee Bimker</option>
-
                       <option value="Surat ACC Pengembalian Kelas Tidak Kuota">Surat ACC Pengembalian Kelas Tidak Kuota</option>
                       <option value="Surat ACC Pengembalian Diskon Anak Guru">Surat ACC Pengembalian Diskon Anak Guru</option>
                       <option value="Surat ACC Pengembalian Pindah Program">Surat ACC Pengembalian Pindah Program</option>
@@ -444,6 +444,7 @@
                     <div class="form-group">
                       <label>Teguran</label>
                       <input class="form-control" placeholder="Masukan Teguran" type="text" name="teguran">
+                      <p><i>Untuk memisahkan Teguran beri tanda koma <b> (",") </b> tanpa spasi</i></p>
                     </div>
                     <div class="form-group">
                       <label>Nasihat</label>
@@ -473,6 +474,43 @@
                       <label>Nomer Rekening</label>
                       <input class="form-control" placeholder="Masukan Nomer Rekening" type="text" name="nomerrekening">
                       <p><i>Contoh : "BCA 5170-147-822 a.n Iren"</i></p>
+                    </div>
+                </div>
+<!-- ================================================================================================================== -->
+
+<!-- ===================== pengelommpokkan jenis Surat Pengecekan==============-->
+                <div id="Pengecekantransfer">
+                    <div class="form-group">
+                      <label>Cabang - Kota - Unit</label>
+                      <input class="form-control" placeholder="Masukan cabang - kota - unit" type="text" name="cku">
+                    </div>
+                    <div class="form-group">
+                      <label>No Rekening</label>
+                      <input class="form-control" placeholder="Masukan No Rekening" type="text" name="norektransfer">
+                    </div>
+                    <div class="form-group">
+                      <label>Tanggal Transfer</label>
+                      <input class="form-control" placeholder="Masukan Tanggal Transfer" type="date" name="tgltransfer">
+                    </div>
+                    <div class="form-group">
+                      <label>Nama Pentrnasfer</label>
+                      <input class="form-control" placeholder="Masukan Nana Pentransfer" type="text" name="namatransfer">
+                    </div>
+                    <div class="form-group">
+                      <label>No Rekening Pentransfer</label>
+                      <input class="form-control" placeholder="Masukan No Rekening Pentransfer" type="text" name="norekpentransfer">
+                    </div>
+                    <div class="form-group">
+                      <label>Nominal Transfer</label>
+                      <input class="form-control" placeholder="Masukan Nominal Transfer" type="text" name="nominal">
+                    </div>
+                    <div class="form-group">
+                      <label>Hasil Pengecekan</label>
+                      <input class="form-control" placeholder="Masukan Hasil Pengecekan" type="text" name="hasil">
+                    </div>
+                    <div class="form-group">
+                      <label>Tanggal Konfirmasi</label>
+                      <input class="form-control" placeholder="Masukan Tanggal Konfirmasi" type="date" name="tglkonfirmasi">
                     </div>
                 </div>
 <!-- ================================================================================================================== -->

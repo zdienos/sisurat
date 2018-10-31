@@ -138,6 +138,10 @@ class M_keluar extends CI_Model
 			$this->db->from('skeluar');
 		    $this->db->join('tb_sk_pos_giro', 'skeluar.no = tb_sk_pos_giro.no');
 		    $this->db->where('skeluar.no', $no);
+		}elseif(($jenis_surat == 'Pengecekan') or($jenis_surat == 'Pengecekan')) {
+			$this->db->from('skeluar');
+		    $this->db->join('tb_sk_pengecekan', 'skeluar.no = tb_sk_pengecekan.no');
+		    $this->db->where('skeluar.no', $no);
 		}
 		$query = $this->db->get();
 
@@ -280,9 +284,21 @@ class M_keluar extends CI_Model
 			return false;
 		}
 	}
+
+	function saveDataspengecekan($data2)
+	{
+		$data2 = $this->db->insert('tb_sk_pengecekan', $data2);
+
+		if ($data2) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	
 	function ubahsuratkeluar($no,$jenis_surat)
 	{
+
 		if(($jenis_surat == 'Pencairan') or ($jenis_surat == 'Pencairan')){
 			$this->db->from('skeluar');
 		    $this->db->join('tb_sk_tidak_kuota', 'skeluar.no = tb_sk_tidak_kuota.no');
@@ -382,6 +398,9 @@ class M_keluar extends CI_Model
  		} elseif ($jenis_surat == 'Transfer') {
  			$data = $this->db->delete('skeluar', $where);
 			$data2 = $this->db->delete('tb_sk_transfer_mgmbiaya', $where);
+ 		} elseif ($jenis_surat == 'Pengecekan') {
+ 			$data = $this->db->delete('skeluar', $where);
+			$data2 = $this->db->delete('tb_sk_pengecekan', $where);
  		}
 
  		if ($data) {
@@ -436,6 +455,17 @@ class M_keluar extends CI_Model
 			return $query->result();
 		} else {
 			return $query = '';
+		}
+ 	}
+
+ 	function gantistatus($data, $where)
+ 	{
+ 		$data = $this->db->update('skeluar', $data, $where);
+
+ 		if ($data) {
+			return true;
+		} else {
+			return false;
 		}
  	}
 }
