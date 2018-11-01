@@ -8,7 +8,7 @@
     <section class="content">
       <div class="box-body">
               
-            <form action="<?= base_url('Smasuk/masukandata')?>" role="form" method="post">
+            <form action="<?= base_url('Smasuk/masukandata')?>" role="form" method="post" enctype="multipart/form-data">
                 <input class="form-control" placeholder="Enter ..." type="hidden" name="tgl_input" required="" value="<?= $date ?>">
                 <input class="form-control" placeholder="Enter ..." type="hidden" name="userid" required="" value="<?= $username; ?>">
                 <!-- text input -->
@@ -45,8 +45,13 @@
                 <div class="form-group">
                   <label>Tanggal Surat</label>
                   <input class="form-control"  placeholder="Masukan Tanggal dengan format ('YYYY/MM/DD')" type="date" name="tanggal" id="tanggal" required="">
-                  <p><i>Jika Format Tanggal Tidak keluar Input dengan manual dengan format <b> ("yyyy/mm/dd") </b> <i></p>
+                  <p><i>Jika Format Tanggal Tidak keluar Input dengan manual dengan format <b> ("yyyy/mm/dd")</b></i></p>
                 </div>
+                <div class="form-group">
+                  <label>Upload Surat</label>
+                 <input type="file" name="upload_surat" />
+                </div>
+                
                 <button type="submit" name="savesm" class="pull-right btn btn-primary" id="savesm"><span class="fa fa-save"></span> save</button>
             </form>
                 

@@ -19,7 +19,7 @@
                 <?php 
                  if (!empty($lihat)){
                     foreach($lihat as $srt){ ?>
-                  <tr><td>No Surat</td> <td><?= $srt->no_surat; ?></td> </tr>
+                  <tr><td>No Surat</td><td><?= $srt->no_surat; ?></td> </tr>
                   <tr><td>Hal</td> <td><?= $srt->hal; ?></td></tr>
                   <tr><td>Kepada</td>  <td><?= $srt->kepada ?></td></tr>
                   <tr><td>Dari</td> <td><?= $srt->dari ?></td></tr>
@@ -28,6 +28,7 @@
                   <tr><td>Tanggal Input</td> <td><?= $srt->tgl_input;?></td></tr>
                   <tr><td>Yang Menginput</td> <td><?= $srt->userid;?></td></tr>
                   <tr><td>Jenis Surat</td> <td><?= $srt->jenissurat;?></td></tr>
+                  <tr><td>Arsip Surat</td> <td><a href="<?= base_url('assets/arsip/').$srt->arsip ?>"">Lihat Surat </a></td></tr>
                 </tbody>
                     <?php 
                         }

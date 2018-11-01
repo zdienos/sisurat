@@ -42,13 +42,13 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>No Surat</th>
-                  <th>Hal</th>
-                  <th>Kepada</th>
-                  <th>Dari</th>
-                  <th>Keterangan</th>
-                  <th>Tanggal Surat</th>
-                  <th>Button</th>
+                  <th style="width: 2%;">No Surat</th>
+                  <th style="width: 8%;">Hal</th>
+                  <th style="width: 6%;">Kepada</th>
+                  <th style="width: 6%;">Dari</th>
+                  <th style="width: 20%;">Keterangan</th>
+                  <th style="width: 7%;">Tanggal Surat</th>
+                  <th style="width: 17%;">Button</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -61,16 +61,21 @@
                           <td><?= $srt->hal; ?></td>
                           <td><?= $srt->kepada; ?></td>
                           <td><?= $srt->dari; ?></td>
-                          <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;"><?= $srt->keterangan; ?></td>
+                          <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;"><?= 
+                          $sub_kalimat = substr($srt->keterangan,0,100);
+                          echo $sub_kalimat;
+                          ?></td>
                           <td><?= $srt->tanggal; ?></td>
                           <td>
                           <?php if($jabat[0] == "Kasie"){ ?>
                           <a href="<?= base_url('Smasuk/ubahdatasmasuk/') . $srt->id ?>" class="btn-sm btn btn-success"><span class="fa fa-edit"></span> Edit</a>
                           <a href="<?= base_url('Smasuk/lihatsuratmasuk/') . $srt->id ?>" class="btn-sm btn btn-primary"><span class="fa fa-eye"></span> Lihat</a>
-                          <a href="<?= base_url('Smasuk/hapusDatasuratmasuk/') . $srt->id ?>" class="btn-sm btn btn-danger"  onClick="return doconfirm();"><span class="fa fa-trash-o"></span> Delete</a>
+                          <a href="<?= base_url('Smasuk/hapusDatasuratmasuk/') . $srt->id.'/'.$srt->arsip ?>" class="btn-sm btn btn-danger"  onClick="return doconfirm();"><span class="fa fa-trash-o"></span> Delete</a>
+                          <a href="<?= site_url('assets/arsip/') .$srt->arsip ?>" class="btn-sm btn btn-warning"><span class="fa fa-file-o"></span> &nbsp Arsip</a>
                           <?php }  else{?>
                            <a href="<?= base_url('Smasuk/ubahdatasmasuk/') . $srt->id ?>" class="btn-sm btn btn-success"><span class="fa fa-edit"></span> Edit</a>
                           <a href="<?= base_url('Smasuk/lihatsuratmasuk/') . $srt->id ?>" class="btn-sm btn btn-primary"><span class="fa fa-eye"></span> Lihat</a>
+                          <a href="<?= site_url('assets/arsip/').$srt->arsip ?>" class="btn-sm btn btn-warning"><span class="fa fa-file-o"></span> &nbsp Arsip</a>
                           </td>
                         </tr>
 

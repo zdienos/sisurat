@@ -85,6 +85,7 @@ class Smasuk extends CI_Controller {
 
 	public function masukanData()
 	{
+		if ($this->session->userdata('log_in')) {
 		$nosurat = $this->input->post('nosurat');
 		$hal = $this->input->post('hal');
 		$kepada = $this->input->post('kepada');
@@ -95,6 +96,23 @@ class Smasuk extends CI_Controller {
 		$userid = $this->input->post('userid');
 		$jenissurat =$this->input->post('jenissurat');
 
+		$namafile = "SuratMasuk_".$jenissurat."_".time();
+		$config['upload_path']          = './assets/arsip';
+		$config['allowed_types']        = 'jpg|png|doc|pdf';
+		$config['max_size'] 			= '3072';
+		// $config['max_width']  			= '5000';
+		// $config['max_height'] 			= '5000';
+		$config['file_name'] 			= $namafile;
+
+		$this->load->library('upload', $config);
+
+		if ($this->upload->do_upload('upload_surat')) {
+			$upload = $this->upload->data();
+			$upload_surat = $upload['file_name'];
+		} else {
+			$upload_surat = "default.png";
+		}
+
 		$data = array(
 			'no_surat' => $nosurat,
 			'hal' => $hal,
@@ -104,7 +122,8 @@ class Smasuk extends CI_Controller {
 			'tanggal' => $tanggal,
 			'tgl_input' => $tgl_input,
 			'userid' => $userid,
-			'jenissurat' => $jenissurat
+			'jenissurat' => $jenissurat,
+			'arsip' => $upload_surat
 		);
 
 		$result = $this->m_surat->saveDatasuratmasuk($data);
@@ -117,22 +136,32 @@ class Smasuk extends CI_Controller {
               $this->session->set_flashdata("message","Gagal Tersimpan");
               redirect('Smasuk/index', 'refresh');
           }
+          } else {
+    	  redirect(site_url('login'), 'refresh');
+    	}
   
 	}
 
-	public function hapusDatasuratmasuk($id)
+	public function hapusDatasuratmasuk($id,$arsip)
 	{
+		if ($this->session->userdata('log_in')) {
 		$where = array(
 			'id'=> $id
 		);
+		//echo $link = FCPATH.'assets/arsip/'.$arsip);
+		unlink(FCPATH.'assets/arsip/'.$arsip); 
 
 		$result = $this->m_surat->deleteDatasuratmasuk($where);
+
 		
 		if ($result >= 1) {
 	      $this->session->set_flashdata('success','Data berhasil dihapus!');
 	      $this->session->set_flashdata('message','Periksa kembali data Pemohon.');
 	      redirect(base_url('smasuk/data_table'), 'refresh');
 	    }
+	     } else {
+    	  redirect(site_url('login'), 'refresh');
+    	}
 	}
 
 	public function lihatsuratmasuk($id)
@@ -174,6 +203,7 @@ class Smasuk extends CI_Controller {
 	
 	public function gantiDatasmasuk()
 	{
+		if ($this->session->userdata('log_in')) {
 
 		$id = $this->input->post('id');
 		$nosurat = $this->input->post('nosurat');
@@ -209,6 +239,9 @@ class Smasuk extends CI_Controller {
 		} else {
 			redirect(base_url('smasuk/ubahDatasmasuk'));
 		}
+		 } else {
+    	  redirect(site_url('login'), 'refresh');
+    	}
 	}
 
 	public function search()
