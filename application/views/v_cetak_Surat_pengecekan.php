@@ -100,6 +100,7 @@ foreach($cetak as $l) {
   $tujuan = $l['tujuan'];
   $nama_tujuan = $l['nama_tujuan'];
   $kacab = explode(" ", $tujuan);
+  $user = explode("-", $l['userid']);
   ?>
   <table style="margin-top: 30px;">
     <tr><td>No</td><td>:</td><td><?php echo $l['no'] .'/'. $l['no_surat'];?></td></tr>
@@ -112,49 +113,54 @@ foreach($cetak as $l) {
   
   <p>Dengan Hormat,</p>
   
-  <p align="justify"> Menindaklanjuti memo dari bagian marketing pusat tanggal <?php echo date('d F Y',strtotime($l['tgl_marketing'])) ?> perihal <?php echo $l['perihal'];?> Unit <?php echo $l['unit'];?> ,berdasarkan Pengecekan bagian keuangan terhadap pembayaran biaya bimbel siswa berikut berhak untuk menerima pengembalian, yaitu:</p>
+  <p align="justify">Bersama ini kami mengajukan permohonan pengecekan transfer ke No. Rekening PT Pendidikan Ganesha Operation.</p>
   <br>
   <div id="conten">
   <table class="data" style="page-break-after: auto" >
     <thead>
       <tr>
-        <th style="width: 25%"><center>Nama Siswa</center></th>
-        <th style="width: 25%"><center>Kelas</center></th>
-        <th style="width: 25%"><center>Jumlah Pengembalian yang disetujui</center></th>
-        <th style="width: 25%"><center>No. Rekening Pengembalian</center></th>
+        <th style="width: 14%"><center>Cabang - kota - Unit</center></th>
+        <th style="width: 14%"><center>No Rekening GO</center></th>
+        <th style="width: 14%"><center>Tgl Transfer</center></th>
+        <th style="width: 14%"><center>Nama Pentransfer</center></th>
+        <th style="width: 14%"><center>No Rek Pentransfer</center></th>
+        <th style="width: 14%"><center>Nominal Transfer</center></th>
+        <th style="width: 14%"><center>Hasil Pengecekan</center></th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><center><?php echo $l['nama_siswa'];?></center></td>
-        <td><center><?php echo $l['kelas'];?></center></td>
-        <td><center>Rp.<?php echo number_format($l['jumlahbayar']);?></center></td>
-        <td><center><?php echo $l['pengembaliannorek'];?></center></td>
+        <td><center><?php echo $l['cku'];?></center></td>
+        <td><center><?php echo $l['norektrs'];?></center></td>
+        <td><center><?php echo $l['tgltransfer'];?></center></td>
+        <td><center><?php echo $l['namatransfer'];?></center></td>
+        <td><center><?php echo $l['norekpentransfer'];?></center></td>
+        <td><center>Rp.<?php echo number_format($l['nominal']);?></center></td>
+        <td><center><?php echo $l['hasil'];?></center></td>
       </tr>
     </tbody>
   </table>
   </div>
 
-  <p>Demikian hal ini disampaikan, pengembalian biaya akan di transfer dari Bidang Keuangan Bandung. Atas Kerjasamanya yang baik kami ucapkan terimakasih.</p>
-  <?php 
-   if(($kacab[1] != "Cabang")){ ?>
+  <p>Demikian hal ini disampaikan, kami tunggu konfirmasinya pada <?php echo date('d F Y',strtotime($l['tglkonfirmasi'])) ?>. Atas Kerjasama yang baik kami ucapkan terima kasih.</p>
+  
       <table>
         <tr><td style="text-align: left;">Mengetahui,</td></tr>
         <tr><td><br></td></tr>
         <tr><td><br></td></tr>
-        <tr><td><b><u>Dra. Erna Veronika</u></b></td></tr>
-        <tr><td><b>Manajer Keuangan</b></td></tr>
+        <tr><td><b><u>Ninik Kania Falah</u></b></td></tr>
+        <tr><td><b>Kasie Audit Pembayaran 1</b></td></tr>
       </table>
-  <?php  }  ?>
+
     <div id="ttd">
       <table>
         <tr><td style="text-align: left;">Terimakasih,</td></tr>
         <tr><td>Bandung,<?php echo $bulan[0].' '.$infobulan.' '.$bulan[2] ;?></td></tr>
         <tr><td><br></td></tr>
         <tr><td><br></td></tr>
-       <?php if(($kacab[1] != "Cabang")){ ?>
-        <tr><td><b><u><?php echo $nama_lengkap?></u></b></td></tr>
-        <tr><td><b><?php echo $jabatan?></b></td></tr>
+       <?php if($kacab[1] != "Cabang" ){ ?>
+        <tr><td><b><u><?php echo $user[0]?></u></b></td></tr>
+        <tr><td><b><?php echo $user[1]?></b></td></tr>
       <?php } else {?>
         <tr><td><b><u>Dra. Erna Veronika</u></b></td></tr>
         <tr><td><b>Manajer Keuangan</b></td></tr>
@@ -163,23 +169,7 @@ foreach($cetak as $l) {
     </div>
  
   <br>  <br>  <br>  <br>  <br>  <br>  <br>  
-  <div id="tbs">
-    <table>
-    <tr><td><dd>Tembusan:</dd></td></tr>
-    <tr><td>
-    <ul style="list-style-type: none;">
-    <?php $tbs = explode(",",$l['tembusan']);
-    foreach ($tbs as $t) { ?>
-    	<li><?php echo "-  ".$t; ?></li>
-    <?php }
-    ?>
-    	
-
-    </ul>
-    </td></tr>
-    </table>
-     <p style="text-align: center;">Dikirim Via Email</p>
-  </div>
+  
 
 <?php }?>
   

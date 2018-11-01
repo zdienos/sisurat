@@ -27,6 +27,7 @@
             <div class="alert alert-danger alert-dismissible">
               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
               <h4><span class="icon fa fa-check"></span><?=$this->session->flashdata('success')?></h4>
+              <h5><?=$this->session->flashdata('message')?></h5>
             </div>
           <?php } ?>
 
@@ -79,23 +80,23 @@
                           <td>
                             <a href="<?= base_url('Skeluar/gantistatus/'). $srt->no.'/ACC' ?>" class="btn btn-success btn-sm" title="ACC"><span class="fa fa-check"></span></a>
                             <a href="<?= base_url('Skeluar/gantistatus/') . $srt->no.'/Tidak ACC' ?>" class=" btn btn-danger btn-sm" title="Tidak ACC"><span class="fa fa-remove"></span></a>
-                            <a href="<?= base_url('Skeluar/gantistatus/') . $srt->no.'/Proses' ?>" class=" btn btn-danger btn-sm" title="Proses"><span class="fa fa-gears"></span></a>
+                            <a href="<?= base_url('Skeluar/gantistatus/') . $srt->no.'/Proses' ?>" class=" btn btn-warning btn-sm" title="Proses"><span class="fa fa-gears"></span></a>
                           </td>
                           <?php } ?>  
                           <td>
                           <?php 
                             if($jabat[0] == "Kasie"){ 
                               ?>
-                            <a href="<?= base_url('Skeluar/ubahDataskeluar/'). $srt->no.'/'. $srt->jenis_surat.'/'. $srt->perihal ?>" class="btn btn-success btn-sm" title="Edit"><span class="fa fa-edit" style=""></span></a>
-                            <a href="<?= base_url('Skeluar/lihatsuratkeluar/') . $srt->no.'/'. $srt->jenis_surat.'/'. $srt->perihal ?>" class=" btn btn-primary btn-sm" title="Lihat"><span class="fa fa-eye"></span></a>
-                            <a href="<?= base_url('Skeluar/hapusDatasuratkeluar/') . $srt->no.'/'. $srt->jenis_surat.'/'. $srt->perihal ?>" class=" btn btn-danger btn-sm" onClick="return doconfirm();" title="Hapus"><span class="fa fa-trash-o"></span> </a>
-                            <a href="<?= base_url('Skeluar/cetaksuratkeluar/') . $srt->no.'/'. $srt->jenis_surat.'/'. $srt->perihal ?>" class="btn btn-info btn-sm" title="Cetak"><span class="fa fa-print"></span > </a>
+                            <a href="<?= base_url('Skeluar/ubahDataskeluar/'). $srt->no.'/'. $srt->jenis_surat.'/'. $srt->perihal ?>" class="btn btn-success" title="Edit"><span class="fa fa-edit" style=""></span></a>
+                            <a href="<?= base_url('Skeluar/lihatsuratkeluar/') . $srt->no.'/'. $srt->jenis_surat.'/'.$srt->perihal ?>" class=" btn btn-primary" title="Lihat"><span class="fa fa-eye"></span></a>
+                            <a href="<?= base_url('Skeluar/hapusDatasuratkeluar/') . $srt->no.'/'. $srt->jenis_surat.'/'. $srt->perihal ?>" class=" btn btn-danger" onClick="return doconfirm();" title="Hapus"><span class="fa fa-trash-o"></span> </a>
+                            <a href="<?= base_url('Skeluar/cetaksuratkeluar/') . $srt->no.'/'. $srt->jenis_surat.'/'. $srt->perihal ?>" class="btn btn-info" title="Cetak"><span class="fa fa-print"></span > </a>
                           <?php } else{ 
                             if($srt->status == "Proses"){ ?>
                             <a href="<?= base_url('Skeluar/ubahDataskeluar/'). $srt->no.'/'. $srt->jenis_surat.'/'. $srt->perihal ?>" class="btn-sm btn btn-success"><span class="fa fa-edit"></span> Edit</a> 
                             <?php } ?>
                             <a href="<?= base_url('Skeluar/lihatsuratkeluar/') . $srt->no.'/'. $srt->jenis_surat.'/'. $srt->perihal ?>" class="btn-sm btn btn-primary"><span class="fa fa-eye"></span> Lihat</a>
-                            <a href="<?= base_url('Skeluar/cetaksuratkeluar/') . $srt->no.'/'. $srt->jenis_surat.'/'. $srt->perihal ?>" class="btn-sm btn btn-info"><span class="fa fa-print"></span>
+                            <a href="<?= base_url('Skeluar/cetaksuratkeluar/') . $srt->no.'/'. $srt->jenis_surat.'/'. $srt->perihal ?>" class="btn-sm btn btn-info"><span class="fa fa-print"></span>  &nbspCetak</a>
                           </td>
                         </tr>
 

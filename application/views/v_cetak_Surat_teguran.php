@@ -126,12 +126,8 @@ foreach($cetak as $l) { ?>
 
     </ol>
     </p>
-  </div>
- 
-  
-  
+  </div> 
 
 <?php }?>
 
-  
 </body></html>

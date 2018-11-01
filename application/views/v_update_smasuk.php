@@ -13,17 +13,12 @@
                 <input class="form-control" placeholder="Enter ..." type="hidden" name="id" id="nosurat" required="" value="<?= $ubahsurat['id'] ?>">
                 <input class="form-control" placeholder="Enter ..." type="hidden" name="tgl_input" required="" value="<?= $date ?>">
                 <input class="form-control" placeholder="Enter ..." type="hidden" name="userid" required="" value="<?= $username ?>">
-
-                <!-- <div class="form-group">
+                <div class="form-group">
                       <label>Jenis Surat Masuk</label>
                       <select class="form-control" name="jenissurat">
-                        <option value="Email" <?php if ($ubahsurat['jenissurat'] == Email) echo "selected";?>>Email</option>
-                        <option value="Ekspedisi" <?php if ($ubahsurat['jenissurat'] == Ekspedisi) echo "selected";?> >Ekspedisi</option>
+                        <option value="Email" <?php if ($ubahsurat['jenissurat'] == "Email") echo "selected";?>>Email</option>
+                        <option value="Ekspedisi" <?php if ($ubahsurat['jenissurat'] == "Ekspedisi") echo "selected";?> >Ekspedisi</option>
                       </select>
-                </div> -->
-                <div class="form-group">
-                  <label>Jenis Surat</label>
-                  <input class="form-control" placeholder="Enter ..." type="text" name="jenissurat" id="nosurat" required="" value="<?= $ubahsurat['jenissurat'] ?>">
                 </div>
                 <div class="form-group">
                   <label>No Surat</label>

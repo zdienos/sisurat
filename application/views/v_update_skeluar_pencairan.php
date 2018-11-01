@@ -33,11 +33,11 @@
                 </div>
                 <div class="form-group">
                   <label>Tujuan</label>
-                  <input class="form-control" value="<?= $usk['tujuan'] ?>" placeholder="Enter ..." type="text" name="tujuan" required=""readonly="">
+                  <input class="form-control" value="<?= $usk['tujuan'] ?>" placeholder="Enter ..." type="text" name="tujuan" required="" >
                 </div>
                 <div class="form-group">
                   <label>Nama Tujuan</label>
-                  <input class="form-control" value="<?= $usk['nama_tujuan'] ?>" placeholder="Enter ..." type="text" name="namatujuan" required=""readonly="">
+                  <input class="form-control" value="<?= $usk['nama_tujuan'] ?>" placeholder="Enter ..." type="text" name="namatujuan" required="" >
                 </div>
 
                 <div class="form-group">

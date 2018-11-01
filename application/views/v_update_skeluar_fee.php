@@ -52,11 +52,11 @@
                 </div>
                 <div class="form-group">
                   <label>Nama Penerima</label>
-                  <input class="form-control" value="<?= $nama_tujuan ?>" placeholder="Enter ..." type="text" name="namatujuan" required="" readonly="">
+                  <input class="form-control" value="<?= $nama_tujuan ?>" placeholder="Enter ..." type="text" name="namatujuan" required="" >
                 </div>
                 <div class="form-group">
                    <label>Tujuan Penerima</label>
-                   <input class="form-control" value="<?= $tujuan ?>" type="text" name="tujuan" readonly="">
+                   <input class="form-control" value="<?= $tujuan ?>" type="text" name="tujuan" >
                 </div>
                 <div class="form-group">
                   <label>Lampiran</label>

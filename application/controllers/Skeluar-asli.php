@@ -16,7 +16,6 @@ class Skeluar extends CI_Controller {
   			$data['username'] = $user['username'];
   			$data['jabatan'] = $user['jabatan'];
   			$data['id'] = $user['id'];
-  			$data['nama_lengkap'] = $user['nama_lengkap'];
 			$this->template->load('template','v_surat_keluar',$data);
 		} else {
     	  redirect(site_url('login'), 'refresh');
@@ -137,166 +136,185 @@ class Skeluar extends CI_Controller {
   		$data['jlhpage']=$page;
   		
   		$data['sidak'] = $this->m_keluar->data_sidak($batas, $offset);
+      // Akhir Pagination Pemohon
+      // Awal load view Pemohon
       $this->template->load('template','v_data_skeluar_sidak',$data);
       } else {
     	  redirect(site_url('login'), 'refresh');
     	}	
 	}
 
-
 	public function masukanData()
 	{
 		if ($this->session->userdata('log_in')) {
+		$data= $this->m_keluar->getNoSurat();
+		
+		foreach($data as $row  => $val) {
+            	$surat = $val->no_surat;
+    	}
+
+        $no = $surat + 1;
+		$nosurat = $this->input->post('nosurat');
 		$jenissurat = $this->input->post('cjenissurat');
-		$prihal = $this->input->post('prihal');
-
-		if (($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Pencairan PT Kolektif') or 
-			($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Pencairan Fee Bimker') or 
-			($jenissurat == 'Pencairan' and $prihal == 'Surat Tidak ACC Pencairan PT Kolektif') or  
-			($jenissurat == 'Pencairan' and $prihal == 'Surat Tidak ACC Pencairan Fee Bimker')) {
-
-			$data= $this->m_keluar->getNoSurat();		
-			foreach($data as $row  => $val) {
-	            	$surat = $val->no_surat;
-	    	}
-	    	//Post untuk tabel Skeluar
-	        $no = $surat + 1;
-			$nosurat = $this->input->post('nosurat');
+		if ($jenissurat != "Teguran" and $jenissurat != "Peringatan" and $jenissurat != "Pencairan" and $jenissurat != "Pengecekan") {
+			$namatujuan = "Dra. Erna Veronika";
+			$concat = "up.Ibu Wina Wibawa";
+		} elseif ($jenissurat == "Teguran") {
 			$bpkibu = $this->input->post('bpkibu');
 			$namatjn = $this->input->post('namatujuan');
 			$namatujuan = $bpkibu." ".$namatjn ;
-			$nmjabatan = $this->input->post('tujuan1');
-			$kttujuan = $this->input->post('tujuan');
-			$tujuan = $nmjabatan." ".$kttujuan;
-			$userid = $this->input->post('userid');
-			$tanggal = $this->input->post('tanggal');
+			$jabatan = $this->input->post('tujuan1');
+			$tujuan = $this->input->post('tujuan');
+			$concat = $jabatan." ".$tujuan;
+		} elseif ($jenissurat == "Peringatan") {
+			$bpkibu = $this->input->post('bpkibu');
+			$namatjn = $this->input->post('namatujuan');
+			$namatujuan = $bpkibu." ".$namatjn ;
+			$jabatan = $this->input->post('tujuan1');
+			$tujuan = $this->input->post('tujuan');
+			$concat = $jabatan." ".$tujuan;
+		} elseif ($jenissurat == "Pencairan") {
+			$bpkibu = $this->input->post('bpkibu');
+			$namatjn = $this->input->post('namatujuan');
+			$namatujuan = $bpkibu." ".$namatjn ;
+			$jabatan = $this->input->post('tujuan1');
+			$tujuan = $this->input->post('tujuan');
+			$concat = $jabatan." ".$tujuan;
+		} elseif ($jenissurat == "Pengecekan") {
+			$bpkibu = $this->input->post('bpkibu');
+			$namatjn = $this->input->post('namatujuan');
+			$namatujuan = $bpkibu." ".$namatjn ;
+			$jabatan = $this->input->post('tujuan1');
+			$tujuan = $this->input->post('tujuan');
+			$concat = $jabatan." ".$tujuan;
+		}
+		
+		$userid = $this->input->post('userid');
+		$tanggal = $this->input->post('tanggal');
 
-			//Pencairan fee
-			$lampiran = $this->input->post('lampiran');
-			$tgl_marketing = $this->input->post('tgl_marketing');
-			$tembusan = $this->input->post('tbs_fee');
-			$input = $this->input->post();
-
-			$total_post= count($this->input->post('sekolah'));
-
-			$data = array(
-				'no' => $no,
-				'no_surat' => $nosurat,
-				'perihal' => $prihal,
-				'nama_tujuan' => $namatujuan,
-				'tujuan' => $tujuan,
-				'jenis_surat' => $jenissurat,
-				'status' => 'Proses',
-				'tgl_SuratKeluar' => $tanggal,
-				'userid' => $userid
-
-			);
-			foreach ($input['sekolah'] as $key => $val) {
-				$add[] = array(
-					'no' => $no,
-					'no_surat' => $nosurat,
-					'lampiran' => $lampiran,
-					'tgl_marketing' => $tgl_marketing,
-					'tembusan' => $tembusan,
-					'sekolah' => $input['sekolah'][$key],
-					'mou' => $input['mou'][$key],
-					'program' => $input['program'][$key],
-					'acc' => $input['acc'][$key],
-					'tdk_acc' => $input['tdk_acc'][$key],
-					'fee_siswa' => $input['fee_siswa'][$key],
-					'ket' => $input['ket'][$key],
-					'jml_siswa' => $input['acc'][$key]+ $input['tdk_acc'][$key],
-					'jml_disetujui' => (int)$input['acc'][$key] * (int)$input['fee_siswa'][$key]
-					);			
-			}
-			$result = $this->m_keluar->saveDatasuratkeluar($data,$add,$jenissurat,$prihal);
-
-	} elseif (($jenissurat == 'Pencairan' and $prihal != 'Surat ACC Pencairan PT Kolektif') or 
-			 ($jenissurat == 'Pencairan' and $prihal != 'Surat ACC Pencairan Fee Bimker') or 
-			 ($jenissurat == 'Pencairan' and $prihal != 'Surat Tidak ACC Pencairan PT Kolektif') or  
-			 ($jenissurat == 'Pencairan' and $prihal != 'Surat Tidak ACC Pencairan Fee Bimker')) {
+		if($jenissurat != "Teguran" and $jenissurat != "Peringatan" and $jenissurat != "Pembayaran" and $jenissurat != "Transfer" and $jenissurat != "Pengecekan" ){
+			$prihal = $this->input->post('prihal');
+		} elseif ($jenissurat == "Teguran") {
+			$prihal = "Surat Teguran";
+		} elseif ($jenissurat == "Peringatan") {
+			$prihal = "Surat Peringatan";
+		} elseif ($jenissurat == "Pembayaran") {
+			$prihal = "Surat Pembayaran Ekspedisi Pengiriman Barang POS GIRO";
+		} elseif ($jenissurat == "Transfer") {
+			$prihal = "Surat Transfer Pencairan ";
+		} elseif ($jenissurat == "Pengecekan") {
+			$prihal = "Surat Pengecekan Transfer";
+		}
+		
 			
-			//auto number no surat
-			$data= $this->m_keluar->getNoSurat();		
-			foreach($data as $row  => $val) {
-	            	$surat = $val->no_surat;
-	    	}
-	    	//Post untuk tabel Skeluar
-	        $no = $surat + 1;
-			$nosurat = $this->input->post('nosurat');
-			$bpkibu = $this->input->post('bpkibu');
-			$namatjn = $this->input->post('namatujuan');
-			$namatujuan = $bpkibu." ".$namatjn ;
-			$nmjabatan = $this->input->post('tujuan1');
-			$kttujuan = $this->input->post('tujuan');
-			$tujuan = $nmjabatan." ".$kttujuan;
-			$userid = $this->input->post('userid');
-			$tanggal = $this->input->post('tanggal');
-
-			$data = array(
+		
+		$data= array(
 				'no' => $no,
 				'no_surat' => $nosurat,
 				'perihal' => $prihal,
 				'nama_tujuan' => $namatujuan,
-				'tujuan' => $tujuan,
+				'tujuan' => $concat,
 				'jenis_surat' => $jenissurat,
 				'status' => 'Proses',
 				'tgl_SuratKeluar' => $tanggal,
 				'userid' => $userid
+
 			);
-			//Post untuk tabel tb_sk_tidak_kuota
+
+				
+		if (($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Pengembalian Kelas Tidak Kuota')or($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Pengembalian Diskon Anak Guru')or($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Pengembalian Pindah Program')or($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Pengembalian Pengalihan Biaya')or($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Pengembalian Diskon Karyawan')or($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Pengembalian Diskon Pengajar')or($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Pengembalian Kelebihan Bayar')or($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Pengembalian Jaminan PTN')or($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Pengembalian Jaminan SMA Favorit')or($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Diskon Susulan')) {
+
 			$namasiswa = $this->input->post('nama_siswa');
 			$kelas = $this->input->post('kelas');
 			$jumlahbayar = $this->input->post('jumlahbayar_pt');
 			$pengembaliannorek = $this->input->post('norek');
-			$tembusan = $this->input->post('tbspencairan');
 			$tglmarketing = $this->input->post('tglmarketing');
+			$tembusan = $this->input->post('tbspencairan');
 			$unit = $this->input->post('unit');
 			
 			$data2 = array(
 				'no' => $no,
 				'no_surat' => $nosurat,
-				'nama_siswa' => $namasiswa,
+				'tgl_marketing' => $tglmarketing,
+				'unit' => $unit,
+				'nama_siswa' => $namasiswa,	
 				'kelas' => $kelas,
 				'jumlahbayar' => $jumlahbayar,
-				'unit' => $unit,
-				'pengembaliannorek' => $pengembaliannorek,
-				'tgl_marketing' => $tglmarketing,
-				'tembusan' => $tembusan
+				'tembusan' => $tembusan,
+				'pengembaliannorek' => $pengembaliannorek
+				
 			);
-			$result = $this->m_keluar->saveDatasuratkeluar($data,$data2,$jenissurat,$prihal);
-		
-	} elseif ($jenissurat == 'Peringatan') {
-			//auto number no surat
-			$data= $this->m_keluar->getNoSurat();		
-			foreach($data as $row  => $val) {
-	            	$surat = $val->no_surat;
-	    	}
-	    	//Post untuk tabel Skeluar
-	        $no = $surat + 1;
-			$nosurat = $this->input->post('nosurat');
-			$bpkibu = $this->input->post('bpkibu');
-			$namatjn = $this->input->post('namatujuan');
-			$namatujuan = $bpkibu." ".$namatjn ;
-			$nmjabatan = $this->input->post('tujuan1');
-			$kttujuan = $this->input->post('tujuan');
-			$tujuan = $nmjabatan." ".$kttujuan;
-			$prihal = "Surat Peringatan";
-			$userid = $this->input->post('userid');
-			$tanggal = $this->input->post('tanggal');
 
-			$data = array(
+			$result = $this->m_keluar->saveDatasuratkeluar($data);
+			$result2 = $this->m_keluar->saveDatasuratkeluar2($data2);
+
+			if ($result && $result2) {
+				$user = $this->model->getuser();
+				$data['username'] = $user['username'];
+				$data['jabatan'] = $user['jabatan'];
+				$data['id'] = $user['id'];
+				$data['nama_lengkap'] = $user['nama_lengkap'];
+
+				$data['cetak'] = $this->m_keluar->lihatsuratkeluar($no,$jenissurat);
+
+				$this->load->library('pdf');
+
+			    $this->pdf->setPaper('Letter', 'potrait');
+			    $this->pdf->filename = "laporan-".$jenissurat.".pdf";
+			    $this->pdf->load_view('v_cetak_Surat_pengembalian', $data);
+			    redirect(base_url('Skeluar/data_table'));
+			} else {
+				redirect(base_url('Skeluar/index'));
+			}
+
+		
+		} elseif (($jenissurat == 'Pencairan' and $prihal == 'Surat Tidak ACC Pengembalian Kelas Tidak Kuota')or($jenissurat == 'Pencairan' and $prihal == 'Surat Tidak ACC Pengembalian Diskon Anak Guru')or($jenissurat == 'Pencairan' and $prihal == 'Surat Tidak ACC Pengembalian Pindah Program')or($jenissurat == 'Pencairan' and $prihal == 'Surat Tidak ACC Pengembalian Pengalihan Biaya')or($jenissurat == 'Pencairan' and $prihal == 'Surat Tidak ACC Pengembalian Diskon Karyawan')or($jenissurat == 'Pencairan' and $prihal == 'Surat Tidak ACC Pengembalian Diskon Pengajar')or($jenissurat == 'Pencairan' and $prihal == 'Surat Tidak ACC Pengembalian Kelebihan Bayar')or($jenissurat == 'Pencairan' and $prihal == 'Surat Tidak ACC Pengembalian Jaminan PTN')or($jenissurat == 'Pencairan' and $prihal == 'Surat Tidak ACC Pengembalian Jaminan SMA Favorit')or($jenissurat == 'Pencairan' and $prihal == 'Surat Tidak ACC Diskon Susulan')) {
+
+			$namasiswa = $this->input->post('nama_siswa');
+			$kelas = $this->input->post('kelas');
+			$jumlahbayar = $this->input->post('jumlahbayar_pt');
+			$pengembaliannorek = $this->input->post('norek');
+			$tglmarketing = $this->input->post('tglmarketing');
+			$tembusan = $this->input->post('tbspencairan');
+			$unit = $this->input->post('unit');
+			
+			$data2 = array(
 				'no' => $no,
 				'no_surat' => $nosurat,
-				'perihal' => $prihal,
-				'nama_tujuan' => $namatujuan,
-				'tujuan' => $tujuan,
-				'jenis_surat' => $jenissurat,
-				'status' => 'Proses',
-				'tgl_SuratKeluar' => $tanggal,
-				'userid' => $userid
-			);	
+				'tgl_marketing' => $tglmarketing,
+				'unit' => $unit,
+				'nama_siswa' => $namasiswa,	
+				'kelas' => $kelas,
+				'jumlahbayar' => $jumlahbayar,
+				'tembusan' => $tembusan,
+				'pengembaliannorek' => $pengembaliannorek
+				
+			);
 
+			$result = $this->m_keluar->saveDatasuratkeluar($data);
+			$result2 = $this->m_keluar->saveDatasuratkeluar2($data2);
+
+			if ($result && $result2) {
+				$user = $this->model->getuser();
+				$data['username'] = $user['username'];
+				$data['jabatan'] = $user['jabatan'];
+				$data['id'] = $user['id'];
+				$data['nama_lengkap'] = $user['nama_lengkap'];
+
+				$data['cetak'] = $this->m_keluar->lihatsuratkeluar($no,$jenissurat);
+
+				$this->load->library('pdf');
+
+			    $this->pdf->setPaper('Letter', 'potrait');
+			    $this->pdf->filename = "laporan-".$jenissurat.".pdf";
+			    $this->pdf->load_view('v_cetak_Surat_tidak_pengembalian', $data);
+
+			} else {
+				redirect(base_url('Skeluar/index'));
+			}
+
+		
+		} elseif ($jenissurat == 'Peringatan') {
 			$loktujuan = $this->input->post('loktujuan');
 			$nip = $this->input->post('nip');
 			$spke = $this->input->post('spke');
@@ -316,7 +334,22 @@ class Skeluar extends CI_Controller {
 					'tembusan' => $tembusan,
 				);
 
-				$result = $this->m_keluar->saveDatasuratkeluar($data,$data2,$jenissurat,$prihal);
+				$result = $this->m_keluar->saveDatasuratkeluar($data);
+				$result2 = $this->m_keluar->saveDatasperingatan($data2);
+
+				if ($result && $result2) {
+					//redirect(base_url('Skeluar/data_table'));
+					$data['cetak'] = $this->m_keluar->lihatsuratkeluar($no,$jenissurat);
+
+					$this->load->library('pdf');
+
+				    $this->pdf->setPaper('Letter', 'potrait');
+				    $this->pdf->filename = "laporan-".$jenissurat.".pdf";
+				    $this->pdf->load_view('v_cetak_Surat_Peringatan', $data);
+
+				} else {
+					redirect(base_url('Skeluar/index'));
+				}
 
 			} else {
 				foreach ($cek as $key => $value) {
@@ -325,40 +358,12 @@ class Skeluar extends CI_Controller {
 				}
 				
 			  $this->session->set_flashdata('success','NIP '.$nip.' tersebut sudah dapat SP '.$spke.' !');
-		      $this->session->set_flashdata('message','Periksa kembali data Surat.');
+		      $this->session->set_flashdata('message','Periksa kembali data Pemohon.');
 		      redirect(base_url('skeluar/data_table'), 'refresh');
 			}
-	} elseif ($jenissurat == 'Teguran') {
-			//auto number no surat
-			$data= $this->m_keluar->getNoSurat();		
-			foreach($data as $row  => $val) {
-	            	$surat = $val->no_surat;
-	    	}
-	    	//Post untuk tabel Skeluar
-	        $no = $surat + 1;
-			$nosurat = $this->input->post('nosurat');
-			$bpkibu = $this->input->post('bpkibu');
-			$namatjn = $this->input->post('namatujuan');
-			$namatujuan = $bpkibu." ".$namatjn ;
-			$nmjabatan = $this->input->post('tujuan1');
-			$kttujuan = $this->input->post('tujuan');
-			$tujuan = $nmjabatan." ".$kttujuan;
-			$prihal = "Surat Teguran";
-			$userid = $this->input->post('userid');
-			$tanggal = $this->input->post('tanggal');
 
-			$data = array(
-				'no' => $no,
-				'no_surat' => $nosurat,
-				'perihal' => $prihal,
-				'nama_tujuan' => $namatujuan,
-				'tujuan' => $tujuan,
-				'jenis_surat' => $jenissurat,
-				'status' => 'Proses',
-				'tgl_SuratKeluar' => $tanggal,
-				'userid' => $userid
-			);	
-
+		} elseif ($jenissurat == 'Teguran') {
+			
 			$pemeriksa = $this->input->post('pemeriksa');
 			$bgntegur = $this->input->post('bgntegur');
 			$teguran = $this->input->post('teguran');
@@ -372,37 +377,78 @@ class Skeluar extends CI_Controller {
 				'bgn_tegur' => $bgntegur,
 				'teguran' => $teguran,
 				'penutup' => $penutup,
-				'tembusan' => $tbsteguran				
+				'tembusan' => $tbsteguran
+				
+				
 			);
 
-			$result = $this->m_keluar->saveDatasuratkeluar($data,$data2,$jenissurat,$prihal);
+			$result = $this->m_keluar->saveDatasuratkeluar($data);
+			$result2 = $this->m_keluar->saveDatasteguran($data2);
 
-	} elseif ($jenissurat == 'Pembayaran') {
-			//auto number no surat
-			$data= $this->m_keluar->getNoSurat();		
-			foreach($data as $row  => $val) {
-	            	$surat = $val->no_surat;
-	    	}
-	    	//Post untuk tabel Skeluar
-	        $no = $surat + 1;
-			$nosurat = $this->input->post('nosurat');
-			$namatujuan = "Dra. Erna Veronika";
-			$tujuan = "up.Ibu Wina Wibawa";
-			$prihal = "Surat Pembayaran Ekspedisi Pengiriman Barang POS GIRO";
-			$userid = $this->input->post('userid');
-			$tanggal = $this->input->post('tanggal');
+			if ($result && $result2) {
+				
+				$data['cetak'] = $this->m_keluar->lihatsuratkeluar($no,$jenissurat);
 
-			$data = array(
-				'no' => $no,
-				'no_surat' => $nosurat,
-				'perihal' => $prihal,
-				'nama_tujuan' => $namatujuan,
-				'tujuan' => $tujuan,
-				'jenis_surat' => $jenissurat,
-				'status' => 'Proses',
-				'tgl_SuratKeluar' => $tanggal,
-				'userid' => $userid
-			);	
+				$this->load->library('pdf');
+
+			    $this->pdf->setPaper('Letter', 'potrait');
+			    $this->pdf->filename = "laporan-".$jenissurat.".pdf";
+			    $this->pdf->load_view('v_cetak_Surat_teguran', $data);
+
+			} else {
+				redirect(base_url('Skeluar/index'));
+			}
+	
+		} elseif (($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Pencairan PT Kolektif') or ($jenissurat == 'Pencairan' and $prihal == 'Surat Tidak ACC Pencairan PT Kolektif') or ($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Pencairan Fee Bimker') or ($jenissurat == 'Pencairan' and $prihal == 'Surat Tidak ACC Pencairan Fee Bimker')) {
+			//Pencairan fee
+			$lampiran = $this->input->post('lampiran');
+			$tgl_marketing = $this->input->post('tgl_marketing');
+			$tembusan = $this->input->post('tbs_fee');
+			$input = $this->input->post();
+
+			$total_post= count($this->input->post('sekolah'));
+
+			foreach ($input['sekolah'] as $key => $val) {
+				$add=array(
+					'no' => $no,
+					'no_surat' => $nosurat,
+					'lampiran' => $lampiran,
+					'tgl_marketing' => $tgl_marketing,
+					'tembusan' => $tembusan,
+					'sekolah' => $input['sekolah'][$key],
+					'mou' => $input['mou'][$key],
+					'program' => $input['program'][$key],
+					'acc' => $input['acc'][$key],
+					'tdk_acc' => $input['tdk_acc'][$key],
+					'fee_siswa' => $input['fee_siswa'][$key],
+					'ket' => $input['ket'][$key],
+					'jml_siswa' => $input['acc'][$key]+ $input['tdk_acc'][$key],
+					'jml_disetujui' => (int)$input['acc'][$key] * (int)$input['fee_siswa'][$key]
+					);			
+				$result2 = $this->m_keluar->saveDatasuratkeluar3($add);
+			}
+
+			$result = $this->m_keluar->saveDatasuratkeluar($data);	
+
+			if ($result2) {
+				$user = $this->model->getuser();
+				$data['username'] = $user['username'];
+	  			$data['jabatan'] = $user['jabatan'];
+	  			$data['id'] = $user['id'];
+	  			$data['nama_lengkap'] = $user['nama_lengkap'];
+				$data['cetak'] = $this->m_keluar->lihatsuratkeluar_fee($no,$jenissurat);
+
+				$this->load->library('pdf');
+
+			    $this->pdf->setPaper('Letter', 'potrait');
+			    $this->pdf->filename = "laporan-".$jenissurat.".pdf";
+			    $this->pdf->load_view('v_cetak_Surat_fee', $data);
+
+			} else {
+				redirect(base_url('Skeluar/index'));
+			}
+
+		} elseif ($jenissurat == 'Pembayaran') {
 			
 			$periode = $this->input->post('periode');
 			$totaltagihan = $this->input->post('totaltagihan');
@@ -414,37 +460,32 @@ class Skeluar extends CI_Controller {
 				'periodepengiriman' => $periode,
 				'totaltagihan' => $totaltagihan,
 				'norek' => $norek
+				
+				
 			);
 
-			$result = $this->m_keluar->saveDatasuratkeluar($data,$data2,$jenissurat,$prihal);
+			$result = $this->m_keluar->saveDatasuratkeluar($data);
+			$result2 = $this->m_keluar->saveDataspembayaran($data2);
 
-	} elseif ($jenissurat == 'Transfer'){
-			//auto number no surat
-			$data= $this->m_keluar->getNoSurat();		
-			foreach($data as $row  => $val) {
-	            	$surat = $val->no_surat;
-	    	}
-	    	//Post untuk tabel Skeluar
-	        $no = $surat + 1;
-			$nosurat = $this->input->post('nosurat');
-			$namatujuan = "Dra. Erna Veronika";
-			$tujuan = "up.Ibu Wina Wibawa";
-			$prihal = "Surat Transfer Pencairan ";
-			$userid = $this->input->post('userid');
-			$tanggal = $this->input->post('tanggal');
+			if ($result && $result2) {
+				$user = $this->model->getuser();
+				$data['username'] = $user['username'];
+	  			$data['jabatan'] = $user['jabatan'];
+	  			$data['id'] = $user['id'];
+	  			$data['nama_lengkap'] = $user['nama_lengkap'];
+				$data['cetak'] = $this->m_keluar->lihatsuratkeluar($no,$jenissurat);
 
-			$data = array(
-				'no' => $no,
-				'no_surat' => $nosurat,
-				'perihal' => $prihal,
-				'nama_tujuan' => $namatujuan,
-				'tujuan' => $tujuan,
-				'jenis_surat' => $jenissurat,
-				'status' => 'Proses',
-				'tgl_SuratKeluar' => $tanggal,
-				'userid' => $userid
-			);	
-			//post untuk tabel transfer
+				$this->load->library('pdf');
+
+			    $this->pdf->setPaper('Letter', 'potrait');
+			    $this->pdf->filename = "laporan-".$jenissurat.".pdf";
+			    $this->pdf->load_view('v_cetak_Surat_posgiro', $data);
+
+			} else {
+				redirect(base_url('Skeluar/index'));
+			}
+	
+		} elseif ($jenissurat == 'Transfer'){
 			$tgl_pencairan = $this->input->post('tgl_pencairan');
 			$jenis_pencairan = $this->input->post('jenis_pencairan');
 
@@ -454,7 +495,7 @@ class Skeluar extends CI_Controller {
 				$total_post= count($this->input->post('bank_m'));
 
 				foreach ($input['bank_m'] as $key => $val) {
-					$add[]=array(
+					$add=array(
 						'no' => $no,
 						'no_surat' => $nosurat,
 						'tgl_pencairan' => $tgl_pencairan,
@@ -465,15 +506,16 @@ class Skeluar extends CI_Controller {
 						'tot_order' => $input['jmlor_mgm_m'][$key],
 						'tot_siswa' => $input['jmlsis_mgm_m'][$key]
 						);		
+					$result2 = $this->m_keluar->saveDatasuratTransfer($add);
 				}
 
-			} elseif ($jenis_pencairan == "pengembalian biaya"){ 
+		} elseif ($jenis_pencairan == "pengembalian biaya"){ 
 				$input = $this->input->post();
 
 				$total_post= count($this->input->post('bank_b'));
 
 				foreach ($input['bank_b'] as $key => $val) {
-					$add[]=array(
+					$add=array(
 						'no' => $no,
 						'no_surat' => $nosurat,
 						'tgl_pencairan' => $tgl_pencairan,
@@ -484,15 +526,16 @@ class Skeluar extends CI_Controller {
 						'tot_order' => $input['jmlor_biaya_b'][$key],
 						'tot_siswa' => $input['jmlsis_biaya_b'][$key]
 						);	
+					$result2 = $this->m_keluar->saveDatasuratTransfer($add);
 				}
 
-			} elseif ($jenis_pencairan == "mgm dan pengembalian biaya"){ 
+		} elseif ($jenis_pencairan == "mgm dan pengembalian biaya"){ 
 				$input = $this->input->post();
 
 				$total_post= count($this->input->post('bank_mb'));
 
 				foreach ($input['bank_mb'] as $key => $val) {
-					$add[]=array(
+					$add=array(
 						'no' => $no,
 						'no_surat' => $nosurat,
 						'tgl_pencairan' => $tgl_pencairan,
@@ -505,12 +548,31 @@ class Skeluar extends CI_Controller {
 						'tot_order' => (int)$input['jmlor_mgm_mb'][$key] + (int)$input['jmlor_biaya_mb'][$key],
 						'tot_siswa' => (int)$input['jmlsis_mgm_mb'][$key] + (int)$input['jmlsis_biaya_mb'][$key]
 						);	
+					$result2 = $this->m_keluar->saveDatasuratTransfer($add);
 				}
 			}
 
-			$result = $this->m_keluar->saveDatasuratkeluar($data,$add,$jenissurat,$prihal);	
-	} elseif ($jenissurat == 'Sidak') {
-		//auto number no surat
+			$result = $this->m_keluar->saveDatasuratkeluar($data);	
+
+			if ($result2) {
+				$user = $this->model->getuser();
+				$data['username'] = $user['username'];
+	  			$data['jabatan'] = $user['jabatan'];
+	  			$data['id'] = $user['id'];
+	  			$data['nama_lengkap'] = $user['nama_lengkap'];
+				$data['cetak'] = $this->m_keluar->lihatsuratkeluar_transfer($no);
+
+				$this->load->library('pdf');
+
+			    $this->pdf->setPaper('Letter', 'potrait');
+			    $this->pdf->filename = "laporan-".$jenissurat.".pdf";
+			    $this->pdf->load_view('v_cetak_Surat_transfer', $data);
+
+			} else {
+				redirect(base_url('Skeluar/index'));
+			}
+
+		} elseif ($jenissurat == 'Sidak') {
 			$data= $this->m_keluar->getNoSurat_sidak();
 		
 			foreach($data as $row  => $val) {
@@ -543,36 +605,27 @@ class Skeluar extends CI_Controller {
 			);
 
 			$result = $this->m_keluar->saveDatasuratkeluar_sidak($data);
-	} elseif ($jenissurat == 'Pengecekan') {
-			//auto number no surat
-			$data= $this->m_keluar->getNoSurat();		
-			foreach($data as $row  => $val) {
-	            	$surat = $val->no_surat;
-	    	}
-	    	//Post untuk tabel Skeluar
-	        $no = $surat + 1;
-			$nosurat = $this->input->post('nosurat');
-			$bpkibu = $this->input->post('bpkibu');
-			$namatjn = $this->input->post('namatujuan');
-			$namatujuan = $bpkibu." ".$namatjn ;
-			$nmjabatan = $this->input->post('tujuan1');
-			$kttujuan = $this->input->post('tujuan');
-			$tujuan = $nmjabatan." ".$kttujuan;
-			$prihal = "Surat Pengecekan Transfer ";
-			$userid = $this->input->post('userid');
-			$tanggal = $this->input->post('tanggal');
 
-			$data = array(
-				'no' => $no,
-				'no_surat' => $nosurat,
-				'perihal' => $prihal,
-				'nama_tujuan' => $namatujuan,
-				'tujuan' => $tujuan,
-				'jenis_surat' => $jenissurat,
-				'status' => 'Proses',
-				'tgl_SuratKeluar' => $tanggal,
-				'userid' => $userid
-			);	
+			if ($result) {
+				$user = $this->model->getuser();
+				$data['username'] = $user['username'];
+	  			$data['jabatan'] = $user['jabatan'];
+	  			$data['id'] = $user['id'];
+	  			$data['nama_lengkap'] = $user['nama_lengkap'];
+
+				$data['cetak'] = $this->m_keluar->lihatsuratkeluar_sidak($no);
+
+				$this->load->library('pdf');
+
+			    $this->pdf->setPaper('Letter', 'potrait');
+			    $this->pdf->filename = "laporan-".$jenissurat.".pdf";
+			    $this->pdf->load_view('v_cetak_Surat_Sidak', $data);
+
+			} else {
+				redirect(base_url('Skeluar/index'));
+			}
+
+		} elseif ($jenissurat == 'Pengecekan') {
 			
 			$cku = $this->input->post('cku');
 			$norektrs = $this->input->post('norektransfer');
@@ -599,27 +652,38 @@ class Skeluar extends CI_Controller {
 				
 			);
 
-			$result = $this->m_keluar->saveDatasuratkeluar($data,$data2,$jenissurat,$prihal);		
-		}
+			$result = $this->m_keluar->saveDatasuratkeluar($data);
+			$result2 = $this->m_keluar->saveDataspengecekan($data2);
 
-	if ($result) {
-		$this->session->set_flashdata('success','Data Berhasil Disimpan !');
-	    $this->session->set_flashdata('message','Tekan tombol Cetak untuk melihat hasilnya.');
-	    redirect(base_url('skeluar/data_table'), 'refresh');
-	} else {
-		$this->session->set_flashdata('success','Ada kesalahan saat menyimpan.');
-	    $this->session->set_flashdata('message','Mohon Input kembali.Terimakasih');
-	    redirect(base_url('skeluar/data_table'), 'refresh');
-	}
-	} else {
+			if ($result && $result2) {
+				$user = $this->model->getuser();
+				$data['username'] = $user['username'];
+	  			$data['jabatan'] = $user['jabatan'];
+	  			$data['id'] = $user['id'];
+	  			$data['nama_lengkap'] = $user['nama_lengkap'];
+				$data['cetak'] = $this->m_keluar->lihatsuratkeluar($no,$jenissurat);
+
+				$this->load->library('pdf');
+
+			    $this->pdf->setPaper('Letter', 'potrait');
+			    $this->pdf->filename = "laporan-".$jenissurat.".pdf";
+			    $this->pdf->load_view('v_cetak_Surat_pengecekan', $data);
+
+			} else {
+				redirect(base_url('Skeluar/index'));
+			}
+	
+		}
+		 
+		} else {
     	  redirect(site_url('login'), 'refresh');
-    	}	
-}
+    	}
+	}
 
 
 	public function hapusDatasuratkeluar($no,$jenissurat,$prihal)
 	{
-		if ($this->session->userdata('log_in')) {
+
 		if (($prihal == 'Surat%20ACC%20Pencairan%20PT%20Kolektif')or($prihal == 'Surat%20Tidak%20ACC%20Pencairan%20PT%20Kolektif')or($prihal == 'Surat%20ACC%20Pencairan%20Fee%20Bimker')or($prihal == 'Surat%20Tidak%20ACC%20Pencairan%20Fee%20Bimker')){
 			$prihal = 1;
 		} elseif(($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Kelas%20Tidak%20Kuota')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Anak%20Guru')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Pindah%20Program')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Pengalihan%20Biaya')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Karyawan')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Pengajar')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Kelebihan%20Bayar')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Jaminan%20PTN')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Jaminan%20SMA%20Favorit')or($prihal == 'Surat%20Tidak%20ACC%20Diskon%20Susulan')) {
@@ -652,18 +716,14 @@ class Skeluar extends CI_Controller {
 		
 		if ($data >= 1) {
 	      $this->session->set_flashdata('success','Data berhasil dihapus!');
-	      $this->session->set_flashdata('message','Periksa kembali data Surat.');
+	      $this->session->set_flashdata('message','Periksa kembali data Pemohon.');
 	      redirect(base_url('skeluar/data_table'), 'refresh');
 	    }
-	    } else {
-    	  redirect(site_url('login'), 'refresh');
-    	}	
 		
 	}
 
 	public function hapusDatasuratkeluar_sidak($no)
 	{
-		if ($this->session->userdata('log_in')) {
 		$where = array(
 			'no'=> $no
 		);
@@ -673,12 +733,9 @@ class Skeluar extends CI_Controller {
 		
 		if ($data >= 1) {
 	      $this->session->set_flashdata('success','Data berhasil dihapus!');
-	      $this->session->set_flashdata('message','Periksa kembali data Surat.');
+	      $this->session->set_flashdata('message','Periksa kembali data Pemohon.');
 	      redirect(base_url('skeluar/data_table_sidak'), 'refresh');
 	    }
-	    } else {
-    	  redirect(site_url('login'), 'refresh');
-    	}	
 	}
 
 	public function lihatsuratkeluar($no,$jenis_surat,$prihal)
@@ -718,7 +775,7 @@ class Skeluar extends CI_Controller {
 		} elseif ($jenis_surat == 'Transfer') {
 			$data['lihat'] = $this->m_keluar->lihatsuratkeluar_transfer($no,$jenis_surat);
 			$this->template->load('template','v_lihat_skeluar_transfer',$data);
-		}elseif ($jenis_surat == 'Pengecekan') {
+		} elseif ($jenis_surat == 'Pengecekan') {
 			$data['lihat'] = $this->m_keluar->lihatsuratkeluar($no,$jenis_surat);
 			$this->template->load('template','v_lihat_pengecekan',$data);
 		}
@@ -850,7 +907,7 @@ class Skeluar extends CI_Controller {
 	  		$data['jabatan'] = $user['jabatan'];
 	  		$data['id'] = $user['id'];
 	  		$data['nama_lengkap'] = $user['nama_lengkap'];
-			$data['cetak'] = $this->m_keluar->lihatsuratkeluar($no,$jenis_surat);
+			$data['cetak'] = $this->m_keluar->lihatsuratkeluar($no);
 
 			$this->load->view('v_cetak_Surat_pengecekan', $data);
 		    $html=$this->output->get_output();
@@ -892,7 +949,6 @@ class Skeluar extends CI_Controller {
 		$data['username'] = $user['username'];
 		$data['jabatan'] = $user['jabatan'];
 		$data['id'] = $user['id'];
-		$data['nama_lengkap'] = $user['nama_lengkap'];
 
 		if (($prihal == 'Surat%20ACC%20Pencairan%20PT%20Kolektif')or($prihal == 'Surat%20Tidak%20ACC%20Pencairan%20PT%20Kolektif')or($prihal == 'Surat%20ACC%20Pencairan%20Fee%20Bimker')or($prihal == 'Surat%20Tidak%20ACC%20Pencairan%20Fee%20Bimker')){
 			$prihal = 1;
@@ -923,9 +979,6 @@ class Skeluar extends CI_Controller {
 		} else if(($jenis_surat == 'Transfer')){
 			$data['ubahskeluar'] = $this->m_keluar->lihatsuratkeluar_transfer($no,$jenis_surat);
 			$this->template->load('template','v_update_skeluar_transfer',$data);
-		} else if(($jenis_surat == 'Pengecekan')){
-			$data['ubahskeluar'] = $this->m_keluar->lihatsuratkeluar($no,$jenis_surat);
-			$this->template->load('template','v_update_skeluar_pengecekan',$data);
 		}
 		} else {
     	  redirect(site_url('login'), 'refresh');
@@ -949,7 +1002,6 @@ class Skeluar extends CI_Controller {
 
 	public function gantiDataskeluar()
 	{
-		if ($this->session->userdata('log_in')) {
 		$no = $this->input->post('no');
 		$nosurat = $this->input->post('nosurat');
 		$prihal = $this->input->post('prihal');
@@ -992,23 +1044,18 @@ class Skeluar extends CI_Controller {
 			'no' => $no
 		];
 
-		$result = $this->m_keluar->updateDatasuratkeluar($data,$data2, $where,$jenissurat,$prihal);
+		$result2 = $this->m_keluar->updateDatasuratkeluar2($data2,$where,$jenissurat);
+		$result = $this->m_keluar->updateDatasuratkeluar($data, $where);
 
 		if ($result) {
-		$this->session->set_flashdata('success','Data Berhasil Diubah !');
-	    $this->session->set_flashdata('message','Tekan tombol Cetak untuk melihat hasilnya.');
-	    redirect(base_url('skeluar/data_table'), 'refresh');
+			redirect(base_url('skeluar/data_table'));
 		} else {
 			redirect(base_url('skeluar/ubahDatasmasuk'));
 		}
-		} else {
-    	  redirect(site_url('login'), 'refresh');
-    	}	
 	}
 
 	public function gantiDatasperingatan()
 	{
-		if ($this->session->userdata('log_in')) {
 		$no = $this->input->post('no');
 		$nosurat = $this->input->post('nosurat');
 		$prihal = $this->input->post('prihal');
@@ -1045,23 +1092,20 @@ class Skeluar extends CI_Controller {
 				'no' => $no
 			];
 
-			$result = $this->m_keluar->updateDatasuratkeluar($data,$data2, $where,$jenissurat,$prihal);
-			
+			$result2 = $this->m_keluar->updateDatasuratkeluar2($data2,$where,$jenissurat);
+			$result = $this->m_keluar->updateDatasuratkeluar($data, $where);
+
 			if ($result) {
 			  $this->session->set_flashdata('success','Data berhasil di ubah!');
-		      $this->session->set_flashdata('message','Periksa kembali data Surat.');
+		      $this->session->set_flashdata('message','Periksa kembali data Pemohon.');
 		      redirect(base_url('skeluar/data_table'), 'refresh');
 			} else {
 				redirect(base_url('skeluar/ubahDatasmasuk'));
 			}
-		} else {
-    	  redirect(site_url('login'), 'refresh');
-    	}	
 	}
 
 	public function gantiDatasidak()
 	{
-		if ($this->session->userdata('log_in')) {
 		$no = $this->input->post('no');
 		$nosurat = $this->input->post('nosurat');
 		$perihal = $this->input->post('perihal_sidak');
@@ -1092,19 +1136,15 @@ class Skeluar extends CI_Controller {
 
 			if ($result) {
 			  $this->session->set_flashdata('success','Data berhasil di ubah!');
-		      $this->session->set_flashdata('message','Periksa kembali data Surat.');
+		      $this->session->set_flashdata('message','Periksa kembali data Pemohon.');
 		      redirect(base_url('skeluar/data_table_sidak'), 'refresh');
 			} else {
 				redirect(base_url('skeluar/index'));
 			}
-		} else {
-    	  redirect(site_url('login'), 'refresh');
-    	}	
 	}
 
 	public function gantiDatasteguran()
 	{
-		if ($this->session->userdata('log_in')) {
 		$no = $this->input->post('no');
 		$nosurat = $this->input->post('nosurat');
 		$prihal = $this->input->post('prihal');
@@ -1143,23 +1183,18 @@ class Skeluar extends CI_Controller {
 			'no' => $no
 		];
 
-		$result = $this->m_keluar->updateDatasuratkeluar($data,$data2, $where,$jenissurat,$prihal);
-		
+		$result2 = $this->m_keluar->updateDatasuratkeluar2($data2,$where,$jenissurat);
+		$result = $this->m_keluar->updateDatasuratkeluar($data, $where);
+
 		if ($result) {
-		$this->session->set_flashdata('success','Data Berhasil Diubah !');
-	    $this->session->set_flashdata('message','Tekan tombol Cetak untuk melihat hasilnya.');
-	    redirect(base_url('skeluar/data_table'), 'refresh');
+			redirect(base_url('skeluar/data_table'));
 		} else {
 			redirect(base_url('skeluar/ubahDatasmasuk'));
 		}
-		} else {
-    	  redirect(site_url('login'), 'refresh');
-    	}
 	}
 
 	public function gantiDataskeluar_fee()
 	{
-		if ($this->session->userdata('log_in')) {
 		$no = $this->input->post('no');
 		$nosurat = $this->input->post('nosurat');
 
@@ -1196,7 +1231,7 @@ class Skeluar extends CI_Controller {
 		$this->m_keluar->deleteDatasuratkeluar_fee($where2);
 	//Pencairan fee
 		foreach ($input['sekolah'] as $key => $val) {
-			$add[]=array(
+			$add=array(
 				'no' => $no,
 				'no_surat' => $nosurat,
 				'lampiran' => $lampiran,
@@ -1212,26 +1247,20 @@ class Skeluar extends CI_Controller {
 				'jml_siswa' => $input['acc'][$key]+ $input['tdk_acc'][$key],
 				'jml_disetujui' => (int)$input['acc'][$key] * (int)$input['fee_siswa'][$key]
 				);			
-			// $result2 = $this->m_keluar->saveDatasuratkeluar3($add);
+			$result2 = $this->m_keluar->saveDatasuratkeluar3($add);
 		}
 
-		$result = $this->m_keluar->updateDatasuratkeluar($data,$add,$where,$jenissurat,$prihal);
+		$result = $this->m_keluar->updateDatasuratkeluar($data, $where);
 
 		if ($result) {
-			$this->session->set_flashdata('success','Data Berhasil Diubah !');
-		    $this->session->set_flashdata('message','Tekan tombol Cetak untuk melihat hasilnya.');
-		    redirect(base_url('skeluar/data_table'), 'refresh');
+			redirect(base_url('skeluar/data_table'));
 		} else {
 			redirect(base_url('skeluar/ubahDatasmasuk'));
 		}
-		} else {
-    	  redirect(site_url('login'), 'refresh');
-    	}
 	}
 
 	public function gantiDatasposgiro()
 	{
-		if ($this->session->userdata('log_in')) {
 		$no = $this->input->post('no');
 		$nosurat = $this->input->post('nosurat');
 		$prihal = $this->input->post('prihal');
@@ -1267,23 +1296,18 @@ class Skeluar extends CI_Controller {
 			'no' => $no
 		];
 
-		$result = $this->m_keluar->updateDatasuratkeluar($data,$data2, $where,$jenissurat,$prihal);
-		
+		$result2 = $this->m_keluar->updateDatasuratkeluar2($data2,$where,$jenissurat);
+		$result = $this->m_keluar->updateDatasuratkeluar($data, $where);
+
 		if ($result) {
-			$this->session->set_flashdata('success','Data Berhasil Diubah !');
-		    $this->session->set_flashdata('message','Tekan tombol Cetak untuk melihat hasilnya.');
-		    redirect(base_url('skeluar/data_table'), 'refresh');
+			redirect(base_url('skeluar/data_table'));
 		} else {
 			redirect(base_url('skeluar/ubahDatasmasuk'));
 		}
-		} else {
-    	  redirect(site_url('login'), 'refresh');
-    	}
 	}
 
 	public function gantiDataskeluar_transfer()
 	{
-		if ($this->session->userdata('log_in')) {
 		$no = $this->input->post('no');
 		$nosurat = $this->input->post('nosurat');
 		$prihal = $this->input->post('prihal');
@@ -1317,7 +1341,7 @@ class Skeluar extends CI_Controller {
 			$this->m_keluar->deleteDatasuratkeluar_transfer($where2);
 
 			foreach ($input['bank_m'] as $key => $val) {
-				$add[]=array(
+				$add=array(
 					'no' => $no,
 					'no_surat' => $nosurat,
 					'tgl_pencairan' => $tgl_pencairan,
@@ -1328,6 +1352,7 @@ class Skeluar extends CI_Controller {
 					'tot_order' => $input['jmlor_mgm_m'][$key],
 					'tot_siswa' => $input['jmlsis_mgm_m'][$key]
 					);			
+				$result2 = $this->m_keluar->saveDatasuratTransfer($add);
 			}
 		} elseif ($jenis_pencairan == "pengembalian biaya") {
 			$input = $this->input->post();
@@ -1336,7 +1361,7 @@ class Skeluar extends CI_Controller {
 			$this->m_keluar->deleteDatasuratkeluar_transfer($where2);
 
 			foreach ($input['bank_b'] as $key => $val) {
-				$add[]=array(
+				$add=array(
 					'no' => $no,
 					'no_surat' => $nosurat,
 					'tgl_pencairan' => $tgl_pencairan,
@@ -1347,6 +1372,7 @@ class Skeluar extends CI_Controller {
 					'tot_order' => $input['jmlor_biaya_b'][$key],
 					'tot_siswa' => $input['jmlsis_biaya_b'][$key]
 					);			
+				$result2 = $this->m_keluar->saveDatasuratTransfer($add);
 			}
 		}elseif ($jenis_pencairan == "mgm dan pengembalian biaya") {
 			$input = $this->input->post();
@@ -1355,7 +1381,7 @@ class Skeluar extends CI_Controller {
 			$this->m_keluar->deleteDatasuratkeluar_transfer($where2);
 
 			foreach ($input['bank_mb'] as $key => $val) {
-				$add[]=array(
+				$add=array(
 					'no' => $no,
 					'no_surat' => $nosurat,
 					'tgl_pencairan' => $tgl_pencairan,
@@ -1368,86 +1394,16 @@ class Skeluar extends CI_Controller {
 					'tot_order' => $input['jmlor_mgm_mb'][$key] + $input['jmlor_biaya_mb'][$key],
 					'tot_siswa' => $input['jmlsis_mgm_mb'][$key] + $input['jmlsis_biaya_mb'][$key]
 					);			
-				// $result2 = $this->m_keluar->saveDatasuratTransfer($add);
+				$result2 = $this->m_keluar->saveDatasuratTransfer($add);
 			}
 		}
-		$result = $this->m_keluar->updateDatasuratkeluar($data,$add,$where,$jenissurat,$prihal);
+		$result = $this->m_keluar->updateDatasuratkeluar($data, $where);
 
 		if ($result) {
-			$this->session->set_flashdata('success','Data Berhasil Diubah !');
-		    $this->session->set_flashdata('message','Tekan tombol Cetak untuk melihat hasilnya.');
-		    redirect(base_url('skeluar/data_table'), 'refresh');
+			redirect(base_url('skeluar/data_table'));
 		} else {
 			redirect(base_url('skeluar/ubahDatasmasuk'));
 		}
-		} else {
-    	  redirect(site_url('login'), 'refresh');
-    	}
-	}
-
-	public function gantiDataPengecekan()
-	{
-		if ($this->session->userdata('log_in')) {
-		$no = $this->input->post('no');
-		$nosurat = $this->input->post('nosurat');
-		$prihal = $this->input->post('prihal');
-		$namatujuan = $this->input->post('namatujuan');
-		$tujuan = $this->input->post('tujuan');
-		$jenissurat = $this->input->post('cjenissurat_update');
-		$userid = $this->input->post('userid');
-		$tanggal = $this->input->post('tanggal');
-		$cku = $this->input->post('cku');
-		$norektrs = $this->input->post('norektransfer');
-		$tgltransfer = $this->input->post('tgltransfer');
-		$namatransfer = $this->input->post('namatransfer');
-		$norekpentransfer = $this->input->post('norekpentransfer');
-		$nominal = $this->input->post('nominal');
-		$hasil = $this->input->post('hasil');
-		$tglkonfirmasi = $this->input->post('tglkonfirmasi');
-
-
-		$data2 = array(
-			'no' => $no,
-			'no_surat' => $nosurat,
-			'cku' => $cku,
-			'norektrs' => $norektrs,
-			'tgltransfer' => $tgltransfer,
-			'namatransfer' => $namatransfer,
-			'norekpentransfer' => $norekpentransfer,
-			'nominal' => $nominal,
-			'hasil' => $hasil,
-			'tglkonfirmasi' => $tglkonfirmasi
-			
-			
-		);
-		
-		$data = array(
-			'no_surat' => $nosurat,
-			'perihal' => $prihal,
-			'nama_tujuan' => $namatujuan,
-			'tujuan' => $tujuan,
-			'jenis_surat' => $jenissurat,
-			'tgl_SuratKeluar' => $tanggal,
-			'userid' => $userid
-
-		);
-
-		$where = [
-			'no' => $no
-		];
-
-		$result = $this->m_keluar->updateDatasuratkeluar($data,$data2,$where,$jenissurat,$prihal);
-
-		if ($result) {
-			$this->session->set_flashdata('success','Data Berhasil Diubah !');
-		    $this->session->set_flashdata('message','Tekan tombol Cetak untuk melihat hasilnya.');
-		    redirect(base_url('skeluar/data_table'), 'refresh');
-		} else {
-			redirect(base_url('skeluar/ubahDatasmasuk'));
-		}
-		} else {
-    	  redirect(site_url('login'), 'refresh');
-    	}
 	}
 
 	public function search()
@@ -1519,7 +1475,7 @@ class Skeluar extends CI_Controller {
 		 $this->template->load('template','v_data_skeluar',$data);
 		 } else {
     	  redirect(site_url('login'), 'refresh');
-    	}
+    	}	
 	}
 	
 	public function search_sidak()
@@ -1589,12 +1545,11 @@ class Skeluar extends CI_Controller {
 		 $this->template->load('template','v_data_skeluar_sidak',$data);
 		 } else {
     	  redirect(site_url('login'), 'refresh');
-    	}
+    	}	
 	}
 
 	public function gantistatus($no,$status)
 	{
-		if ($this->session->userdata('log_in')) {
 		$data2 = array('status' => $status );
 		$where = ['no' => $no ];
 
@@ -1607,8 +1562,5 @@ class Skeluar extends CI_Controller {
 			$this->session->set_flashdata('success','Status Data Tidak Berhasil diubah !');
 		    redirect(base_url('skeluar/data_table'), 'refresh');
 		}
-		} else {
-    	  redirect(site_url('login'), 'refresh');
-    	}
 	}
 }

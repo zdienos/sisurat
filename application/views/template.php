@@ -289,6 +289,8 @@ $('#btnDelCheckRow').click(function() {
       $('#Pembayaranpos').hide();
       $('#pengirim').hide();
       $('#Sidak').hide();
+      $('#Pengecekantransfer').hide();
+      
 
       $('#cjenissurat').change(function() {
         if ($('#cjenissurat').val() == 'Pencairan') {
@@ -303,6 +305,7 @@ $('#btnDelCheckRow').click(function() {
           $('#Pembayaranpos').hide();
           $('#pengirim').show();
           $('#Sidak').hide();
+          $('#Pengecekantransfer').hide();
         } else if ($('#cjenissurat').val() == 'Peringatan') {
           $('#Peringatan').show();
           $('#Pencairan').hide();
@@ -317,6 +320,7 @@ $('#btnDelCheckRow').click(function() {
           $('#Pembayaranpos').hide();
           $('#pengirim').show();
           $('#Sidak').hide();
+          $('#Pengecekantransfer').hide();
         } else if ($('#cjenissurat').val() == 'Teguran') {
           $('#Peringatan').hide();
           $('#Pencairan').hide();
@@ -329,6 +333,7 @@ $('#btnDelCheckRow').click(function() {
           $('#biaya').hide();
           $('#Sidak').hide();
           $('#pengirim').show();
+          $('#Pengecekantransfer').hide();
         } else if ($('#cjenissurat').val() == 'Transfer') {
           $('#Peringatan').hide();
           $('#Pencairan').hide();
@@ -342,6 +347,7 @@ $('#btnDelCheckRow').click(function() {
           $('#biaya').hide();
           $('#Pembayaranpos').hide();
           $('#Sidak').hide();
+          $('#Pengecekantransfer').hide();
         } else if ($('#cjenissurat').val() == 'Pembayaran') {
           $('#Peringatan').hide();
           $('#Pencairan').hide();
@@ -355,6 +361,7 @@ $('#btnDelCheckRow').click(function() {
           $('#Pembayaranpos').show();
           $('#pengirim').hide();
           $('#Sidak').hide();
+          $('#Pengecekantransfer').hide();
         } else if ($('#cjenissurat').val() == 'Sidak') {
           $('#Peringatan').hide();
           $('#Pencairan').hide();
@@ -368,6 +375,21 @@ $('#btnDelCheckRow').click(function() {
           $('#Pembayaranpos').hide();
           $('#pengirim').hide();
           $('#Sidak').show();
+          $('#Pengecekantransfer').hide();
+        } else if ($('#cjenissurat').val() == 'Pengecekan') {
+          $('#Peringatan').hide();
+          $('#Pencairan').hide();
+          $('#Teguran').hide();
+          $('#prihal').hide();
+          $('#Pencairan3').hide();
+          $('#Transfer').hide();
+          $('#mgm_biaya').hide();
+          $('#mgm').hide();
+          $('#biaya').hide();
+          $('#Pembayaranpos').hide();
+          $('#pengirim').show();
+          $('#Sidak').hide();
+          $('#Pengecekantransfer').show();
         }
       });
 

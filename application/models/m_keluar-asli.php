@@ -197,70 +197,108 @@ class M_keluar extends CI_Model
 		}
 	}
 
-	function saveDatasuratkeluar($data=null,$data2=null,$jenissurat=null,$prihal=null)
+	function saveDatasuratkeluar($data)
 	{
-		$this->db->trans_begin();
 		$data = $this->db->insert('skeluar', $data);
 
-		if(($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Pencairan PT Kolektif') or 
-			($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Pencairan Fee Bimker') or  
-			($jenissurat == 'Pencairan' and $prihal == 'Surat Tidak ACC Pencairan PT Kolektif') or  
-			($jenissurat == 'Pencairan' and $prihal == 'Surat Tidak ACC Pencairan Fee Bimker')){
-
-			$data2 = $this->db->insert_batch('tb_sk_pencairan_fee', $data2);
-
-
-		}elseif (($jenissurat == 'Pencairan' and $prihal != 'Surat ACC Pencairan PT Kolektif') or 
-			($jenissurat == 'Pencairan' and $prihal != 'Surat ACC Pencairan Fee Bimker') or  
-			($jenissurat == 'Pencairan' and $prihal != 'Surat Tidak ACC Pencairan PT Kolektif') or  
-			($jenissurat == 'Pencairan' and $prihal != 'Surat Tidak ACC Pencairan Fee Bimker')) {
-
-			$data2 = $this->db->insert('tb_sk_tidak_kuota', $data2);
-			
-		} elseif ($jenissurat == 'Peringatan') {
-			$data2 = $this->db->insert('tb_sk_peringatan', $data2);
-		} elseif ($jenissurat == 'Teguran') {
-			$data2 = $this->db->insert('tb_sk_teguran', $data2);
-		} elseif ($jenissurat == 'Pembayaran') {
-			$data2 = $this->db->insert('tb_sk_pos_giro', $data2);
-		} elseif ($jenissurat == 'Transfer') {
-			$data2 = $this->db->insert_batch('tb_sk_transfer_mgmbiaya', $data2);
-		} elseif ($jenissurat == 'Pengecekan') {
-			$data2 = $this->db->insert('tb_sk_pengecekan', $data2);
+		if ($data) {
+			return true;
+		} else {
+			return false;
 		}
-
-		$this->db->trans_complete();
-		if ($this->db->trans_status() === FALSE) {
-            //if something went wrong, rollback everything
-            $this->db->trans_rollback();
-        	return FALSE;
-        } else {
-            //if everything went right, commit the data to the database
-            $this->db->trans_commit();
-            return TRUE;
-        }
 	}
 
 	function saveDatasuratkeluar_sidak($data)
-	{ 
-		$this->db->trans_begin();
-		
+	{
 		$data = $this->db->insert('tb_sk_sidak', $data);
 
-		$this->db->trans_complete();
-		if ($this->db->trans_status() === FALSE) {
-            //if something went wrong, rollback everything
-            $this->db->trans_rollback();
-        	return FALSE;
-        } else {
-            //if everything went right, commit the data to the database
-            $this->db->trans_commit();
-            return TRUE;
-        }
+		if ($data) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
+	function saveDatasuratkeluar2($data2)
+	{
+		$data2 = $this->db->insert('tb_sk_tidak_kuota', $data2);
+
+		if ($data2) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	function saveDatasuratkeluar3($add)
+	{
+		$data = $this->db->insert('tb_sk_pencairan_fee', $add);	
+
+		if ($data) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	function saveDatasperingatan($data2)
+	{
+		$data2 = $this->db->insert('tb_sk_peringatan', $data2);
+
+		if ($data2) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	function saveDatasteguran($data2)
+	{
+		$data2 = $this->db->insert('tb_sk_teguran', $data2);
+
+		if ($data2) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	function saveDataspembayaran($data2)
+	{
+		$data2 = $this->db->insert('tb_sk_pos_giro', $data2);
+
+		if ($data2) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	function saveDatasuratTransfer($data2)
+	{
+		$data2 = $this->db->insert('tb_sk_transfer_mgmbiaya', $data2);
+
+		if ($data2) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	function saveDataspengecekan($data2)
+	{
+		$data2 = $this->db->insert('tb_sk_pengecekan', $data2);
+
+		if ($data2) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	function ubahsuratkeluar($no,$jenis_surat)
 	{
+
 		if(($jenis_surat == 'Pencairan') or ($jenis_surat == 'Pencairan')){
 			$this->db->from('skeluar');
 		    $this->db->join('tb_sk_tidak_kuota', 'skeluar.no = tb_sk_tidak_kuota.no');
@@ -287,69 +325,49 @@ class M_keluar extends CI_Model
 		}
 	}
 
- 	function updateDatasuratkeluar_sidak($data, $where)
+ 	function updateDatasuratkeluar($data, $where)
  	{
- 		$this->db->trans_begin();
- 		$data = $this->db->update('tb_sk_sidak', $data, $where);
-		
-		$this->db->trans_complete();
-		if ($this->db->trans_status() === FALSE) {
-            //if something went wrong, rollback everything
-            $this->db->trans_rollback();
-        	return FALSE;
-        } else {
-            //if everything went right, commit the data to the database
-            $this->db->trans_commit();
-            return TRUE;
-        }
- 	}
-
- 	function updateDatasuratkeluar($data,$data2, $where,$jenissurat,$prihal)
- 	{
- 		$this->db->trans_begin();
  		$data = $this->db->update('skeluar', $data, $where);
 
- 		if (($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Pencairan PT Kolektif') or 
-			($jenissurat == 'Pencairan' and $prihal == 'Surat ACC Pencairan Fee Bimker') or  
-			($jenissurat == 'Pencairan' and $prihal == 'Surat Tidak ACC Pencairan PT Kolektif') or  
-			($jenissurat == 'Pencairan' and $prihal == 'Surat Tidak ACC Pencairan Fee Bimker')){
-
- 			$data = $this->db->insert_batch('tb_sk_pencairan_fee', $data2);	
-
- 		}elseif (($jenissurat == 'Pencairan' and $prihal != 'Surat ACC Pencairan PT Kolektif') or 
-			($jenissurat == 'Pencairan' and $prihal != 'Surat ACC Pencairan Fee Bimker') or  
-			($jenissurat == 'Pencairan' and $prihal != 'Surat Tidak ACC Pencairan PT Kolektif') or  
-			($jenissurat == 'Pencairan' and $prihal != 'Surat Tidak ACC Pencairan Fee Bimker')){
-
- 			$data = $this->db->update('tb_sk_tidak_kuota', $data2, $where);	
-
- 		} elseif ($jenissurat == "Peringatan") {
- 			$data = $this->db->update('tb_sk_peringatan', $data2, $where);	
- 		} elseif ($jenissurat == "Teguran") {
- 			$data = $this->db->update('tb_sk_teguran', $data2, $where);	
- 		} elseif ($jenissurat == "Pembayaran") {
- 			$data = $this->db->update('tb_sk_pos_giro', $data2, $where);	
- 		} elseif ($jenissurat == "Pengecekan") {
- 			$data = $this->db->update('tb_sk_pengecekan', $data2, $where);
-		} elseif ($jenissurat == "Transfer") {
- 			$data = $this->db->insert_batch('tb_sk_transfer_mgmbiaya', $data2);
+ 		if ($data) {
+			return true;
+		} else {
+			return false;
 		}
+ 	}
 
- 		$this->db->trans_complete();
-		if ($this->db->trans_status() === FALSE) {
-            //if something went wrong, rollback everything
-            $this->db->trans_rollback();
-        	return FALSE;
-        } else {
-            //if everything went right, commit the data to the database
-            $this->db->trans_commit();
-            return TRUE;
-        }
+ 	function updateDatasuratkeluar_sidak($data, $where)
+ 	{
+ 		$data = $this->db->update('tb_sk_sidak', $data, $where);
+
+ 		if ($data) {
+			return true;
+		} else {
+			return false;
+		}
+ 	}
+
+ 	function updateDatasuratkeluar2($data2, $where,$jenis_surat)
+ 	{
+ 		if ($jenis_surat == "Pencairan"){
+ 			$data = $this->db->update('tb_sk_tidak_kuota', $data2, $where);	
+ 		} elseif ($jenis_surat == "Peringatan") {
+ 			$data = $this->db->update('tb_sk_peringatan', $data2, $where);	
+ 		} elseif ($jenis_surat == "Teguran") {
+ 			$data = $this->db->update('tb_sk_teguran', $data2, $where);	
+ 		} elseif ($jenis_surat == "Pembayaran") {
+ 			$data = $this->db->update('tb_sk_pos_giro', $data2, $where);	
+ 		}
+
+ 		if ($data) {
+			return true;
+		} else {
+			return false;
+		}
  	}
 
  	function deleteDatasuratkeluar($jenis_surat,$where,$prihal=Null)
  	{
- 		$this->db->trans_begin();
  		if (($prihal == 'Surat%20ACC%20Pencairan%20PT%20Kolektif')or($prihal == 'Surat%20Tidak%20ACC%20Pencairan%20PT%20Kolektif')or($prihal == 'Surat%20ACC%20Pencairan%20Fee%20Bimker')or($prihal == 'Surat%20Tidak%20ACC%20Pencairan%20Fee%20Bimker')){
 			$prihal = 1;
 		} elseif(($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Kelas%20Tidak%20Kuota')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Anak%20Guru')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Pindah%20Program')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Pengalihan%20Biaya')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Karyawan')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Diskon%20Pengajar')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Kelebihan%20Bayar')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Jaminan%20PTN')or($prihal == 'Surat%20Tidak%20ACC%20Pengembalian%20Jaminan%20SMA%20Favorit')or($prihal == 'Surat%20Tidak%20ACC%20Diskon%20Susulan')) {
@@ -385,48 +403,36 @@ class M_keluar extends CI_Model
 			$data2 = $this->db->delete('tb_sk_pengecekan', $where);
  		}
 
- 		$this->db->trans_complete();
-		if ($this->db->trans_status() === FALSE) {
-            //if something went wrong, rollback everything
-            $this->db->trans_rollback();
-        	return FALSE;
-        } else {
-            //if everything went right, commit the data to the database
-            $this->db->trans_commit();
-            return TRUE;
-        }
+ 		if ($data) {
+			return true;
+		} else {
+			return false;
+		}
  	}
- 
+ 	function deleteDatasuratkeluar_fee($where3)
+ 	{
+ 		$data3 = $this->db->delete('tb_sk_pencairan_fee', $where3);
+
+ 		if ($data3) {
+			return true;
+		} else {
+			return false;
+		}
+ 	}
+
  	function deleteDatasuratkeluar_sidak($where3)
  	{
- 		$this->db->trans_begin();
-
  		$data3 = $this->db->delete('tb_sk_sidak', $where3);
 
- 		$this->db->trans_complete();
-		if ($this->db->trans_status() === FALSE) {
-            //if something went wrong, rollback everything
-            $this->db->trans_rollback();
-        	return FALSE;
-        } else {
-            //if everything went right, commit the data to the database
-            $this->db->trans_commit();
-            return TRUE;
-        }
+ 		if ($data3) {
+			return true;
+		} else {
+			return false;
+		}
  	}
 
-	function deleteDatasuratkeluar_fee($where3)
-	 	{
-	 		$data3 = $this->db->delete('tb_sk_pencairan_fee', $where3);
 
-	 		if ($data3) {
-				return true;
-			} else {
-				return false;
-			}
-	 	}
-
-	function deleteDatasuratkeluar_transfer($where3)
+ 	function deleteDatasuratkeluar_transfer($where3)
  	{
  		$data3 = $this->db->delete('tb_sk_transfer_mgmbiaya', $where3);
 

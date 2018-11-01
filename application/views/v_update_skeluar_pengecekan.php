@@ -1,7 +1,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1><span class="fa fa-edit"></span>
-        Edit Surat Peringatan
+        Edit Surat Keluar Pengecekan
       </h1>
     </section>
 
@@ -12,8 +12,8 @@
              $date =date('y-m-d');
                  if (!empty($ubahskeluar)){
                     foreach($ubahskeluar as $usk){ ?>
-            <form action="<?= base_url('skeluar/gantiDatasperingatan') ?>" role="form" method="post">
-               <input class="form-control" type="hidden" name="userid"  value="<?php echo $username?>">
+            <form action="<?= base_url('skeluar/gantiDataPengecekan') ?>" role="form" method="post">
+               <input class="form-control" type="hidden" name="userid"  value="<?php echo $nama_lengkap.'-'.$jabatan?>">
                <input class="form-control" type="hidden" name="tanggal" value="<?php echo $date;?>"> 
 
                <div class="form-group">
@@ -33,11 +33,11 @@
                 </div>
                 <div class="form-group">
                   <label>Tujuan</label>
-                  <input class="form-control" value="<?= $usk['tujuan'] ?>" placeholder="Enter ..." type="text" name="tujuan" required="" >
+                  <input class="form-control" value="<?= $usk['tujuan'] ?>" placeholder="Enter ..." type="text" name="tujuan" required="">
                 </div>
                 <div class="form-group">
                   <label>Nama Tujuan</label>
-                  <input class="form-control" value="<?= $usk['nama_tujuan'] ?>" placeholder="Enter ..." type="text" name="namatujuan" required="" >
+                  <input class="form-control" value="<?= $usk['nama_tujuan'] ?>" placeholder="Enter ..." type="text" name="namatujuan" required="">
                 </div>
 
                 <div class="form-group">
@@ -46,28 +46,37 @@
                 </div>
 
             <!-- pengelommpokkan jenis surat -->
-                <div id="TidakKuota">
-                  <div class="form-group">
-                  <label>Lokasi Tujuan</label>
-                  <input class="form-control" placeholder="Enter ..." type="text" name="loktujuan"required="" value="<?= $usk['loktujuan'] ?>" >
-                  <p><i>Contoh : "Ganesha Operation ... "</i></p>
-                </div>
                     <div class="form-group">
-                      <label>NIP</label>
-                      <input class="form-control" value="<?= $usk['nip'] ?>"  placeholder="Enter ..." type="text" required="" name="nip">
+                      <label>Cabang - Kota - Unit</label>
+                      <input class="form-control" placeholder="Masukan cabang - kota - unit" type="text" name="cku" value="<?= $usk['cku'] ?>">
                     </div>
                     <div class="form-group">
-                      <label>SP ke</label>
-                      <input class="form-control" value="<?= $usk['spke'] ?>"  placeholder="Enter ..." type="text" required="" name="spke" readonly="">
+                      <label>No Rekening</label>
+                      <input class="form-control" placeholder="Masukan No Rekening" type="text" name="norektransfer" value="<?= $usk['norektrs'] ?>">
                     </div>
                     <div class="form-group">
-                      <label>Kesalahan</label>
-                      <input class="form-control" value="<?= $usk['kesalahan'] ?>" placeholder="Enter ..." type="text" required="" name="kesalahan">
+                      <label>Tanggal Transfer</label>
+                      <input class="form-control" placeholder="Masukan Tanggal Transfer" type="date" name="tgltransfer" value="<?= $usk['tgltransfer'] ?>">
                     </div>
                     <div class="form-group">
-                      <label>Tembusan</label>
-                      <input class="form-control" value="<?= $usk['tembusan'] ?>" placeholder="Enter ..." type="text" required="" name="tembusan">
-                       <p><i>Untuk memisahkan Tembusan beri tanda koma <b> (",") </b> tanpa spasi</i></p>
+                      <label>Nama Pentrnasfer</label>
+                      <input class="form-control" placeholder="Masukan Nana Pentransfer" type="text" name="namatransfer" value="<?= $usk['namatransfer'] ?>">
+                    </div>
+                    <div class="form-group">
+                      <label>No Rekening Pentransfer</label>
+                      <input class="form-control" placeholder="Masukan No Rekening Pentransfer" type="text" name="norekpentransfer" value="<?= $usk['norekpentransfer'] ?>">
+                    </div>
+                    <div class="form-group">
+                      <label>Nominal Transfer</label>
+                      <input class="form-control" placeholder="Masukan Nominal Transfer" type="text" name="nominal" value="<?= $usk['nominal'] ?>">
+                    </div>
+                    <div class="form-group">
+                      <label>Hasil Pengecekan</label>
+                      <input class="form-control" placeholder="Masukan Hasil Pengecekan" type="text" name="hasil" value="<?= $usk['hasil'] ?>">
+                    </div>
+                    <div class="form-group">
+                      <label>Tanggal Konfirmasi</label>
+                      <input class="form-control" placeholder="Masukan Tanggal Konfirmasi" type="date" name="tglkonfirmasi" value="<?= $usk['tglkonfirmasi'] ?>">
                     </div>
                     <?php } } ?>
                 </div>
