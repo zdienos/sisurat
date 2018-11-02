@@ -1469,6 +1469,7 @@ class Skeluar extends CI_Controller {
 			'jenis_surat'=>$keyword,
 			'userid'=>$keyword,
 			'tgl_SuratKeluar'=>$keyword,
+			'status'=>$keyword
 		);
 
 		$page = $this->input->get('per_page');

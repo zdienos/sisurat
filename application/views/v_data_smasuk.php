@@ -71,11 +71,16 @@
                           <a href="<?= base_url('Smasuk/ubahdatasmasuk/') . $srt->id ?>" class="btn-sm btn btn-success"><span class="fa fa-edit"></span> Edit</a>
                           <a href="<?= base_url('Smasuk/lihatsuratmasuk/') . $srt->id ?>" class="btn-sm btn btn-primary"><span class="fa fa-eye"></span> Lihat</a>
                           <a href="<?= base_url('Smasuk/hapusDatasuratmasuk/') . $srt->id.'/'.$srt->arsip ?>" class="btn-sm btn btn-danger"  onClick="return doconfirm();"><span class="fa fa-trash-o"></span> Delete</a>
+                          <?php if ($srt->arsip != ""){?>
                           <a href="<?= site_url('assets/arsip/') .$srt->arsip ?>" class="btn-sm btn btn-warning"><span class="fa fa-file-o"></span> &nbsp Arsip</a>
+                        <?php } ?>
                           <?php }  else{?>
                            <a href="<?= base_url('Smasuk/ubahdatasmasuk/') . $srt->id ?>" class="btn-sm btn btn-success"><span class="fa fa-edit"></span> Edit</a>
                           <a href="<?= base_url('Smasuk/lihatsuratmasuk/') . $srt->id ?>" class="btn-sm btn btn-primary"><span class="fa fa-eye"></span> Lihat</a>
+                          <?php if ($srt->arsip != ""){?>
                           <a href="<?= site_url('assets/arsip/').$srt->arsip ?>" class="btn-sm btn btn-warning"><span class="fa fa-file-o"></span> &nbsp Arsip</a>
+                        <?php } ?>
+
                           </td>
                         </tr>
 
