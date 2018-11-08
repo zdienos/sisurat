@@ -78,6 +78,11 @@
                       <label>Tanggal Tanggapan Tertulis</label>
                       <input class="form-control" placeholder="Masukan Tanggal Tanggapan Tertulis" type="date" name="tgl_tanter" value="<?= $usk['tgl_tanter'] ?>">
                     </div>
+                    <div class="form-group">
+                      <label>Tembusan</label>
+                      <input class="form-control" placeholder="Masukan Tembusan" type="text" name="tbsintriksi" value="<?= $usk['tembusan'] ?>">
+                      <p><i>Untuk memisahkan Tembusan beri tanda koma <b> (",") </b> tanpa spasi</i></p>
+                    </div>
                     <?php } } ?>
                 </div>
                 <a href="<?= base_url('Skeluar/data_table/') ?>" class="btn btn-primary"><i class="fa fa-mail-reply"></i> Kembali</a>

@@ -168,8 +168,22 @@ foreach($cetak as $l) {
       </table>
     </div>
  
-  <br>  <br>  <br>  <br>  <br>  <br>  <br>  
-  
+   <br>  <br>  <br>  <br>  <br>  <br>  <br> 
+  <div id="tbs">
+    <p>Tembusan:<br>
+    <ul style="list-style-type: none;">
+    <?php 
+    $tbs = explode(",",$l['tembusan']);
+    foreach ($tbs as $t) { ?>
+      <li><?php echo "-  ".$t; ?></li>
+    <?php 
+    }
+    ?>
+    </ul>
+    </p>
+    <br><br>
+     <p style="text-align: center;">Dikirim Via Email</p>
+  </div>
 
 <?php }?>
   

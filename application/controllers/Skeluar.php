@@ -640,6 +640,7 @@ class Skeluar extends CI_Controller {
 			$petugas_kuitansi = $this->input->post('petugas_kuitansi');
 			$tgl_waset = $this->input->post('tgl_waset');
 			$tgl_tanter = $this->input->post('tgl_tanter');
+			$tbsintriksi = $this->input->post('tbsintriksi');
 
 
 			$data2 = array(
@@ -652,8 +653,8 @@ class Skeluar extends CI_Controller {
 				'nokuitansi' => $nokuitansi,
 				'petugas_kuitansi' => $petugas_kuitansi,
 				'tgl_waset' => $tgl_waset,
-				'tgl_tanter' => $tgl_tanter
-				
+				'tgl_tanter' => $tgl_tanter,
+				'tembusan' => $tbsintriksi
 				
 				
 			);
@@ -1553,6 +1554,7 @@ class Skeluar extends CI_Controller {
 		$petugas_kuitansi = $this->input->post('petugas_kuitansi');
 		$tgl_waset = $this->input->post('tgl_waset');
 		$tgl_tanter = $this->input->post('tgl_tanter');
+		$tbsintriksi = $this->input->post('tbsintriksi');
 
 
 		$data2 = array(
@@ -1564,7 +1566,8 @@ class Skeluar extends CI_Controller {
 			'nokuitansi' => $nokuitansi,
 			'petugas_kuitansi' => $petugas_kuitansi,
 			'tgl_waset' => $tgl_waset,
-			'tgl_tanter' => $tgl_tanter
+			'tgl_tanter' => $tgl_tanter,
+			'tembusan' => $tbsintriksi
 
 		);
 		

@@ -552,6 +552,11 @@
                       <label>Tanggal Tanggapan Tertulis</label>
                       <input class="form-control" placeholder="Masukan Tanggal Tanggapan Tertulis" type="date" name="tgl_tanter">
                     </div>
+                    <div class="form-group">
+                      <label>Tembusan</label>
+                      <input class="form-control" placeholder="Masukan Tembusan" type="text" name="tbsintriksi">
+                      <p><i>Untuk memisahkan Tembusan beri tanda koma <b> (",") </b> tanpa spasi</i></p>
+                    </div>
                 </div>
 <!-- ======================================================================================================== -->
 

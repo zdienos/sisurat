@@ -32,6 +32,7 @@
                   <tr><td>Petugas Kuitansi</td><td><?= $srt['petugas_kuitansi']; ?></td></tr>
                   <tr><td>Tanggal Wajib Setor</td><td><?= $srt['tgl_waset']; ?></td></tr>
                   <tr><td>Tanggal Tanggapan Tertulis</td><td><?= $srt['tgl_tanter']; ?></td></tr>
+                  <tr><td>Tembusan</td><td><?= $srt['tembusan']; ?></td></tr>
                   <tr><td>Tanggal Input</td><td><?= $srt['tgl_SuratKeluar']; ?></td></tr>
                   <tr><td>Yang Membuat</td> <td><?= $srt['userid'];?></td></tr>
                 </tbody>
