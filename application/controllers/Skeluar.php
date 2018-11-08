@@ -961,7 +961,7 @@ class Skeluar extends CI_Controller {
 		$jumlahbayar = $this->input->post('jumlahbayar_pt');
 		$pengembaliannorek = $this->input->post('norek');
 		$tembusan = $this->input->post('tembusan');
-		$userid = $this->input->post('userid');
+		// $userid = $this->input->post('userid');
 		$tanggal = $this->input->post('tanggal');
 		$tglmarketing = $this->input->post('tglmarketing');
 		$unit = $this->input->post('unit');
@@ -972,8 +972,9 @@ class Skeluar extends CI_Controller {
 			'nama_tujuan' => $namatujuan,
 			'tujuan' => $tujuan,
 			'jenis_surat' => $jenissurat,
-			'tgl_SuratKeluar' => $tanggal,
-			'userid' => $userid
+			// 'userid' => $userid,
+			'tgl_SuratKeluar' => $tanggal
+			
 
 		);
 
@@ -1016,7 +1017,7 @@ class Skeluar extends CI_Controller {
 		$tujuan = $this->input->post('tujuan');
 		$jenissurat = $this->input->post('cjenissurat_update');
 		$tembusan = $this->input->post('tembusan');
-		$userid = $this->input->post('userid');
+		// $userid = $this->input->post('userid');
 		$tanggal = $this->input->post('tanggal');
 		$loktujuan = $this->input->post('loktujuan');
 		$kesalahan = $this->input->post('kesalahan');
@@ -1029,8 +1030,8 @@ class Skeluar extends CI_Controller {
 				'nama_tujuan' => $namatujuan,
 				'tujuan' => $tujuan,
 				'jenis_surat' => $jenissurat,
-				'tgl_SuratKeluar' => $tanggal,
-				'userid' => $userid
+				'tgl_SuratKeluar' => $tanggal
+				// 'userid' => $userid
 
 			);
 
@@ -1111,7 +1112,7 @@ class Skeluar extends CI_Controller {
 		$namatujuan = $this->input->post('namatujuan');
 		$tujuan = $this->input->post('tujuan');
 		$jenissurat = $this->input->post('cjenissurat_update');
-		$userid = $this->input->post('userid');
+		// $userid = $this->input->post('userid');
 		$tanggal = $this->input->post('tanggal');
 		$pemeriksa = $this->input->post('pemeriksa');
 		$bgntegur = $this->input->post('bgntegur');
@@ -1125,8 +1126,8 @@ class Skeluar extends CI_Controller {
 			'nama_tujuan' => $namatujuan,
 			'tujuan' => $tujuan,
 			'jenis_surat' => $jenissurat,
-			'tgl_SuratKeluar' => $tanggal,
-			'userid' => $userid
+			'tgl_SuratKeluar' => $tanggal
+			// 'userid' => $userid
 
 		);
 
@@ -1167,7 +1168,7 @@ class Skeluar extends CI_Controller {
 		$namatujuan = $this->input->post('namatujuan');
 		$tujuan = $this->input->post('tujuan');
 		$jenissurat = $this->input->post('cjenissurat_update');
-		$userid = $this->input->post('userid');
+		// $userid = $this->input->post('userid');
 		$tanggal = $this->input->post('tanggal');
 		$lampiran = $this->input->post('lampiran');
 		$tgl_marketing = $this->input->post('tgl_marketing');
@@ -1182,8 +1183,8 @@ class Skeluar extends CI_Controller {
 			'nama_tujuan' => $namatujuan,
 			'tujuan' => $tujuan,
 			'jenis_surat' => $jenissurat,
-			'tgl_SuratKeluar' => $tanggal,
-			'userid' => $userid
+			'tgl_SuratKeluar' => $tanggal
+			// 'userid' => $userid
 
 		);
 		
@@ -1238,7 +1239,7 @@ class Skeluar extends CI_Controller {
 		$namatujuan = $this->input->post('namatujuan');
 		$tujuan = $this->input->post('tujuan');
 		$jenissurat = $this->input->post('cjenissurat_update');
-		$userid = $this->input->post('userid');
+		// $userid = $this->input->post('userid');
 		$tanggal = $this->input->post('tanggal');
 		$periode = $this->input->post('periode');
 		$totaltagihan = $this->input->post('totaltagihan');
@@ -1250,8 +1251,8 @@ class Skeluar extends CI_Controller {
 			'nama_tujuan' => $namatujuan,
 			'tujuan' => $tujuan,
 			'jenis_surat' => $jenissurat,
-			'tgl_SuratKeluar' => $tanggal,
-			'userid' => $userid
+			'tgl_SuratKeluar' => $tanggal
+			// 'userid' => $userid
 
 		);
 
@@ -1287,7 +1288,7 @@ class Skeluar extends CI_Controller {
 		$no = $this->input->post('no');
 		$nosurat = $this->input->post('nosurat');
 		$prihal = $this->input->post('prihal');
-		$userid = $this->input->post('userid');
+		// $userid = $this->input->post('userid');
 		$tanggal = $this->input->post('tanggal');
 
 		$jenis_pencairan = $this->input->post('jenis_pencairan');
@@ -1299,8 +1300,8 @@ class Skeluar extends CI_Controller {
 			'no' => $no,
 			'no_surat' => $nosurat,
 			'perihal' => $prihal,
-			'tgl_SuratKeluar' => $tanggal,
-			'userid' => $userid
+			'tgl_SuratKeluar' => $tanggal
+			// 'userid' => $userid
 
 		);
 		
@@ -1394,7 +1395,7 @@ class Skeluar extends CI_Controller {
 		$namatujuan = $this->input->post('namatujuan');
 		$tujuan = $this->input->post('tujuan');
 		$jenissurat = $this->input->post('cjenissurat_update');
-		$userid = $this->input->post('userid');
+		// $userid = $this->input->post('userid');
 		$tanggal = $this->input->post('tanggal');
 		$cku = $this->input->post('cku');
 		$norektrs = $this->input->post('norektransfer');
@@ -1427,8 +1428,8 @@ class Skeluar extends CI_Controller {
 			'nama_tujuan' => $namatujuan,
 			'tujuan' => $tujuan,
 			'jenis_surat' => $jenissurat,
-			'tgl_SuratKeluar' => $tanggal,
-			'userid' => $userid
+			'tgl_SuratKeluar' => $tanggal
+			// 'userid' => $userid
 
 		);
 

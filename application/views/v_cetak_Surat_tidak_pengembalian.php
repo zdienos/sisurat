@@ -100,6 +100,8 @@ foreach($cetak as $l) {
   $tujuan = $l['tujuan'];
   $nama_tujuan = $l['nama_tujuan'];
   $kacab = explode(" ", $tujuan);
+  $user = explode("-", $l['userid']);
+  
   ?>
   <table style="margin-top: 30px;">
     <tr><td>No</td><td>:</td><td><?php echo $l['no'] .'/'. $l['no_surat'];?></td></tr>
@@ -153,8 +155,8 @@ foreach($cetak as $l) {
         <tr><td><br></td></tr>
         <tr><td><br></td></tr>
        <?php if($kacab[1] != "Cabang" ){ ?>
-        <tr><td><b><u><?php echo $nama_lengkap?></u></b></td></tr>
-        <tr><td><b><?php echo $jabatan?></b></td></tr>
+     <tr><td><b><u><?php echo $user[0]?></u></b></td></tr>
+        <tr><td><b><?php echo $user[1]?></b></td></tr>
       <?php } else {?>
         <tr><td><b><u>Dra. Erna Veronika</u></b></td></tr>
         <tr><td><b>Manajer Keuangan</b></td></tr>

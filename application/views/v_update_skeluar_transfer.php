@@ -25,7 +25,7 @@
                  if (!empty($ubahskeluar)){
                 ?>
             <form action="<?= base_url('skeluar/gantiDataskeluar_transfer') ?>" role="form" method="post">
-               <input class="form-control" type="hidden" name="userid"  value="<?php echo $username?>">
+              <!--  <input class="form-control" type="hidden" name="userid"  value="<?php echo $nama_lengkap.'-'.$jabatan?>"> -->
                <input class="form-control" type="hidden" name="tanggal" value="<?php echo $date;?>"> 
 
                <div class="form-group">

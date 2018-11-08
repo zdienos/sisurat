@@ -60,7 +60,9 @@ $bulan = explode("-", $date);
 
 
 foreach($cetak as $l) { 
-  $tujuan = explode("Kepala", $l['tujuan_penerima'])
+  $tujuan = explode("Kepala", $l['tujuan_penerima']);
+  $user = explode("-", $l['userid']);
+  
   ?>
 <br><br>
   <table>

@@ -13,7 +13,7 @@
                  if (!empty($ubahskeluar)){
                     foreach($ubahskeluar as $usk){ ?>
             <form action="<?= base_url('skeluar/gantiDatasperingatan') ?>" role="form" method="post">
-               <input class="form-control" type="hidden" name="userid"  value="<?php echo $username?>">
+              <!--  <input class="form-control" type="hidden" name="userid"  value="<?php echo $nama_lengkap.'-'.$jabatan?>"> -->
                <input class="form-control" type="hidden" name="tanggal" value="<?php echo $date;?>"> 
 
                <div class="form-group">

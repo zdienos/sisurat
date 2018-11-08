@@ -99,7 +99,9 @@ $bulan = explode("-", $date);
 
 
 
-foreach($cetak as $l) { ?>
+foreach($cetak as $l) {
+  $user = explode("-", $l['userid']);
+ ?>
   <table style="margin-top: 30px;">
     <tr><td>No</td><td>:</td><td><?php echo $l['no'] .'/'. $l['no_surat'];?></td></tr>
     <tr><td>Hal</td><td>:</td><td><?php echo $l['perihal'];?></td></tr>
@@ -140,8 +142,8 @@ foreach($cetak as $l) { ?>
         <tr><td>Bandung,<?php echo $bulan[0].' '.$infobulan.' '.$bulan[2] ;?></td></tr>
         <tr><td><br></td></tr>
         <tr><td><br></td></tr>
-        <tr><td><b><u><?php echo $nama_lengkap?></u></b></td></tr>
-        <tr><td><b><?php echo $jabatan?></b></td></tr>
+     <tr><td><b><u><?php echo $user[0]?></u></b></td></tr>
+        <tr><td><b><?php echo $user[1]?></b></td></tr>
       </table>
     </div>
   

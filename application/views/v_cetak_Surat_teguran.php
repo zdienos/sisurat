@@ -76,7 +76,9 @@ $bulan = explode("-", $date);
 
 
 
-foreach($cetak as $l) { ?>
+foreach($cetak as $l) { 
+  $user = explode("-", $l['userid']);
+  ?>
 <br><br>
   <table>
     <tr><td>No</td><td>:</td><td><?php echo $l['no'] .'/'. $l['no_surat'];?></td></tr>

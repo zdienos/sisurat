@@ -52,7 +52,7 @@
                   <th style="width: 10%;">Tujuan</th>
                   <th style="width: 15%;">Nama Tujuan</th>
                   <th style="width: 10%;">Jenis Surat</th>
-                  <th style="width: 8%;">Tanggal Surat</th>
+                  <th style="width: 8%;">Tanggal Input</th>
                   <th style="width: 8%;">Status Surat</th>
                   <?php if ($jabat[0] == 'Kasie') {?>
                   <th style="width: 10%;"align="center">Ganti Status</th>

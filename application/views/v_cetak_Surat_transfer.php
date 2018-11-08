@@ -107,6 +107,8 @@ foreach($cetak as $l) {
   $jenis_pencairan = $l['jenis_pencairan'];
   $tujuan = $l['tujuan'];
   $nama_tujuan = $l['nama_tujuan'];
+  $user = explode("-", $l['userid']);
+  
   }?>
   <table>
     <tr><td>No Surat</td><td>:</td><td><?php echo $no .'/'. $no_surat;?></td></tr>
@@ -235,8 +237,8 @@ if ($jenis_pencairan == "mgm"){ ?>
         <tr><td>Bandung,<?php echo $bulan[0].' '.$infobulan.' '.$bulan[2] ;?></td></tr>
         <tr><td><br></td></tr>
         <tr><td><br></td></tr>
-        <tr><td><b><u><?php echo $nama_lengkap?></u></b></td></tr>
-        <tr><td><b><?php echo $jabatan?></b></td></tr>
+        <tr><td><b><u><?php echo $user[0]?></u></b></td></tr>
+        <tr><td><b><?php echo $user[1]?></b></td></tr>
       </table>
     </div>
   

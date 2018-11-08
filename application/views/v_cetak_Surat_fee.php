@@ -111,6 +111,8 @@ foreach($cetak as $l) {
   $tgl_marketing = $l['tgl_marketing'];
   $perihal = $l['perihal'];
   $tembusan = $l['tembusan'];
+  $user = explode("-", $l['userid']);
+  
   }?>
   <table>
     <tr><td>No Surat</td><td>:</td><td><?php echo $no .'/'. $no_surat;?></td></tr>
@@ -178,8 +180,8 @@ foreach($cetak as $l) {
         <tr><td><br></td></tr>
         <tr><td><br></td></tr>
         <?php if($kacab[1] != "Cabang" ){ ?>
-        <tr><td><b><u><?php echo $nama_lengkap?></u></b></td></tr>
-        <tr><td><b><?php echo $jabatan?></b></td></tr>
+        <tr><td><b><u><?php echo $user[0]?></u></b></td></tr>
+        <tr><td><b><?php echo $user[1]?></b></td></tr>
       <?php } else {?>
         <tr><td><b><u>Dra. Erna Veronika</u></b></td></tr>
         <tr><td><b>Manajer Keuangan</b></td></tr>
