@@ -1556,7 +1556,6 @@ class Skeluar extends CI_Controller {
 
 
 		$data2 = array(
-			'no' => $no,
 			'no_surat' => $nosurat,
 			'ckuitf' => $ckuitf,
 			'pembayaransiswa' => $pembayaransiswa,

@@ -113,7 +113,7 @@ foreach($cetak as $l) {
   
   <p>Dengan Hormat,</p>
   
-  <p align="justify">Berdasarkan Pengecekan bagian keuangan terhadap laporan cabang <?php echo $l['ckuitf'];?> pada laporan K-02 dan realisasi setoran, kami temukan pembayaran dari siswa <?php echo $l['pembayaransiswa'];?> tetapi yang disetorkan hanya <?php echo $l['kuitansisetor'];?></p>
+  <p align="justify">Berdasarkan Pengecekan bagian keuangan terhadap laporan cabang <?php echo $l['ckuitf'];?> pada laporan K-02 dan realisasi setoran, kami temukan pembayaran dari siswa Rp.<?php echo number_format($l['pembayaransiswa']);?> tetapi yang disetorkan hanya Rp.<?php echo number_format($l['kuitansisetor']);?></p>
   <br>
   <div id="conten">
   <table class="data" style="page-break-after: auto" >
@@ -141,16 +141,17 @@ foreach($cetak as $l) {
   $q=$l['pembayaransiswa']-$l['kuitansisetor'];
 
   ?>
-  <p>Harap agar setoran sebesar Rp. <?php echo number_format($q);?> disetorkan pada <?php echo date('d F Y',strtotime($l['tgl_waset']));?> ke rekenning GO pusat. tanggapan tertulis dari Bapak/Ibu Kami tunggu pada <?php echo date('d F Y',strtotime($l['tgl_tanter']));?> .Atas kejasama yang baik kami ucapkan terima kasih.</p>
-  
+  <p>Harap agar setoran sebesar Rp. <?php echo number_format($q);?> disetorkan pada <?php echo date('d F Y',strtotime($l['tgl_waset']));?> ke rekenning GO pusat. Tanggapan tertulis dari Bapak/Ibu Kami tunggu pada <?php echo date('d F Y',strtotime($l['tgl_tanter']));?>. Atas kejasama yang baik kami ucapkan terima kasih.</p>
+<?php if($kacab[1] != "Cabang" ){ ?>  
       <table>
         <tr><td style="text-align: left;">Mengetahui,</td></tr>
         <tr><td><br></td></tr>
         <tr><td><br></td></tr>
-        <tr><td><b><u>Ninik Kania Falah</u></b></td></tr>
-        <tr><td><b>Kasie Audit Pembayaran 1</b></td></tr>
+        <tr><td><b><u>Dra. Erna Veronika</u></b></td></tr>
+        <tr><td><b>Manajer Keuangan</b></td></tr>
       </table>
-
+<?php }?>
+<br>  <br>  <br>
     <div id="ttd">
       <table>
         <tr><td style="text-align: left;">Terimakasih,</td></tr>
