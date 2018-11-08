@@ -599,8 +599,69 @@ class Skeluar extends CI_Controller {
 				
 			);
 
+			$result = $this->m_keluar->saveDatasuratkeluar($data,$data2,$jenissurat,$prihal);	
+
+		} elseif ($jenissurat == 'Intruksi') {
+			//auto number no surat
+			$data= $this->m_keluar->getNoSurat();		
+			foreach($data as $row  => $val) {
+	            	$surat = $val->no_surat;
+	    	}
+	    	//Post untuk tabel Skeluar
+	        $no = $surat + 1;
+			$nosurat = $this->input->post('nosurat');
+			$bpkibu = $this->input->post('bpkibu');
+			$namatjn = $this->input->post('namatujuan');
+			$namatujuan = $bpkibu." ".$namatjn ;
+			$nmjabatan = $this->input->post('tujuan1');
+			$kttujuan = $this->input->post('tujuan');
+			$tujuan = $nmjabatan." ".$kttujuan;
+			$prihal = "Surat Intruksi Transfer Kekurangan Storan";
+			$userid = $this->input->post('userid');
+			$tanggal = $this->input->post('tanggal');
+
+			$data = array(
+				'no' => $no,
+				'no_surat' => $nosurat,
+				'perihal' => $prihal,
+				'nama_tujuan' => $namatujuan,
+				'tujuan' => $tujuan,
+				'jenis_surat' => $jenissurat,
+				'status' => 'Proses',
+				'tgl_SuratKeluar' => $tanggal,
+				'userid' => $userid
+			);	
+			
+			$ckuitf = $this->input->post('ckuitf');
+			$pembayaransiswa = $this->input->post('pembayaransiswa');
+			$kuitansisetor = $this->input->post('kuitansisetor');
+			$tgl_lappem = $this->input->post('tgl_lappem');
+			$nokuitansi = $this->input->post('nokuitansi');
+			$petugas_kuitansi = $this->input->post('petugas_kuitansi');
+			$tgl_waset = $this->input->post('tgl_waset');
+			$tgl_tanter = $this->input->post('tgl_tanter');
+
+
+			$data2 = array(
+				'no' => $no,
+				'no_surat' => $nosurat,
+				'ckuitf' => $ckuitf,
+				'pembayaransiswa' => $pembayaransiswa,
+				'kuitansisetor' => $kuitansisetor,
+				'tgl_lappem' => $tgl_lappem,
+				'nokuitansi' => $nokuitansi,
+				'petugas_kuitansi' => $petugas_kuitansi,
+				'tgl_waset' => $tgl_waset,
+				'tgl_tanter' => $tgl_tanter
+				
+				
+				
+			);
+
 			$result = $this->m_keluar->saveDatasuratkeluar($data,$data2,$jenissurat,$prihal);		
 		}
+
+
 
 	if ($result) {
 		$this->session->set_flashdata('success','Data Berhasil Disimpan !');
@@ -647,6 +708,8 @@ class Skeluar extends CI_Controller {
 		} elseif($jenissurat == 'Transfer'){
 			$data = $this->m_keluar->deleteDatasuratkeluar($jenissurat,$where);	
 		} elseif($jenissurat == 'Pengecekan'){
+			$data = $this->m_keluar->deleteDatasuratkeluar($jenissurat,$where);	
+		} elseif($jenissurat == 'Intruksi'){
 			$data = $this->m_keluar->deleteDatasuratkeluar($jenissurat,$where);	
 		}
 		
@@ -718,9 +781,12 @@ class Skeluar extends CI_Controller {
 		} elseif ($jenis_surat == 'Transfer') {
 			$data['lihat'] = $this->m_keluar->lihatsuratkeluar_transfer($no,$jenis_surat);
 			$this->template->load('template','v_lihat_skeluar_transfer',$data);
-		}elseif ($jenis_surat == 'Pengecekan') {
+		} elseif ($jenis_surat == 'Pengecekan') {
 			$data['lihat'] = $this->m_keluar->lihatsuratkeluar($no,$jenis_surat);
 			$this->template->load('template','v_lihat_pengecekan',$data);
+		} elseif ($jenis_surat == 'Intruksi') {
+			$data['lihat'] = $this->m_keluar->lihatsuratkeluar($no,$jenis_surat);
+			$this->template->load('template','v_lihat_intruksi',$data);
 		}
 		} else {
     	  redirect(site_url('login'), 'refresh');
@@ -858,6 +924,20 @@ class Skeluar extends CI_Controller {
 		    $this->pdf->setPaper('A4', 'potrait');
 			$this->pdf->render();
 			$this->pdf->stream("laporan.pdf",array('Attachment'=>0));
+		}elseif ($jenis_surat == 'Intruksi') {
+			$user = $this->model->getuser();
+			$data['username'] = $user['username'];
+	  		$data['jabatan'] = $user['jabatan'];
+	  		$data['id'] = $user['id'];
+	  		$data['nama_lengkap'] = $user['nama_lengkap'];
+			$data['cetak'] = $this->m_keluar->lihatsuratkeluar($no,$jenis_surat);
+
+			$this->load->view('v_cetak_Surat_intruksi', $data);
+		    $html=$this->output->get_output();
+		    $this->pdf->load_html($html);
+		    $this->pdf->setPaper('A4', 'potrait');
+			$this->pdf->render();
+			$this->pdf->stream("laporan.pdf",array('Attachment'=>0));
 		}
 		} else {
     	  redirect(site_url('login'), 'refresh');
@@ -926,6 +1006,9 @@ class Skeluar extends CI_Controller {
 		} else if(($jenis_surat == 'Pengecekan')){
 			$data['ubahskeluar'] = $this->m_keluar->lihatsuratkeluar($no,$jenis_surat);
 			$this->template->load('template','v_update_skeluar_pengecekan',$data);
+		} else if(($jenis_surat == 'Intruksi')){
+			$data['ubahskeluar'] = $this->m_keluar->lihatsuratkeluar($no,$jenis_surat);
+			$this->template->load('template','v_update_skeluar_intruksi',$data);
 		}
 		} else {
     	  redirect(site_url('login'), 'refresh');
@@ -1430,6 +1513,70 @@ class Skeluar extends CI_Controller {
 			'jenis_surat' => $jenissurat,
 			'tgl_SuratKeluar' => $tanggal
 			// 'userid' => $userid
+
+		);
+
+		$where = [
+			'no' => $no
+		];
+
+		$result = $this->m_keluar->updateDatasuratkeluar($data,$data2,$where,$jenissurat,$prihal);
+
+		if ($result) {
+			$this->session->set_flashdata('success','Data Berhasil Diubah !');
+		    $this->session->set_flashdata('message','Tekan tombol Cetak untuk melihat hasilnya.');
+		    redirect(base_url('skeluar/data_table'), 'refresh');
+		} else {
+			redirect(base_url('skeluar/ubahDatasmasuk'));
+		}
+		} else {
+    	  redirect(site_url('login'), 'refresh');
+    	}
+	}
+
+	public function gantiDataIntruksi()
+	{
+		if ($this->session->userdata('log_in')) {
+		$no = $this->input->post('no');
+		$nosurat = $this->input->post('nosurat');
+		$prihal = $this->input->post('prihal');
+		$namatujuan = $this->input->post('namatujuan');
+		$tujuan = $this->input->post('tujuan');
+		$jenissurat = $this->input->post('cjenissurat_update');
+		$userid = $this->input->post('userid');
+		$tanggal = $this->input->post('tanggal');
+		$ckuitf = $this->input->post('ckuitf');
+		$pembayaransiswa = $this->input->post('pembayaransiswa');
+		$kuitansisetor = $this->input->post('kuitansisetor');
+		$tgl_lappem = $this->input->post('tgl_lappem');
+		$nokuitansi = $this->input->post('nokuitansi');
+		$petugas_kuitansi = $this->input->post('petugas_kuitansi');
+		$tgl_waset = $this->input->post('tgl_waset');
+		$tgl_tanter = $this->input->post('tgl_tanter');
+
+
+		$data2 = array(
+			'no' => $no,
+			'no_surat' => $nosurat,
+			'ckuitf' => $ckuitf,
+			'pembayaransiswa' => $pembayaransiswa,
+			'kuitansisetor' => $kuitansisetor,
+			'tgl_lappem' => $tgl_lappem,
+			'nokuitansi' => $nokuitansi,
+			'petugas_kuitansi' => $petugas_kuitansi,
+			'tgl_waset' => $tgl_waset,
+			'tgl_tanter' => $tgl_tanter
+
+		);
+		
+		$data = array(
+			'no_surat' => $nosurat,
+			'perihal' => $prihal,
+			'nama_tujuan' => $namatujuan,
+			'tujuan' => $tujuan,
+			'jenis_surat' => $jenissurat,
+			'tgl_SuratKeluar' => $tanggal,
+			'userid' => $userid
 
 		);
 

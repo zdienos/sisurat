@@ -31,6 +31,7 @@
                     <option value="Teguran">Surat Teguran</option>
                     <option value="Peringatan">Surat Peringatan</option>
                     <option value="Pengecekan">Surat Pengecekan</option>
+                    <option value="Intruksi">Surat Intruksi Transfer Kekurangan Storan</option>
                     <?php 
                       if ($jabat[0] == "Kasie") { ?>
                       <option value="Transfer"> Surat Transfer Pencairan </option>
@@ -513,6 +514,43 @@
                     <div class="form-group">
                       <label>Tanggal Konfirmasi</label>
                       <input class="form-control" placeholder="Masukan Tanggal Konfirmasi" type="date" name="tglkonfirmasi">
+                    </div>
+                </div>
+<!-- ======================================================================================================== -->
+
+<!-- ===================== pengelommpokkan jenis surat intruksi transfer kekurangan storan ==============-->
+                <div id="Intruksitransfer">
+                    <div class="form-group">
+                      <label>Cabang - Kota - Unit</label>
+                      <input class="form-control" placeholder="Masukan cabang - kota - unit" type="text" name="ckuitf">
+                    </div>
+                    <div class="form-group">
+                      <label>Pembayaran dari Siswa</label>
+                      <input class="form-control" placeholder="Masukan Pembayaran dari siswa" type="text" name="pembayaransiswa">
+                    </div>
+                    <div class="form-group">
+                      <label>Kuitansi yang Di Setor</label>
+                      <input class="form-control" placeholder="Masukan Kuitansi yang Di Setor" type="text" name="kuitansisetor">
+                    </div>
+                    <div class="form-group">
+                      <label>Tanggal laporan Pembayaran</label>
+                      <input class="form-control" placeholder="Masukan Tanggal laporan Pembayaran" type="date" name="tgl_lappem">
+                    </div>
+                    <div class="form-group">
+                      <label>No Kuitansi</label>
+                      <input class="form-control" placeholder="Masukan No Kuitansi" type="text" name="nokuitansi">
+                    </div>
+                    <div class="form-group">
+                      <label>Petugas Kuitansi</label>
+                      <input class="form-control" placeholder="Masukan Petugas Kuitansi" type="text" name="petugas_kuitansi">
+                    </div>
+                    <div class="form-group">
+                      <label>Tanggal Wajib Setor</label>
+                      <input class="form-control" placeholder="Masukan Tanggal Wajib Setor" type="date" name="tgl_waset">
+                    </div>
+                    <div class="form-group">
+                      <label>Tanggal Tanggapan Tertulis</label>
+                      <input class="form-control" placeholder="Masukan Tanggal Tanggapan Tertulis" type="date" name="tgl_tanter">
                     </div>
                 </div>
 <!-- ======================================================================================================== -->

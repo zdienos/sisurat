@@ -142,6 +142,10 @@ class M_keluar extends CI_Model
 			$this->db->from('skeluar');
 		    $this->db->join('tb_sk_pengecekan', 'skeluar.no = tb_sk_pengecekan.no');
 		    $this->db->where('skeluar.no', $no);
+		}elseif(($jenis_surat == 'Intruksi') or($jenis_surat == 'Intruksi')) {
+			$this->db->from('skeluar');
+		    $this->db->join('tb_sk_intruksi_transfer', 'skeluar.no = tb_sk_intruksi_transfer.no');
+		    $this->db->where('skeluar.no', $no);
 		}
 		$query = $this->db->get();
 
@@ -227,6 +231,8 @@ class M_keluar extends CI_Model
 			$data2 = $this->db->insert_batch('tb_sk_transfer_mgmbiaya', $data2);
 		} elseif ($jenissurat == 'Pengecekan') {
 			$data2 = $this->db->insert('tb_sk_pengecekan', $data2);
+		} elseif ($jenissurat == 'Intruksi') {
+			$data2 = $this->db->insert('tb_sk_intruksi_transfer', $data2);
 		}
 
 		$this->db->trans_complete();
@@ -333,6 +339,8 @@ class M_keluar extends CI_Model
  			$data = $this->db->update('tb_sk_pengecekan', $data2, $where);
 		} elseif ($jenissurat == "Transfer") {
  			$data = $this->db->insert_batch('tb_sk_transfer_mgmbiaya', $data2);
+		} elseif ($jenissurat == "Intruksi") {
+ 			$data = $this->db->update('tb_sk_intruksi_transfer', $data2);
 		}
 
  		$this->db->trans_complete();
@@ -383,6 +391,9 @@ class M_keluar extends CI_Model
  		} elseif ($jenis_surat == 'Pengecekan') {
  			$data = $this->db->delete('skeluar', $where);
 			$data2 = $this->db->delete('tb_sk_pengecekan', $where);
+ 		} elseif ($jenis_surat == 'Intruksi') {
+ 			$data = $this->db->delete('skeluar', $where);
+			$data2 = $this->db->delete('tb_sk_intruksi_transfer', $where);
  		}
 
  		$this->db->trans_complete();
