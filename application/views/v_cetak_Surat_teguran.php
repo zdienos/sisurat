@@ -93,10 +93,21 @@ foreach($cetak as $l) {
   
   <p align="justify">Hasil pemeriksaan <?php echo $l['pemeriksa'];?> terdapat penyimpangan yang dilakukan oleh <?php echo $l['bgn_tegur'];?> berupa :</p>
   <div id="teguran">
-    <ul style="list-style-type: none;">
-    <?php $tbs = explode(",",$l['teguran']);
-    foreach ($tbs as $t) { ?>
-      <li><?php echo "-  ".$t; ?></li>
+	<ul>
+    <?php $tbs = explode("^",$l['teguran']);
+    foreach ($tbs as $t) { 
+    	 $sub_tbs = explode("#",$t);
+    ?>
+    <li><?php echo $sub_tbs[0]; ?> <br>
+		<?php echo "-  ".$sub_tbs[1]; ?>
+	</li>
+      	
+      	<!-- <?php foreach ($sub_tbs as $sub_t) { print_r($sub_t)?>
+
+		    <?php echo $sub_t[0]; ?>
+		    <?php echo "-  ".$sub_t[1]; ?>
+      	<?php }?>
+ -->
     <?php }
     ?>
     </ul>

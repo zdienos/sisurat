@@ -616,7 +616,7 @@ class Skeluar extends CI_Controller {
 			$nmjabatan = $this->input->post('tujuan1');
 			$kttujuan = $this->input->post('tujuan');
 			$tujuan = $nmjabatan." ".$kttujuan;
-			$prihal = "Surat Intruksi Transfer Kekurangan Storan";
+			$prihal = "Surat Intruksi Transfer Kekurangan Setoran";
 			$userid = $this->input->post('userid');
 			$tanggal = $this->input->post('tanggal');
 
