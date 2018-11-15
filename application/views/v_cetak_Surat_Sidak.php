@@ -72,7 +72,7 @@ foreach($cetak as $l) {
   <p>Kepada Yth,<br>
   <b><?php echo $l['nama_penerima'];?></b><br>
   <b><?php echo $l['tujuan_penerima'];?></b><br>
-  di Tempat</p><br>
+  <b>Di Tempat</b></p><br>
   
   <p>Dengan Hormat,</p>
   

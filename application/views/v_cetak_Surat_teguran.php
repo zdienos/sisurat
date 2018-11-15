@@ -3,7 +3,7 @@
 <style type="text/css">
 @page {margin: 20px 50px 0px 50px; }
 body {
-  font-size: 12pt;
+  font-size: 11pt;
 }
       #logo {
       margin-top: 0px;
@@ -87,21 +87,26 @@ foreach($cetak as $l) {
   <p>Kepada Yth,<br>
   <b><?php echo $l['nama_tujuan'];?></b><br>
   <b><?php echo $l['tujuan'];?></b><br>
-  di Tempat</p>
+  <b>Di Tempat</b></p>
   
   <p>Dengan Hormat,</p>
   
-  <p align="justify">Hasil pemeriksaan <?php echo $l['pemeriksa'];?> terdapat penyimpangan yang dilakukan oleh <?php echo $l['bgn_tegur'];?> berupa :</p>
+  <p>Berdasarkan hasil pemeriksaan Bidang Keuangan, kami menemukan penyimpangan sebagai berikut :</p>
+  <!-- <p align="justify">Hasil pemeriksaan <?php echo $l['pemeriksa'];?> terdapat penyimpangan yang dilakukan oleh <?php echo $l['bgn_tegur'];?> berupa :</p> -->
+  <br>
   <div id="teguran">
-    <ul style="list-style-type: none;">
-    <?php $tbs = explode(",",$l['teguran']);
-    foreach ($tbs as $t) { ?>
-      <li><?php echo "-  ".$t; ?></li>
+    <ol>
+    <?php $tbs = explode("^",$l['teguran']);
+    foreach ($tbs as $t) { 
+     //$n = explode("#", $tbs); ?>
+      <li><?php $t; ?></li>
     <?php }
     ?>
     </ul>
     </p>
-    <p>Dengan ini Bapak/Ibu kami berikan Surat Teguran <?php echo $l['penutup'];?></p>
+    <p>Oleh karena itu, kami memberikan surat teguran kepada Saudara agar tidak mengulangi kembali hal yang disebutkan di atas. Kami meminta Berita Acara dikirimkan paling lambat <?php echo date('d F Y',strtotime($l['penutup'])) ?> ke Bidang Keuangan.</p>
+    <br>
+    <p>Demikian disampaikan, atas kerjasama yang baik kami ucapkan terimakasih.</p>
   </div>
   
   <br>
