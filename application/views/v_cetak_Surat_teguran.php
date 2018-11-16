@@ -3,14 +3,15 @@
 <style type="text/css">
 @page {margin: 20px 50px 0px 50px; }
 body {
-  font-size: 12pt;
+  font-size: 11pt;
 }
-      #logo {
+     #logo {
       margin-top: 0px;
-      top: 0px;
       left: 0px;
-      width: 50px;
-      position: relative; }
+      top: 10px;
+      right: 0px;
+      height: 135px;
+      text-align: center; }
       #footer{
       position: fixed;
       left: 0px;
@@ -36,11 +37,11 @@ body {
 <body>
 <div id="header">
 	<div id="logo">
-  	<img src="assets/img/logo-copy.png" width="200px">
+  	<img src="assets/img/header.png" width="770px">
 	</div>
 </div>
 <div id="footer">
-<img src="assets/img/footer.png" width="810px">
+<!-- <img src="assets/img/footer.png" width="810px"> -->
 </div>
 <?php
 $date =date('d-m-Y');
@@ -80,26 +81,30 @@ foreach($cetak as $l) {
   $user = explode("-", $l['userid']);
   ?>
 <br><br>
-  <table>
+  <table width="100%">
     <tr><td>No</td><td>:</td><td><?php echo $l['no'] .'/'. $l['no_surat'];?></td></tr>
-    <tr><td>Hal</td><td>:</td><td><?php echo $l['perihal'];?></td></tr>
+    <tr><td>Hal</td><td>:</td><td width="100%"><?php echo $l['perihal'];?></td></tr>
   </table>
   <p>Kepada Yth,<br>
   <b><?php echo $l['nama_tujuan'];?></b><br>
   <b><?php echo $l['tujuan'];?></b><br>
-  di Tempat</p>
-  
+  <b>Di Tempat</b></p>
+  <br>
   <p>Dengan Hormat,</p>
   
-  <p align="justify">Hasil pemeriksaan <?php echo $l['pemeriksa'];?> terdapat penyimpangan yang dilakukan oleh <?php echo $l['bgn_tegur'];?> berupa :</p>
-  <div id="teguran">
+  <p>Berdasarkan hasil pemeriksaan Bidang Keuangan, kami menemukan penyimpangan sebagai berikut :</p>
+  <!-- <p align="justify">Hasil pemeriksaan <?php echo $l['pemeriksa'];?> terdapat penyimpangan yang dilakukan oleh <?php echo $l['bgn_tegur'];?> berupa :</p> -->
+<!--   <div id="teguran"> -->
 	<ul>
     <?php $tbs = explode("^",$l['teguran']);
     foreach ($tbs as $t) { 
     	 $sub_tbs = explode("#",$t);
     ?>
-    <li><?php echo $sub_tbs[0]; ?> <br>
-		<?php echo "-  ".$sub_tbs[1]; ?>
+    <li><?php echo $sub_tbs[0]; 
+    $y = count($sub_tbs) - 1;
+    for($i=1; $i <= $y;$i++){
+    ?> <br>
+		<?php echo "-  ".$sub_tbs[$i]; ?>
 	</li>
       	
       	<!-- <?php foreach ($sub_tbs as $sub_t) { print_r($sub_t)?>
@@ -108,14 +113,17 @@ foreach($cetak as $l) {
 		    <?php echo "-  ".$sub_t[1]; ?>
       	<?php }?>
  -->
-    <?php }
+    <?php } }
     ?>
     </ul>
+
     </p>
-    <p>Dengan ini Bapak/Ibu kami berikan Surat Teguran <?php echo $l['penutup'];?></p>
+    <p>Oleh karena itu, kami memberikan surat teguran kepada Saudara agar tidak mengulangi kembali hal yang disebutkan di atas. </p>
+    
+    <p>Demikian disampaikan, atas kerjasama yang baik kami ucapkan terimakasih.</p>
   </div>
   
-  <br>
+  <br><br>
    <div id="ttd">
      <table>
        <tr><td style="text-align: left;">Terimakasih,</td></tr>
