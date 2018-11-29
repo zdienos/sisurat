@@ -62,9 +62,7 @@
                           <td><?= $srt->kepada; ?></td>
                           <td><?= $srt->dari; ?></td>
                           <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;"><?= 
-                          $sub_kalimat = substr($srt->keterangan,0,100);
-                          echo $sub_kalimat;
-                          ?></td>
+                          $srt->keterangan;?></td>
                           <td><?= $srt->tanggal; ?></td>
                           <td>
                           <?php if($jabat[0] == "Kasie"){ ?>

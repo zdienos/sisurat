@@ -98,7 +98,7 @@ class Smasuk extends CI_Controller {
 
 		$namafile = "SuratMasuk_".$jenissurat."_".time();
 		$config['upload_path']          = './assets/arsip';
-		$config['allowed_types']        = 'jpg|png|doc|pdf';
+		$config['allowed_types']        = 'jpg|png|doc|pdf|zip|rar';
 		$config['max_size'] 			= '3072';
 		// $config['max_width']  			= '5000';
 		// $config['max_height'] 			= '5000';
