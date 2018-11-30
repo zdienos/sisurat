@@ -22,6 +22,57 @@
               </div>
             </div>
           </div>
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <form action="<?php echo site_url('Skeluar/search') ?>" method="get">
+                <div class="col-md-2">
+                <label>Status Surat</label>
+                  <div class="input-group input-group">
+                    <select class="form-control" name="status">
+                      <option value="ACC">ACC</option>
+                      <option value="Proses">Proses</option>
+                      <option value="Tidak%20ACC">Tidak ACC</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="input-group input-group">
+                   <label>Perihal</label>
+                    <select name="prihal" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                    <option hidden="true" selected>Pilih Perihal</option>
+                      <option value="Surat ACC Pencairan PT Kolektif">Surat ACC Pencairan PT Kolektif</option>
+                      <option value="Surat ACC Pencairan Fee Bimker">Surat ACC Pencairan Fee Bimker</option>
+                      <option value="Surat ACC Pengembalian Kelas Tidak Kuota">Surat ACC Pengembalian Kelas Tidak Kuota</option>
+                      <option value="Surat ACC Pengembalian Diskon Anak Guru">Surat ACC Pengembalian Diskon Anak Guru</option>
+                      <option value="Surat ACC Pengembalian Pindah Program">Surat ACC Pengembalian Pindah Program</option>
+                      <option value="Surat ACC Pengembalian Pengalihan Biaya">Surat ACC Pengembalian Pengalihan Biaya</option>
+                      <option value="Surat ACC Pengembalian Diskon Karyawan">Surat ACC Pengembalian Diskon Karyawan</option>
+                      <option value="Surat ACC Pengembalian Diskon Pengajar">Surat ACC Pengembalian Diskon Pengajar</option>
+                      <option value="Surat ACC Pengembalian Kelebihan Bayar">Surat ACC Pengembalian Kelebihan Bayar</option>
+                      <option value="Surat ACC Pengembalian Jaminan PTN">Surat ACC Pengembalian Jaminan PTN</option>
+                      <option value="Surat ACC Pengembalian Jaminan SMA Favorit">Surat ACC Pengembalian Jaminan SMA Favorit</option>
+                      <option value="Surat ACC Diskon Susulan">Surat ACC Diskon Susulan</option>
+                      <option value="Surat Tidak ACC Pencairan PT Kolektif">Surat Tidak ACC Pencairan PT Kolektif</option>
+                      <option value="Surat Tidak ACC Pencairan Fee Bimker">Surat Tidak ACC Pencairan Fee Bimker</option>
+                      <option value="Surat Tidak ACC Pengembalian Kelas Tidak Kuota">Surat Tidak ACC Pengembalian Kelas Tidak Kuota</option>
+                      <option value="Surat Tidak ACC Pengembalian Diskon Anak Guru">Surat Tidak ACC Pengembalian Diskon Anak Guru</option>
+                      <option value="Surat Tidak ACC Pengembalian Pindah Program">Surat Tidak ACC Pengembalian Pindah Program</option>
+                      <option value="Surat Tidak ACC Pengembalian Pengalihan Biaya">Surat Tidak ACC Pengembalian Pengalihan Biaya</option>
+                      <option value="Surat Tidak ACC Pengembalian Diskon Karyawan">Surat Tidak ACC Pengembalian Diskon Karyawan</option>
+                      <option value="Surat Tidak ACC Pengembalian Diskon Pengajar">Surat Tidak ACC Pengembalian Diskon Pengajar</option>
+                      <option value="Surat Tidak ACC Pengembalian Kelebihan Bayar">Surat Tidak ACC Pengembalian Kelebihan Bayar</option>
+                      <option value="Surat Tidak ACC Pengembalian Jaminan PTN">Surat Tidak ACC Pengembalian Jaminan PTN</option>
+                      <option value="Surat Tidak ACC Pengembalian Jaminan SMA Favorit">Surat Tidak ACC Pengembalian Jaminan SMA Favorit</option>
+                      <option value="Surat Tidak ACC Diskon Susulan">Surat Tidak ACC Diskon Susulan</option>
+                      </select>
+                      <span class="input-group-btn">
+                        <button type="submit" class="btn btn-default" style="margin-top: 20px;"><span class="fa fa-search"></span> Lihat</button>
+                      </span>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
 
           <?php if ($this->session->flashdata('success')) { ?>
             <div class="alert alert-danger alert-dismissible">

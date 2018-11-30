@@ -24,10 +24,23 @@
                   <tr><td>Nama Tujuan</td> <td><?= $srt['nama_tujuan']; ?></td></tr>
                   <tr><td>Tujuan</td>  <td><?= $srt['tujuan'] ?></td></tr>
                   <tr><td>Jenis Surat</td> <td><?= $srt['jenis_surat'] ?></td></tr>
-                  <tr><td>Pemeriksa</td><td><?= $srt['pemeriksa']; ?></td></tr>
-                  <tr><td>Bagian yang menegur</td><td><?= $srt['bgn_tegur']; ?></td></tr>
-                  <tr><td>Teguran</td><td><?= $srt['teguran']; ?></td></tr>
-                  <tr><td>Penutup</td><td><?= $srt['penutup']; ?></td></tr>
+                  <!-- <tr><td>Pemeriksa</td><td><?= $srt['pemeriksa']; ?></td></tr> -->
+                  <!-- <tr><td>Bagian yang menegur</td><td><?= $srt['bgn_tegur']; ?></td></tr> -->
+                  <tr><td>Teguran</td><td><?php
+                    $tbs = explode("^",$srt['teguran']);
+                    foreach ($tbs as $t) { 
+                       $sub_tbs = explode("#",$t);
+                    ?>
+                    <li><?php echo $sub_tbs[0]; 
+                    $y = count($sub_tbs) - 1;
+                    for($i=1; $i <= $y;$i++){
+                    ?> <br>
+                    <?php echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp-  ".$sub_tbs[$i]; ?>
+                  </li>
+                  <?php } }
+                    ?>
+                  </td></tr>
+                  <!-- <tr><td>Penutup</td><td><?= $srt['penutup']; ?></td></tr> -->
                   <tr><td>Tembusan</td><td><?= $srt['tembusan']; ?></td></tr>
                   <tr><td>Tanggal Input</td><td><?= $srt['tgl_SuratKeluar']; ?></td></tr>
                   <tr><td>Yang Membuat</td> <td><?= $srt['userid'];?></td></tr>

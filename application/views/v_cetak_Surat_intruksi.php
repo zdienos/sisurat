@@ -151,7 +151,7 @@ foreach($cetak as $l) {
         <tr><td><b>Manajer Keuangan</b></td></tr>
       </table>
 <?php }?>
-<br>  <br>  <br>
+<BR> 
     <div id="ttd">
       <table>
         <tr><td style="text-align: left;">Terimakasih,</td></tr>

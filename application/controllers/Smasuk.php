@@ -98,7 +98,7 @@ class Smasuk extends CI_Controller {
 
 		$namafile = "SuratMasuk_".$jenissurat."_".time();
 		$config['upload_path']          = './assets/arsip';
-		$config['allowed_types']        = 'jpg|png|doc|pdf';
+		$config['allowed_types']        = 'jpg|png|doc|pdf|zip|rar';
 		$config['max_size'] 			= '3072';
 		// $config['max_width']  			= '5000';
 		// $config['max_height'] 			= '5000';
@@ -215,6 +215,24 @@ class Smasuk extends CI_Controller {
 		$tgl_input = $this->input->post('tgl_input');
 		$userid = $this->input->post('userid');
 		$jenissurat =$this->input->post('jenissurat');
+		$arsip_lama =$this->input->post('arsip');
+
+		$namafile = "SuratMasuk_".$jenissurat."_".time();
+			$config['upload_path']          = './assets/arsip';
+			$config['allowed_types']        = 'doc|pdf|zip|rar|docx';
+			$config['max_size'] 			= '5000';
+			$config['file_name'] 			= $namafile;
+
+			$this->load->library('upload', $config);
+
+			if ($this->upload->do_upload('update_arsip')) { echo "ss";
+				unlink(FCPATH.'assets/arsip/'.$arsip_lama); 
+				$upload = $this->upload->data();
+				$arsip = $upload['file_name'];
+			} else {
+				$arsip = $arsip_lama;
+			}
+
 
 		$data = array(
 			'no_surat' => $nosurat,
@@ -225,6 +243,7 @@ class Smasuk extends CI_Controller {
 			'tanggal' => $tanggal,
 			'tgl_input' => $tgl_input,
 			'userid' => $userid,
+			'arsip' => $arsip,
 			'jenissurat' => $jenissurat
 		);
 

@@ -46,7 +46,7 @@
                 </div>
 
             <!-- pengelommpokkan jenis surat -->
-                <div id="TidakKuota">
+<!--                 <div id="TidakKuota">
                   <div class="form-group">
                   <label>Bagian Pemeriksa</label>
                   <input class="form-control" placeholder="Enter ..." type="text" name="pemeriksa"required="" value="<?= $usk['pemeriksa'] ?>" >
@@ -56,20 +56,22 @@
                       <label>Bagian yang ditegur</label>
                       <input class="form-control"value="<?= $usk['bgn_tegur'] ?>"  placeholder="Enter ..." type="text" required="" name="bgntegur">
                       <p><i>Contoh : "Customer Service"</i></p>
-                    </div>
+                    </div> -->
                     <div class="form-group">
                       <label>Teguran</label>
-                      <input class="form-control" value="<?= $usk['teguran'] ?>" placeholder="Enter ..." type="text" required="" name="teguran">
+                     <!--  <input class="form-control" value="<?= $usk['teguran'] ?>" placeholder="Enter ..." type="text" required="" name="teguran">
+ -->                      <textarea name="teguran" class="form-control" cols="10" rows="10"> <?=  $usk['teguran'] ?></textarea>
                       <p><i>Untuk memisahkan Teguran beri tanda koma <b> (",") </b> tanpa spasi</i></p>
                     </div>
-                    <div class="form-group">
+<!--                     <div class="form-group">
                       <label>Nasihat</label>
                       <input class="form-control" value="<?= $usk['penutup'] ?>" placeholder="Enter ..." type="text" required="" name="penutup">
                       <p><i>Contoh : "Atas tidak melakukan kontrol kepada staff. Harap selanjutnya melakukan kontrol kepada staff."</i></p>
-                    </div>
+                    </div> -->
                     <div class="form-group">
                       <label>Tembusan</label>
                       <input class="form-control" value="<?= $usk['tembusan'] ?>" placeholder="Enter ..." type="text" required="" name="tbsteguran">
+
                        <p><i>Untuk memisahkan Tembusan beri tanda koma <b> (",") </b> tanpa spasi</i></p>
                     </div>
                     <?php } } ?>

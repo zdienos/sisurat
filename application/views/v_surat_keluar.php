@@ -438,24 +438,25 @@
                       <input class="form-control" placeholder="Masukan Pemeriksa" type="text" name="pemeriksa">
                       <p><i>Contoh : "Bagian Keuangan"</i></p>
                     </div> -->
-                    <div class="form-group">
+                    <div class="form-group" >
                       <label>Teguran</label>
-                      <input class="form-control" placeholder="Masukan Teguran" type="text" name="teguran">
+                      <!-- <input class="form-control" placeholder="Masukan Teguran" type="text" name="teguran"> -->
+                      <textarea name="teguran" class="form-control" cols="10" rows="10"></textarea>
                       <!-- <p><i>Untuk memisahkan Teguran beri tanda koma <b> ("^") </b> tanpa spasi</i></p> -->
-                      <ul><li><i>Pisahkan Teguran dengan Sub Teguran<b>"^"</b></i></li>
-                      <li><i>Pisahkan Teguran Jika Lebih dari 1<b>"#"</b></i></li>
-                      <li><i>Contoh : ... ^ ...#... ^ ...</i></p></li></ul>
+                      <ul><li><i>Pisahkan Teguran dengan tanda<b>"^"</b></i></li>
+                      <li><i>Pisahkan Sub teguran dengan tanda<b>"#"</b></i></li>
+                      <li><i>Contoh : Point Teguran 1 #Sub Point Teguran  1 ^Point Teguran  2 #Sub Point Teguran  2 ^Point Teguran  3 dst..</i></p></li></ul>
                     </div>
                     <!-- <div class="form-group">
                       <label>Sub Teguran</label>
                       <input class="form-control" placeholder="Masukan Sub Tegur" type="text" name="bgntegur">
                       <p><i>Untuk memisahkan Teguran beri tanda koma <b> ("#") </b> tanpa spasi</i></p>
                     </div> -->
-                    <div class="form-group">
+          <!--           <div class="form-group">
                       <label>Tanggal Minta Berita Acara</label>
                       <input class="form-control" placeholder="" type="date" name="penutup">
                       <p><i>"Diisi H+3 DARI TANGGAL SURAT" & Jika Format Tanggal Tidak keluar, Input dengan manual dengan format <b> ("YYYY/MM/DD") </b> </i></p>
-                    </div>
+                    </div> -->
                     <div class="form-group">
                       <label>Tembusan</label>
                       <input class="form-control" placeholder="Masukan Tembusan" type="text" name="tbsteguran">

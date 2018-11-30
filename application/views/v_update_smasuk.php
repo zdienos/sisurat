@@ -8,7 +8,7 @@
     <section class="content">
       <div class="box-body">
 
-            <form action="<?= base_url('Smasuk/gantiDatasmasuk')?>" role="form" method="post">
+            <form action="<?= base_url('Smasuk/gantiDatasmasuk')?>" role="form" method="post" enctype="multipart/form-data">
                 <!-- text input -->
                 <input class="form-control" placeholder="Enter ..." type="hidden" name="id" id="nosurat" required="" value="<?= $ubahsurat['id'] ?>">
                 <input class="form-control" placeholder="Enter ..." type="hidden" name="tgl_input" required="" value="<?= $date ?>">
@@ -43,6 +43,12 @@
                 <div class="form-group">
                   <label>Tanggal Surat</label>
                   <input class="form-control" placeholder="Enter ..." type="date" name="tanggal" id="tanggal" required="" value="<?= $ubahsurat['tanggal'] ?>">
+                </div>
+                <div class="form-group">
+                  <label>Arsip Surat</label><bR>
+                  <label><a href="<?= base_url('assets/arsip/').$ubahsurat['arsip'] ;?>"><?= $ubahsurat['arsip']?> </a></label>
+                  <input placeholder="Masukan Cabang" type="file" name="update_arsip">
+                  <input type="hidden" name="arsip" value="<?= $ubahsurat['arsip']; ?>" readonly></td>
                 </div>
                 <a href="<?= base_url('Smasuk/data_table/') ?>" class="btn btn-primary btn btn-sm"><i class="fa fa-mail-reply"></i> Kembali</a>
                 <button type="submit" name="savesm" class="pull-right btn btn-success" id="savesm">save 

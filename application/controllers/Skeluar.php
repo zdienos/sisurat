@@ -616,7 +616,7 @@ class Skeluar extends CI_Controller {
 			$nmjabatan = $this->input->post('tujuan1');
 			$kttujuan = $this->input->post('tujuan');
 			$tujuan = $nmjabatan." ".$kttujuan;
-			$prihal = "Surat Intruksi Transfer Kekurangan Storan";
+			$prihal = "Surat Intruksi Transfer Kekurangan Setoran";
 			$userid = $this->input->post('userid');
 			$tanggal = $this->input->post('tanggal');
 
@@ -1609,6 +1609,11 @@ class Skeluar extends CI_Controller {
 		$data['id'] = $user['id'];
 
 		$keyword = $this->input->get('keyword');
+		$status = $this->input->get('status');
+		$prihal = $this->input->get('prihal');
+		// $search_text = (trim($this->input->get('keyword',true)))? trim($this->input->get('keyword',true)) : '';
+		//  //jika uri segmen 3 ada, maka nilai variabel $search akan diganti dengan nilai uri segmen 3
+		// $search_text = ($this->uri->segment(3)) ? $this->uri->segment(3) : $search_text;
 
 		$search = array(
 			'no'=> $keyword,
@@ -1631,12 +1636,12 @@ class Skeluar extends CI_Controller {
 		}
 
 		$config['page_query_string'] = TRUE;
-		$config['base_url'] = base_url().'Skeluar/search/?'.$keyword;
-		$config['total_rows'] = $this->m_keluar->count_skeluar_search($search);
+		$config['base_url'] = base_url().'Skeluar/search/?';
+		$config['total_rows'] = $this->m_keluar->count_search($search);
 		$config['per_page'] = $batas;
 
 		$config['uri_segment'] = $page;
-
+		$config['reuse_query_string'] = true;
 		$config['full_tag_open'] = '<ul class="pagination">';
 		$config['full_tag_close'] = '</ul>';
 		$config['first_link'] = '&laquo; First';
@@ -1665,7 +1670,7 @@ class Skeluar extends CI_Controller {
 		$data['paging']=$this->pagination->create_links();
 		$data['jlhpage']=$page;
 
-		$data['skeluar'] = $this->m_keluar->data($batas, $offset, $search);
+		$data['skeluar'] = $this->m_keluar->search($batas, $offset, $search);
 
 		 $this->template->load('template','v_data_skeluar',$data);
 		 } else {
