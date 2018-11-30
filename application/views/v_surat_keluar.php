@@ -442,9 +442,9 @@
                       <label>Teguran</label>
                       <input class="form-control" placeholder="Masukan Teguran" type="text" name="teguran">
                       <!-- <p><i>Untuk memisahkan Teguran beri tanda koma <b> ("^") </b> tanpa spasi</i></p> -->
-                      <ul><li><i>Pisahkan Teguran dengan tanda<b>"^"</b></i></li>
-                      <li><i>Pisahkan Sub teguran dengan tanda<b>"#"</b></i></li>
-                      <li><i>Contoh : Agus suparman - staff keuangan,Diki Firmansyah - staff keuangan,...</i></p></li></ul>
+                      <ul><li><i>Pisahkan Teguran dengan Sub Teguran<b>"^"</b></i></li>
+                      <li><i>Pisahkan Teguran Jika Lebih dari 1<b>"#"</b></i></li>
+                      <li><i>Contoh : ... ^ ...#... ^ ...</i></p></li></ul>
                     </div>
                     <!-- <div class="form-group">
                       <label>Sub Teguran</label>
