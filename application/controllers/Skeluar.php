@@ -1609,23 +1609,18 @@ class Skeluar extends CI_Controller {
 		$data['id'] = $user['id'];
 
 		$keyword = $this->input->get('keyword');
-		$status = $this->input->get('status');
-		$prihal = $this->input->get('prihal');
-		// $search_text = (trim($this->input->get('keyword',true)))? trim($this->input->get('keyword',true)) : '';
-		//  //jika uri segmen 3 ada, maka nilai variabel $search akan diganti dengan nilai uri segmen 3
-		// $search_text = ($this->uri->segment(3)) ? $this->uri->segment(3) : $search_text;
-
-		$search = array(
-			'no'=> $keyword,
-			'no_surat'=> $keyword,
-			'perihal' => $keyword,
-			'nama_tujuan' =>$keyword,
-			'tujuan'=>$keyword,
-			'jenis_surat'=>$keyword,
-			'userid'=>$keyword,
-			'tgl_SuratKeluar'=>$keyword,
-			'status'=>$keyword
-		);
+	
+			$search = array(
+				'no'=> $keyword,
+				'no_surat'=> $keyword,
+				'perihal' => $keyword,
+				'nama_tujuan' =>$keyword,
+				'tujuan'=>$keyword,
+				'jenis_surat'=>$keyword,
+				'userid'=>$keyword,
+				'tgl_SuratKeluar'=>$keyword,
+				'status'=>$keyword
+			);
 
 		$page = $this->input->get('per_page');
 		$batas = 5;
@@ -1671,6 +1666,70 @@ class Skeluar extends CI_Controller {
 		$data['jlhpage']=$page;
 
 		$data['skeluar'] = $this->m_keluar->search($batas, $offset, $search);
+
+		 $this->template->load('template','v_data_skeluar',$data);
+		 } else {
+    	  redirect(site_url('login'), 'refresh');
+    	}
+	}
+
+	public function filter()
+	{
+		if ($this->session->userdata('log_in')) {
+		$user = $this->model->getuser();
+		$data['username'] = $user['username'];
+		$data['jabatan'] = $user['jabatan'];
+		$data['id'] = $user['id'];
+
+		$search = array(
+			'perihal' => $this->input->get('prihal'),
+			'status'=> $this->input->get('status')
+		);
+
+		$page = $this->input->get('per_page');
+		$batas = 5;
+		if (!$page) {
+			$offset = 0;
+		} else {
+			$offset = $page;
+		}
+
+		$config['page_query_string'] = TRUE;
+		$config['base_url'] = base_url().'Skeluar/filter/?';
+		$config['total_rows'] = $this->m_keluar->count_filter($search);
+		$config['per_page'] = $batas;
+
+		$config['uri_segment'] = $page;
+		$config['reuse_query_string'] = true;
+		$config['full_tag_open'] = '<ul class="pagination">';
+		$config['full_tag_close'] = '</ul>';
+		$config['first_link'] = '&laquo; First';
+		$config['first_tag_open'] = '<li class="prev page">';
+		$config['first_tag_close'] = '</li>';
+
+		$config['last_link'] = 'Last &raquo;';
+		$config['last_tag_open'] = '<li class="next page">';
+		$config['last_tag_close'] = '</li>';
+
+		$config['next_link'] = 'Next <span class="fa fa-angle-right"></span>';
+		$config['next_tag_open'] = '<li class="next page">';
+		$config['next_tag_close'] = '</li>';
+
+		$config['prev_link'] = '<span class="fa fa-angle-left"></span> Prev';
+		$config['prev_tag_open'] = '<li class="prev page">';
+		$config['prev_tag_close'] = '</li>';
+
+		$config['cur_tag_open'] = '<li class="active"><a href="">';
+		$config['cur_tag_close'] = '</a></li>';
+
+		$config['num_tag_open'] = '<li class="page">';
+		$config['num_tag_close'] = '</li>';
+
+		$this->pagination->initialize($config);
+		$data['paging']=$this->pagination->create_links();
+		$data['jlhpage']=$page;
+
+		$data['skeluar'] = $this->m_keluar->filter($batas, $offset, $search);
 
 		 $this->template->load('template','v_data_skeluar',$data);
 		 } else {

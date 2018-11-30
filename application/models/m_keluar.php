@@ -35,13 +35,17 @@ class M_keluar extends CI_Model
 	      return false;
 	    }
 	  }
-	  function search($batas=null, $offset=null, $key)
+	  function search($batas=null, $offset=null, $key=null)
 	  {
-	    
+	    //echo $key['perihal'];
+	  	if($batas != null) { 
+	       $this->db->limit($batas,$offset);
+	    }
+	    if ($key != null) { 
+	    	$this->db->or_like($key);
+	    }
 
 	    $this->db->from('skeluar');
-	    $this->db->limit($batas,$offset);
-	    $this->db->or_like($key);
 	    $this->db->order_by('no','DESC');
 
 	    $query = $this->db->get();
@@ -51,6 +55,32 @@ class M_keluar extends CI_Model
 	      return false;
 	    }
 	  }
+
+	 function filter($batas=null, $offset=null, $key=null)
+	  {
+	    //echo $key['perihal'];
+	  	if($batas != null) {
+	       $this->db->limit($batas,$offset);
+	    }
+	    //print_r($key);
+	    if ($key['status'] != "Pilih Status") { 
+	    	$this->db->where('status',$key['status']);
+	    }
+	    if ($key['perihal'] != "Pilih Perihal") { 
+	    	$this->db->where('perihal',$key['perihal']);
+	    }
+
+	    $this->db->from('skeluar');
+	    $this->db->order_by('no','DESC');
+
+	    $query = $this->db->get();
+	    if ($query->num_rows() > 0) {
+	        return $query->result();
+	    } else {
+	      return false;
+	    }
+	  }
+
 
 	  function data_sidak($batas=null, $offset=null, $key=null)
 	  {
@@ -82,10 +112,23 @@ class M_keluar extends CI_Model
 		return $this->db->get('tb_sk_sidak')->num_rows();
 	}
 
-	function count_search($orlike)
+	function count_filter($key)
 	  {
 	    $this->db->from('skeluar');
-	    $this->db->or_like($orlike);
+	    if ($key['status'] != "Pilih Status") {
+	    	$this->db->where('status',$key['status']);
+	    }
+	    if ($key['perihal'] != "Pilih Perihal") { 
+	    	$this->db->where('perihal',$key['perihal']);
+	    };
+
+	    $query = $this->db->get()->num_rows();
+	    return $query;
+	  }
+	function count_search($key)
+	  {
+	    $this->db->from('skeluar');
+	    $this->db->or_like($key);
 
 	    $query = $this->db->get()->num_rows();
 	    return $query;

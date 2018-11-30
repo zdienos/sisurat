@@ -24,11 +24,12 @@
           </div>
           <div class="panel panel-default">
             <div class="panel-body">
-              <form action="<?php echo site_url('Skeluar/search') ?>" method="get">
+              <form action="<?php echo site_url('Skeluar/filter') ?>" method="get">
                 <div class="col-md-2">
                 <label>Status Surat</label>
                   <div class="input-group input-group">
                     <select class="form-control" name="status">
+                      <option hidden="true" selected>Pilih Status</option>
                       <option value="ACC">ACC</option>
                       <option value="Proses">Proses</option>
                       <option value="Tidak%20ACC">Tidak ACC</option>
@@ -40,6 +41,16 @@
                    <label>Perihal</label>
                     <select name="prihal" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
                     <option hidden="true" selected>Pilih Perihal</option>
+                    <?php 
+                      if ($jabat[0] == "Kasie") { ?>
+                      <option value="Transfer"> Surat Transfer Pencairan </option>
+                      <option value="Pembayaran">Surat Pembayaran Ekspedisi Pengiriman Barang POS GIRO</option>
+                      <option value="Sidak">Surat Sidak</option>
+                    <?php } ?>
+                      <option value="Surat Teguran">Surat Teguran</option>
+                      <option value="Surat Peringatan">Surat Peringatan</option>
+                      <option value="Surat Pengecekan">Surat Pengecekan</option>
+                      <option value="Surat Intruksi">Surat Intruksi Transfer Kekurangan Storan</option>
                       <option value="Surat ACC Pencairan PT Kolektif">Surat ACC Pencairan PT Kolektif</option>
                       <option value="Surat ACC Pencairan Fee Bimker">Surat ACC Pencairan Fee Bimker</option>
                       <option value="Surat ACC Pengembalian Kelas Tidak Kuota">Surat ACC Pengembalian Kelas Tidak Kuota</option>
@@ -66,10 +77,13 @@
                       <option value="Surat Tidak ACC Diskon Susulan">Surat Tidak ACC Diskon Susulan</option>
                       </select>
                       <span class="input-group-btn">
-                        <button type="submit" class="btn btn-default" style="margin-top: 20px;"><span class="fa fa-search"></span> Lihat</button>
+                        <button type="submit" class="btn btn-default" style="margin-top: 22px;"><span class="fa fa-search"></span> Lihat</button>
                       </span>
                   </div>
                 </div>
+                 <div class="col-md-1 pull-right">
+                 <a href="<?= base_url('Skeluar/data_table')?>" class="btn btn-success" style="margin-top: 22px;"><span class="fa fa-refresh"></span>&nbsp&nbsp&nbspRefresh</a>
+              </div>
               </form>
             </div>
           </div>
