@@ -114,7 +114,7 @@ foreach($cetak as $l) {
   
   <p>Dengan Hormat,</p>
   
-  <p align="justify"> Menindaklanjuti memo dari bagian marketing pusat tanggal <?php echo date('d F Y',strtotime($l['tgl_marketing'])) ?> perihal <?php echo $l['perihal'];?> Unit <?php echo $l['unit'];?> ,berdasarkan Pengecekan bagian keuangan terhadap pembayaran biaya bimbel siswa berikut berhak untuk menerima pengembalian, yaitu:</p>
+  <p align="justify"> Menindaklanjuti memo dari bagian <?php echo $l['tingaklanjut'];?> tanggal <?php echo date('d F Y',strtotime($l['tgl_marketing'])) ?> perihal <?php echo $l['perihal'];?> Unit <?php echo $l['unit'];?> ,berdasarkan Pengecekan bagian keuangan terhadap pembayaran biaya bimbel siswa berikut berhak untuk menerima pengembalian, yaitu:</p>
   <br>
   <div id="conten">
   <table class="data" style="page-break-after: auto" >

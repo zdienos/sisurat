@@ -124,6 +124,10 @@
                       <p><i>Jika Format Tanggal Tidak keluar, Input dengan manual dengan format <b> ("YYYY/MM/DD") </b> </i></p>
                     </div>
                     <div class="form-group">
+                      <label>TindakLanjut Memo Bagian</label>
+                      <input class="form-control" placeholder="Masukan TidakLanjut" type="text" name="tindaklanjut">
+                    </div>
+                    <div class="form-group">
                       <label>Unit</label>
                       <input class="form-control" placeholder="Masukan Unit" type="text" name="unit">
                     </div>

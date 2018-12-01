@@ -252,6 +252,7 @@ class Skeluar extends CI_Controller {
 			$tembusan = $this->input->post('tbspencairan');
 			$tglmarketing = $this->input->post('tglmarketing');
 			$unit = $this->input->post('unit');
+			$tindaklanjut = $this->input->post('tindaklanjut');
 			
 			$data2 = array(
 				'no' => $no,
@@ -262,6 +263,7 @@ class Skeluar extends CI_Controller {
 				'unit' => $unit,
 				'pengembaliannorek' => $pengembaliannorek,
 				'tgl_marketing' => $tglmarketing,
+				'tingaklanjut' => $tindaklanjut,
 				'tembusan' => $tembusan
 			);
 			$result = $this->m_keluar->saveDatasuratkeluar($data,$data2,$jenissurat,$prihal);
@@ -1049,6 +1051,7 @@ class Skeluar extends CI_Controller {
 		$tanggal = $this->input->post('tanggal');
 		$tglmarketing = $this->input->post('tglmarketing');
 		$unit = $this->input->post('unit');
+		$tindaklanjut = $this->input->post('tindaklanjut');
 
 		$data = array(
 			'no_surat' => $nosurat,
@@ -1070,6 +1073,7 @@ class Skeluar extends CI_Controller {
 			'kelas' => $kelas,
 			'jumlahbayar' => $jumlahbayar,
 			'pengembaliannorek' => $pengembaliannorek,
+			'tingaklanjut' => $tindaklanjut,
 			'tembusan' => $tembusan
 		);
 
