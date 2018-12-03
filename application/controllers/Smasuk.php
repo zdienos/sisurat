@@ -290,9 +290,9 @@ class Smasuk extends CI_Controller {
 		} else {
 			$offset = $page;
 		}
-
+		$config['reuse_query_string'] = true;
 		$config['page_query_string'] = TRUE;
-		$config['base_url'] = base_url().'Smasuk/data_table/?';
+		$config['base_url'] = base_url().'Smasuk/search/?';
 		$config['total_rows'] = $this->m_surat->count_smasuk_search($search);
 		$config['per_page'] = $batas;
 
