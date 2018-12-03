@@ -31,7 +31,7 @@ class Smasuk extends CI_Controller {
   		$config['per_page'] = $batas;
 
   		$config['uri_segment'] = $page;
-
+  		$config['reuse_query_string'] = true;
   		$config['full_tag_open'] = '<ul class="pagination">';
   		$config['full_tag_close'] = '</ul>';
 

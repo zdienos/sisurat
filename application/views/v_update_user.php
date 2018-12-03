@@ -44,7 +44,7 @@ $jabatan = explode(" ", $user['jabatan']);
                   <label>Password</label>
                   <input class="form-control" placeholder="Enter ..." type="text" name="password" id="password" required="" disabled="true">
                 </div>
-                <a href="<?= base_url('Login/data_table/') ?>" class="btn btn-primary btn btn-sm"><i class="fa fa-mail-reply"></i> Kembali</a>
+                 <button type="button" class="btn btn-primary" onclick="history.back();"> <i class="fa fa-mail-reply"></i> &nbsp&nbsp Kembali</button>
                 <button type="submit" name="savesm" class="pull-right btn btn-success" id="savesm">save 
                 <i class="fa fa-arrow-circle-right"></i></button>
             </form>

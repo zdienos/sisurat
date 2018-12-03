@@ -46,7 +46,7 @@ class Skeluar extends CI_Controller {
   		$config['per_page'] = $batas;
 
   		$config['uri_segment'] = $page;
-
+  		$config['reuse_query_string'] = true;
   		$config['full_tag_open'] = '<ul class="pagination">';
   		$config['full_tag_close'] = '</ul>';
 
@@ -263,7 +263,7 @@ class Skeluar extends CI_Controller {
 				'unit' => $unit,
 				'pengembaliannorek' => $pengembaliannorek,
 				'tgl_marketing' => $tglmarketing,
-				'tingaklanjut' => $tindaklanjut,
+				'tindaklanjut' => $tindaklanjut,
 				'tembusan' => $tembusan
 			);
 			$result = $this->m_keluar->saveDatasuratkeluar($data,$data2,$jenissurat,$prihal);
@@ -1073,7 +1073,7 @@ class Skeluar extends CI_Controller {
 			'kelas' => $kelas,
 			'jumlahbayar' => $jumlahbayar,
 			'pengembaliannorek' => $pengembaliannorek,
-			'tingaklanjut' => $tindaklanjut,
+			'tindaklanjut' => $tindaklanjut,
 			'tembusan' => $tembusan
 		);
 
@@ -1774,7 +1774,7 @@ class Skeluar extends CI_Controller {
 		$config['per_page'] = $batas;
 
 		$config['uri_segment'] = $page;
-
+		$config['reuse_query_string'] = true;
 		$config['full_tag_open'] = '<ul class="pagination">';
 		$config['full_tag_close'] = '</ul>';
 		$config['first_link'] = '&laquo; First';

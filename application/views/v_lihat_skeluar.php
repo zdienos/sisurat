@@ -25,7 +25,7 @@
                   <tr><td>Tujuan</td>  <td><?= $srt['tujuan'] ?></td></tr>
                   <tr><td>Jenis Surat</td> <td><?= $srt['jenis_surat'] ?></td></tr>
                   <tr><td>Tanggal Marketing</td><td><?= $srt['tgl_marketing']; ?></td></tr>
-                  <tr><td>TindakLanjut Memo Bagian</td><td><?= $srt['tingaklanjut']; ?></td></tr>
+                  <tr><td>TindakLanjut Memo Bagian</td><td><?= $srt['tindaklanjut']; ?></td></tr>
                   <tr><td>Unit</td><td><?= $srt['unit']; ?></td></tr>
                   <tr><td>Nama Siswa</td><td><?= $srt['nama_siswa']; ?></td></tr>
                   <tr><td>Kelas</td><td><?= $srt['kelas']; ?></td></tr>
@@ -40,7 +40,7 @@
                     } ?>
                 </tbody>
               </table><br>
-              <a href="<?= base_url('Skeluar/data_table/') ?>" class="btn btn-primary">Kembali</a>
+             <button type="button" class="btn btn-primary" onclick="history.back();"> <i class="fa fa-mail-reply"></i> &nbsp&nbsp Kembali</button>
             </div>
             <!-- /.box-body -->
 </div>

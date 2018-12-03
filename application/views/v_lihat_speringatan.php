@@ -37,7 +37,7 @@
                     } ?>
                 </tbody>
               </table><br>
-              <a href="<?= base_url('Skeluar/data_table/') ?>" class="btn btn-primary"><i class="fa fa-mail-reply"></i>Kembali</a>
+              <button type="button" class="btn btn-primary" onclick="history.back();"> <i class="fa fa-mail-reply"></i> &nbsp&nbsp Kembali</button>
             </div>
             <!-- /.box-body -->
 </div>
