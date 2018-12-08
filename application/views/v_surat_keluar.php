@@ -209,7 +209,8 @@
                                 <td><input name="acc[]" value="" size="3" /></td>
                                 <td><input name="tdk_acc[]" value="" size="3" /></td>
                                 <td><input name="fee_siswa[]" value="" size="10"/><p><i>Jangan menggunakan <br>Titik "<b> . </b>" atau Koma "<b> , </b>"</i></p></td>
-                                <td><textarea name="ket[]" cols="40" ></textarea> <p><i>Jika ingin membuat baris baru(Enter) tambahkan <b>&lt;br&gt;</b> </i></p></td>
+                                <td><textarea name="ket[]" cols="40" ></textarea> <p><i>Jika ingin membuat baris baru(Enter) tambahkan <b>&lt;br&gt;</b> </i><br><i>Jika ingin membuat tanda Kurang dari(<) tambahkan <b>"&amp;lt;"</b> </i> <br><i>Jika ingin membuat tanda Lebih dari(>) tambahkan <b>"&amp;gt;"</b> </i> </p></td>
+
                               </tr>
                             </tbody>
                         </table>

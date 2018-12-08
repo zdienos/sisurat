@@ -42,7 +42,9 @@ body{
       padding: 3px;
       font-weight: bold;
       text-align: center;
-      background-color: grey; }
+      background-color: grey;
+      page-break-after: always;
+    }
     table.data td {
       border:1px solid #000;
       padding: 3px;
@@ -63,10 +65,7 @@ body{
   <div id="memo">
     <img src="assets/img/memo.png" width="200px">
   </div>
-</div>
-<div id="footer">
-<img src="assets/img/footer.png" width="800px">
-</div>
+
 <?php
 
 $date =date('d-m-Y');
@@ -129,7 +128,8 @@ foreach($cetak as $l) {
   <p> Menindaklanjuti memo dari Bagian Marketing tanggal <?php echo date('d F Y',strtotime($tgl_marketing));?> perihal <?php echo $perihal;?> dengan ini diinformasikan berdasarkan pengecekan Bagian Keuangan, adalah sebagai berikut:</p>
 
   <table border="1px" style="position: center;" class="data">
-    <tr>
+    <thead>
+      <tr>
       <th style="width: 2%" rowspan="2">No</th>
       <th style="width: 10%" rowspan="2">Sekolah</th>
       <th style="width: 5%" rowspan="2">MOU</th>
@@ -144,6 +144,8 @@ foreach($cetak as $l) {
       <th style="width: 3%" >ACC</th>
       <th style="width: 3%" >Tidak Acc</th>
     </tr>
+  </thead>
+  <tbody>
     <?php $i=1; $tot=0; foreach($cetak as $l) { $tot += $l['jml_disetujui']; ?>
     <tr>
 
@@ -156,15 +158,16 @@ foreach($cetak as $l) {
       <td><?php echo $l['tdk_acc'];?></td>
       <td>Rp. <?php echo number_format($l['fee_siswa']);?></td>
       <td>Rp. <?php echo number_format($l['jml_disetujui']);?></td>
-      <td style="text-align: left;"><?php echo $l['ket'];?></td>
+      <td style="text-align: left;"<?php echo $l['ket'];?></td>
     </tr>
     <?php $i++; } ?>
    <tr class="total"><td colspan="7"><p></p></td><td>Total</td><td>Rp. <?php echo number_format($tot);?></td><td><p></p></td></tr>
+   </tbody>
   </table>
  
   <p> Demikian hal ini disampaikan. <?php if($tidak_acc[1] != "Tidak"){?>Untuk pencairan dana harap diajukan ke Bidang Akuntansi. <?php }?> Atas Kerjasama nya kami ucapkan terimakasih.</p>
  <?php 
- if($kacab[1] != "Cabang" ){ ?>
+ if(($kacab[1] != "Cabang") or ($kacab[1] != "Rayon") ){ ?>
     <table>
         <tr><td style="text-align: left;">Mengetahui,</td></tr>
         <tr><td><br></td></tr>
@@ -179,7 +182,7 @@ foreach($cetak as $l) {
         <tr><td>Bandung,<?php echo $bulan[0].' '.$infobulan.' '.$bulan[2] ;?></td></tr>
         <tr><td><br></td></tr>
         <tr><td><br></td></tr>
-        <?php if($kacab[1] != "Cabang" ){ ?>
+        <?php if(($kacab[1] != "Cabang") or ($kacab[1] != "Rayon") ){ ?>
         <tr><td><b><u><?php echo $user[0]?></u></b></td></tr>
         <tr><td><b><?php echo $user[1]?></b></td></tr>
       <?php } else {?>
@@ -188,8 +191,8 @@ foreach($cetak as $l) {
       <?php }?>
       </table>
     </div>
- 
   <br>  <br>  <br>  <br>  <br>  <br>  <br> 
+ <div style="page-break-before: all;"></div>
   <div id="tbs">
     <p>Tembusan:<br>
     <ul style="list-style-type: none;">
@@ -206,4 +209,9 @@ foreach($cetak as $l) {
   </div>
 
   
-</body></html>
+</body>
+</div>
+<div id="footer">
+<img src="assets/img/footer.png" width="800px">
+</div>
+</html>
