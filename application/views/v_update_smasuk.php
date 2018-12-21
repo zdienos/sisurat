@@ -20,6 +20,26 @@
                         <option value="Ekspedisi" <?php if ($ubahsurat['jenissurat'] == "Ekspedisi") echo "selected";?> >Ekspedisi</option>
                       </select>
                 </div>
+                 <div class="form-group">
+                  <label>Bagian Pengirim</label>
+                   <select name="bagian_pengirim" id="bagian_pengirim" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" required=""> 
+                      <option hidden="true" selected>Pilih Bagian Pengirim</option>
+                      <option value="Lain-lain" >Lain-lain</option>
+                      <?php foreach ($perihal as $l ) {?>
+                      <option value="<?= $l->bagian_pengirim ?>" <?php if($l->bagian_pengirim  == $ubahsurat['bagian_pengirim'])  echo "selected" ?>><?= $l->bagian_pengirim?></option>
+                    <?php }?>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Jenis Surat</label>
+                  <select class='jenissurat form-control' name='jenissurat'>
+                    <select name="bagian_pengirim" id="bagian_pengirim" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" required=""> 
+                      <option hidden="true" selected>Pilih Jenis Surat</option>
+                     <!--  <?php foreach ($perihal as $l ) {?>
+                      <option value="<?= $l->jenissurat ?>" <?php if($l->jenissurat  == $ubahsurat['jenissurat'])  echo "selected" ?>><?= $l->jenissurat?></option>
+                       <?php }?>
+ -->                    </select>
+                </div>
                 <div class="form-group">
                   <label>No Surat</label>
                   <input class="form-control" placeholder="Enter ..." type="text" name="nosurat" id="nosurat" required="" value="<?= $ubahsurat['no_surat'] ?>">

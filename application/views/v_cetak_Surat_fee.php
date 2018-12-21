@@ -3,7 +3,7 @@
 <style type="text/css">
 @page {margin: 20px 50px 0px 50px; }
 body{
-  font-size: 10pt;
+  font-size: 9pt;
 }
       #logo {
       margin-top: 0px;
@@ -114,7 +114,7 @@ foreach($cetak as $l) {
   
   }?>
   <table>
-    <tr><td>No Surat</td><td>:</td><td><?php echo $no .'/'. $no_surat;?></td></tr>
+    <tr><td>No Surat</td><td>:</td><td><?php echo $no .'/MKE-k/'. $no_surat;?></td></tr>
     <tr><td>Perihal</td><td>:</td><td><?php echo $perihal;?> TP.18/19</td></tr>
     <tr><td>Lampiran</td><td>:</td><td><?php echo $lampiran;?></td></tr>
   </table>

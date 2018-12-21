@@ -10,6 +10,8 @@
   <div class="panel panel-default">
             <div class="panel-body">
               <a href="<?= base_url('Skeluar/index/')?>" class="btn btn-primary"><span class="fa fa-plus-circle"></span> Buat Surat</a>
+              <a href="<?= base_url('Skeluar/export/')?>" class="btn btn-primary"><span class="fa fa-plus-circle"></span> Export</a>
+              <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Export</button>
               <div class="col-md-4 pull-right">
                 <form action="<?php echo site_url('Skeluar/search') ?>" method="get">
                   <div class="input-group input-group-sm">
@@ -194,7 +196,90 @@
       <!-- /.row -->
         <!-- /.col -->
     </section>
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog" style="width:700px;">
 
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Eksport to Excel</h4>
+      </div>
+      <div class="modal-body">
+      <form action="<?= base_url('Skeluar/export') ?>" role="form" method="post">
+
+        <div class="form-group">
+          <div class="row">
+          <div class="col-md-4">
+            <label>Tanggal Awal</label>
+            <input class="form-control" type="date" name="tgl_awal"  placeholder="Masukan Tanggal dengan format ('YYYY/MM/DD')">
+          </div>
+          <div class="col-md-4">
+            <label>Tanggal Akhir</label>
+            <input class="form-control" type="date" name="tgl_akhir"  placeholder="Masukan Tanggal dengan format ('YYYY/MM/DD')">
+          </div>
+          </div>
+        </div>
+       <div class="form-group">
+          <label>Jenis Surat</label>
+          <select name="cjenissurat" id="cjenissurat" class="form-control">
+            <option hidden="true" selected>Pilih Jenis Surat</option>
+            <option value="Pencairan">Surat Pencairan</option>
+            <option value="Teguran">Surat Teguran</option>
+            <option value="Peringatan">Surat Peringatan</option>
+            <option value="Pengecekan">Surat Pengecekan</option>
+            <option value="Intruksi">Surat Intruksi Transfer Kekurangan Storan</option>
+            <?php 
+              if ($jabat[0] == "Kasie") { ?>
+              <option value="Transfer"> Surat Transfer Pencairan </option>
+              <option value="Pembayaran">Surat Pembayaran Ekspedisi Pengiriman Barang POS GIRO</option>
+              <option value="Sidak">Surat Sidak</option>
+            <?php } ?>
+          </select>
+        </div>
+        <div id="prihal">
+        <div class="form-group">
+          <label>Perihal</label>
+          <select name="prihal" id="prihal_fee" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+            <option hidden="true" selected>Pilih Perihal</option>
+              <option value="Surat ACC Pencairan PT Kolektif">Surat ACC Pencairan PT Kolektif</option>
+              <option value="Surat ACC Pencairan Fee Bimker">Surat ACC Pencairan Fee Bimker</option>
+              <option value="Surat ACC Pengembalian Psikotes">Surat ACC Pengembalian Psikotes</option>
+              <option value="Surat ACC Pengembalian Kelas Tidak Kuota">Surat ACC Pengembalian Kelas Tidak Kuota</option>
+              <option value="Surat ACC Pengembalian Diskon Anak Guru">Surat ACC Pengembalian Diskon Anak Guru</option>
+              <option value="Surat ACC Pengembalian Pindah Program">Surat ACC Pengembalian Pindah Program</option>
+              <option value="Surat ACC Pengembalian Pengalihan Biaya">Surat ACC Pengembalian Pengalihan Biaya</option>
+              <option value="Surat ACC Pengembalian Diskon Karyawan">Surat ACC Pengembalian Diskon Karyawan</option>
+              <option value="Surat ACC Pengembalian Diskon Pengajar">Surat ACC Pengembalian Diskon Pengajar</option>
+              <option value="Surat ACC Pengembalian Kelebihan Bayar">Surat ACC Pengembalian Kelebihan Bayar</option>
+              <option value="Surat ACC Pengembalian Jaminan PTN">Surat ACC Pengembalian Jaminan PTN</option>
+              <option value="Surat ACC Pengembalian Jaminan SMA Favorit">Surat ACC Pengembalian Jaminan SMA Favorit</option>
+              <option value="Surat ACC Diskon Susulan">Surat ACC Diskon Susulan</option>
+              <option value="Surat Tidak ACC Pencairan PT Kolektif">Surat Tidak ACC Pencairan PT Kolektif</option>
+              <option value="Surat Tidak ACC Pencairan Fee Bimker">Surat Tidak ACC Pencairan Fee Bimker</option>
+              <option value="Surat Tidak ACC Pengembalian Kelas Tidak Kuota">Surat Tidak ACC Pengembalian Kelas Tidak Kuota</option>
+              <option value="Surat Tidak ACC Pengembalian Diskon Anak Guru">Surat Tidak ACC Pengembalian Diskon Anak Guru</option>
+              <option value="Surat Tidak ACC Pengembalian Pindah Program">Surat Tidak ACC Pengembalian Pindah Program</option>
+              <option value="Surat Tidak ACC Pengembalian Pengalihan Biaya">Surat Tidak ACC Pengembalian Pengalihan Biaya</option>
+              <option value="Surat Tidak ACC Pengembalian Diskon Karyawan">Surat Tidak ACC Pengembalian Diskon Karyawan</option>
+              <option value="Surat Tidak ACC Pengembalian Diskon Pengajar">Surat Tidak ACC Pengembalian Diskon Pengajar</option>
+              <option value="Surat Tidak ACC Pengembalian Kelebihan Bayar">Surat Tidak ACC Pengembalian Kelebihan Bayar</option>
+              <option value="Surat Tidak ACC Pengembalian Jaminan PTN">Surat Tidak ACC Pengembalian Jaminan PTN</option>
+              <option value="Surat Tidak ACC Pengembalian Jaminan SMA Favorit">Surat Tidak ACC Pengembalian Jaminan SMA Favorit</option>
+              <option value="Surat Tidak ACC Diskon Susulan">Surat Tidak ACC Diskon Susulan</option>
+          </select>
+        </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" id=""><span class="fa fa-save"></span>&nbsp&nbsp&nbspSave</button>
+      </form>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 
  <script>

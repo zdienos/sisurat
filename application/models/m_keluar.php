@@ -532,5 +532,19 @@ class M_keluar extends CI_Model
 			return false;
 		}
  	}
+
+ 	public function export()
+ 	{
+ 		$this->db->from('skeluar');
+	    $this->db->join('tb_sk_teguran', 'skeluar.no = tb_sk_teguran.no');
+	    // $this->db->where('skeluar.no', $no);
+	    $query = $this->db->get();
+
+		if ($query->num_rows() > 0) {
+			return $query->result();
+		} else {
+			return false;
+		}
+ 	}
 }
 ?>

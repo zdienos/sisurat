@@ -175,8 +175,10 @@
 
 <!-- jQuery 2.2.3 -->
 <script src="<?php echo base_url('assets/plugins/jQuery/jquery-2.2.3.min.js')?>"></script>
+<!-- <script src="<?php echo base_url('assets/plugins/jQuery/jquery-3.3.1.js')?>"></script>  -->
 <!-- Bootstrap 3.3.6 -->
 <script src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js')?>"></script>
+<!-- <script src="<?php echo base_url('assets/bootstrap/js/bootstrap.js')?>"></script> -->
 <!-- AdminLTE App -->
 <script src="<?php echo base_url('assets/dist/js/app.min.js')?>"></script>
 <!-- DataTables -->
@@ -196,6 +198,36 @@
 <script src="<?php echo base_url('assets/fullcalendar/fullcalendar.min.js')?>"></script>
 <!-- Tabel Dinamis -->
 <script src="<?php echo base_url('assets/dist/js/table_dinamis.js')?>"></script>
+
+
+<script type="text/javascript">
+ $(document).ready(function(){
+        $('#bagian_pengirim').change(function(){
+            var id=$(this).val();
+         // console.log($('#prihal_fee').val());
+         console.log(id);
+
+            $.ajax({
+                url : "<?php echo base_url();?>Smasuk/ambil_data",
+                method : "POST",
+                data : {id: id},
+                async : false,
+                dataType : 'json',
+                success: function(data){
+                    var a = '';
+                    var i;
+                    for(i=0; i<data.length; i++){
+                        a += '<option value='+data[i].id_kelompok+'>'+data[i].jenissurat+'</option>';
+                    }
+                    $('.jenissurat').html(a);
+                }
+            });
+          // console.log($('#jenissurat').html(html));
+
+        });
+    });
+</script>
+
 
 <script type="text/javascript">
   // Add button Delete in row
@@ -290,9 +322,7 @@ $('#btnDelCheckRow').click(function() {
       $('#pengirim').hide();
       $('#Sidak').hide();
       $('#Pengecekantransfer').hide();
-      $('#Intruksitransfer').hide();
-
-      
+      $('#Intruksitransfer').hide();   
 
       $('#cjenissurat').change(function() {
         if ($('#cjenissurat').val() == 'Pencairan') {
