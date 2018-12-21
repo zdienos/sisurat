@@ -8,6 +8,7 @@ body {
   letter-spacing: 0.5px;
   word-spacing: normal;
   text-align: justify;
+
 }
      #logo {
       margin-top: 0px;
@@ -114,7 +115,11 @@ foreach($cetak as $l) {
   //  $y = count($sub_tbs) - 1;
     for($i=1; $i < count($sub_tbs) ;$i++){
     ?> <br>
+<<<<<<< HEAD
 		<?php echo"<ul type='square'><li>".$sub_tbs[$i]."</li>"; ?>
+=======
+		<?php echo"<div style ='margin-top: 5px;'><ul type='square' style=' margin-top: 5px;'><li>".$sub_tbs[$i]."</li></div>"; ?>
+>>>>>>> 245bbb5f0ac3811b5250553fad1726dafbd3648e
 	
       	
       	<!-- <?php foreach ($sub_tbs as $sub_t) { print_r($sub_t)?>

@@ -75,7 +75,7 @@ class Smasuk extends CI_Controller {
   		$this->pagination->initialize($config);
   		$data['paging']=$this->pagination->create_links();
   		$data['jlhpage']=$page;
-
+  		$data['perihal'] = $this->m_surat->lihatperihal_all();
   		$data['link'] = $this->m_surat->data($batas, $offset);
 
       // Akhir Pagination Pemohon
@@ -94,10 +94,31 @@ class Smasuk extends CI_Controller {
   			$data['jabatan'] = $user['jabatan'];
   			$data['id'] = $user['id'];
   			$data['perihal'] = $this->m_surat->lihatperihal();
+
 		$this->template->load('template','v_surat_masuk',$data);
 		} else {
     	  redirect(site_url('login'), 'refresh');
     	}	
+	}
+	
+	function ambil_data(){
+
+// 		$modul=$this->input->post('modul');
+// 		$id=$this->input->post('id');
+// echo "string".$id;exit();
+// 		if($modul=="jenissurat"){
+// 		echo $this->m_surat->jenissurat($id);
+// 		}
+// 		else if($modul=="kecamatan"){
+
+// 		}
+// 		else if($modul=="kelurahan"){
+
+// 		}
+
+		$id=$this->input->post('id');
+        $data=$this->m_surat->jenissurat($id);
+        echo json_encode($data);
 	}
 
 	public function masukanData()
@@ -111,7 +132,9 @@ class Smasuk extends CI_Controller {
 		$tanggal = $this->input->post('tanggal');
 		$tgl_input = $this->input->post('tgl_input');
 		$userid = $this->input->post('userid');
-		$jenissurat =$this->input->post('jenissurat');
+		$jenissurat =$this->input->post('jeniskiriman');
+		$bagian_pengirim =$this->input->post('bagian_pengirim');
+		$id_kelompok =$this->input->post('jenissurat');
 
 		$namafile = "SuratMasuk_".$jenissurat."_".time();
 		$config['upload_path']          = './assets/arsip';
@@ -140,10 +163,40 @@ class Smasuk extends CI_Controller {
 			'tgl_input' => $tgl_input,
 			'userid' => $userid,
 			'jenissurat' => $jenissurat,
+			'jenissuratmasuk' => $bagian_pengirim,
+			'id_kelompok' => $id_kelompok,
 			'arsip' => $upload_surat
 		);
 
 		$result = $this->m_surat->saveDatasuratmasuk($data);
+		if($result == 1)
+          {
+              $this->session->set_flashdata('success','Data berhasil disimpan!');
+              redirect('Smasuk/data_table', 'refresh');
+          }
+          else{
+              $this->session->set_flashdata("message","Gagal Tersimpan");
+              redirect('Smasuk/index', 'refresh');
+          }
+          } else {
+    	  redirect(site_url('login'), 'refresh');
+    	}
+  
+	}
+
+	public function input_perihal()
+	{
+		if ($this->session->userdata('log_in')) {
+		$perihal = $this->input->post('perihal');
+		$jenissurat = $this->input->post('jenissurat');
+		
+
+		$data = array(
+			'bagian_pengirim' => $perihal,
+			'jenissurat' => $jenissurat
+		);
+
+		$result = $this->m_surat->saveDataperihal($data);
 		if($result == 1)
           {
               $this->session->set_flashdata('success','Data berhasil disimpan!');
@@ -227,11 +280,12 @@ class Smasuk extends CI_Controller {
   			$data['id'] = $user['id'];
 
 		$where = [
-			'id' => $id
+			'smasuk.id' => $id
 		];
 
-		$data['ubahsurat'] = $this->m_surat->getDatasuratmasuk($where);
-		
+  		$data['perihal'] = $this->m_surat->lihatperihal();
+		$data['ubahsurat'] = $this->m_surat->getDatasuratmasuk($id);
+		// print_r($data['ubahsurat']); exit();
 		$this->template->load('template','v_update_smasuk', $data);
 		} else {
     	  redirect(site_url('login'), 'refresh');
@@ -318,6 +372,8 @@ class Smasuk extends CI_Controller {
 			'dari'=>$keyword,
 			'keterangan'=>$keyword,
 			'tanggal'=>$keyword,
+			'jenissurat'=>$keyword,
+			'jenissuratmasuk'=>$keyword,
 		);
 
 		$page = $this->input->get('per_page');

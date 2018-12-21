@@ -1,9 +1,13 @@
+<!-- <script type="text/javascript" src="<?php echo base_url('assets/bootstrap/jquery.min.js') ?>"></script> -->
+
+
+
     <section class="content-header">
       <h1><span class="fa fa-envelope"></span>
         Surat Masuk
       </h1>
     </section>
-    <?php $date = date("Y-m-d");?>
+    <?php $date = date("Y-m-d"); // print_r($perihal); //exit();?>
     <!-- Main content -->
     <section class="content">
       <div class="box-body">
@@ -13,11 +17,27 @@
                 <input class="form-control" placeholder="Enter ..." type="hidden" name="userid" required="" value="<?= $username; ?>">
                 <!-- text input -->
                 <div class="form-group">
-                  <label>Jenis Surat Masuk</label>
-                    <select name="jenissurat" class="form-control"> 
+                  <label>Jenis Kiriman Surat</label>
+                    <select name="jeniskiriman" class="form-control"> 
                        <option hidden="true" selected>Pilih</option>
                        <option value="Email">Email</option>
                        <option value="Ekspedisi">Ekspedisi</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                  <label>Bagian Pengirim</label>
+                   <select name="bagian_pengirim" id="bagian_pengirim" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" required=""> 
+                      <option hidden="true" selected>Pilih Bagian Pengirim</option>
+                      <option value="Lain-lain" >Lain-lain</option>
+                      <?php foreach ($perihal as $l ) {?>
+                      <option value="<?= $l->bagian_pengirim ?>"><?= $l->bagian_pengirim?></option>
+                    <?php }?>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Jenis Surat</label>
+                  <select class='jenissurat form-control' name='jenissurat'>
+                      <option value='0'>--pilih--</option>
                     </select>
                 </div>
                 <div class="form-group">

@@ -106,7 +106,7 @@ foreach($cetak as $l) {
     </p>
   </div>
 
- <div style="page-break-after: always; margin-t"></div>
+ <div style="page-break-after: always;"></div>
 
  <p><h1 style="text-align: center;"><b>SURAT TUGAS</b></h1></p>
  <hr>

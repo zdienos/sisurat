@@ -533,6 +533,7 @@ class M_keluar extends CI_Model
 		}
  	}
 
+
  	function export()
    {
      $this->db->from('skeluar');
@@ -547,6 +548,7 @@ class M_keluar extends CI_Model
       return false;
     }
    }
+
 
 }
 ?>
