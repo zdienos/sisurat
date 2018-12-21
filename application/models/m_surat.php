@@ -81,6 +81,21 @@ class M_surat extends CI_Model
 		}
 	}
 
+	function lihatperihal_all()
+	{
+		// $this->db->distinct('bagian_pengirim');
+		// $this->db->select('distinct(bagian_pengirim)');
+		$this->db->from('tb_sm_perihal');
+		$this->db->order_by('bagian_pengirim ASC');
+
+		$query = $this->db->get();
+		
+		if ($query->num_rows() > 0) {
+			return $query->result();
+		} else {
+			return false;
+		}
+	}
 	function jenissurat($bagian_pengirim){
 
 		   $hasil=$this->db->query("SELECT * FROM tb_sm_perihal WHERE bagian_pengirim='$bagian_pengirim'");

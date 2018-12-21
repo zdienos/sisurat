@@ -60,7 +60,7 @@ class Smasuk extends CI_Controller {
   		$this->pagination->initialize($config);
   		$data['paging']=$this->pagination->create_links();
   		$data['jlhpage']=$page;
-  		$data['perihal'] = $this->m_surat->lihatperihal();
+  		$data['perihal'] = $this->m_surat->lihatperihal_all();
   		$data['link'] = $this->m_surat->data($batas, $offset);
       // Akhir Pagination Pemohon
       // Awal load view Pemohon

@@ -126,7 +126,8 @@
                 <thead>
                 <tr>
                   <th style="width: 1%">ID</th>
-                  <th style="width: 20%">Perihal</th>
+                  <th style="width: 20%">Bagian Pengirim</th>
+                  <th style="width: 20%">Jenis Surat</th>
                   <th style="width: 10%">Button</th>
                 </tr>
                 </thead>
@@ -137,6 +138,7 @@
                         <tr>
                           <td><?= $no++; ?></td>
                           <td><?= $srt->bagian_pengirim; ?></td>
+                          <td><?= $srt->jenissurat; ?></td>
                           <td>
                           <a href="<?= base_url('Smasuk/hapusDataperihal/') . $srt->id_kelompok ?>" class="btn-sm btn btn-danger"  onClick="return doconfirm();"><span class="fa fa-trash-o"></span> Delete</a>
                         <?php }  ?>
