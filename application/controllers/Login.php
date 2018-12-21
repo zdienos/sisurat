@@ -70,7 +70,7 @@ class Login extends CI_Controller {
     $data = array(
       'username' => $nama,
       'nama_lengkap' => $nama_lengkap,
-      'password' => md5($password),
+      'password' => $password,
       'Jabatan' => $jabatan
     );
 
@@ -185,7 +185,7 @@ public function updateDatauser()
     $data = array(
       'username' => $nama,
       'nama_lengkap' => $nama_lengkap,
-      'password' => md5($password),
+      'password' => $password,
       'Jabatan' => $jabatan
     );
 

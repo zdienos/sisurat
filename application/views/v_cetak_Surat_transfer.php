@@ -121,7 +121,7 @@ foreach($cetak as $l) {
   
   <p>Dengan Hormat,</p>
   
-  <p>Bersama ini kami mengajukan permohonan transfer pencairan mgm dan pengembalian biaya, dengan rincian sbb :</p>
+  <p>Bersama ini kami mengajukan permohonan transfer pencairan <?php echo $jenis_pencairan; ?>, dengan rincian sbb :</p>
 <?php 
 $tot_jmlor_mgm=0;
 $tot_jmlsis_mgm=0;

@@ -5,7 +5,7 @@ class M_login extends CI_Model {
   {
     $this->db->from('user');
     $this->db->where('username', $username);
-    $this->db->where('password', md5($password));
+    $this->db->where('password', $password);
 
     $query = $this->db->get();
     if ($query->num_rows() == 1) {

@@ -139,27 +139,28 @@ foreach($cetak as $l) {
 
   <p>Demikian hal ini disampaikan, pengembalian biaya akan di transfer dari Bidang Keuangan Bandung. Atas Kerjasamanya yang baik kami ucapkan terimakasih.</p>
   <?php 
-   if(($kacab[1] != "Cabang")){ ?>
-      <table>
+   if(($kacab[1] == "Cabang") or ($kacab[1] == "Rayon") or ($kacab[2] == "Cabang")){ ?>
+  <?php  }  else {   ?>
+     <table>
         <tr><td style="text-align: left;">Mengetahui,</td></tr>
         <tr><td><br></td></tr>
         <tr><td><br></td></tr>
         <tr><td><b><u>Dra. Erna Veronika</u></b></td></tr>
         <tr><td><b>Manajer Keuangan</b></td></tr>
       </table>
-  <?php  }  ?>
+  <?php  } ?>
     <div id="ttd">
       <table>
         <tr><td style="text-align: left;">Terimakasih,</td></tr>
         <tr><td>Bandung,<?php echo $bulan[0].' '.$infobulan.' '.$bulan[2] ;?></td></tr>
         <tr><td><br></td></tr>
         <tr><td><br></td></tr>
-       <?php if(($kacab[1] != "Cabang")){ ?>
-       <tr><td><b><u><?php echo $user[0]?></u></b></td></tr>
-        <tr><td><b><?php echo $user[1]?></b></td></tr>
-      <?php } else {?>
+       <?php if(($kacab[1] == "Cabang") or ($kacab[1] == "Rayon") or ($kacab[2] == "Cabang")){ ?>
         <tr><td><b><u>Dra. Erna Veronika</u></b></td></tr>
         <tr><td><b>Manajer Keuangan</b></td></tr>
+      <?php } else {?>
+       <tr><td><b><u><?php echo $user[0]?></u></b></td></tr>
+        <tr><td><b><?php echo $user[1]?></b></td></tr>
       <?php }?>
       </table>
     </div>

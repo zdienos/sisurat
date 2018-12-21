@@ -9,6 +9,20 @@ class Smasuk extends CI_Controller {
 		$this->load->model('m_surat');
 	}
 
+	public function perbaikan()
+	{
+		if ($this->session->userdata('log_in')) {
+			$user = $this->model->getuser();
+  			$data['username'] = $user['username'];
+  			$data['jabatan'] = $user['jabatan'];
+  			$data['id'] = $user['id'];
+  			// print_r($user); exit();
+		$this->template->load('template','data_table',$data);
+		} else {
+    	  redirect(site_url('login'), 'refresh');
+    	}
+	}
+
 	public function data_table()
 	{
 		if ($this->session->userdata('log_in')) {
@@ -16,6 +30,7 @@ class Smasuk extends CI_Controller {
   	    $data['username'] = $user['username'];
         $data['jabatan'] = $user['jabatan'];
   		$data['id'] = $user['id'];
+  		$data['perihal'] = $this->m_surat->lihatperihal();
   			
   		$page = $this->input->get('per_page');	
   		$batas = 5;
@@ -62,6 +77,7 @@ class Smasuk extends CI_Controller {
   		$data['jlhpage']=$page;
 
   		$data['link'] = $this->m_surat->data($batas, $offset);
+
       // Akhir Pagination Pemohon
       // Awal load view Pemohon
       $this->template->load('template','v_data_smasuk',$data);
@@ -77,6 +93,7 @@ class Smasuk extends CI_Controller {
   			$data['username'] = $user['username'];
   			$data['jabatan'] = $user['jabatan'];
   			$data['id'] = $user['id'];
+  			$data['perihal'] = $this->m_surat->lihatperihal();
 		$this->template->load('template','v_surat_masuk',$data);
 		} else {
     	  redirect(site_url('login'), 'refresh');
@@ -152,6 +169,26 @@ class Smasuk extends CI_Controller {
 		unlink(FCPATH.'assets/arsip/'.$arsip); 
 
 		$result = $this->m_surat->deleteDatasuratmasuk($where);
+
+		
+		if ($result >= 1) {
+	      $this->session->set_flashdata('success','Data berhasil dihapus!');
+	      $this->session->set_flashdata('message','Periksa kembali data Pemohon.');
+	      redirect(base_url('smasuk/data_table'), 'refresh');
+	    }
+	     } else {
+    	  redirect(site_url('login'), 'refresh');
+    	}
+	}
+
+	public function hapusDataperihal($id)
+	{
+		if ($this->session->userdata('log_in')) {
+		$where = array(
+			'id_perihal'=> $id
+		);
+
+		$result = $this->m_surat->deleteDataperihal($where);
 
 		
 		if ($result >= 1) {
@@ -332,5 +369,33 @@ class Smasuk extends CI_Controller {
 		 } else {
     	  redirect(site_url('login'), 'refresh');
     	}	
+	}
+
+	public function input_perihal()
+	{
+	    if ($this->session->userdata('log_in')) {
+	    $perihal = $this->input->post('perihal');
+	    $jenissurat = $this->input->post('jenissurat');
+	    
+
+	    $data = array(
+	      'perihal' => $perihal,
+	      'jenissurat' => $jenissurat
+	    );
+
+	    $result = $this->m_surat->saveDataperihal($data);
+	    if($result == 1)
+	          {
+	              $this->session->set_flashdata('success','Data berhasil disimpan!');
+	              redirect('Smasuk/data_table', 'refresh');
+	          }
+	          else{
+	              $this->session->set_flashdata("message","Gagal Tersimpan");
+	              redirect('Smasuk/index', 'refresh');
+	          }
+	          } else {
+	        redirect(site_url('login'), 'refresh');
+	      }
+	  
 	}
 }

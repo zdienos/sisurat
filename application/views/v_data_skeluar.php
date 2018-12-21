@@ -10,6 +10,7 @@
   <div class="panel panel-default">
             <div class="panel-body">
               <a href="<?= base_url('Skeluar/index/')?>" class="btn btn-primary"><span class="fa fa-plus-circle"></span> Buat Surat</a>
+              <a href="<?= base_url('Skeluar/export')?>" class="btn btn-primary"><span class="fa fa-print"></span> Eksport Surat Teguran To Excel</a>
               <div class="col-md-4 pull-right">
                 <form action="<?php echo site_url('Skeluar/search') ?>" method="get">
                   <div class="input-group input-group-sm">
@@ -53,6 +54,7 @@
                       <option value="Surat Intruksi">Surat Intruksi Transfer Kekurangan Storan</option>
                       <option value="Surat ACC Pencairan PT Kolektif">Surat ACC Pencairan PT Kolektif</option>
                       <option value="Surat ACC Pencairan Fee Bimker">Surat ACC Pencairan Fee Bimker</option>
+                      <option value="Surat ACC Pengembalian Psikotes">Surat ACC Pengembalian Psikotes</option>
                       <option value="Surat ACC Pengembalian Kelas Tidak Kuota">Surat ACC Pengembalian Kelas Tidak Kuota</option>
                       <option value="Surat ACC Pengembalian Diskon Anak Guru">Surat ACC Pengembalian Diskon Anak Guru</option>
                       <option value="Surat ACC Pengembalian Pindah Program">Surat ACC Pengembalian Pindah Program</option>

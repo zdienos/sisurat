@@ -111,5 +111,41 @@ class M_surat extends CI_Model
 			return false;
 		}
  	}
+
+ 	function saveDataperihal($data)
+  	{
+	    $data = $this->db->insert('tb_sm_perihal', $data);
+
+	    if ($data) {
+	      return true;
+	    } else {
+	      return false;
+	    }
+  	}
+
+  	function deleteDataperihal($where)
+  	{
+	    $data = $this->db->delete('tb_sm_perihal', $where);
+
+	    if ($data) {
+	      return true;
+	    } else {
+	      return false;
+	    }
+  	}
+
+  	function lihatperihal()
+	{
+	    $this->db->from('tb_sm_perihal');
+
+	    $query = $this->db->get();
+	    
+	    if ($query->num_rows() > 0) {
+	      return $query->result();
+	    } else {
+	      return false;
+	    }
+ 	 }
+
 }
 ?>

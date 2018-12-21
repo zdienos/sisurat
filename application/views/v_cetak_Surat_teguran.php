@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html>
 <style type="text/css">
-@page {margin: 20px 50px 0px 50px; }
+@page {margin: 0px 50px 0px 50px; }
 body {
-  font-size: 11pt;
+  font-size: 9pt;
+  font-family: Calibri, Calibri, sans-serif;
+  letter-spacing: 0.5px;
+  word-spacing: normal;
+  text-align: justify;
 }
      #logo {
       margin-top: 0px;
@@ -98,7 +102,7 @@ foreach($cetak as $l) {
   <br>
   <p>Dengan Hormat,</p>
   
-  <p>Berdasarkan hasil pemeriksaan Bidang Keuangan, kami menemukan penyimpangan sebagai berikut :</p>
+  <p style="text-indent: 20px;">Berdasarkan hasil pemeriksaan Bidang Keuangan, kami menemukan penyimpangan sebagai berikut :</p>
   <!-- <p align="justify">Hasil pemeriksaan <?php echo $l['pemeriksa'];?> terdapat penyimpangan yang dilakukan oleh <?php echo $l['bgn_tegur'];?> berupa :</p> -->
   <!-- <div id="teguran"> -->
 	<ol>
@@ -107,11 +111,11 @@ foreach($cetak as $l) {
     	 $sub_tbs = explode("#",$t);
     ?>
     <li ><?php echo $sub_tbs[0]; 
-    $y = count($sub_tbs) - 1;
-    for($i=1; $i <= $y;$i++){
+  //  $y = count($sub_tbs) - 1;
+    for($i=1; $i < count($sub_tbs) ;$i++){
     ?> <br>
-		<?php echo"<ul type='square'><li>".$sub_tbs[$i]."</li></ul>"; ?>
-	</li>
+		<?php echo"<ul type='square'><li>".$sub_tbs[$i]."</li>"; ?>
+	
       	
       	<!-- <?php foreach ($sub_tbs as $sub_t) { print_r($sub_t)?>
 
@@ -119,12 +123,20 @@ foreach($cetak as $l) {
 		    <?php echo "-  ".$sub_t[1]; ?>
       	<?php }?>
  -->
-    <?php } }
+    <?php echo "</ul>";} ?> </li> <?php }
     ?>
     </ol>
 <!-- </div> -->
-    </p>
-    <p>Oleh karena itu, kami memberikan surat teguran kepada Saudara agar tidak mengulangi kembali hal yang disebutkan di atas. </p>
+    <b><ul type='none'>
+    <?php $tbs = explode("-",$l['penutup']);
+    foreach ($tbs as $t) { ?>
+      <li><?php echo $t; ?></li>
+    <?php }
+    ?>
+      
+
+    </ul></b>
+    <p style="text-indent: 20px;">Oleh karena itu, kami memberikan surat teguran kepada Saudara agar tidak mengulangi kembali hal yang disebutkan di atas. </p>
     
     <p>Demikian disampaikan, atas kerjasama yang baik kami ucapkan terimakasih.</p>
   </div>
@@ -136,8 +148,8 @@ foreach($cetak as $l) {
        <tr><td>Bandung, <?php echo $bulan[0].' '.$infobulan.' '.$bulan[2] ;?></td></tr>
        <tr><td><br></td></tr>
        <tr><td><br></td></tr>
-       <tr><td><b><u>Dra. Erna Veronika</u></b></td></tr>
-       <tr><td><b>Manajer Keuangan</b></td></tr>
+       <tr align="center"><td><b><u>Dra. Erna Veronika</u></b></td></tr>
+       <tr align="center"><td><b>Manajer Keuangan</b></td></tr>
      </table>
    </div>
    <br><br><br><br><br><br><br><br>

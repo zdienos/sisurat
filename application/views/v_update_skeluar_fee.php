@@ -109,7 +109,7 @@
                             <td><input name="acc[]" value="<?= $l['acc'] ?>" size="3" /></td>
                             <td><input name="tdk_acc[]" value="<?= $l['tdk_acc'] ?>" size="3" /></td>
                             <td><input name="fee_siswa[]" value="<?= $l['fee_siswa'] ?>" size="10"/></td>
-                            <td><textarea name="ket[]" cols="40" ><?= $l['ket'] ?></textarea><p><i>Jika ingin membuat baris baru(Enter) tambahkan <b>&lt;br&gt;</b> </i></p></td>
+                            <td><textarea name="ket[]" cols="40" ><?= $l['ket'] ?></textarea><p><i>Jika ingin membuat baris baru(Enter) tambahkan <b>&lt;br&gt;</b> </i><br><i>Jika ingin membuat tanda Kurang dari(<) tambahkan <b>"&amp;lt;"</b> </i> <br><i>Jika ingin membuat tanda Lebih dari(>) tambahkan <b>"&amp;gt;"</b> </i> </p></td>
                         </tr>
                     <?php }?>
                     </tbody>
