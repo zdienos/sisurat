@@ -16,7 +16,7 @@
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
                 <tbody>
-                <?php 
+                <?php  
                  if (!empty($lihat)){
                     foreach($lihat as $srt){ ?>
                   <tr><td>No Surat</td><td><?= $srt->no_surat; ?></td> </tr>
@@ -27,7 +27,9 @@
                   <tr><td>Tanggal Surat</td> <td><?= $srt->tanggal;?></td></tr>
                   <tr><td>Tanggal Input</td> <td><?= $srt->tgl_input;?></td></tr>
                   <tr><td>Yang Menginput</td> <td><?= $srt->userid;?></td></tr>
-                  <tr><td>Jenis Surat</td> <td><?= $srt->jenissurat;?></td></tr>
+                  <tr><td>Jenis Kiriman</td> <td><?= $srt->jenissurat;?></td></tr>
+                  <tr><td>Bagian Pengirim</td> <td><?= $srt->bagian_pengirim;?></td></tr>
+                  <tr><td>Jenis Surat</td> <td><?= $srt->jenis_surat;?></td></tr>
                   <tr><td>Arsip Surat</td> <td><a href="<?= base_url('assets/arsip/').$srt->arsip ?>"">Lihat Surat </a></td></tr>
                 </tbody>
                     <?php 

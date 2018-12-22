@@ -28,7 +28,6 @@
                   <label>Bagian Pengirim</label>
                    <select name="bagian_pengirim" id="bagian_pengirim" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" required=""> 
                       <option hidden="true" selected>Pilih Bagian Pengirim</option>
-                      <option value="Lain-lain" >Lain-lain</option>
                       <?php foreach ($perihal as $l ) {?>
                       <option value="<?= $l->bagian_pengirim ?>"><?= $l->bagian_pengirim?></option>
                     <?php }?>
@@ -46,13 +45,13 @@
                 </div>
                 <div class="form-group">
                   <label>Perihal</label>
-                  <!-- <input class="form-control" placeholder="Masukan Perihal" type="text" name="hal" id="hal" required=""> -->
-                   <select name="hal" id="prihal_fee" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" required=""> 
+                  <input class="form-control" placeholder="Masukan Perihal" type="text" name="hal" id="hal" required="">
+                   <!-- <select name="hal" id="prihal_fee" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" required=""> 
                     <option hidden="true" selected>Pilih Perihal</option>
                     <?php foreach ($perihal as $l ) {?>
                       <option value="<?= $l->perihal ?>"><?= $l->perihal?></option>
                     <?php }?>
-                  </select>
+                  </select> -->
                 </div>
                 <div class="form-group">
                   <label>Penerima</label>
