@@ -155,7 +155,7 @@ foreach($cetak as $l) {
         <tr><td>Bandung,<?php echo $bulan[0].' '.$infobulan.' '.$bulan[2] ;?></td></tr>
         <tr><td><br></td></tr>
         <tr><td><br></td></tr>
-       <?php if(($kacab[1] == "Cabang") or ($kacab[1] == "Rayon") or ($kacab[3] == "Cabang")){ ?>
+       <?php if(($kacab[1] == "Cabang") or ($kacab[1] == "Rayon") or ($kacab[2] == "Cabang")){ ?>
         <tr><td><b><u>Dra. Erna Veronika</u></b></td></tr>
         <tr><td><b>Manajer Keuangan</b></td></tr>
       <?php } else {?>

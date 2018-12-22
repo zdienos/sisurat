@@ -92,6 +92,7 @@
                       <option value="Surat ACC Pencairan Fee Bimker">Surat ACC Pencairan Fee Bimker</option>
                       <option value="Surat ACC Pengembalian Psikotes">Surat ACC Pengembalian Psikotes</option>
                       <option value="Surat ACC Pengembalian Kelas Tidak Kuota">Surat ACC Pengembalian Kelas Tidak Kuota</option>
+                      <option value="Surat Pengembalian Batal Bimbel">Surat Pengembalian Batal Bimbel</option>
                       <option value="Surat ACC Pengembalian Diskon Anak Guru">Surat ACC Pengembalian Diskon Anak Guru</option>
                       <option value="Surat ACC Pengembalian Pindah Program">Surat ACC Pengembalian Pindah Program</option>
                       <option value="Surat ACC Pengembalian Pengalihan Biaya">Surat ACC Pengembalian Pengalihan Biaya</option>
@@ -447,11 +448,16 @@
                     <div class="form-group" >
                       <label>Teguran</label>
                       <!-- <input class="form-control" placeholder="Masukan Teguran" type="text" name="teguran"> -->
-                      <textarea name="teguran" class="form-control" cols="10" rows="10"></textarea>
+                      <textarea name="teguran" class="form-control" cols="10" rows="10" >Teguran 1
+#Sub Teguran 1
+^Teguran 2 
+#Sub Teguran 2 
+^Teguran 3
+#Sub Teguran 3</textarea>
                       <!-- <p><i>Untuk memisahkan Teguran beri tanda koma <b> ("^") </b> tanpa spasi</i></p> -->
                       <ul><li><i>Pisahkan Teguran dengan tanda<b>"^"</b></i></li>
                       <li><i>Pisahkan Sub teguran dengan tanda<b>"#"</b></i></li>
-                      <li><i>Contoh : Point Teguran 1 #Sub Point Teguran  1 ^Point Teguran  2 #Sub Point Teguran  2 ^Point Teguran  3 dst..</i></p></li></ul>
+                      <!-- <li><i>Contoh : Point Teguran 1 #Sub Point Teguran  1 ^Point Teguran  2 #Sub Point Teguran  2 ^Point Teguran  3 dst..</i></p></li></ul> -->
                     </div>
                     <!-- <div class="form-group">
                       <label>Sub Teguran</label>
@@ -464,8 +470,14 @@
                       <p><i>"Diisi H+3 DARI TANGGAL SURAT" & Jika Format Tanggal Tidak keluar, Input dengan manual dengan format <b> ("YYYY/MM/DD") </b> </i></p>
                     </div> -->
                     <div class="form-group">
+                      <label>Nasihat (Seharusnya Sesuai SOP/Juklak)</label>
+                      <input class="form-control" placeholder="Masukan Nasihat" type="text" name="nasihat" >
+                      <p><i>Contoh : Seharusnya diskon Lunas berlaku jika siswa membayar langsung lunas biaya
+bimbingan sebelum start belajar. jika tidak maka berlaku pembayaran secara cicil.</i></p>
+                    </div>
+                    <div class="form-group">
                       <label>Tembusan</label>
-                      <input class="form-control" placeholder="Masukan Tembusan" type="text" name="tbsteguran">
+                      <input class="form-control" placeholder="Masukan Tembusan" type="text" name="tbsteguran" value="Manajer Akuntansi,Koordinator Kabag SDM,">
                       <p><i>Untuk memisahkan Tembusan beri tanda koma <b> (",") </b> tanpa spasi</i></p>
                     </div>
                 </div>

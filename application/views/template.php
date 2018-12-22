@@ -217,7 +217,7 @@
                     var a = '';
                     var i;
                     for(i=0; i<data.length; i++){
-                        a += '<option value='+data[i].id_kelompok+'>'+data[i].jenissurat+'</option>';
+                        a += '<option value='+data[i].id_kelompok+'>'+data[i].jenis_surat+'</option>';
                     }
                     $('.jenissurat').html(a);
                 }

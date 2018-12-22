@@ -32,8 +32,8 @@
                 </div>
                 <div class="form-group">
                   <label>Jenis Surat</label>
-                  <select class='jenissurat form-control' name='jenissurat'>
-                    <select name="bagian_pengirim" id="bagian_pengirim" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" required=""> 
+                  <select class='jenissurat form-control'>
+                    <select name="jenis_pokok_surat" id="bagian_pengirim" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" required=""> 
                       <option hidden="true" selected>Pilih Jenis Surat</option>
                      <!--  <?php foreach ($perihal as $l ) {?>
                       <option value="<?= $l->jenissurat ?>" <?php if($l->jenissurat  == $ubahsurat['jenissurat'])  echo "selected" ?>><?= $l->jenissurat?></option>
@@ -58,7 +58,7 @@
                 </div>
                 <div class="form-group">
                   <label>Keterangan</label>
-                  <textarea class="form-control" rows="3" placeholder="Enter ..." name="keterangan" id="keterangan" required="" ><?= $ubahsurat['keterangan'] ?></textarea>
+                  <textarea class="form-control" rows="3" placeholder="Enter ..." name="keterangan" id="keterangan" required="" ><?= $ubahsurat['keterangan']?></textarea>
                 </div>
                 <div class="form-group">
                   <label>Tanggal Surat</label>

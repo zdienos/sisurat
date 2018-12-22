@@ -532,7 +532,6 @@ class M_keluar extends CI_Model
 			return false;
 		}
  	}
-
  	public function export($tbl_surat2,$tgl_awal,$tgl_akhir)
  	{
 echo "mm ".$tbl_surat2."--".$tgl_awal."--".$tgl_akhir;

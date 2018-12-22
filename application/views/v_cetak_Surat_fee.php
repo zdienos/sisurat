@@ -65,10 +65,17 @@ body{
   <div id="memo">
     <img src="assets/img/memo.png" width="200px">
   </div>
+</div>
+<!-- <div id="footer">
+<img src="assets/img/footer.png" width="800px">
+</div> -->
 
 <?php
 
 $date =date('d-m-Y');
+$thn = explode("-", $date);
+$thn2 = (int)$thn[2]+1;
+$thn3 = (int)$thn[2]-1;
 $bulan = explode("-", $date);
     if ($bulan[1] == '01') {
       $infobulan = "Januari";
@@ -97,6 +104,7 @@ $bulan = explode("-", $date);
     } else {
       $infobulan = "-";
     }
+$bln = (int)$bulan[1];
 
 foreach($cetak as $l) { 
   $no = $l['no'];
@@ -114,8 +122,15 @@ foreach($cetak as $l) {
   
   }?>
   <table>
-    <tr><td>No Surat</td><td>:</td><td><?php echo $no .'/MKE-k/'. $no_surat;?></td></tr>
-    <tr><td>Perihal</td><td>:</td><td><?php echo $perihal;?> TP.18/19</td></tr>
+    <tr><td>No Surat</td><td>:</td><td><?php echo $no .'/'. $no_surat;?></td></tr>
+    <tr><td>Perihal</td><td>:</td><td><?php echo $perihal;?> <?php
+    if ($bln <= 6) {
+      echo ' '.'TP.'.$thn3.'/'.$thn[2];
+    } else {
+      echo ' '.'TP.'.$thn[2].'/'.$thn2;
+    } 
+     ?>  
+    </td></tr>
     <tr><td>Lampiran</td><td>:</td><td><?php echo $lampiran;?></td></tr>
   </table>
   <p>Kepada Yth,<br>
@@ -127,9 +142,12 @@ foreach($cetak as $l) {
   
   <p> Menindaklanjuti memo dari Bagian Marketing tanggal <?php echo date('d F Y',strtotime($tgl_marketing));?> perihal <?php echo $perihal;?> dengan ini diinformasikan berdasarkan pengecekan Bagian Keuangan, adalah sebagai berikut:</p>
 
-  <table border="1px" style="position: center;" class="data">
+  <table border="1px" style="page-break-inside: auto;" class="data"  >
     <thead>
-      <tr>
+    <tr>
+  <!-- <table border="1px" style="position: center;" class="data">
+    <thead>
+      <tr> -->
       <th style="width: 2%" rowspan="2">No</th>
       <th style="width: 10%" rowspan="2">Sekolah</th>
       <th style="width: 5%" rowspan="2">MOU</th>
@@ -144,11 +162,15 @@ foreach($cetak as $l) {
       <th style="width: 3%" >ACC</th>
       <th style="width: 3%" >Tidak Acc</th>
     </tr>
-  </thead>
-  <tbody>
-    <?php $i=1; $tot=0; foreach($cetak as $l) { $tot += $l['jml_disetujui']; ?>
-    <tr>
+    </thead>
+    <?php $i=1; $tot=0; $jml_sis=0;$acc=0;$tdk=0; 
+    foreach($cetak as $l) { 
+      $tot += $l['jml_disetujui']; 
+      $jml_sis += $l['jml_siswa']; 
+      $acc += $l['acc']; 
+      $tdk += $l['tdk_acc']; ?>
 
+    <tr>
       <td><?php echo $i;?></td>
       <td><?php echo $l['sekolah'];?></td>
       <td><?php echo $l['mou'];?></td>
@@ -161,57 +183,65 @@ foreach($cetak as $l) {
       <td style="text-align: left;"<?php echo $l['ket'];?></td>
     </tr>
     <?php $i++; } ?>
-   <tr class="total"><td colspan="7"><p></p></td><td>Total</td><td>Rp. <?php echo number_format($tot);?></td><td><p></p></td></tr>
-   </tbody>
+   <tr class="total"><td colspan="4"><p></p></td><td><?php echo number_format($jml_sis);?></td><td><?php echo number_format($acc);?></td><td><?php echo number_format($tdk);?></td><td>Total</td><td>Rp. <?php echo number_format($tot);?></td><td><p></p></td></tr>
   </table>
  
   <p> Demikian hal ini disampaikan. <?php if($tidak_acc[1] != "Tidak"){?>Untuk pencairan dana harap diajukan ke Bidang Akuntansi. <?php }?> Atas Kerjasama nya kami ucapkan terimakasih.</p>
  <?php 
- if(($kacab[1] != "Cabang") or ($kacab[1] != "Rayon") ){ ?>
-    <table>
+
+   if(($kacab[1] == "Cabang") or ($kacab[1] == "Rayon") or ($kacab[2] == "Cabang")){ ?>
+  <?php  }  else {   ?>
+     <table>
+
+ <!-- if(($kacab[1] != "Cabang") or ($kacab[1] != "Rayon") ){ ?>
+    <table> -->
+
         <tr><td style="text-align: left;">Mengetahui,</td></tr>
         <tr><td><br></td></tr>
         <tr><td><br></td></tr>
         <tr><td><b><u>Dra. Erna Veronika</u></b></td></tr>
         <tr><td><b>Manajer Keuangan</b></td></tr>
       </table>
-<?php  }  ?>
+  <?php  } ?>
     <div id="ttd">
       <table>
         <tr><td style="text-align: left;">Terimakasih,</td></tr>
         <tr><td>Bandung,<?php echo $bulan[0].' '.$infobulan.' '.$bulan[2] ;?></td></tr>
         <tr><td><br></td></tr>
         <tr><td><br></td></tr>
-        <?php if(($kacab[1] != "Cabang") or ($kacab[1] != "Rayon") ){ ?>
-        <tr><td><b><u><?php echo $user[0]?></u></b></td></tr>
-        <tr><td><b><?php echo $user[1]?></b></td></tr>
-      <?php } else {?>
+
+       <?php if(($kacab[1] == "Cabang") or ($kacab[1] == "Rayon") or ($kacab[2] == "Cabang")){ ?>
+
         <tr><td><b><u>Dra. Erna Veronika</u></b></td></tr>
         <tr><td><b>Manajer Keuangan</b></td></tr>
+      <?php } else {?>
+       <tr><td><b><u><?php echo $user[0]?></u></b></td></tr>
+        <tr><td><b><?php echo $user[1]?></b></td></tr>
       <?php }?>
       </table>
     </div>
-  <br>  <br>  <br>  <br>  <br>  <br>  <br> 
- <div style="page-break-before: all;"></div>
+
+  <br>  <br>  <br>  <br>  <br> 
+
+  <!-- <br>  <br>  <br>  <br>  <br>  <br>  <br> 
+ <div style="page-break-before: all;"></div> -->
+
   <div id="tbs">
     <p>Tembusan:<br>
     <ul style="list-style-type: none;">
     <?php 
     $tbs = explode(",",$tembusan);
-    foreach ($tbs as $t) { ?>
+    foreach ($tbs as $t) {  ?>
       <li><?php echo "-  ".$t; ?></li>
     <?php 
     }
     ?>
     </ul>
     </p>
-     <p style="text-align: center;">Dikirim Via Email</p>
   </div>
+     <p style="text-align: center; margin-top: 0px;">Dikirim Via Email</p>
 
   
 </body>
-</div>
-<div id="footer">
-<img src="assets/img/footer.png" width="800px">
 </div>
 </html>

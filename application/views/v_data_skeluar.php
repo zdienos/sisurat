@@ -10,8 +10,7 @@
   <div class="panel panel-default">
             <div class="panel-body">
               <a href="<?= base_url('Skeluar/index/')?>" class="btn btn-primary"><span class="fa fa-plus-circle"></span> Buat Surat</a>
-              <a href="<?= base_url('Skeluar/export/')?>" class="btn btn-primary"><span class="fa fa-plus-circle"></span> Export</a>
-              <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Export</button>
+              <a href="<?= base_url('Skeluar/export')?>" class="btn btn-primary"><span class="fa fa-print"></span> Eksport Surat Teguran To Excel</a>
               <div class="col-md-4 pull-right">
                 <form action="<?php echo site_url('Skeluar/search') ?>" method="get">
                   <div class="input-group input-group-sm">

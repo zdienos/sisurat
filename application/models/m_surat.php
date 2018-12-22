@@ -53,9 +53,12 @@ class M_surat extends CI_Model
 
 	function lihatsuratmasuk($where)
 	{
-		$this->db->from('smasuk');
-		$this->db->where($where);
+		// $this->db->from('smasuk');
+		// $this->db->where($where);
 
+		$this->db->from('smasuk');
+		$this->db->join('tb_sm_perihal', 'smasuk.id_kelompok = tb_sm_perihal.id_kelompok','right');
+		$this->db->where('smasuk.id', $where);
 		$query = $this->db->get();
 		
 		if ($query->num_rows() > 0) {
@@ -113,17 +116,6 @@ class M_surat extends CI_Model
 		}
 	}
 
-	function saveDataperihal($data)
-	{
-		$data = $this->db->insert('tb_sm_perihal', $data);
-
-		if ($data) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
 	function getDatasuratmasuk($where)
 	{
 		$this->db->from('smasuk');
@@ -162,5 +154,28 @@ class M_surat extends CI_Model
 			return false;
 		}
  	}
+
+ 	function saveDataperihal($data)
+  	{
+	    $data = $this->db->insert('tb_sm_perihal', $data);
+
+	    if ($data) {
+	      return true;
+	    } else {
+	      return false;
+	    }
+  	}
+
+  	function deleteDataperihal($where)
+  	{
+	    $data = $this->db->delete('tb_sm_perihal', $where);
+
+	    if ($data) {
+	      return true;
+	    } else {
+	      return false;
+	    }
+  	}
+
 }
 ?>

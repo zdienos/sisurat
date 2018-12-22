@@ -10,7 +10,9 @@
           <div class="panel panel-default">
             <div class="panel-body">
                <a href="<?= base_url('Smasuk/index/')?>" class="btn btn-primary"><span class="fa fa-plus-circle"></span>  Buat Surat</a>
+               <?php if($jabat[0] == "Kasie"){ ?>
                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal"><span class="fa fa-plus-circle"></span> Tambah Perihal</button>
+             <?php } ?>
               <div class="col-md-4 pull-right">
                 <form action="<?php echo site_url('Smasuk/search') ?>" method="get">
                   <div class="input-group input-group-sm">
@@ -116,7 +118,7 @@
       </div>
       <div class="modal-body">
       <form action="<?= base_url('Smasuk/input_perihal') ?>" role="form" method="post">
-        <label>Perihal</label>
+        <label>Bagian Pengirim</label>
           <input class="form-control" placeholder="Masukan perihal" type="text" name="perihal" required="" >
         <label>Jenis Surat</label>
           <input class="form-control" placeholder="Masukan jenis surat" type="text" name="jenissurat" required="" ><br>
@@ -138,7 +140,7 @@
                         <tr>
                           <td><?= $no++; ?></td>
                           <td><?= $srt->bagian_pengirim; ?></td>
-                          <td><?= $srt->jenissurat; ?></td>
+                          <td><?= $srt->jenis_surat; ?></td>
                           <td>
                           <a href="<?= base_url('Smasuk/hapusDataperihal/') . $srt->id_kelompok ?>" class="btn-sm btn btn-danger"  onClick="return doconfirm();"><span class="fa fa-trash-o"></span> Delete</a>
                         <?php }  ?>
@@ -162,6 +164,10 @@
 </div>
 
 </section>
+
+
+      
+
 
  <script>
       function doconfirm() {

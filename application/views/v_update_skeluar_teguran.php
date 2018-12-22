@@ -68,6 +68,12 @@
                       <input class="form-control" value="<?= $usk['penutup'] ?>" placeholder="Enter ..." type="text" required="" name="penutup">
                       <p><i>Contoh : "Atas tidak melakukan kontrol kepada staff. Harap selanjutnya melakukan kontrol kepada staff."</i></p>
                     </div> -->
+                     <div class="form-group">
+                      <label>Nasihat (Seharusnya Sesuai SOP/Juklak)</label>
+                      <input class="form-control" placeholder="Masukan Nasihat" type="text" name="nasihat" value="<?= $usk['penutup'] ?>">
+                      <p><i>Contoh : Seharusnya diskon Lunas berlaku jika siswa membayar langsung lunas biaya
+bimbingan sebelum start belajar. jika tidak maka berlaku pembayaran secara cicil.</i></p>
+                    </div>
                     <div class="form-group">
                       <label>Tembusan</label>
                       <input class="form-control" value="<?= $usk['tembusan'] ?>" placeholder="Enter ..." type="text" required="" name="tbsteguran">
