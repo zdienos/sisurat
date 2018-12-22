@@ -533,15 +533,20 @@ class M_keluar extends CI_Model
 		}
  	}
 
- 	public function export()
+ 	public function export($tbl_surat2,$tgl_awal,$tgl_akhir)
  	{
+echo "mm ".$tbl_surat2."--".$tgl_awal."--".$tgl_akhir;
+
+ 		// $query = $this->db->query('SELECT * FROM skeluar JOIN '.$tbl_surat2.' ON skeluar.no = '.$tbl_surat2.'.no WHERE skeluar.tgl_SuratKeluar between "'.$tgl_awal.'" and "'.$tgl_akhir.'"');
+
  		$this->db->from('skeluar');
-	    $this->db->join('tb_sk_teguran', 'skeluar.no = tb_sk_teguran.no');
-	    // $this->db->where('skeluar.no', $no);
+	    $this->db->join($tbl_surat2, 'skeluar.no = '.$tbl_surat2.'.no');
+	  //   $this->db->where('skeluar.tgl_SuratKeluar between '.$tgl_awal.' and '.$tgl_akhir);
+ 		$this->db->where('skeluar.tgl_SuratKeluar between "'.$tgl_awal.'" and "'.$tgl_akhir.'"');
 	    $query = $this->db->get();
 
 		if ($query->num_rows() > 0) {
-			return $query->result();
+			return $query->row_array();
 		} else {
 			return false;
 		}

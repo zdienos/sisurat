@@ -1863,17 +1863,16 @@ class Skeluar extends CI_Controller {
 		} elseif ($jenissurat == 'Intruksi') {
 			$tbl_surat2 = 'tb_sk_intruksi_transfer';
 		}
+// echo "mm ".$tbl_surat2."--".$tgl_awal."--".$tgl_akhir;
+	  $siswa = $this->m_keluar->export($tbl_surat2,$tgl_awal,$tgl_akhir);   // print_r($siswa); exit();
+print_r($siswa);
 
-	  $siswa = $this->m_keluar->export($tbl_surat2,$jenissurat,$prihal,$tgl_awal,$tgl_akhir);   // print_r($siswa); exit();
-
-
-		for($i='A'; $i <= 'Z'; $i++){
-			echo $i;
-			if ($i == 'Z'){
-				break;
-			}
-		}
-exit();
+		// for($i='A'; $i <= 'Z'; $i++){
+		// 	echo $i;
+		// 	if ($i == 'Z'){
+		// 		break;
+		// 	}
+		// }
 
 	  // Load plugin PHPExcel nya    
 	  include APPPATH.'third_party/PHPExcel/PHPExcel.php';        
@@ -1912,13 +1911,23 @@ exit();
 	  'left' => array('style'  => PHPExcel_Style_Border::BORDER_THIN) // Set border left dengan garis tipis
 	  )    
 	  );    
-	  $excel->setActiveSheetIndex(0)->setCellValue('A1', 'Laporan Data Surat Teguran');  // Set kolom A1 dengan tulisan "DATA SISWA"
-	  $excel->getActiveSheet()->mergeCells('A1:J1');   // Set Merge Cell pada kolom A1 sampai E1    
+	  $excel->setActiveSheetIndex(0)->setCellValue('A1', 'Laporan Data'.$prihal);  // Set kolom A1 dengan tulisan "DATA SISWA"
+	  // $excel->getActiveSheet()->mergeCells('A1:J1');   // Set Merge Cell pada kolom A1 sampai E1    
 	  $excel->getActiveSheet()->getStyle('A1')->getFont()->setBold(TRUE);  // Set bold kolom A1    
 	  $excel->getActiveSheet()->getStyle('A1')->getFont()->setSize(15);  // Set font size 15 untuk kolom A1    
 	  $excel->getActiveSheet()->getStyle('A1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER); // Set text center untuk kolom A1    
 	  // Buat header tabel nya pada baris ke 3
-	  $excel->setActiveSheetIndex(0)->setCellValue('A3', "NO");   // Set kolom A3 dengan tulisan "NO"    
+	  $jml_field = count($siswa); echo "xxx ".$jml_field;
+	  foreach ($siswa as $key => $value) {
+	  	for($i='A'; $i <= count($siswa); $i++){ 
+	echo 	"<br>".$i.", ".$key."";   // Set kolom A3 dengan tulisan "NO"    
+			// echo $i;
+			if ($i == 'Z'){
+				break;
+			}
+		}
+	  }
+exit();
 	  $excel->setActiveSheetIndex(0)->setCellValue('B3', "NO Surat");   // Set kolom A3 dengan tulisan "NO"    
 	  $excel->setActiveSheetIndex(0)->setCellValue('C3', "PERIHAL");  // Set kolom B3 dengan tulisan "NIS"   
 	  $excel->setActiveSheetIndex(0)->setCellValue('D3', "NAMA TUJUAN");  // Set kolom C3 dengan tulisan "NAMA"   

@@ -222,7 +222,7 @@
                     $('.jenissurat').html(a);
                 }
             });
-          // console.log($('#jenissurat').html(html));
+         console.log($.ajax);
 
         });
     });
