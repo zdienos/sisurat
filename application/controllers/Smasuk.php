@@ -76,6 +76,7 @@ class Smasuk extends CI_Controller {
   		$data['paging']=$this->pagination->create_links();
   		$data['jlhpage']=$page;
   		$data['perihal'] = $this->m_surat->lihatperihal_all();
+  		$data['bagian_pengirim'] = $this->m_surat->lihatperihal();
   		$data['link'] = $this->m_surat->data($batas, $offset);
 
       // Akhir Pagination Pemohon
@@ -164,7 +165,7 @@ class Smasuk extends CI_Controller {
 			'userid' => $userid,
 			'jenissurat' => $jenissurat,
 			'bagian_pengirim' => $bagian_pengirim,
-			'jenis_pokok_surat' => $id_kelompok,
+			// 'jenis_pokok_surat' => $id_kelompok,
 			'id_kelompok' => $id_kelompok,
 			'arsip' => $upload_surat
 		);
@@ -281,7 +282,7 @@ class Smasuk extends CI_Controller {
 		$jenissurat =$this->input->post('jenissurat');
 		$arsip_lama =$this->input->post('arsip');
 		$bagian_pengirim =$this->input->post('bagian_pengirim');
-		$jenis_surat =$this->input->post('jenis_pokok_surat');
+		$jenis_surat =$this->input->post('jenis_surat');
 
 		$namafile = "SuratMasuk_".$jenissurat."_".time();
 			$config['upload_path']          = './assets/arsip';
@@ -311,7 +312,7 @@ class Smasuk extends CI_Controller {
 			'userid' => $userid,
 			'arsip' => $arsip,
 			'bagian_pengirim' => $bagian_pengirim,
-			'jenis_pokok_surat' => $jenis_pokok_surat,
+			'id_kelompok' => $jenis_surat,
 			'jenissurat' => $jenissurat
 		);
 
@@ -342,15 +343,15 @@ class Smasuk extends CI_Controller {
 		$keyword = $this->input->get('keyword');
 
 		$search = array(
-			'id'=> $keyword,
-			'no_surat'=> $keyword,
-			'hal' => $keyword,
-			'kepada' =>$keyword,
-			'dari'=>$keyword,
-			'keterangan'=>$keyword,
-			'tanggal'=>$keyword,
-			'jenissurat'=>$keyword,
-			'bagian_pengirim'=>$keyword,
+			'smasuk.id'=> $keyword,
+			'smasuk.no_surat'=> $keyword,
+			'smasuk.hal' => $keyword,
+			'smasuk.kepada' =>$keyword,
+			'smasuk.dari'=>$keyword,
+			'smasuk.keterangan'=>$keyword,
+			'smasuk.tanggal'=>$keyword,
+			'smasuk.jenissurat'=>$keyword,
+			'smasuk.bagian_pengirim'=>$keyword,
 		);
 
 		$page = $this->input->get('per_page');
@@ -397,7 +398,8 @@ class Smasuk extends CI_Controller {
 		$data['jlhpage']=$page;
 
 		$data['link'] = $this->m_surat->data($batas, $offset, $search);
-
+		$data['perihal'] = $this->m_surat->lihatperihal_all();
+  		$data['bagian_pengirim'] = $this->m_surat->lihatperihal();
 		 $this->template->load('template','v_data_smasuk',$data);
 		 } else {
     	  redirect(site_url('login'), 'refresh');
@@ -430,5 +432,71 @@ class Smasuk extends CI_Controller {
     	  redirect(site_url('login'), 'refresh');
     	}
   
+	}
+
+	public function filter()
+	{
+		if ($this->session->userdata('log_in')) {
+		$user = $this->model->getuser();
+		$data['username'] = $user['username'];
+		$data['jabatan'] = $user['jabatan'];
+		$data['id'] = $user['id'];
+
+		$search = array(
+			'bagian_pengirim' => $this->input->get('bagian_pengirim'),
+			'id_kelompok'=> $this->input->get('jenis_surat')
+		);
+
+		$page = $this->input->get('per_page');
+		$batas = 5;
+		if (!$page) {
+			$offset = 0;
+		} else {
+			$offset = $page;
+		}
+
+		$config['page_query_string'] = TRUE;
+		$config['base_url'] = base_url().'Smasuk/filter/?';
+		$config['total_rows'] = $this->m_surat->count_filter($search);
+		$config['per_page'] = $batas;
+
+		$config['uri_segment'] = $page;
+		$config['reuse_query_string'] = true;
+		$config['full_tag_open'] = '<ul class="pagination">';
+		$config['full_tag_close'] = '</ul>';
+		$config['first_link'] = '&laquo; First';
+		$config['first_tag_open'] = '<li class="prev page">';
+		$config['first_tag_close'] = '</li>';
+
+		$config['last_link'] = 'Last &raquo;';
+		$config['last_tag_open'] = '<li class="next page">';
+		$config['last_tag_close'] = '</li>';
+
+		$config['next_link'] = 'Next <span class="fa fa-angle-right"></span>';
+		$config['next_tag_open'] = '<li class="next page">';
+		$config['next_tag_close'] = '</li>';
+
+		$config['prev_link'] = '<span class="fa fa-angle-left"></span> Prev';
+		$config['prev_tag_open'] = '<li class="prev page">';
+		$config['prev_tag_close'] = '</li>';
+
+		$config['cur_tag_open'] = '<li class="active"><a href="">';
+		$config['cur_tag_close'] = '</a></li>';
+
+		$config['num_tag_open'] = '<li class="page">';
+		$config['num_tag_close'] = '</li>';
+
+		$this->pagination->initialize($config);
+		$data['paging']=$this->pagination->create_links();
+		$data['jlhpage']=$page;
+
+		$data['link'] = $this->m_surat->filter($batas, $offset, $search);
+		// print_r($data['smasuk']); exit();
+		$data['perihal'] = $this->m_surat->lihatperihal_all();
+  		$data['bagian_pengirim'] = $this->m_surat->lihatperihal();
+		 $this->template->load('template','v_data_smasuk',$data);
+		 } else {
+    	  redirect(site_url('login'), 'refresh');
+    	}
 	}
 }

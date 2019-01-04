@@ -7,24 +7,79 @@
     <?php $jabat = explode(" ", $jabatan);
 ?>
 <section class="content">
-          <div class="panel panel-default">
-            <div class="panel-body">
-               <a href="<?= base_url('Smasuk/index/')?>" class="btn btn-primary"><span class="fa fa-plus-circle"></span>  Buat Surat</a>
-               <?php if($jabat[0] == "Kasie"){ ?>
-               <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal"><span class="fa fa-plus-circle"></span> Tambah Perihal</button>
-             <?php } ?>
-              <div class="col-md-4 pull-right">
-                <form action="<?php echo site_url('Smasuk/search') ?>" method="get">
-                  <div class="input-group input-group-sm">
-                    <input type="text" class="form-control" name="keyword">
-                      <span class="input-group-btn">
-                        <button type="submit" class="btn btn-default"><span class="fa fa-search"></span> Cari</button>
-                      </span>
-                  </div>
-                </form>
-              </div>
-            </div>
+  <div class="panel panel-default">
+    <div class="panel-body">
+       <a href="<?= base_url('Smasuk/index/')?>" class="btn btn-primary"><span class="fa fa-plus-circle"></span>  Buat Surat</a>
+       <?php if($jabat[0] == "Kasie"){ ?>
+       <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal"><span class="fa fa-plus-circle"></span> Tambah Perihal</button>
+     <?php } ?>
+      <div class="col-md-4 pull-right">
+        <form action="<?php echo site_url('Smasuk/search') ?>" method="get">
+          <div class="input-group input-group-sm">
+            <input type="text" class="form-control" name="keyword">
+              <span class="input-group-btn">
+                <button type="submit" class="btn btn-default"><span class="fa fa-search"></span> Cari</button>
+              </span>
           </div>
+        </form>
+      </div>
+    </div>
+  </div>
+        <div class="panel panel-default">
+            <div class="panel-body">
+              <form action="<?php echo site_url('Smasuk/filter') ?>" method="get">
+                <div class="row">
+                <div class="col-md-2">
+                 <div class="form-group">
+                  <label>Bagian Pengirim</label>
+                   <select name="bagian_pengirim" id="bagian_pengirim" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" required=""> 
+                      <option hidden="true" selected>Pilih Bagian Pengirim</option>
+                      <?php foreach ($bagian_pengirim as $l ) {?>
+                      <option value="<?= $l->bagian_pengirim ?>"><?= $l->bagian_pengirim?></option>
+                    <?php }?>
+                  </select>
+                </div>
+                </div>
+                <div class="col-md-2">
+                <div class="form-group">
+                  <label>Jenis Surat</label>
+                  <select class='jenissurat form-control' name='jenis_surat'>
+                      <option value='0'>--Pilih Jenis Surat--</option>
+                    </select>
+                </div>
+              </div>
+                <span class="input-group-btn">
+                  <button type="submit" class="btn btn-default" style="margin-top: 22px;"><span class="fa fa-search"></span> Lihat</button>
+                </span>
+              </form>
+              </div>
+
+               <form action="<?php echo site_url('Smasuk/filter') ?>" method="get">
+                <div class="row">
+                 <div class="col-md-2">
+                   <div class="form-group">
+                     <label>Bagian Pengirim</label>
+                       <select name="bagian_pengirim" id="bagian_pengirim" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" required=""> 
+                          <option hidden="true" selected>Pilih Bagian Pengirim</option>
+                            <?php foreach ($bagian_pengirim as $l ) {?>
+                          <option value="<?= $l->bagian_pengirim ?>"><?= $l->bagian_pengirim?></option>
+                            <?php }?>
+                        </select>
+                    </div>
+                  </div>
+                  <span class="input-group-btn">
+                    <button type="submit" class="btn btn-default" style="margin-top: 22px;"><span class="fa fa-search"></span> Lihat</button>
+                  </span>
+                  <div class="pull-right">
+                    <a href="<?= base_url('Smasuk/data_table')?>" class="btn btn-success" style="margin-top: 0px;"><span class="fa fa-refresh"></span>&nbsp&nbsp&nbspRefresh</a>
+                  </div>
+                 </div>
+                </form>
+
+            </form>
+          </div>
+        </div>
+      
 
            <?php if ($this->session->flashdata('success')) { ?>
             <div class="alert alert-success alert-dismissible">
@@ -47,6 +102,8 @@
                 <tr>
                   <th style="width: 2%;">No Surat</th>
                   <th style="width: 8%;">Hal</th>
+                  <th style="width: 8%;">Bagian Pengirim</th>
+                  <th style="width: 8%;">Jenis Surat</th>
                   <th style="width: 6%;">Kepada</th>
                   <th style="width: 6%;">Dari</th>
                   <th style="width: 20%;">Keterangan</th>
@@ -55,13 +112,15 @@
                 </tr>
                 </thead>
                 <tbody>
-                  <?php 
+                  <?php //print_r($link);
                     if (!empty($link)){
                     foreach($link as $srt){ ?>
 
                         <tr>
                           <td><?= $srt->no_surat; ?></td>
                           <td><?= $srt->hal; ?></td>
+                          <td><?= $srt->bagian_pengirim; ?></td>
+                          <td><?= $srt->jenis_surat; ?></td>
                           <td><?= $srt->kepada; ?></td>
                           <td><?= $srt->dari; ?></td>
                           <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;"><?= 

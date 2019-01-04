@@ -1917,16 +1917,16 @@ print_r($siswa);
 	  $excel->getActiveSheet()->getStyle('A1')->getFont()->setSize(15);  // Set font size 15 untuk kolom A1    
 	  $excel->getActiveSheet()->getStyle('A1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER); // Set text center untuk kolom A1    
 	  // Buat header tabel nya pada baris ke 3
-	  $jml_field = count($siswa); echo "xxx ".$jml_field;
-	  foreach ($siswa as $key => $value) {
-	  	for($i='A'; $i <= count($siswa); $i++){ 
-	echo 	"<br>".$i.", ".$key."";   // Set kolom A3 dengan tulisan "NO"    
-			// echo $i;
-			if ($i == 'Z'){
-				break;
-			}
-		}
-	  }
+	//   $jml_field = count($siswa); echo "xxx ".$jml_field;
+	//   foreach ($siswa as $key => $value) {
+	//   	for($i='A'; $i <= count($siswa); $i++){ 
+	// echo 	"<br>".$i.", ".$key."";   // Set kolom A3 dengan tulisan "NO"    
+	// 		// echo $i;
+	// 		if ($i == 'Z'){
+	// 			break;
+	// 		}
+	// 	}
+	//   }
 exit();
 	  $excel->setActiveSheetIndex(0)->setCellValue('B3', "NO Surat");   // Set kolom A3 dengan tulisan "NO"    
 	  $excel->setActiveSheetIndex(0)->setCellValue('C3', "PERIHAL");  // Set kolom B3 dengan tulisan "NIS"   

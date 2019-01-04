@@ -31,15 +31,10 @@
                   </select>
                 </div>
                 <div class="form-group">
-                  <label>Jenis Surat</label>
-                  <select class='jenissurat form-control'>
-                    <select name="jenis_pokok_surat" id="bagian_pengirim" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" required=""> 
-                      <option hidden="true" selected>Pilih Jenis Surat</option>
-                     <!--  <?php foreach ($perihal as $l ) {?>
-                      <option value="<?= $l->jenissurat ?>" <?php if($l->jenissurat  == $ubahsurat['jenissurat'])  echo "selected" ?>><?= $l->jenissurat?></option>
-                       <?php }?>
- -->                    </select>
-                </div>
+                   <label>Jenis Surat</label>
+                  <select class='jenissurat form-control' name='jenis_surat'>
+                      <option value='0'>--pilih--</option>
+                    </select>
                 <div class="form-group">
                   <label>No Surat</label>
                   <input class="form-control" placeholder="Enter ..." type="text" name="nosurat" id="nosurat" required="" value="<?= $ubahsurat['no_surat'] ?>">

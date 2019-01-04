@@ -13,6 +13,7 @@ class M_surat extends CI_Model
 	       $this->db->or_like($key);
 	    }
 	    $this->db->from('smasuk');
+	    $this->db->join('tb_sm_perihal', 'smasuk.id_kelompok = tb_sm_perihal.id_kelompok','left');
 	    $this->db->order_by('id','DESC');
 
 	    $query = $this->db->get();
@@ -37,6 +38,46 @@ class M_surat extends CI_Model
 	    return $query;
 	  }
 
+	 function filter($batas=null, $offset=null, $key=null)
+	  {
+	    //echo $key['perihal'];
+	  	if($batas != null) {
+	       $this->db->limit($batas,$offset);
+	    }
+	    // print_r($key);
+	    if ($key['bagian_pengirim'] != "Pilih Bagian Pengirim") { 
+	    	$this->db->where('smasuk.bagian_pengirim',$key['bagian_pengirim']);
+	    }
+	    if ($key['id_kelompok'] != NUll) { 
+	    	$this->db->where('smasuk.id_kelompok',$key['id_kelompok']);
+	    }
+
+	    $this->db->from('smasuk');
+	    $this->db->join('tb_sm_perihal', 'smasuk.id_kelompok = tb_sm_perihal.id_kelompok','left');
+	    $this->db->order_by('no_surat','DESC');
+
+	    $query = $this->db->get();
+	    if ($query->num_rows() > 0) {
+	        return $query->result();
+	    } else {
+	      return false;
+	    }
+	  }
+
+
+	function count_filter($key)
+	  {
+	    $this->db->from('smasuk');
+	     if ($key['bagian_pengirim'] != "Pilih Bagian Pengirim") { 
+	    	$this->db->where('bagian_pengirim',$key['bagian_pengirim']);
+	    }
+	    if ($key['id_kelompok'] != "Pilih Jenis Surat") { 
+	    	$this->db->where('id_kelompok',$key['id_kelompok']);
+	    }
+
+	    $query = $this->db->get()->num_rows();
+	    return $query;
+	  }
 
 	function viewDatasuratmasuk()
 	{
@@ -57,7 +98,7 @@ class M_surat extends CI_Model
 		// $this->db->where($where);
 
 		$this->db->from('smasuk');
-		$this->db->join('tb_sm_perihal', 'smasuk.id_kelompok = tb_sm_perihal.id_kelompok','right');
+		$this->db->join('tb_sm_perihal', 'smasuk.id_kelompok = tb_sm_perihal.id_kelompok','left');
 		$this->db->where('smasuk.id', $where);
 		$query = $this->db->get();
 		
@@ -94,7 +135,7 @@ class M_surat extends CI_Model
 		$query = $this->db->get();
 		
 		if ($query->num_rows() > 0) {
-			return $query->result();
+			return $query->result_array();
 		} else {
 			return false;
 		}

@@ -11,6 +11,7 @@
             <div class="panel-body">
               <a href="<?= base_url('Skeluar/index/')?>" class="btn btn-primary"><span class="fa fa-plus-circle"></span> Buat Surat</a>
               <a href="<?= base_url('Skeluar/export')?>" class="btn btn-primary"><span class="fa fa-print"></span> Eksport Surat Teguran To Excel</a>
+               <button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#myModal">Edit Pembayaran</button>
               <div class="col-md-4 pull-right">
                 <form action="<?php echo site_url('Skeluar/search') ?>" method="get">
                   <div class="input-group input-group-sm">
